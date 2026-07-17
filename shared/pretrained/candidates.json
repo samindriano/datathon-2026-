@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "selection_status": "PREPARATION_ONLY",
+    "automatic_download": false,
+    "external_api_for_modeling": false,
+    "external_finetuning_data": false,
+    "required_tomorrow_verdict": [
+      "USE",
+      "DO_NOT_USE",
+      "INVESTIGATE"
+    ]
+  },
+  "candidates": {
+    "text-minilm-l6": {
+      "modality": "text",
+      "repository": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "license": "apache-2.0",
+      "model_card": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "library": "sentence-transformers",
+      "required_files": [
+        "config.json",
+        "model.safetensors",
+        "modules.json",
+        "tokenizer.json"
+      ],
+      "allow_patterns": [
+        "1_Pooling/*",
+        "config.json",
+        "config_sentence_transformers.json",
+        "model.safetensors",
+        "modules.json",
+        "sentence_bert_config.json",
+        "special_tokens_map.json",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "vocab.txt",
+        "README.md",
+        "LICENSE"
+      ],
+      "use_when": "English text embeddings or encoder transfer is appropriate.",
+      "caveat": "Text longer than the model limit requires a task-specific strategy."
+    },
+    "vision-vit-base-224": {
+      "modality": "image",
+      "repository": "google/vit-base-patch16-224",
+      "revision": "main",
+      "license": "apache-2.0",
+      "model_card": "https://huggingface.co/google/vit-base-patch16-224",
+      "library": "transformers",
+      "required_files": [
+        "config.json",
+        "model.safetensors",
+        "preprocessor_config.json"
+      ],
+      "allow_patterns": [
+        "config.json",
+        "model.safetensors",
+        "preprocessor_config.json",
+        "README.md"
+      ],
+      "use_when": "The task uses natural images and transfer learning is defensible.",
+      "caveat": "Larger than the other candidates; verify GPU memory and image domain."
+    },
+    "timeseries-chronos-t5-tiny": {
+      "modality": "time_series",
+      "repository": "amazon/chronos-t5-tiny",
+      "revision": "main",
+      "license": "apache-2.0",
+      "model_card": "https://huggingface.co/amazon/chronos-t5-tiny",
+      "library": "chronos-forecasting",
+      "required_files": [
+        "config.json",
+        "generation_config.json",
+        "model.safetensors"
+      ],
+      "allow_patterns": [
+        "config.json",
+        "generation_config.json",
+        "model.safetensors",
+        "README.md"
+      ],
+      "use_when": "The task is genuine forecasting with valid historical context.",
+      "caveat": "Do not use for generic tabular regression; audit temporal leakage first."
+    }
+  }
+}

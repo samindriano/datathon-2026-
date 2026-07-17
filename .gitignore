@@ -1,0 +1,42 @@
+coordination/.team-status.lock/
+shared/pretrained/cache/
+shared/pretrained/bundles/
+__pycache__/
+*.py[cod]
+
+# Local environments and tooling
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+kaggle.json
+
+# Competition data must never be committed
+task1/data/
+task2/data/
+data/
+
+# Large model artifacts
+*.ckpt
+*.h5
+*.joblib
+*.onnx
+*.pkl
+*.pt
+*.pth
+*.safetensors
+
+# OS files
+.DS_Store
+Thumbs.db
