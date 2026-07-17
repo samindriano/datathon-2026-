@@ -1,12 +1,12 @@
 # Datathon 2026 Team Status
 
-Revision: 0006
+Revision: 0007
 Active Day: PREPARATION
 Active Task: NONE
-Last Global Update: 2026-07-17 23:31:03 +07:00
+Last Global Update: 2026-07-17 23:32:32 +07:00
 Competition Clock: NOT STARTED
 Repository Branch: main
-Current Stable Commit: TODO
+Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
 
@@ -40,7 +40,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | Task ID | Day | Owner | Status | Priority | Dependency | Input | Expected Output | Started | Updated | Notes |
 |---|---|---|---|---|---|---|---|---|---|---|
 | D1-MAIN-001 | PREPARATION | MAIN | DONE | MEDIUM | Official competition rules | Open-weight preparation requirement | Offline-ready candidate pantry tooling | 2026-07-17 22:50 WIB | 2026-07-17 23:06 WIB | Metadata/tooling only; no weights downloaded and no model selected. |
-| D1-MAIN-002 | PREPARATION | MAIN | IN_PROGRESS | HIGH | GitHub CLI installed and authenticated | Local project files and target `samindriano/datathon-2026-` | Independent Git repository pushed to GitHub | 2026-07-17 23:14 WIB | 2026-07-17 23:31 WIB | Authentication verified; empty remote connected; initial commit and push pending. |
+| D1-MAIN-002 | PREPARATION | MAIN | DONE | HIGH | GitHub CLI installed and authenticated | Local project files and target `samindriano/datathon-2026-` | Independent Git repository pushed to GitHub | 2026-07-17 23:14 WIB | 2026-07-17 23:32 WIB | Initial baseline commit `53acffe` pushed to `origin/main`. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -50,8 +50,8 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: NONE
 Status: IDLE
-Last Read Revision: 0005
-Last Update: 2026-07-17 23:31:03 +07:00
+Last Read Revision: 0006
+Last Update: 2026-07-17 23:32:32 +07:00
 
 ### Current Objective
 Publish a safe, independent Datathon repository baseline for team collaboration.
@@ -60,12 +60,13 @@ Publish a safe, independent Datathon repository baseline for team collaboration.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
 - Cleaned the latest `AGENTS.md` formatting without changing its substantive rules.
 - Added an opt-in pretrained candidate pantry with pinned-revision receipts, checksum verification, and selection gates.
+- Initialized the independent repository and pushed the collaboration baseline to GitHub `main`.
 ### Work in Progress
-- Initial commit and push to `samindriano/datathon-2026-`.
+- TODO
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 ### Files Changed
-- `.gitignore`; `README.md`; `requirements.txt`; `shared/pretrained/`; `task1/`; `task2/`; `coordination/TEAM_STATUS.md`
+- `coordination/TEAM_STATUS.md`
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -81,7 +82,7 @@ Publish a safe, independent Datathon repository baseline for team collaboration.
 ### Blockers
 - NONE
 ### Next Action
-- Inspect the official task first, then issue `USE`, `DO_NOT_USE`, or `INVESTIGATE` for each relevant candidate before downloading/using it.
+- Teammates may clone the repository; inspect the official task before creating the first stable baseline and experiment branches.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -215,6 +216,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-17 23:06:32 +07:00 | 0004 | MAIN | D1-MAIN-001 | Prepared open-weight candidate pantry | 4 tests passed; no weights downloaded, training run, or model selected | Inspect Day 1 task and activate only justified candidates |
 | 2026-07-17 23:14:37 +07:00 | 0005 | MAIN | D1-MAIN-002 | Attempted GitHub repository setup | BLOCKED: GitHub CLI is not installed; local repo was not initialized or pushed | Install `gh`, authenticate, then resume setup |
 | 2026-07-17 23:31:03 +07:00 | 0006 | MAIN | D1-MAIN-002 | Resumed GitHub repository setup | Authentication verified; independent repo initialized on `main`; remote is empty and connected; 4 tests passed | Review, commit, and push initial baseline |
+| 2026-07-17 23:32:32 +07:00 | 0007 | MAIN | D1-MAIN-002 | Published initial collaboration baseline | Commit `53acffe` pushed to `origin/main`; task directories and pretrained tooling are available to teammates | Clone repository and wait for the official task |
 
 Append only. Correct errors with a new entry; do not erase history.
 
