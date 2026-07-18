@@ -1,0 +1,394 @@
+{
+  "experiment_id": "d1-e017-dynamics",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "Asymmetric causal road dynamics add local nonlinear recovery and congestion signals missing from E013.",
+  "preregistered_parameters": {
+    "feature_names": [
+      "last",
+      "mean3",
+      "mean5",
+      "mean15",
+      "slope_up5",
+      "slope_down5",
+      "curvature3",
+      "recent_gap",
+      "range15",
+      "std15"
+    ],
+    "alpha": 0.1,
+    "anchor_weight": 0.75,
+    "dynamics_weight": 0.25,
+    "weight_search": false,
+    "temporal_chunk_size_origins": 120,
+    "text_residual_alpha": 1.0,
+    "text_z_threshold": 3.0,
+    "seed": null
+  },
+  "candidates": {
+    "stableblend": {
+      "mean_mse": 36.56025330476311,
+      "std_mse": 5.160867894455729,
+      "worst_fold_mse": 41.75151401530663,
+      "fold_mse": [
+        41.75151401530663,
+        38.40758877339898,
+        29.521657125583715
+      ],
+      "mse_by_horizon": {
+        "5": 31.29014153073365,
+        "10": 37.06222101818448,
+        "15": 41.32839736537119
+      },
+      "fold_horizon_mse": [
+        [
+          35.02931209003044,
+          42.54501964789959,
+          47.68021030798985
+        ],
+        [
+          32.348468002966314,
+          39.09789207588926,
+          43.77640624134136
+        ],
+        [
+          26.49264449920421,
+          29.543751330764575,
+          32.528575546782356
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.14133240891099,
+            49.169776642870616,
+            56.01506238631864
+          ],
+          [
+            35.55323380177352,
+            43.240702615642995,
+            48.362391014418016
+          ],
+          [
+            27.805592249757442,
+            30.335026810127214,
+            32.86057858917084
+          ]
+        ],
+        [
+          [
+            25.92412424108065,
+            27.875914873320898,
+            29.224466420261823
+          ],
+          [
+            25.25220087703606,
+            29.92452588072027,
+            33.62172567238592
+          ],
+          [
+            23.58540305155063,
+            27.791641340747308,
+            31.79342595292213
+          ]
+        ]
+      ]
+    },
+    "dynamics": {
+      "mean_mse": 38.967322681039064,
+      "std_mse": 5.35499381360891,
+      "worst_fold_mse": 44.45629990571566,
+      "fold_mse": [
+        44.45629990571566,
+        40.74138304884038,
+        31.70428508856115
+      ],
+      "mse_by_horizon": {
+        "5": 32.82743191945886,
+        "10": 39.69500839211618,
+        "15": 44.37952773154214
+      },
+      "fold_horizon_mse": [
+        [
+          36.766975985740906,
+          45.5698106828445,
+          51.03211304856156
+        ],
+        [
+          33.78630699687953,
+          41.66573440893195,
+          46.772107740709664
+        ],
+        [
+          27.929012775756156,
+          31.849480084572097,
+          35.33436240535519
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            41.25805536051192,
+            53.0001568094919,
+            60.33771370475551
+          ],
+          [
+            37.16296327582682,
+            46.21256002901315,
+            51.87371048378168
+          ],
+          [
+            29.023122230493303,
+            32.35853286369664,
+            35.32750792414784
+          ]
+        ],
+        [
+          [
+            26.82244308446224,
+            29.116901402410974,
+            30.426854452703537
+          ],
+          [
+            26.30942523635339,
+            31.597763393037848,
+            35.47570166676449
+          ],
+          [
+            25.50634184026676,
+            30.722291787939177,
+            35.349540185171485
+          ]
+        ]
+      ]
+    },
+    "dynamicsblend": {
+      "mean_mse": 36.921418389498804,
+      "std_mse": 5.171619155996972,
+      "worst_fold_mse": 42.11575929338054,
+      "fold_mse": [
+        42.11575929338054,
+        38.78323705760613,
+        29.86525881750976
+      ],
+      "mse_by_horizon": {
+        "5": 31.502212792821286,
+        "10": 37.46224959635155,
+        "15": 41.7997927793236
+      },
+      "fold_horizon_mse": [
+        [
+          35.23940488870529,
+          42.96559210056063,
+          48.14228089087572
+        ],
+        [
+          32.56614022612081,
+          39.51622035859366,
+          44.267350588103916
+        ],
+        [
+          26.70109326363777,
+          29.904936329900348,
+          32.98974685899116
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.395318722362234,
+            49.70578581787319,
+            56.625779579715704
+          ],
+          [
+            35.79969095875607,
+            43.72687690373224,
+            48.941207746007386
+          ],
+          [
+            27.98233494985135,
+            30.64759433282612,
+            33.25783754790841
+          ]
+        ],
+        [
+          [
+            26.037024257036343,
+            28.040877440797086,
+            29.357390937015744
+          ],
+          [
+            25.406135032428445,
+            30.19262372292966,
+            33.91809545274623
+          ],
+          [
+            23.8640581013077,
+            28.26047932342185,
+            32.39611747638868
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 0,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 0,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": -0.7168053946287358,
+    "temporal_chunk_gain_median": -0.32755608308908535,
+    "temporal_chunk_gain_max": -0.01865579401831141,
+    "temporal_chunk_gains": [
+      -0.6273312782427638,
+      -0.6374152992447719,
+      -0.0949775599451641,
+      -0.6014280907508365,
+      -0.7168053946287358,
+      -0.1234677408891045,
+      -0.5771863537624711,
+      -0.3995152532787074,
+      -0.469765888267041,
+      -0.41295573059652924,
+      -0.3168176769798734,
+      -0.44665545043770294,
+      -0.5064088880627509,
+      -0.06875544852476878,
+      -0.14312729564692717,
+      -0.4705262183615275,
+      -0.3253516672428134,
+      -0.25896884522201447,
+      -0.0351772664432346,
+      -0.3535548545629439,
+      -0.07726066001114873,
+      -0.01865579401831141,
+      -0.2607660739580524,
+      -0.07615955137793051,
+      -0.13211545851123674,
+      -0.0930293701765521,
+      -0.3732568172238082,
+      -0.24568355466530534,
+      -0.11871154406355089,
+      -0.4740068112836511,
+      -0.31502165735247445,
+      -0.7166582963220591,
+      -0.45262220749128446,
+      -0.23990642583149935,
+      -0.3297604989353573,
+      -0.6464000258636062
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.2263888888888889,
+      0.13194444444444445,
+      0.1875,
+      0.33055555555555555,
+      0.28055555555555556,
+      0.3
+    ]
+  },
+  "test_diagnostics": {
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250,
+    "candidate_vs_e013_delta_mean": 0.008285400551626455,
+    "candidate_vs_e013_delta_rms": 0.24406922046077165,
+    "candidate_vs_e013_delta_abs_gt_5_fraction": 1.4697236919459143e-06
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_e013_by_at_least_1_percent": false,
+      "all_three_folds_improve": false,
+      "all_three_horizons_improve": false,
+      "worst_fold_improves": false,
+      "fold_standard_deviation_not_worse": false,
+      "at_least_17_of_18_cells_improve": false,
+      "at_least_34_of_36_chunks_improve": false,
+      "median_chunk_gain_at_least_0_30": false,
+      "worst_chunk_not_below_minus_0_25": false,
+      "predictions_are_finite_nonnegative_and_zero_guarded": true
+    },
+    "status": "REJECT"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.2613525390625,
+    "mean": 52.87156295776367,
+    "submission_rows": 2041200
+  },
+  "submission": null,
+  "runtime_seconds": 65.83888149999257
+}

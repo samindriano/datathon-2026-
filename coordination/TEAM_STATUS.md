@@ -421,6 +421,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 Append only. Correct errors with a new entry; do not erase history.
 
 | 2026-07-18 16:08:00 +07:00 | E017-001 | EXPERIMENT | D1-E017 | Preregistered asymmetric local-dynamics candidate in isolated worktree | Ten causal per-road features, alpha 0.1, and fixed 75:25 E013/dynamics blend; no feature, alpha, or weight search | Freeze implementation and run once on official folds |
+| 2026-07-18 16:13:00 +07:00 | E017-002 | EXPERIMENT | D1-E017 | Rejected asymmetric local-dynamics candidate without retuning | Blend MSE 36.9214 versus E013 36.5603; 0/18 cells and 0/36 chunks improve; no CSV | Preserve E013 and hand off negative result to MAIN |
 
 ## 12. Day 1 Closing Summary
 
