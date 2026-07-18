@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0064
+Revision: 0066
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 16:11:49 +07:00
+Last Global Update: 2026-07-18 16:21:15 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e016-lowrank
+Repository Branch: exp/d1-e018-lowrankguard
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -60,6 +60,8 @@ Only MAIN may update this section.
 | D1-DEC-026 | 2026-07-18 15:52 WIB | Record slot 3 and prefer e013 as the current final-selection candidate over e010. | Public MSE improved `45.168` to `43.511`, closely matching the 3.545% local gain; post-submission audit gives `GO/KEEP` and medium-high private confidence. | MAIN | A final bounded candidate passes stricter frozen validation, audit, Kaggle reproduction, and provides stronger evidence before freeze. |
 | D1-DEC-027 | 2026-07-18 16:05 WIB | Preregister parallel `d1-e016-lowrank` on a separate worktree: fixed rank 4, 360 training-only PCA samples, and unchanged 75% e010 plus 25% latent-state blend. | User explicitly requested one parallel candidate while E015 runs; low-rank cross-road factors are orthogonal to seasonal phase and hand-built distribution summaries. | MAIN | Any frozen aggregate, cell, chunk, inference, runtime, or reproducibility gate fails; no rank/sample/weight retuning is allowed. |
 | D1-DEC-028 | 2026-07-18 16:11 WIB | Reject `d1-e016-lowrank` without retuning and preserve both remaining Kaggle slots. | Mean MSE improved 2.74% with 18/18 cells and 34/36 chunks, but worst chunk `-0.3186` breached the frozen `-0.25` safety floor. | MAIN | None within E016; any continuation must be a separately preregistered hypothesis, not a relaxed threshold or tuned blend. |
+| D1-DEC-029 | 2026-07-18 16:15 WIB | Preregister `d1-e018-lowrankguard` as a disclosed post-E016 robustness hypothesis in a separate worktree. | User authorized another attempt; a training-only three-sigma novelty guard can revert rare latent/reconstruction OOD origins to E013 without time/regime hand rules. | MAIN | Any stricter aggregate, 18-cell, 35-chunk, worst-chunk, inference, or reproducibility gate fails; no threshold/weight search is allowed. |
+| D1-DEC-030 | 2026-07-18 16:21 WIB | Reject E018 without changing its three-sigma threshold or reversion action. | It retained a 2.03% mean gain and 18/18 cells, but only 33/36 chunks improved, worst chunk was -0.1064 below the -0.10 floor, and 30.37% test reversion exceeded the 20% cap. | MAIN | None within E018; keep E013 selected and preserve both remaining slots unless a separately owned candidate passes its frozen gate and audit. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -90,6 +92,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-020 | DAY 1 | MAIN | DONE | HIGH | e011 globalstate-only diagnostic | Frozen globalstate model plus unseen temporal-chunk and correction-distribution stress tests | Determine whether the post-discovery candidate merits independent audit and notebook work | 2026-07-18 14:47 WIB | 2026-07-18 14:50 WIB | `REJECT`: 31/36 chunk wins and worst chunk -1.9517 fail frozen gates; no CSV, audit handoff, notebook, or slot. |
 | D1-MAIN-021 | DAY 1 | MAIN | DONE | HIGH | Stable e010 plus volatile e012 signal | Fixed 75:25 e010/globalstate shrinkage blend | Capture meaningful globalstate gain while restoring temporal robustness | 2026-07-18 14:55 WIB | 2026-07-18 15:52 WIB | Slot 3 public 43.511; audit `GO/KEEP`; e013 is current final-selection candidate. |
 | D1-MAIN-023 | DAY 1 | MAIN | DONE | HIGH | Confirmed cross-road global-state gain | Training-fold-only rank-4 latent spatial factors under fixed 75:25 e010 anchor blend | Test a cross-road representation orthogonal to E015 seasonal phase | 2026-07-18 16:05 WIB | 2026-07-18 16:11 WIB | `REJECT`: strong aggregate gain, but worst temporal chunk `-0.3186` fails the frozen safety floor; no CSV, audit, notebook, or slot. |
+| D1-MAIN-024 | DAY 1 | MAIN | DONE | HIGH | E016 strong mean gain with two regressing chunks | Training-only three-sigma latent/reconstruction novelty reversion to E013 | Test whether generic OOD control removes rare regressions without hand-coded time rules | 2026-07-18 16:15 WIB | 2026-07-18 16:21 WIB | `REJECT`: 33/36 chunks, worst chunk -0.1064, and 30.37% test reversion fail frozen gates; no CSV, audit, notebook, or slot. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | DONE | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 14:27 WIB | Actual Kaggle blend output is `READY`; exact frozen-output match and all schema/reproducibility gates pass. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -98,13 +101,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-023
+Current Task: D1-MAIN-024
 Status: DONE
-Last Read Revision: 0063
-Last Update: 2026-07-18 16:11:49 +07:00
+Last Read Revision: 0065
+Last Update: 2026-07-18 16:21:15 +07:00
 
 ### Current Objective
-Preserve e013 as the final candidate after E016 failed one frozen temporal safety gate.
+Preserve E013 as final after E018 failed three frozen robustness gates.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -174,8 +177,9 @@ Preserve e013 as the final candidate after E016 failed one frozen temporal safet
 - Actual Kaggle e013 output: 2,041,200 exact IDs; min 0.0; max 101.6040; mean 52.863277; zero mismatches; max difference 0.0; hash `84703083...b6e1d`.
 - E013 public confirmation: gain 1.657 MSE (3.669%) versus e010, closely aligned with local gain 1.3438 (3.545%); public retains 123.3% of local gain.
 - E016 low-rank blend: mean MSE 35.5576 versus e013 36.5603; all folds/horizons and 18/18 cells improve, but worst chunk -0.3186 fails the frozen -0.25 floor, so status is REJECT without retuning.
+- E018 novelty guard: mean MSE 35.8180 and 18/18 cells improve, but 33/36 chunks, worst chunk -0.1064, and 30.37% test reversion fail the frozen gate; REJECT without retuning.
 ### Files Changed
-- `coordination/TEAM_STATUS.md`; `task1/src/lowrank_state_model.py`; `task1/src/run_lowrank_experiment.py`; tests; `task1/experiments/d1-e016-lowrank/` artifacts.
+- `coordination/TEAM_STATUS.md`; E016 low-rank code/artifacts; E018 novelty-guard code, tests, config, metrics, and notes.
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -194,15 +198,16 @@ Preserve e013 as the final candidate after E016 failed one frozen temporal safet
 - `task1/reports/d1-submission-readiness.{md,json}`
 - `task1/reports/d1-e010-kaggle-output-validation.json`
 - `task1/experiments/d1-e016-lowrank/metrics.json`
+- `task1/experiments/d1-e018-lowrankguard/metrics.json`
 ### Decisions Needed
-- Await the independent E015 result; E016 is closed and may not consume a Kaggle slot.
+- Await separately owned E015/E017 results; E016 and E018 are closed and may not consume a Kaggle slot.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Keep E013 selected; do not retune E016 or relax its failed gate.
+- Keep E013 selected; do not retune E016/E018 or relax their failed gates.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -307,6 +312,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e012-globalstate-only | DAY 1 | MAIN | The post-discovery globalstate-only signal is broad enough to survive strict unseen temporal-chunk stress and justify audit despite selection after e011 diagnostics. | d1-e010-graphtextblend | Frozen `d1-multifold-v1` plus preregistered 120-origin chunks | 35.3894 | 40.0654; 36.4597; 29.6431 | 40.0654 | 4.3217 | min 0.0; max 101.5080; mean 52.9184 | 36.67s | REJECT | `task1/experiments/d1-e012-globalstate-only/metrics.json` |
 | d1-e013-stableblend | DAY 1 | MAIN | Fixed 75% e010 plus 25% globalstate captures part of the large global signal while shrinking the five unstable e012 chunks toward the audited anchor. | d1-e010-graphtextblend; d1-e012-globalstate-only | Frozen `d1-multifold-v1` plus fixed 120-origin chunks | 36.5603 | 41.7515; 38.4076; 29.5217 | 41.7515 | 5.1609 | min 0.0; max 101.6040; mean 52.8633 | 61.14s | KEEP | `task1/experiments/d1-e013-stableblend/metrics.json` |
 | d1-e016-lowrank | DAY 1 | MAIN | Four training-fold-only latent road factors capture coordinated spatial modes that global averages, graph neighbors, and seasonal phase miss. | d1-e013-stableblend | Frozen `d1-multifold-v1` plus fixed 120-origin chunks | 35.5576 | 40.5674; 37.0736; 29.0317 | 40.5674 | 4.8299 | min 0.0; max 100.3403; mean 52.8626 | 80.75s | REJECT | `task1/experiments/d1-e016-lowrank/metrics.json` |
+| d1-e018-lowrankguard | DAY 1 | MAIN | Training-only latent and reconstruction novelty can retain E016's broad gain while reverting rare OOD origins to E013. | d1-e016-lowrank; d1-e013-stableblend | Frozen `d1-multifold-v1` plus stricter fixed 120-origin chunks | 35.8180 | 40.9364; 37.3490; 29.1688 | 40.9364 | 4.9246 | min 0.0; max 101.6040; mean 52.8639 | 115.89s | REJECT | `task1/experiments/d1-e018-lowrankguard/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -425,6 +431,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 15:52:09 +07:00 | 0062 | MAIN | D1-MAIN-021 | Recorded slot 3 and accepted post-submission risk audit | Public MSE 43.511; gain magnitude aligns with local validation; e013 becomes current final-selection recommendation over e010 | Keep e013 selected and permit only one final distinct feature hypothesis, not weight retuning |
 | 2026-07-18 16:05:02 +07:00 | 0063 | MAIN | D1-MAIN-023 | Preregistered parallel low-rank spatial-factor experiment | Fixed rank 4, 360 evenly spaced training-only PCA rows, per-road standardization, alpha 0.1, and unchanged 75:25 anchor weight | Implement once in isolated worktree and reject without retuning on any failed gate |
 | 2026-07-18 16:11:49 +07:00 | 0064 | MAIN | D1-MAIN-023 | Completed and closed E016 low-rank experiment | `REJECT`: mean improves 2.74%, 18/18 cells and 34/36 chunks improve, but worst chunk `-0.3186` fails frozen `-0.25` floor; no submission generated | Preserve both remaining slots, keep E013 selected, and await the independent E015 verdict |
+| 2026-07-18 16:15:38 +07:00 | 0065 | MAIN | D1-MAIN-024 | Preregistered post-E016 low-rank novelty guard | Fixed three-sigma guard on 20 latent summaries plus reconstruction RMS, fitted training-fold-only; untrusted origins revert exactly to E013 | Implement once in isolated worktree and reject without retuning on any failed stricter gate |
+| 2026-07-18 16:21:15 +07:00 | 0066 | MAIN | D1-MAIN-024 | Completed and closed E018 novelty-guard experiment | `REJECT`: mean improves 2.03% and 18/18 cells improve, but 33/36 chunks, worst chunk -0.1064, and 30.37% test reversion fail frozen gates | Keep E013 selected; do not retune E018 or spend a Kaggle slot on it |
 
 Append only. Correct errors with a new entry; do not erase history.
 

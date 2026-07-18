@@ -1,0 +1,401 @@
+{
+  "experiment_id": "d1-e018-lowrankguard",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "selection_risk": "Designed after observing E016 temporal failures; no threshold, weight, rank, alpha, or action search.",
+  "hypothesis": "A training-only three-sigma latent/reconstruction novelty guard preserves broad E016 gains while reverting rare OOD origins exactly to E013.",
+  "preregistered_parameters": {
+    "rank": 4,
+    "pca_sample_count": 360,
+    "alpha": 0.1,
+    "anchor_weight": 0.75,
+    "lowrank_weight": 0.25,
+    "novelty_features": "20 latent temporal summaries plus reconstruction RMS",
+    "novelty_z_threshold": 3.0,
+    "novelty_action": "full reversion to e013",
+    "text_z_threshold": 3.0,
+    "temporal_chunk_size_origins": 120,
+    "seed": null
+  },
+  "candidates": {
+    "stableblend": {
+      "mean_mse": 36.56025330476311,
+      "std_mse": 5.160867894455729,
+      "worst_fold_mse": 41.75151401530663,
+      "fold_mse": [
+        41.75151401530663,
+        38.40758877339898,
+        29.521657125583715
+      ],
+      "mse_by_horizon": {
+        "5": 31.29014153073365,
+        "10": 37.06222101818448,
+        "15": 41.32839736537119
+      },
+      "fold_horizon_mse": [
+        [
+          35.02931209003044,
+          42.54501964789959,
+          47.68021030798985
+        ],
+        [
+          32.348468002966314,
+          39.09789207588926,
+          43.77640624134136
+        ],
+        [
+          26.49264449920421,
+          29.543751330764575,
+          32.528575546782356
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.14133240891099,
+            49.169776642870616,
+            56.01506238631864
+          ],
+          [
+            35.55323380177352,
+            43.240702615642995,
+            48.362391014418016
+          ],
+          [
+            27.805592249757442,
+            30.335026810127214,
+            32.86057858917084
+          ]
+        ],
+        [
+          [
+            25.92412424108065,
+            27.875914873320898,
+            29.224466420261823
+          ],
+          [
+            25.25220087703606,
+            29.92452588072027,
+            33.62172567238592
+          ],
+          [
+            23.58540305155063,
+            27.791641340747308,
+            31.79342595292213
+          ]
+        ]
+      ]
+    },
+    "lowrankblend": {
+      "mean_mse": 35.55759674478171,
+      "std_mse": 4.829909767727832,
+      "worst_fold_mse": 40.56743331122143,
+      "fold_mse": [
+        40.56743331122143,
+        37.07364796278437,
+        29.031708960339326
+      ],
+      "mse_by_horizon": {
+        "5": 30.660378442043456,
+        "10": 36.01343154975141,
+        "15": 39.99898024255025
+      },
+      "fold_horizon_mse": [
+        [
+          34.331779563347595,
+          41.310867036666046,
+          46.05965333365064
+        ],
+        [
+          31.53530301914942,
+          37.698159521960356,
+          41.98748134724334
+        ],
+        [
+          26.11405274363335,
+          29.03126809062783,
+          31.949806046756795
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.29659890143527,
+            47.61643744929608,
+            53.961944114257854
+          ],
+          [
+            34.68735671373647,
+            41.67760427401521,
+            46.28603274529128
+          ],
+          [
+            27.448195066268624,
+            29.819357587795718,
+            32.260841403820955
+          ]
+        ],
+        [
+          [
+            25.552536743296315,
+            27.348532551556687,
+            28.56172374802037
+          ],
+          [
+            24.555755552563813,
+            28.88653185669603,
+            32.4692603944229
+          ],
+          [
+            23.159880457798103,
+            27.286212775470357,
+            31.26108489897186
+          ]
+        ]
+      ]
+    },
+    "lowrankguard": {
+      "mean_mse": 35.818045999312844,
+      "std_mse": 4.924563815891977,
+      "worst_fold_mse": 40.93638739290257,
+      "fold_mse": [
+        40.93638739290257,
+        37.348976670355746,
+        29.16877393468022
+      ],
+      "mse_by_horizon": {
+        "5": 30.83794906619863,
+        "10": 36.29925776129306,
+        "15": 40.31693117044685
+      },
+      "fold_horizon_mse": [
+        [
+          34.55027874761259,
+          41.72048577852463,
+          46.53839765257049
+        ],
+        [
+          31.736766769386822,
+          38.00398118167432,
+          42.30618206000611
+        ],
+        [
+          26.226801681596474,
+          29.173306323680244,
+          32.106213798763946
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.60918016646703,
+            48.2062267126845,
+            54.652057796629556
+          ],
+          [
+            34.76059209447722,
+            41.792231840018516,
+            46.41077334079554
+          ],
+          [
+            27.467687733559966,
+            29.849025678578215,
+            32.300297122978215
+          ]
+        ],
+        [
+          [
+            25.562711320149187,
+            27.359202281456373,
+            28.57243590501112
+          ],
+          [
+            25.0411535495438,
+            29.615711866769324,
+            33.217444223972365
+          ],
+          [
+            23.479125423677306,
+            27.677070609263307,
+            31.676457866575202
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 18,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 33,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": -0.1064026419341495,
+    "temporal_chunk_gain_median": 0.5644837023948153,
+    "temporal_chunk_gain_max": 2.0313043355849274,
+    "temporal_chunk_gains": [
+      1.1147802562346243,
+      0.820275194406932,
+      1.1105105794365215,
+      1.0171535079935623,
+      0.6405386475855366,
+      1.0141553389814,
+      1.5937766811974186,
+      0.7461909119142014,
+      1.7432571300066968,
+      1.5195660102898856,
+      0.7513652440933107,
+      2.0313043355849274,
+      0.46901955231034265,
+      0.9874595999737394,
+      0.4381653959367533,
+      0.5732845349195728,
+      0.40684778667198884,
+      -0.1064026419341495,
+      0.7955070999814353,
+      0.7380118366520847,
+      0.2721302103778136,
+      0.5434006527076924,
+      0.5556828698700578,
+      0.15557938650426806,
+      0.7144030221683337,
+      0.06680082116682584,
+      0.17747304304942801,
+      0.643495704840376,
+      0.016772239751777107,
+      0.22934074873679577,
+      0.404711990324806,
+      -0.066311067180294,
+      -0.04395099258909596,
+      0.08188479579003882,
+      0.05888879506577993,
+      0.2404093699972769
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.8138888888888889,
+      0.9138888888888889,
+      0.7736111111111111,
+      0.8694444444444445,
+      0.6333333333333333,
+      0.3416666666666667
+    ],
+    "validation_reversion_rates": [
+      0.13194444444444445,
+      0.034722222222222224,
+      0.02638888888888889,
+      0.015277777777777777,
+      0.25277777777777777,
+      0.5347222222222222
+    ]
+  },
+  "test_diagnostics": {
+    "lowrankguard_m2_mean_correction_vs_ridge": -0.23810672760009766,
+    "lowrankguard_vs_e013_rms": 0.2885615658201756,
+    "lowrankguard_vs_e013_mean": 0.0005886182737378496,
+    "test_reverted_origins": 164,
+    "test_reversion_rate": 0.3037037037037037,
+    "test_reversion_rate_m1": 0.3467741935483871,
+    "test_reversion_rate_m2": 0.20833333333333334,
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_e013_by_at_least_2_percent": true,
+      "all_three_folds_improve": true,
+      "all_three_horizons_improve": true,
+      "worst_fold_improves": true,
+      "fold_standard_deviation_not_worse": true,
+      "all_18_cells_improve": true,
+      "at_least_35_of_36_chunks_improve": false,
+      "median_chunk_gain_at_least_0_50_mse": true,
+      "worst_chunk_gain_not_below_minus_0_10": false,
+      "test_m2_correction_is_nonpositive": true,
+      "test_change_vs_e013_is_conservative": true,
+      "test_reversion_rate_at_most_20_percent": false,
+      "predictions_are_valid_and_zero_guarded": true
+    },
+    "status": "REJECT"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.60399627685547,
+    "mean": 52.863868713378906,
+    "submission_rows": 2041200
+  },
+  "submission": null,
+  "runtime_seconds": 115.89012769999681
+}
