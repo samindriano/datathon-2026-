@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0024
+Revision: 0025
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 12:56:12 +07:00
+Last Global Update: 2026-07-18 13:05:37 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-main-model
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -52,7 +52,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-006 | DAY 1 | MAIN | CANCELLED | MEDIUM | Frozen ridge handoff | Same audited folds and 15-step histories | Independent lightweight `d1-e003-lagblend` candidate | 2026-07-18 12:28 WIB | 2026-07-18 12:32 WIB | Cancelled by user before commit; code, metrics, and local preview removed. |
 | D1-MAIN-007 | DAY 1 | MAIN | DONE | HIGH | Harness `GO` and ridge `KEEP` | Audited ridge runner, sample submission, and Kaggle constraints | Reusable validator and clean-session inference notebook | 2026-07-18 12:36 WIB | 2026-07-18 12:40 WIB | Clean process reproduced all 2,041,200 predictions exactly; ready for SUBMISSION review. |
 | D1-MAIN-008 | DAY 1 | MAIN | DONE | HIGH | User local notebook run | VS Code could not find `/kaggle/input` outside Kaggle | Automatic local/Kaggle data and output path discovery | 2026-07-18 12:43 WIB | 2026-07-18 12:45 WIB | Local Run All completed in 5.67s with zero difference from audited submission. |
-| D1-MAIN-009 | DAY 1 | MAIN | IN_PROGRESS | HIGH | SUBMISSION verdict `NOT READY` | Four concrete readiness blockers | Fail-closed validator, clean final notebook, and Kaggle Run All evidence | 2026-07-18 12:56 WIB | 2026-07-18 12:56 WIB | No submission slot; preserve SUBMISSION findings and frozen model. |
+| D1-MAIN-009 | DAY 1 | MAIN | IN_PROGRESS | HIGH | SUBMISSION verdict `NOT READY` | Four concrete readiness blockers | Fail-closed validator, clean final notebook, and Kaggle Run All evidence | 2026-07-18 12:56 WIB | 2026-07-18 13:05 WIB | Final competition-named notebook prepared; actual Kaggle clean-session Run All remains. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -63,8 +63,8 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: D1-MAIN-009
 Status: IN_PROGRESS
-Last Read Revision: 0023
-Last Update: 2026-07-18 12:56:12 +07:00
+Last Read Revision: 0024
+Last Update: 2026-07-18 13:05:37 +07:00
 
 ### Current Objective
 Freeze the audited ridge candidate and prepare submission reproducibility without using a Kaggle slot.
@@ -81,7 +81,8 @@ Freeze the audited ridge candidate and prepare submission reproducibility withou
 - `d1-e002-ridge` is frozen at commit `e2136b6`; no Kaggle slot has been used.
 - `d1-e003-lagblend` was cancelled before commit and its local artifacts were removed.
 - Submission readiness artifacts await independent SUBMISSION review and actual Kaggle `Run All` verification.
-- Repairing the fail-open reference gate, clearing local notebook outputs, resolving the official filename, and obtaining Kaggle Run All evidence.
+- The fail-closed reference gate and clean local notebook are complete.
+- The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; actual Kaggle Run All evidence remains.
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 - Data integrity: all NPY arrays finite; all 2,041,200 submission IDs parse completely.
@@ -93,7 +94,7 @@ Freeze the audited ridge candidate and prepare submission reproducibility withou
 - Clean notebook: 4.95s; 2,041,200 rows; exact numeric match with audited ridge CSV; 10 tests passed.
 - Direct local Run All: 5.67s; automatic repository data discovery; exact numeric match retained.
 ### Files Changed
-- `task1/notebooks/d1-ridge-inference.ipynb`; `task1/reports/d1-submission-readiness.md`; `coordination/TEAM_STATUS.md`
+- `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -108,16 +109,17 @@ Freeze the audited ridge candidate and prepare submission reproducibility withou
 - `task1/experiments/d1-e002-ridge/{config.json,metrics.json,notes.md}`
 - `task1/experiments/d1-e002-ridge/submission.csv` (local, ignored)
 - `task1/notebooks/d1-ridge-inference.ipynb`
+- `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
 ### Decisions Needed
-- Independent SUBMISSION verdict and actual Kaggle clean-session `Run All` result.
+- Actual Kaggle clean-session `Run All` result and final SUBMISSION verdict.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Close the four SUBMISSION blockers and return evidence through handoff `D1-HO-004`; do not submit.
+- Upload `EnterYourTeamName_Task1_Notebook.ipynb`, run it from a clean Kaggle session, and return output evidence through handoff `D1-HO-004`; do not submit yet.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -281,6 +283,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 12:49:20 +07:00 | 0022 | SUBMISSION | D1-SUB-001 | Started independent submission and leakage audit | Claimed committed notebook, validator, clean-run, path/dependency, and exact-output review; no Kaggle slot used | Reproduce locally, then determine whether actual Kaggle Run All is the only remaining gate |
 | 2026-07-18 12:53:02 +07:00 | 0023 | SUBMISSION | D1-SUB-001 | Completed local submission and leakage audit | Leakage `GO`; exact clean reproduction and schema pass; `NOT READY` due fail-open reference check, non-final filename, dirty local outputs, and missing actual Kaggle Run All | Fix local blockers, then perform Kaggle Run All before any submission slot |
 | 2026-07-18 12:56:12 +07:00 | 0024 | MAIN | D1-MAIN-009 | Started submission blocker repair | Accepted all four audit findings; frozen model and Kaggle slot remain untouched | Make reference mismatch fail closed, clean/name notebook, and run it in Kaggle |
+| 2026-07-18 13:05:37 +07:00 | 0025 | MAIN | D1-MAIN-009 | Prepared final competition-named notebook | PDF page 14 confirms `TeamName_TaskName_Notebook.ipynb`; clean byte-identical copy created as `EnterYourTeamName_Task1_Notebook.ipynb` | Upload to Kaggle and perform Restart Session plus Run All; do not use a submission slot yet |
 
 Append only. Correct errors with a new entry; do not erase history.
 
