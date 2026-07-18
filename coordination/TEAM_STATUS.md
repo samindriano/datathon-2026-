@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0036
+Revision: 0040
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 13:47:23 +07:00
+Last Global Update: 2026-07-18 13:54:55 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e007-graphres
+Repository Branch: exp/d1-e008-textood
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -42,6 +42,7 @@ Only MAIN may update this section.
 | D1-DEC-008 | 2026-07-18 13:28 WIB | Preregister `d1-e005-ar15` with the same ridge alpha `0.1`, changing only five summary features to all 15 causal lags. | Ridge remains strongest; isolating the full-history feature hypothesis avoids leaderboard tuning and preserves per-road modeling. | MAIN | Implementation fails leakage, stability, or runtime checks. |
 | D1-DEC-009 | 2026-07-18 13:34 WIB | Preregister `d1-e006-textres` using fixed global event-type counts to model per-road ridge residuals. | Official texts align one-to-one with timesteps/samples and contain repeated causal event types; no external embedding or road-name translation is required. | MAIN | Text alignment or residual fitting is not leakage-safe or runtime-feasible. |
 | D1-DEC-010 | 2026-07-18 13:42 WIB | Freeze textres at commit `c603cd9` for audit and preregister `d1-e007-graphres` on a separate branch. | Official adjacency is sparse and directed with 5,122 nonzeros; symmetric external-neighbor summaries can test graph signal without a GNN or new dependency. | MAIN | Graph orientation or feature computation cannot be made deterministic and leakage-safe. |
+| D1-DEC-011 | 2026-07-18 13:50 WIB | Respond to textres audit with one preregistered OOD guard that neutralizes only the `prohibit left turn` residual feature when it falls outside training range. | VALIDATION found test-m2 `z=-3.434` on this feature and a risky positive correction; leakage safety and aligned text gain otherwise received `GO`/`KEEP`. | MAIN | Guard fails to retain broad local gains or does not remove the risky test correction. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -63,7 +64,8 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-011 | DAY 1 | MAIN | DONE | HIGH | Rejected lagblend and frozen ridge reference | Nearest historical network states using training-only selected roads and future deltas | Structurally different candidate with fixed runtime-safe parameters | 2026-07-18 13:24 WIB | 2026-07-18 13:27 WIB | `REJECT`: MSE 55.4014, 0/3 folds and horizons improve; no CSV or slot used. |
 | D1-MAIN-012 | DAY 1 | MAIN | DONE | HIGH | Frozen ridge remains strongest | Per-road direct ridge using all 15 causal lag values | Comparable feature-expansion candidate on frozen folds | 2026-07-18 13:28 WIB | 2026-07-18 13:31 WIB | `REJECT`: MSE 39.0830, only fold 3 improves and 0/3 horizons improve; no CSV or slot used. |
 | D1-MAIN-013 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Text schema audit and frozen ridge | Fixed event-count features predicting per-road ridge residuals | First causal use of official event text with no external model | 2026-07-18 13:34 WIB | 2026-07-18 13:39 WIB | `KEEP`: MSE 38.3456, all folds/horizons improve; independent leakage audit required before slot 2. |
-| D1-MAIN-014 | DAY 1 | MAIN | NEEDS_REVIEW | MEDIUM | Frozen textres handoff and official adjacency | Per-road ridge augmented with symmetric neighbor summaries | Last simple official-signal candidate before considering an ensemble | 2026-07-18 13:42 WIB | 2026-07-18 13:47 WIB | `KEEP`: MSE 38.1750, all folds/horizons improve; independent graph audit required. |
+| D1-MAIN-014 | DAY 1 | MAIN | DONE | MEDIUM | Frozen textres handoff and official adjacency | Per-road ridge augmented with symmetric neighbor summaries | Last simple official-signal candidate before considering an ensemble | 2026-07-18 13:42 WIB | 2026-07-18 13:53 WIB | `KEEP`: MSE 38.1750; independent audit gives leakage `GO` and prefers graphres after notebook readiness. |
+| D1-MAIN-015 | DAY 1 | MAIN | DONE | HIGH | Textres audit `INVESTIGATE` inference | Training-range OOD neutralization for one risky text feature | Robust textres variant before any graph-text combination | 2026-07-18 13:50 WIB | 2026-07-18 13:54 WIB | `REJECT`: raw-range guard never activates on test and leaves risky m2 correction unchanged; no CSV. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -72,13 +74,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-014
-Status: NEEDS_REVIEW
-Last Read Revision: 0035
-Last Update: 2026-07-18 13:47:23 +07:00
+Current Task: D1-MAIN-015
+Status: DONE
+Last Read Revision: 0039
+Last Update: 2026-07-18 13:54:55 +07:00
 
 ### Current Objective
-Test sparse graph-neighbor history summaries as an augmentation of the audited per-road ridge model.
+Freeze the rejected raw-range text guard and preserve graphres as the leading audited slot-2 candidate.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -98,7 +100,9 @@ Test sparse graph-neighbor history summaries as an augmentation of the audited p
 - `d1-e006-textres` passes every preregistered gate and awaits independent validation/leakage review.
 - `d1-e006-textres` is frozen for audit at commit `c603cd9`; graph work occurs only on `exp/d1-e007-graphres`.
 - Adjacency audit: shape 1,260 x 1,260, 5,122 binary nonzeros, directed, diagonal present, external degree small.
-- `d1-e007-graphres` passes all preregistered gates and awaits independent validation/leakage review.
+- `d1-e007-graphres` passes all preregistered gates; independent audit gives leakage `GO`, evidence `KEEP`, and prefers it over exact textres after notebook readiness.
+- VALIDATION gave textres leakage `GO` and evidence `KEEP`, but exact inference remains `INVESTIGATE` because test-m2 `prohibit left turn` is OOD and pushes correction upward.
+- `d1-e008-textood` is `REJECT`: its raw-range guard activates on zero test samples and leaves test-m2 correction unchanged at `+0.3470` km/h.
 - The fail-closed reference gate and clean local notebook are complete.
 - The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`.
 - Kaggle generated `submission.csv`; the downloaded file exactly matches the audited ridge predictions and is approved for slot 1.
@@ -118,6 +122,7 @@ Test sparse graph-neighbor history summaries as an augmentation of the audited p
 - `d1-e005-ar15`: mean 39.0830; folds 44.8119, 41.1142, 31.3228; worst 44.8119; `REJECT`; no submission generated.
 - `d1-e006-textres`: mean 38.3456; folds 44.0077, 40.5864, 30.4429; worst 44.0077; 1.74% improvement over ridge; all folds/horizons improve; runtime 22.76s.
 - `d1-e007-graphres`: mean 38.1750; folds 43.7473, 39.9422, 30.8355; worst 43.7473; 2.18% improvement over ridge; all folds/horizons improve; runtime 26.94s.
+- `d1-e008-textood`: mean 38.2840; folds 44.0077, 40.5864, 30.2579; worst 44.0077; raw-range guard does not activate on test; `REJECT`; no submission generated.
 ### Files Changed
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -137,14 +142,14 @@ Test sparse graph-neighbor history summaries as an augmentation of the audited p
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
 ### Decisions Needed
-- Independent graphres audit plus a preregistered graph-and-text combination on a separate branch.
+- Whether to preregister a standard `|z| > 3` text guard as a new experiment before considering a graph-plus-safe-text candidate.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Freeze graphres for audit, then test graph plus text residuals without using slot 2.
+- Freeze and commit textood; slot 2 remains protected while any new safe-text hypothesis is evaluated separately.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -153,39 +158,41 @@ Only MAIN may update this section.
 
 <!-- VALIDATION:START -->
 Role: VALIDATION
-Current Task: D1-VAL-002
-Status: IN_PROGRESS
-Last Read Revision: 0032
-Last Update: 2026-07-18 13:34:00 +07:00
+Current Task: D1-VAL-003
+Status: DONE
+Last Read Revision: 0038
+Last Update: 2026-07-18 13:53:11 +07:00
 
 ### Scope Being Audited
-- Public-LB gap for `d1-e002-ridge`: artifact identity, temporal representativeness, purge/embargo sensitivity, regime shift, road-level stability, and residual leakage risk.
+- Completed public-gap and textres audits; now reviewing `d1-e007-graphres` adjacency construction, causal fitting, stability, and test-distribution risk.
 ### Evidence Reviewed
-- Official data audit and baseline; commit `e2136b6`; `multifold.py`, `ridge_model.py`, runner, tests, config, notes, metrics, and full submission; independent metric and prediction reproduction.
+- Ridge/public-gap diagnostics; textres commit `c603cd9`; graphres commit `81bb9f1`, sparse/dense feature equality, independent score reproduction, road/low-speed/test-shift diagnostics, and three refitted topology nulls.
 ### Findings
-- Official-v1 uses three non-overlapping 720-origin folds per block, exact 15-origin purge, training-only fitting, and 372:168 aggregation; validation harness verdict is `GO`.
-- Ridge reproduces exactly at MSE 39.0248 versus mean15 45.5482, improves every aggregate horizon and worst fold, and passes 7 tests; model verdict is `KEEP`.
-- Submission predictions reproduce exactly: 2,041,200 unique ordered finite nonnegative values; all zero-history roads remain zero.
+- Ridge wins all 17 exhaustive walk-forward windows, but historical weighted MSE `40.2754` still underestimates public `45.980`; relative validation is sound while absolute test calibration is uncertain.
+- Textres reproduces at `38.3456`, improves all 18 block-fold-horizon cells, and aligned text beats all ten random permutations by `0.4924` MSE on average.
+- Graphres reproduces at `38.1750`, improves all 18 cells and low-speed m2; construction/fitting is leakage-safe and test m2 correction is a helpful `-0.245` km/h.
 ### Leakage Risks
-- No target, preprocessing, text, graph, test label, API, or pretrained-weight leakage found in ridge fitting.
-- Freeze fold boundaries now; changing official-v1 after seeing results would create validation-selection leakage.
+- No material target, preprocessing, text-alignment, graph, or test-label leakage found. Exact no-shared-timestamp purge changes ridge by only `+0.000121` MSE.
+- Frozen folds remain unchanged; stress diagnostics are not replacement folds.
 ### Validation Risks
-- Ridge is worse than mean15 by 0.4985 MSE on fold 3, the latest tail in both blocks, despite large gains on folds 1 and 2.
-- Hidden-test chronology remains unknown, so `KEEP` does not yet imply final-candidate or submission approval.
+- Test m2 is strongly low-speed shifted; 39.9% is below the train-history 10th percentile.
+- Textres `prohibit left turn` is test-m2 OOD (`z=-3.434`) and contributes `+0.442` km/h, making net m2 correction `+0.347` in ridge's risky overprediction direction.
+- Real graph `38.1750` is matched or beaten by two of three relabeled-graph nulls (`38.1690`, `38.1652`); topology-specific causality is unsupported.
 ### Distribution or Fold Risks
-- Fold-3 regression is concentrated at h10/h15; preserve it in comparisons and the writeup.
-- Test routing has a wide observed margin (13-16 versus 210-211 all-zero roads) and exactly reproduces the 372:168 mixture.
+- Visible history-speed reweighting cannot explain the full public gap; hidden dynamics/events or public composition remains.
+- Textres improves low-speed m2 locally but the final test text distribution reverses its correction direction.
+- Graphres feature shift is moderate, with rare large corrections; values above 10 km/h affect below 0.09% of predictions per regime.
 ### Recommendation
-- GO for official-v1 validation; KEEP `d1-e002-ridge`; INVESTIGATE submission.
+- `GO` graph construction/leakage, `KEEP` graphres candidate, `NO-GO` topology-specific claim. Graphres is the leading slot-2 candidate, but **DO NOT SUBMIT** before clean notebook reproduction and SUBMISSION `READY`.
 
 Allowed: `GO`, `NO-GO`, `INVESTIGATE`, `BLOCKED`.
 
 ### Required Action from Main
-- Freeze official-v1, retain the tail caveat, record commit `e2136b6`, and complete `D1-SUB-001` plus clean-session notebook reproduction before requesting a Kaggle slot.
+- Do not select random-graph seeds. Finish the preregistered text OOD check, then compare only frozen safe-text/graph candidates and prepare a clean graph notebook if selected.
 ### Blockers
 - NONE
 ### Next Action
-- Diagnose the `39.0248` local versus `45.980` public gap without changing the frozen harness/model or using another submission slot.
+- Audit the frozen text-OOD robustness result when handed off; slot 2 remains protected.
 <!-- VALIDATION:END -->
 
 Only VALIDATION may update this section; it is read-only against the main pipeline.
@@ -242,6 +249,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e005-ar15 | DAY 1 | MAIN | All 15 road-specific causal lags retain useful dynamics lost by five handcrafted summaries. | d1-e002-ridge | Frozen `d1-multifold-v1` | 39.0830 | 44.8119; 41.1142; 31.3228 | 44.8119 | 5.6911 | min 0.0; max 100.9657; mean 52.8687 | 11.99s | REJECT | `task1/experiments/d1-e005-ar15/metrics.json` |
 | d1-e006-textres | DAY 1 | MAIN | Global event-type counts explain systematic per-road residuals beyond speed history. | d1-e002-ridge | Frozen `d1-multifold-v1` | 38.3456 | 44.0077; 40.5864; 30.4429 | 44.0077 | 5.7600 | min 0.0; max 101.7411; mean 52.9878 | 22.76s | KEEP | `task1/experiments/d1-e006-textres/metrics.json` |
 | d1-e007-graphres | DAY 1 | MAIN | Neighbor history summaries add local road-network context missing from independent per-road ridge. | d1-e002-ridge | Frozen `d1-multifold-v1` | 38.1750 | 43.7473; 39.9422; 30.8355 | 43.7473 | 5.4173 | min 0.0; max 101.5309; mean 52.8380 | 26.94s | KEEP | `task1/experiments/d1-e007-graphres/metrics.json` |
+| d1-e008-textood | DAY 1 | MAIN | Neutralizing the single OOD turn-restriction path preserves text gain while avoiding risky test-m2 extrapolation. | d1-e006-textres | Frozen `d1-multifold-v1` | 38.2840 | 44.0077; 40.5864; 30.2579 | 44.0077 | 5.8446 | min 0.0; max 101.7411; mean 52.9878 | 18.54s | REJECT | `task1/experiments/d1-e008-textood/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -282,8 +290,8 @@ Public score is never the sole final-selection reason.
 | D1-HO-002 | VALIDATION | MAIN | 2026-07-18 12:17 WIB | `task1/reports/d1-validation-audit.md` | Replace the single tail score with purged multi-fold chronological, 372:168 regime-weighted validation before submission. | COMPLETED |
 | D1-HO-003 | MAIN | VALIDATION | 2026-07-18 12:24 WIB | `task1/src/{multifold.py,ridge_model.py}` and `task1/experiments/d1-e002-ridge/metrics.json` | Audit purge boundaries, training-only moments, 372:168 aggregation, zero guard, and fold-3 regression. | COMPLETED |
 | D1-HO-004 | MAIN | SUBMISSION | 2026-07-18 12:40 WIB | `task1/notebooks/d1-ridge-inference.ipynb`, `task1/src/submission_validator.py`, and `task1/reports/d1-submission-readiness.{md,json}` | Independently inspect Kaggle paths/dependencies and perform actual clean-session `Run All`; return readiness verdict. | ACKNOWLEDGED |
-| D1-HO-005 | MAIN | VALIDATION | 2026-07-18 13:39 WIB | Commit for `task1/src/text_residual_model.py`, `run_textres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit text-key alignment, origin-only features, training-only scaling/residual fitting, exact ridge reference, fold/horizon gains, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | WAITING |
-| D1-HO-006 | MAIN | VALIDATION | 2026-07-18 13:47 WIB | `task1/src/graph_model.py`, `run_graphres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit symmetric adjacency construction, diagonal removal, row normalization, training-only fitting, score reproduction, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | WAITING |
+| D1-HO-005 | MAIN | VALIDATION | 2026-07-18 13:39 WIB | Commit for `task1/src/text_residual_model.py`, `run_textres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit text-key alignment, origin-only features, training-only scaling/residual fitting, exact ridge reference, fold/horizon gains, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
+| D1-HO-006 | MAIN | VALIDATION | 2026-07-18 13:47 WIB | `task1/src/graph_model.py`, `run_graphres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit symmetric adjacency construction, diagonal removal, row normalization, training-only fitting, score reproduction, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -327,6 +335,10 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 13:39:55 +07:00 | 0034 | MAIN | D1-MAIN-013 | Completed text residual candidate and requested independent audit | `KEEP`: mean 38.3456, 1.74% better than ridge, all folds/horizons and worst fold improve; 24 tests and submission validator pass | VALIDATION audits leakage and alignment before any slot 2 decision |
 | 2026-07-18 13:42:49 +07:00 | 0035 | MAIN | D1-MAIN-014 | Started separate-branch graph residual experiment | Textres frozen at `c603cd9`; sparse symmetric external-neighbor summaries will augment ridge without changing validation | Implement, test, and compare while slot 2 remains protected |
 | 2026-07-18 13:47:23 +07:00 | 0036 | MAIN | D1-MAIN-014 | Completed graphres candidate and requested independent audit | `KEEP`: mean 38.1750, 2.18% better than ridge, all folds/horizons and worst fold improve; 28 tests and submission validator pass | Freeze commit, audit graph handling, and test graph plus text residuals separately |
+| 2026-07-18 13:48:30 +07:00 | 0037 | VALIDATION | D1-VAL-002 | Completed public-gap and textres independent audits | No material leakage; textres gain is aligned but one m2 feature extrapolates in the risky bias direction | Keep evidence, do not submit exact textres, and begin graphres review |
+| 2026-07-18 13:50:02 +07:00 | 0038 | MAIN | D1-MAIN-015 | Started separate-branch text OOD robustness experiment | Preregistered one guard: neutralize only out-of-training-range `prohibit left turn` values; graphres remains frozen for audit | Verify local gains and test-m2 correction direction before any slot decision |
+| 2026-07-18 13:53:11 +07:00 | 0039 | VALIDATION | D1-VAL-003 | Completed graphres independent audit | Leakage `GO`, candidate `KEEP`; three topology nulls show the gain is generic cross-road context rather than the true road topology | Prefer graphres over exact textres after notebook readiness; never select random-graph seeds |
+| 2026-07-18 13:54:55 +07:00 | 0040 | MAIN | D1-MAIN-015 | Completed raw-range text OOD experiment | `REJECT`: guard activates on zero test samples, m2 correction remains `+0.3470` km/h, and no submission is generated | Freeze the branch and treat any z-score guard as a new preregistered experiment |
 
 Append only. Correct errors with a new entry; do not erase history.
 
