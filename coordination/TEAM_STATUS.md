@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0046
+Revision: 0048
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 14:11:00 +07:00
+Last Global Update: 2026-07-18 14:17:59 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-e010-notebook
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -45,6 +45,8 @@ Only MAIN may update this section.
 | D1-DEC-011 | 2026-07-18 13:50 WIB | Respond to textres audit with one preregistered OOD guard that neutralizes only the `prohibit left turn` residual feature when it falls outside training range. | VALIDATION found test-m2 `z=-3.434` on this feature and a risky positive correction; leakage safety and aligned text gain otherwise received `GO`/`KEEP`. | MAIN | Guard fails to retain broad local gains or does not remove the risky test correction. |
 | D1-DEC-012 | 2026-07-18 13:56 WIB | Treat the failed raw-range guard as frozen and preregister a new standard `|z| > 3` guard for only `prohibit left turn`. | The audit measures shift in standardized units (`z=-3.434`), while `d1-e008-textood` proved raw min/max activates on zero test samples. | MAIN | The z-guard loses broad local gain, fails to reverse risky m2 correction, or requires threshold tuning. |
 | D1-DEC-013 | 2026-07-18 14:02 WIB | Preregister an untuned 50:50 prediction blend of audited graphres and frozen textzguard. | Graphres and safe text use distinct official signals; equal averaging is deterministic, avoids residual double-counting, and requires no validation/leaderboard weight search. | MAIN | The blend fails to improve graphres broadly, worsens its worst fold, or reverses the safe m2 correction. |
+| D1-DEC-014 | 2026-07-18 14:16 WIB | Accept independent `GO`/`KEEP` for `d1-e010-graphtextblend` and designate it the conditional slot-2 candidate. | Audit reproduced commit `e99d6d6`, fixed 50:50 weights, MSE 37.9040, 15/18 cell gains, safer m2 correction, and no material leakage. | MAIN | Kaggle Run All or SUBMISSION review fails exact reproduction, or a verified implementation defect appears. |
+| D1-DEC-015 | 2026-07-18 14:17 WIB | Human Submission Manager retains exclusive control of Chrome/Kaggle upload, Run All, and submission actions. | User explicitly requested that Codex not control Chrome and will upload the notebook manually. | MAIN | User explicitly requests browser assistance again. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -68,9 +70,9 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-013 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Text schema audit and frozen ridge | Fixed event-count features predicting per-road ridge residuals | First causal use of official event text with no external model | 2026-07-18 13:34 WIB | 2026-07-18 13:39 WIB | `KEEP`: MSE 38.3456, all folds/horizons improve; independent leakage audit required before slot 2. |
 | D1-MAIN-014 | DAY 1 | MAIN | DONE | MEDIUM | Frozen textres handoff and official adjacency | Per-road ridge augmented with symmetric neighbor summaries | Last simple official-signal candidate before considering an ensemble | 2026-07-18 13:42 WIB | 2026-07-18 13:53 WIB | `KEEP`: MSE 38.1750; independent audit gives leakage `GO` and prefers graphres after notebook readiness. |
 | D1-MAIN-015 | DAY 1 | MAIN | DONE | HIGH | Textres audit `INVESTIGATE` inference | Training-range OOD neutralization for one risky text feature | Robust textres variant before any graph-text combination | 2026-07-18 13:50 WIB | 2026-07-18 13:54 WIB | `REJECT`: raw-range guard never activates on test and leaves risky m2 correction unchanged; no CSV. |
-| D1-MAIN-016 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Rejected raw-range guard and audit `z=-3.434` | Fixed `|z| > 3` neutralization for one text feature | Decide whether a safe text path remains viable before graph-plus-text | 2026-07-18 13:56 WIB | 2026-07-18 14:00 WIB | `KEEP`: MSE 38.2840; guard flips m2 correction to -0.0899; independent audit required. |
-| D1-MAIN-017 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Graphres audit `GO`/`KEEP` and locally accepted textzguard | Fixed 50:50 graphres/textzguard prediction blend | Test complementary official graph and text signals without weight tuning | 2026-07-18 14:02 WIB | 2026-07-18 14:05 WIB | `KEEP`: MSE 37.9040, folds 1/3 and all horizons improve; fold 2 regresses 0.0391; audit required. |
-| D1-MAIN-018 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:11 WIB | Local clean run exact and validator READY; actual Kaggle Run All plus model audit remain. |
+| D1-MAIN-016 | DAY 1 | MAIN | DONE | HIGH | Rejected raw-range guard and audit `z=-3.434` | Fixed `|z| > 3` neutralization for one text feature | Decide whether a safe text path remains viable before graph-plus-text | 2026-07-18 13:56 WIB | 2026-07-18 14:16 WIB | `KEEP`; component identity, fixed guard, correction direction, and leakage safety verified in blend audit. |
+| D1-MAIN-017 | DAY 1 | MAIN | DONE | HIGH | Graphres audit `GO`/`KEEP` and locally accepted textzguard | Fixed 50:50 graphres/textzguard prediction blend | Test complementary official graph and text signals without weight tuning | 2026-07-18 14:02 WIB | 2026-07-18 14:16 WIB | Independent audit `GO`/`KEEP`; conditional slot-2 candidate after Kaggle/SUBMISSION readiness. |
+| D1-MAIN-018 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:17 WIB | Local exact run complete; user will manually upload and Run All in Kaggle; Codex browser control released. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -81,11 +83,11 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: D1-MAIN-018
 Status: NEEDS_REVIEW
-Last Read Revision: 0045
-Last Update: 2026-07-18 14:11:00 +07:00
+Last Read Revision: 0047
+Last Update: 2026-07-18 14:17:59 +07:00
 
 ### Current Objective
-Hand off the exact clean-session blend notebook for model and submission review without using a Kaggle slot.
+Wait for the human-run Kaggle notebook output, then validate it against frozen blend commit `e99d6d6`.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -112,6 +114,7 @@ Hand off the exact clean-session blend notebook for model and submission review 
 - `d1-e009-textzguard` passes all preregistered gates; its test-m2 correction is `-0.0899` km/h and requires independent review before reuse.
 - `d1-e010-graphtextblend` passes all preregistered gates at MSE `37.9040`; fold 2 regresses slightly versus graphres and remains visible for audit.
 - The blend notebook reproduces the frozen CSV exactly in an isolated `python -I` run; all code-cell outputs remain clean.
+- VALIDATION independently gives blend leakage `GO` and candidate `KEEP`; it is the conditional slot-2 candidate after Kaggle/SUBMISSION readiness.
 - The fail-closed reference gate and clean local notebook are complete.
 - The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`.
 - Kaggle generated `submission.csv`; the downloaded file exactly matches the audited ridge predictions and is approved for slot 1.
@@ -135,6 +138,7 @@ Hand off the exact clean-session blend notebook for model and submission review 
 - `d1-e009-textzguard`: mean 38.2840; folds 44.0077, 40.5864, 30.2579; worst 44.0077; test-m2 guard 144/168; correction -0.0899; `KEEP`; runtime 21.65s.
 - `d1-e010-graphtextblend`: mean 37.9040; folds 43.4387, 39.9813, 30.2920; worst 43.4387; all horizons improve graphres; correction -0.1674; `KEEP`; runtime 37.25s.
 - Blend notebook: 16.18s; 2,041,200 exact values; zero reference mismatches; validator `READY`; 34 tests pass.
+- Blend audit: 15/18 block-fold-horizon cells improve graphres; fold 2 regresses +0.0391; correction m2 remains -0.1674 km/h.
 ### Files Changed
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -154,14 +158,14 @@ Hand off the exact clean-session blend notebook for model and submission review 
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
 ### Decisions Needed
-- Independent blend verdict and actual Kaggle clean Run All before any slot-2 approval.
+- Actual Kaggle clean Run All evidence and SUBMISSION verdict before slot-2 approval; user performs all browser actions manually.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
-- NONE
+- Human-run Kaggle Run All and downloaded output evidence remain; no model blocker remains.
 ### Next Action
-- Commit notebook readiness artifacts and wait for VALIDATION/SUBMISSION verdicts; do not submit.
+- User manually uploads the final notebook and runs it in Kaggle; MAIN validates the downloaded `submission.csv` without controlling Chrome.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -306,8 +310,8 @@ Public score is never the sole final-selection reason.
 | D1-HO-004 | MAIN | SUBMISSION | 2026-07-18 12:40 WIB | `task1/notebooks/d1-ridge-inference.ipynb`, `task1/src/submission_validator.py`, and `task1/reports/d1-submission-readiness.{md,json}` | Independently inspect Kaggle paths/dependencies and perform actual clean-session `Run All`; return readiness verdict. | ACKNOWLEDGED |
 | D1-HO-005 | MAIN | VALIDATION | 2026-07-18 13:39 WIB | Commit for `task1/src/text_residual_model.py`, `run_textres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit text-key alignment, origin-only features, training-only scaling/residual fitting, exact ridge reference, fold/horizon gains, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
 | D1-HO-006 | MAIN | VALIDATION | 2026-07-18 13:47 WIB | `task1/src/graph_model.py`, `run_graphres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit symmetric adjacency construction, diagonal removal, row normalization, training-only fitting, score reproduction, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
-| D1-HO-007 | MAIN | VALIDATION | 2026-07-18 14:00 WIB | `d1-e009-textzguard` code, tests, config, metrics, notes, and ignored submission preview | Audit training-only z-score, fixed threshold, guard activation, exact score reproduction, correction direction, and zero guard. | WAITING |
-| D1-HO-008 | MAIN | VALIDATION | 2026-07-18 14:05 WIB | `d1-e010-graphtextblend` code, tests, config, metrics, notes, and ignored submission preview | Audit fixed weights, component identity, exact score reproduction, fold-2 regression, correction direction, and zero guard. | WAITING |
+| D1-HO-007 | MAIN | VALIDATION | 2026-07-18 14:00 WIB | `d1-e009-textzguard` code, tests, config, metrics, notes, and ignored submission preview | Audit training-only z-score, fixed threshold, guard activation, exact score reproduction, correction direction, and zero guard. | COMPLETED |
+| D1-HO-008 | MAIN | VALIDATION | 2026-07-18 14:05 WIB | `d1-e010-graphtextblend` code, tests, config, metrics, notes, and ignored submission preview | Audit fixed weights, component identity, exact score reproduction, fold-2 regression, correction direction, and zero guard. | COMPLETED |
 | D1-HO-009 | MAIN | SUBMISSION | 2026-07-18 14:11 WIB | `EnterYourTeamName_Task1_Notebook.ipynb` plus `d1-e010-notebook-readiness.{md,json}` | Inspect self-contained paths/dependencies, run clean Kaggle session, and compare output exactly with frozen blend CSV. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
@@ -362,6 +366,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 14:05:25 +07:00 | 0044 | MAIN | D1-MAIN-017 | Completed fixed graph and guarded-text blend and requested audit | `KEEP`: MSE 37.9040; folds 1/3, worst fold, and all horizons improve graphres; fold 2 regresses 0.0391; validator READY; 34 tests pass | Freeze commit; audit both components/blend before notebook or slot 2 |
 | 2026-07-18 14:06:58 +07:00 | 0045 | MAIN | D1-MAIN-018 | Started separate-branch blend notebook preparation | Frozen blend commit `e99d6d6`; notebook may be prepared locally but no Kaggle slot is authorized | Reproduce frozen CSV exactly from a clean process and await audit |
 | 2026-07-18 14:11:00 +07:00 | 0046 | MAIN | D1-MAIN-018 | Completed local clean-session blend notebook reproduction | `python -I` finished in 16.18s; validator READY with zero reference mismatches; 34 tests pass; notebook outputs are clean | VALIDATION/SUBMISSION review and actual Kaggle Run All remain; do not submit |
+| 2026-07-18 14:16:52 +07:00 | 0047 | MAIN | D1-MAIN-018 | Accepted independent blend audit and prepared Kaggle handoff | Leakage `GO`, candidate `KEEP`, conditional slot-2 recommendation; browser is at Import Notebook but upload requires user confirmation | Upload exact notebook, Run All, validate output, and obtain SUBMISSION `READY`; do not submit yet |
+| 2026-07-18 14:17:59 +07:00 | 0048 | MAIN | D1-MAIN-018 | Returned all Chrome/Kaggle control to the user | No upload, Run All, version save, or submission was performed; user will complete browser steps manually | Validate the user-downloaded Kaggle CSV against frozen blend predictions |
 
 Append only. Correct errors with a new entry; do not erase history.
 
