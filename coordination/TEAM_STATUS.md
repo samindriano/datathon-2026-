@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0034
+Revision: 0036
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 13:39:55 +07:00
+Last Global Update: 2026-07-18 13:47:23 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e006-textres
+Repository Branch: exp/d1-e007-graphres
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -41,6 +41,7 @@ Only MAIN may update this section.
 | D1-DEC-007 | 2026-07-18 13:24 WIB | Preregister `d1-e004-analog` as a separate-branch nearest-history delta forecaster before scoring. | Lagblend failed because shared weights lost road-specific dynamics; analog forecasting preserves road-level future deltas from similar causal network states. | MAIN | Implementation cannot meet leakage, runtime, or frozen-validation constraints. |
 | D1-DEC-008 | 2026-07-18 13:28 WIB | Preregister `d1-e005-ar15` with the same ridge alpha `0.1`, changing only five summary features to all 15 causal lags. | Ridge remains strongest; isolating the full-history feature hypothesis avoids leaderboard tuning and preserves per-road modeling. | MAIN | Implementation fails leakage, stability, or runtime checks. |
 | D1-DEC-009 | 2026-07-18 13:34 WIB | Preregister `d1-e006-textres` using fixed global event-type counts to model per-road ridge residuals. | Official texts align one-to-one with timesteps/samples and contain repeated causal event types; no external embedding or road-name translation is required. | MAIN | Text alignment or residual fitting is not leakage-safe or runtime-feasible. |
+| D1-DEC-010 | 2026-07-18 13:42 WIB | Freeze textres at commit `c603cd9` for audit and preregister `d1-e007-graphres` on a separate branch. | Official adjacency is sparse and directed with 5,122 nonzeros; symmetric external-neighbor summaries can test graph signal without a GNN or new dependency. | MAIN | Graph orientation or feature computation cannot be made deterministic and leakage-safe. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -62,6 +63,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-011 | DAY 1 | MAIN | DONE | HIGH | Rejected lagblend and frozen ridge reference | Nearest historical network states using training-only selected roads and future deltas | Structurally different candidate with fixed runtime-safe parameters | 2026-07-18 13:24 WIB | 2026-07-18 13:27 WIB | `REJECT`: MSE 55.4014, 0/3 folds and horizons improve; no CSV or slot used. |
 | D1-MAIN-012 | DAY 1 | MAIN | DONE | HIGH | Frozen ridge remains strongest | Per-road direct ridge using all 15 causal lag values | Comparable feature-expansion candidate on frozen folds | 2026-07-18 13:28 WIB | 2026-07-18 13:31 WIB | `REJECT`: MSE 39.0830, only fold 3 improves and 0/3 horizons improve; no CSV or slot used. |
 | D1-MAIN-013 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Text schema audit and frozen ridge | Fixed event-count features predicting per-road ridge residuals | First causal use of official event text with no external model | 2026-07-18 13:34 WIB | 2026-07-18 13:39 WIB | `KEEP`: MSE 38.3456, all folds/horizons improve; independent leakage audit required before slot 2. |
+| D1-MAIN-014 | DAY 1 | MAIN | NEEDS_REVIEW | MEDIUM | Frozen textres handoff and official adjacency | Per-road ridge augmented with symmetric neighbor summaries | Last simple official-signal candidate before considering an ensemble | 2026-07-18 13:42 WIB | 2026-07-18 13:47 WIB | `KEEP`: MSE 38.1750, all folds/horizons improve; independent graph audit required. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -70,13 +72,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-013
+Current Task: D1-MAIN-014
 Status: NEEDS_REVIEW
-Last Read Revision: 0033
-Last Update: 2026-07-18 13:39:55 +07:00
+Last Read Revision: 0035
+Last Update: 2026-07-18 13:47:23 +07:00
 
 ### Current Objective
-Test fixed event-type counts as training-only per-road residual corrections to the strongest ridge candidate.
+Test sparse graph-neighbor history summaries as an augmentation of the audited per-road ridge model.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -94,6 +96,9 @@ Test fixed event-type counts as training-only per-road residual corrections to t
 - `d1-e005-ar15` is isolated on `exp/d1-e005-ar15` and rejected without producing a submission.
 - Event-text audit found 11,160 and 5,039 aligned train strings plus 540 test strings; event vocabulary includes accident, closure, construction, traffic control, announcement, and turn restriction.
 - `d1-e006-textres` passes every preregistered gate and awaits independent validation/leakage review.
+- `d1-e006-textres` is frozen for audit at commit `c603cd9`; graph work occurs only on `exp/d1-e007-graphres`.
+- Adjacency audit: shape 1,260 x 1,260, 5,122 binary nonzeros, directed, diagonal present, external degree small.
+- `d1-e007-graphres` passes all preregistered gates and awaits independent validation/leakage review.
 - The fail-closed reference gate and clean local notebook are complete.
 - The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`.
 - Kaggle generated `submission.csv`; the downloaded file exactly matches the audited ridge predictions and is approved for slot 1.
@@ -112,6 +117,7 @@ Test fixed event-type counts as training-only per-road residual corrections to t
 - `d1-e004-analog`: mean 55.4014; folds 62.6974, 57.1239, 46.3828; worst 62.6974; `REJECT`; no submission generated.
 - `d1-e005-ar15`: mean 39.0830; folds 44.8119, 41.1142, 31.3228; worst 44.8119; `REJECT`; no submission generated.
 - `d1-e006-textres`: mean 38.3456; folds 44.0077, 40.5864, 30.4429; worst 44.0077; 1.74% improvement over ridge; all folds/horizons improve; runtime 22.76s.
+- `d1-e007-graphres`: mean 38.1750; folds 43.7473, 39.9422, 30.8355; worst 43.7473; 2.18% improvement over ridge; all folds/horizons improve; runtime 26.94s.
 ### Files Changed
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -131,14 +137,14 @@ Test fixed event-type counts as training-only per-road residual corrections to t
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
 ### Decisions Needed
-- Independent VALIDATION verdict for text alignment, training-only residual fitting, and whether the 1.74% gain is audit-safe.
+- Independent graphres audit plus a preregistered graph-and-text combination on a separate branch.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Hand commit and artifacts to VALIDATION; do not use slot 2 before `GO`.
+- Freeze graphres for audit, then test graph plus text residuals without using slot 2.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -235,6 +241,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e004-analog | DAY 1 | MAIN | Road-level future deltas from nearest causal network states capture repeated traffic dynamics missed by ridge. | d1-e002-ridge | Frozen `d1-multifold-v1` | 55.4014 | 62.6974; 57.1239; 46.3828 | 62.6974 | 6.7709 | min 0.0; max 126.5625; mean 52.8064 | 6.98s | REJECT | `task1/experiments/d1-e004-analog/metrics.json` |
 | d1-e005-ar15 | DAY 1 | MAIN | All 15 road-specific causal lags retain useful dynamics lost by five handcrafted summaries. | d1-e002-ridge | Frozen `d1-multifold-v1` | 39.0830 | 44.8119; 41.1142; 31.3228 | 44.8119 | 5.6911 | min 0.0; max 100.9657; mean 52.8687 | 11.99s | REJECT | `task1/experiments/d1-e005-ar15/metrics.json` |
 | d1-e006-textres | DAY 1 | MAIN | Global event-type counts explain systematic per-road residuals beyond speed history. | d1-e002-ridge | Frozen `d1-multifold-v1` | 38.3456 | 44.0077; 40.5864; 30.4429 | 44.0077 | 5.7600 | min 0.0; max 101.7411; mean 52.9878 | 22.76s | KEEP | `task1/experiments/d1-e006-textres/metrics.json` |
+| d1-e007-graphres | DAY 1 | MAIN | Neighbor history summaries add local road-network context missing from independent per-road ridge. | d1-e002-ridge | Frozen `d1-multifold-v1` | 38.1750 | 43.7473; 39.9422; 30.8355 | 43.7473 | 5.4173 | min 0.0; max 101.5309; mean 52.8380 | 26.94s | KEEP | `task1/experiments/d1-e007-graphres/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -276,6 +283,7 @@ Public score is never the sole final-selection reason.
 | D1-HO-003 | MAIN | VALIDATION | 2026-07-18 12:24 WIB | `task1/src/{multifold.py,ridge_model.py}` and `task1/experiments/d1-e002-ridge/metrics.json` | Audit purge boundaries, training-only moments, 372:168 aggregation, zero guard, and fold-3 regression. | COMPLETED |
 | D1-HO-004 | MAIN | SUBMISSION | 2026-07-18 12:40 WIB | `task1/notebooks/d1-ridge-inference.ipynb`, `task1/src/submission_validator.py`, and `task1/reports/d1-submission-readiness.{md,json}` | Independently inspect Kaggle paths/dependencies and perform actual clean-session `Run All`; return readiness verdict. | ACKNOWLEDGED |
 | D1-HO-005 | MAIN | VALIDATION | 2026-07-18 13:39 WIB | Commit for `task1/src/text_residual_model.py`, `run_textres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit text-key alignment, origin-only features, training-only scaling/residual fitting, exact ridge reference, fold/horizon gains, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | WAITING |
+| D1-HO-006 | MAIN | VALIDATION | 2026-07-18 13:47 WIB | `task1/src/graph_model.py`, `run_graphres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit symmetric adjacency construction, diagonal removal, row normalization, training-only fitting, score reproduction, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -317,6 +325,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 13:31:38 +07:00 | 0032 | MAIN | D1-MAIN-012 | Completed preregistered AR15 experiment | `REJECT`: mean 39.0830 versus ridge 39.0248; only fold 3 improves and no aggregate horizon improves; no submission generated | Preserve slot 2 and inspect causal event-text features before another model |
 | 2026-07-18 13:34:47 +07:00 | 0033 | MAIN | D1-MAIN-013 | Started separate-branch text residual experiment | Official texts align to every train timestep/test sample; six fixed event counts plus total events will correct ridge residuals without APIs or embeddings | Implement, test, and compare on frozen folds |
 | 2026-07-18 13:39:55 +07:00 | 0034 | MAIN | D1-MAIN-013 | Completed text residual candidate and requested independent audit | `KEEP`: mean 38.3456, 1.74% better than ridge, all folds/horizons and worst fold improve; 24 tests and submission validator pass | VALIDATION audits leakage and alignment before any slot 2 decision |
+| 2026-07-18 13:42:49 +07:00 | 0035 | MAIN | D1-MAIN-014 | Started separate-branch graph residual experiment | Textres frozen at `c603cd9`; sparse symmetric external-neighbor summaries will augment ridge without changing validation | Implement, test, and compare while slot 2 remains protected |
+| 2026-07-18 13:47:23 +07:00 | 0036 | MAIN | D1-MAIN-014 | Completed graphres candidate and requested independent audit | `KEEP`: mean 38.1750, 2.18% better than ridge, all folds/horizons and worst fold improve; 28 tests and submission validator pass | Freeze commit, audit graph handling, and test graph plus text residuals separately |
 
 Append only. Correct errors with a new entry; do not erase history.
 
