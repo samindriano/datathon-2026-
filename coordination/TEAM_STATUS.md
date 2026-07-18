@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0011
+Revision: 0012
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 12:13:41 +07:00
+Last Global Update: 2026-07-18 12:15:05 +07:00
 Competition Clock: RUNNING
 Repository Branch: main
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -45,7 +45,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-002 | PREPARATION | MAIN | DONE | HIGH | GitHub CLI installed and authenticated | Local project files and target `samindriano/datathon-2026-` | Independent Git repository pushed to GitHub | 2026-07-17 23:14 WIB | 2026-07-17 23:32 WIB | Initial baseline commit `53acffe` pushed to `origin/main`. |
 | D1-MAIN-003 | PREPARATION | MAIN | DONE | HIGH | Existing experiment protocol | Request for simple, searchable artifact names | Canonical experiment, branch, artifact, and submission naming rules | 2026-07-18 11:57 WIB | 2026-07-18 11:59 WIB | Use one short experiment ID everywhere; submission includes slot and experiment ID. |
 | D1-VAL-001 | DAY 1 | VALIDATION | IN_PROGRESS | HIGH | Official Task 1 dataset available | Competition statement and `datathon-task-1.zip` | Data, leakage, temporal validation, and baseline-risk audit | 2026-07-18 12:07 WIB | 2026-07-18 12:07 WIB | Read-only audit; no MAIN pipeline changes and no submission-slot use. |
-| D1-MAIN-004 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Official Task 1 data | Continuous speeds, text, network, and sample submission | Reproducible chronological baseline and valid submission candidate | 2026-07-18 12:04 WIB | 2026-07-18 12:13 WIB | `d1-e001-persist` complete; MSE 29.6995; submission preview validated locally; waiting for VALIDATION verdict. |
+| D1-MAIN-004 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Official Task 1 data | Continuous speeds, text, network, and sample submission | Reproducible chronological baseline and valid submission candidate | 2026-07-18 12:04 WIB | 2026-07-18 12:15 WIB | `d1-e001-persist` pushed at `24d7165`; MSE 29.6995; waiting for VALIDATION verdict. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | READY | HIGH | Sample submission | Exact ID order and expected schema | Reusable submission validator and readiness verdict | TODO | 2026-07-18 12:09 WIB | May be handled alongside validation if the same teammate owns both scopes. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -56,8 +56,8 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: NONE
 Status: NEEDS_REVIEW
-Last Read Revision: 0010
-Last Update: 2026-07-18 12:13:41 +07:00
+Last Read Revision: 0011
+Last Update: 2026-07-18 12:15:05 +07:00
 
 ### Current Objective
 Read the official Day 1 task, populate the competition brief, and build the first end-to-end baseline.
@@ -97,7 +97,7 @@ Read the official Day 1 task, populate the competition brief, and build the firs
 ### Blockers
 - NONE
 ### Next Action
-- Commit/publish baseline code and metrics, then continue with a stronger hypothesis after VALIDATION feedback.
+- Continue with a stronger independent hypothesis while VALIDATION reviews commit `24d7165`; do not submit yet.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -238,6 +238,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 12:07:25 +07:00 | 0009 | VALIDATION | D1-VAL-001 | Started Task 1 validation and leakage audit | Claimed read-only data/schema/temporal audit; MAIN pipeline and submission slots remain untouched | Inspect ZIP data and propose defensible backtesting |
 | 2026-07-18 12:09:37 +07:00 | 0010 | MAIN | D1-MAIN-004 | Inspected official Task 1 dataset | Verified shapes, finite values, text alignment, adjacency, and 2,041,200-row output schema | Build chronological baseline and await validation audit |
 | 2026-07-18 12:13:41 +07:00 | 0011 | MAIN | D1-MAIN-004 | Completed provisional baseline | Mean15 MSE 29.6995; 3 tests passed; 2,041,200-row preview is unique and finite | Publish artifacts and await VALIDATION verdict; do not submit yet |
+| 2026-07-18 12:15:05 +07:00 | 0012 | MAIN | D1-MAIN-004 | Published provisional baseline artifacts | Commit `24d7165` is on `origin/main`; raw data and submission preview remain ignored | VALIDATION reviews commit; MAIN explores next hypothesis |
 
 Append only. Correct errors with a new entry; do not erase history.
 
