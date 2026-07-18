@@ -1,0 +1,334 @@
+{
+  "experiment_id": "d1-e009-textzguard",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ],
+    "guarded_validation_samples": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        390
+      ]
+    ]
+  },
+  "hypothesis": "A fixed three-sigma guard removes the audited text OOD path while preserving aligned-text gain.",
+  "preregistered_parameters": {
+    "base_alpha": 0.1,
+    "residual_alpha": 1.0,
+    "guarded_feature": "prohibit left turn",
+    "guard_trigger": "absolute training-standardized value > 3.0",
+    "guard_action": "set standardized feature to zero (training mean)",
+    "other_features_unchanged": true,
+    "seed": null
+  },
+  "candidates": {
+    "ridge-history": {
+      "mean_mse": 39.02484392649849,
+      "std_mse": 5.4669051870677805,
+      "worst_fold_mse": 44.48673628988013,
+      "fold_mse": [
+        44.48673628988013,
+        41.032713772541605,
+        31.55508171707375
+      ],
+      "mse_by_horizon": {
+        "5": 32.80017823244118,
+        "10": 39.741926532502944,
+        "15": 44.53242701455135
+      },
+      "fold_horizon_mse": [
+        [
+          36.67938954695238,
+          45.5704173998386,
+          51.210401922849385
+        ],
+        [
+          33.94149396899047,
+          41.95995431809057,
+          47.19669303054377
+        ],
+        [
+          27.7796511813807,
+          31.695407879579665,
+          35.1901860902609
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            41.12784813930186,
+            52.9969672357524,
+            60.559239776970294
+          ],
+          [
+            37.367260139256295,
+            46.58317084605388,
+            52.396479565397335
+          ],
+          [
+            29.012132757852818,
+            32.358379237266206,
+            35.36132359268742
+          ]
+        ],
+        [
+          [
+            26.82923123532139,
+            29.12591419174375,
+            30.50940381729594
+          ],
+          [
+            26.355868877687566,
+            31.722832006171807,
+            35.6828799890823
+          ],
+          [
+            25.050584833478155,
+            30.22739987327375,
+            34.81123876345932
+          ]
+        ]
+      ]
+    },
+    "textres": {
+      "mean_mse": 38.34562598753054,
+      "std_mse": 5.760008355107049,
+      "worst_fold_mse": 44.00765113829336,
+      "fold_mse": [
+        44.00765113829336,
+        40.58636338335742,
+        30.442863440940823
+      ],
+      "mse_by_horizon": {
+        "5": 32.34806190476359,
+        "10": 39.03159267967313,
+        "15": 43.65722337815489
+      },
+      "fold_horizon_mse": [
+        [
+          36.25231293560947,
+          45.052598859165286,
+          50.71804162010533
+        ],
+        [
+          33.58522363485906,
+          41.48280752324143,
+          46.69105899197178
+        ],
+        [
+          27.20664914382224,
+          30.55937165661267,
+          33.56256952238756
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            40.6266229050535,
+            52.36645759236025,
+            59.93002174101801
+          ],
+          [
+            37.02294661150276,
+            46.097652928370195,
+            51.87085913530438
+          ],
+          [
+            28.18609557870387,
+            30.80444982324908,
+            33.181842831365046
+          ]
+        ],
+        [
+          [
+            26.566340860411962,
+            28.857625949947874,
+            30.320085638084407
+          ],
+          [
+            25.973122758005164,
+            31.26422126902775,
+            35.22150153173531
+          ],
+          [
+            25.03787489515577,
+            30.016698573346325,
+            34.40560719536599
+          ]
+        ]
+      ]
+    },
+    "textzguard": {
+      "mean_mse": 38.283963666443036,
+      "std_mse": 5.844647645310966,
+      "worst_fold_mse": 44.00765113829336,
+      "fold_mse": [
+        44.00765113829336,
+        40.58636338335742,
+        30.257876477678312
+      ],
+      "mse_by_horizon": {
+        "5": 32.28983121011522,
+        "10": 38.96944167407897,
+        "15": 43.592618115134904
+      },
+      "fold_horizon_mse": [
+        [
+          36.25231293560947,
+          45.052598859165286,
+          50.71804162010533
+        ],
+        [
+          33.58522363485906,
+          41.48280752324143,
+          46.69105899197178
+        ],
+        [
+          27.031957059877133,
+          30.372918639830207,
+          33.3687537333276
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            40.6266229050535,
+            52.36645759236025,
+            59.93002174101801
+          ],
+          [
+            37.02294661150276,
+            46.097652928370195,
+            51.87085913530438
+          ],
+          [
+            28.18609557870387,
+            30.80444982324908,
+            33.181842831365046
+          ]
+        ],
+        [
+          [
+            26.566340860411962,
+            28.857625949947874,
+            30.320085638084407
+          ],
+          [
+            25.973122758005164,
+            31.26422126902775,
+            35.22150153173531
+          ],
+          [
+            24.476364625332216,
+            29.417385305116987,
+            33.78262787338755
+          ]
+        ]
+      ]
+    }
+  },
+  "test_diagnostics": {
+    "exact_m2_mean_correction_vs_ridge": 0.3470379412174225,
+    "guarded_m2_mean_correction_vs_ridge": -0.08985283970832825,
+    "guarded_vs_exact_m2_mean_change": -0.43689078092575073,
+    "test_m1_guarded_samples": 0,
+    "test_m2_guarded_samples": 144
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_ridge_by_at_least_0_5_percent": true,
+      "improves_at_least_two_folds_vs_ridge": true,
+      "improves_at_least_two_horizons_vs_ridge": true,
+      "worst_fold_within_one_percent_of_ridge": true,
+      "mean_within_0_1_percent_of_textres": true,
+      "guard_activates_on_test_m2": true,
+      "test_m2_mean_correction_is_nonpositive": true,
+      "test_m2_correction_reduced": true
+    },
+    "status": "KEEP"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.7410888671875,
+    "mean": 52.85186004638672,
+    "submission_rows": 2041200
+  },
+  "submission": "C:\\Users\\Sam\\OneDrive\\Documents\\Project\\datathon-2026\\task1\\experiments\\d1-e009-textzguard\\submission.csv",
+  "runtime_seconds": 21.650965000008
+}

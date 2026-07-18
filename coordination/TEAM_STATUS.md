@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0040
+Revision: 0042
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 13:54:55 +07:00
+Last Global Update: 2026-07-18 14:00:40 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e008-textood
+Repository Branch: exp/d1-e009-textzguard
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -43,6 +43,7 @@ Only MAIN may update this section.
 | D1-DEC-009 | 2026-07-18 13:34 WIB | Preregister `d1-e006-textres` using fixed global event-type counts to model per-road ridge residuals. | Official texts align one-to-one with timesteps/samples and contain repeated causal event types; no external embedding or road-name translation is required. | MAIN | Text alignment or residual fitting is not leakage-safe or runtime-feasible. |
 | D1-DEC-010 | 2026-07-18 13:42 WIB | Freeze textres at commit `c603cd9` for audit and preregister `d1-e007-graphres` on a separate branch. | Official adjacency is sparse and directed with 5,122 nonzeros; symmetric external-neighbor summaries can test graph signal without a GNN or new dependency. | MAIN | Graph orientation or feature computation cannot be made deterministic and leakage-safe. |
 | D1-DEC-011 | 2026-07-18 13:50 WIB | Respond to textres audit with one preregistered OOD guard that neutralizes only the `prohibit left turn` residual feature when it falls outside training range. | VALIDATION found test-m2 `z=-3.434` on this feature and a risky positive correction; leakage safety and aligned text gain otherwise received `GO`/`KEEP`. | MAIN | Guard fails to retain broad local gains or does not remove the risky test correction. |
+| D1-DEC-012 | 2026-07-18 13:56 WIB | Treat the failed raw-range guard as frozen and preregister a new standard `|z| > 3` guard for only `prohibit left turn`. | The audit measures shift in standardized units (`z=-3.434`), while `d1-e008-textood` proved raw min/max activates on zero test samples. | MAIN | The z-guard loses broad local gain, fails to reverse risky m2 correction, or requires threshold tuning. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -66,6 +67,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-013 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Text schema audit and frozen ridge | Fixed event-count features predicting per-road ridge residuals | First causal use of official event text with no external model | 2026-07-18 13:34 WIB | 2026-07-18 13:39 WIB | `KEEP`: MSE 38.3456, all folds/horizons improve; independent leakage audit required before slot 2. |
 | D1-MAIN-014 | DAY 1 | MAIN | DONE | MEDIUM | Frozen textres handoff and official adjacency | Per-road ridge augmented with symmetric neighbor summaries | Last simple official-signal candidate before considering an ensemble | 2026-07-18 13:42 WIB | 2026-07-18 13:53 WIB | `KEEP`: MSE 38.1750; independent audit gives leakage `GO` and prefers graphres after notebook readiness. |
 | D1-MAIN-015 | DAY 1 | MAIN | DONE | HIGH | Textres audit `INVESTIGATE` inference | Training-range OOD neutralization for one risky text feature | Robust textres variant before any graph-text combination | 2026-07-18 13:50 WIB | 2026-07-18 13:54 WIB | `REJECT`: raw-range guard never activates on test and leaves risky m2 correction unchanged; no CSV. |
+| D1-MAIN-016 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Rejected raw-range guard and audit `z=-3.434` | Fixed `|z| > 3` neutralization for one text feature | Decide whether a safe text path remains viable before graph-plus-text | 2026-07-18 13:56 WIB | 2026-07-18 14:00 WIB | `KEEP`: MSE 38.2840; guard flips m2 correction to -0.0899; independent audit required. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -74,13 +76,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-015
-Status: DONE
-Last Read Revision: 0039
-Last Update: 2026-07-18 13:54:55 +07:00
+Current Task: D1-MAIN-016
+Status: NEEDS_REVIEW
+Last Read Revision: 0041
+Last Update: 2026-07-18 14:00:40 +07:00
 
 ### Current Objective
-Freeze the rejected raw-range text guard and preserve graphres as the leading audited slot-2 candidate.
+Freeze the locally accepted standardized text guard for independent audit; keep graphres as the leading audited candidate.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -103,6 +105,8 @@ Freeze the rejected raw-range text guard and preserve graphres as the leading au
 - `d1-e007-graphres` passes all preregistered gates; independent audit gives leakage `GO`, evidence `KEEP`, and prefers it over exact textres after notebook readiness.
 - VALIDATION gave textres leakage `GO` and evidence `KEEP`, but exact inference remains `INVESTIGATE` because test-m2 `prohibit left turn` is OOD and pushes correction upward.
 - `d1-e008-textood` is `REJECT`: its raw-range guard activates on zero test samples and leaves test-m2 correction unchanged at `+0.3470` km/h.
+- `d1-e009-textzguard` is isolated on `exp/d1-e009-textzguard` with a fixed `|z| > 3` rule before scoring.
+- `d1-e009-textzguard` passes all preregistered gates; its test-m2 correction is `-0.0899` km/h and requires independent review before reuse.
 - The fail-closed reference gate and clean local notebook are complete.
 - The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`.
 - Kaggle generated `submission.csv`; the downloaded file exactly matches the audited ridge predictions and is approved for slot 1.
@@ -123,6 +127,7 @@ Freeze the rejected raw-range text guard and preserve graphres as the leading au
 - `d1-e006-textres`: mean 38.3456; folds 44.0077, 40.5864, 30.4429; worst 44.0077; 1.74% improvement over ridge; all folds/horizons improve; runtime 22.76s.
 - `d1-e007-graphres`: mean 38.1750; folds 43.7473, 39.9422, 30.8355; worst 43.7473; 2.18% improvement over ridge; all folds/horizons improve; runtime 26.94s.
 - `d1-e008-textood`: mean 38.2840; folds 44.0077, 40.5864, 30.2579; worst 44.0077; raw-range guard does not activate on test; `REJECT`; no submission generated.
+- `d1-e009-textzguard`: mean 38.2840; folds 44.0077, 40.5864, 30.2579; worst 44.0077; test-m2 guard 144/168; correction -0.0899; `KEEP`; runtime 21.65s.
 ### Files Changed
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -142,14 +147,14 @@ Freeze the rejected raw-range text guard and preserve graphres as the leading au
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
 ### Decisions Needed
-- Whether to preregister a standard `|z| > 3` text guard as a new experiment before considering a graph-plus-safe-text candidate.
+- Independent textzguard verdict before any graph-plus-safe-text experiment or slot decision.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Freeze and commit textood; slot 2 remains protected while any new safe-text hypothesis is evaluated separately.
+- Commit and hand off textzguard for audit; do not use slot 2.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -250,6 +255,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e006-textres | DAY 1 | MAIN | Global event-type counts explain systematic per-road residuals beyond speed history. | d1-e002-ridge | Frozen `d1-multifold-v1` | 38.3456 | 44.0077; 40.5864; 30.4429 | 44.0077 | 5.7600 | min 0.0; max 101.7411; mean 52.9878 | 22.76s | KEEP | `task1/experiments/d1-e006-textres/metrics.json` |
 | d1-e007-graphres | DAY 1 | MAIN | Neighbor history summaries add local road-network context missing from independent per-road ridge. | d1-e002-ridge | Frozen `d1-multifold-v1` | 38.1750 | 43.7473; 39.9422; 30.8355 | 43.7473 | 5.4173 | min 0.0; max 101.5309; mean 52.8380 | 26.94s | KEEP | `task1/experiments/d1-e007-graphres/metrics.json` |
 | d1-e008-textood | DAY 1 | MAIN | Neutralizing the single OOD turn-restriction path preserves text gain while avoiding risky test-m2 extrapolation. | d1-e006-textres | Frozen `d1-multifold-v1` | 38.2840 | 44.0077; 40.5864; 30.2579 | 44.0077 | 5.8446 | min 0.0; max 101.7411; mean 52.9878 | 18.54s | REJECT | `task1/experiments/d1-e008-textood/metrics.json` |
+| d1-e009-textzguard | DAY 1 | MAIN | A standard three-sigma guard neutralizes the audited text OOD path while preserving causal aligned-text gain. | d1-e006-textres | Frozen `d1-multifold-v1` | 38.2840 | 44.0077; 40.5864; 30.2579 | 44.0077 | 5.8446 | min 0.0; max 101.7411; mean 52.8519 | 21.65s | KEEP | `task1/experiments/d1-e009-textzguard/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -292,6 +298,7 @@ Public score is never the sole final-selection reason.
 | D1-HO-004 | MAIN | SUBMISSION | 2026-07-18 12:40 WIB | `task1/notebooks/d1-ridge-inference.ipynb`, `task1/src/submission_validator.py`, and `task1/reports/d1-submission-readiness.{md,json}` | Independently inspect Kaggle paths/dependencies and perform actual clean-session `Run All`; return readiness verdict. | ACKNOWLEDGED |
 | D1-HO-005 | MAIN | VALIDATION | 2026-07-18 13:39 WIB | Commit for `task1/src/text_residual_model.py`, `run_textres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit text-key alignment, origin-only features, training-only scaling/residual fitting, exact ridge reference, fold/horizon gains, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
 | D1-HO-006 | MAIN | VALIDATION | 2026-07-18 13:47 WIB | `task1/src/graph_model.py`, `run_graphres_experiment.py`, tests, config, metrics, notes, and ignored submission preview | Audit symmetric adjacency construction, diagonal removal, row normalization, training-only fitting, score reproduction, and zero guard; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
+| D1-HO-007 | MAIN | VALIDATION | 2026-07-18 14:00 WIB | `d1-e009-textzguard` code, tests, config, metrics, notes, and ignored submission preview | Audit training-only z-score, fixed threshold, guard activation, exact score reproduction, correction direction, and zero guard. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -339,6 +346,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 13:50:02 +07:00 | 0038 | MAIN | D1-MAIN-015 | Started separate-branch text OOD robustness experiment | Preregistered one guard: neutralize only out-of-training-range `prohibit left turn` values; graphres remains frozen for audit | Verify local gains and test-m2 correction direction before any slot decision |
 | 2026-07-18 13:53:11 +07:00 | 0039 | VALIDATION | D1-VAL-003 | Completed graphres independent audit | Leakage `GO`, candidate `KEEP`; three topology nulls show the gain is generic cross-road context rather than the true road topology | Prefer graphres over exact textres after notebook readiness; never select random-graph seeds |
 | 2026-07-18 13:54:55 +07:00 | 0040 | MAIN | D1-MAIN-015 | Completed raw-range text OOD experiment | `REJECT`: guard activates on zero test samples, m2 correction remains `+0.3470` km/h, and no submission is generated | Freeze the branch and treat any z-score guard as a new preregistered experiment |
+| 2026-07-18 13:56:59 +07:00 | 0041 | MAIN | D1-MAIN-016 | Started separate-branch standardized text OOD experiment | Fixed one rule before scoring: neutralize only `prohibit left turn` when its training-standardized value exceeds three sigma | Compare on frozen folds and stop the text path if inference-risk gates fail |
+| 2026-07-18 14:00:40 +07:00 | 0042 | MAIN | D1-MAIN-016 | Completed standardized text OOD experiment and requested audit | `KEEP`: MSE 38.2840; guard activates on 144/168 test-m2 samples and changes correction from +0.3470 to -0.0899 km/h; validator READY; 32 tests pass | Freeze commit; VALIDATION audits before any graph-plus-safe-text reuse or slot 2 decision |
 
 Append only. Correct errors with a new entry; do not erase history.
 
