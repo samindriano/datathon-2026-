@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0028
+Revision: 0030
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 13:21:30 +07:00
+Last Global Update: 2026-07-18 13:27:22 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e003-lagblend
+Repository Branch: exp/d1-e004-analog
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -38,6 +38,7 @@ Only MAIN may update this section.
 | D1-DEC-004 | 2026-07-18 12:32 WIB | Freeze `d1-multifold-v1` at commit `e2136b6` as the official validation harness. | Independent VALIDATION verdict `GO`; exact metric and submission reproduction. | MAIN | A verified implementation defect or official competition clarification invalidates the harness. |
 | D1-DEC-005 | 2026-07-18 13:12 WIB | Approve `d1-e002-ridge` for Kaggle submission slot 1. | Kaggle-generated `submission.csv` passes the fail-closed validator with 2,041,200 exact IDs and zero numeric mismatches against the audited ridge reference. | MAIN | Submission Manager finds an upload-preview mismatch or Kaggle rejects the file. |
 | D1-DEC-006 | 2026-07-18 13:18 WIB | Treat public MSE `45.980` as diagnostic only and test `d1-e003-lagblend` on frozen local validation before considering slot 2. | Slot 1 ranks 12th on the 30% public split; private 70% remains unseen and official validation is unchanged. | MAIN | A verified implementation defect invalidates the frozen validation or official competition guidance changes. |
+| D1-DEC-007 | 2026-07-18 13:24 WIB | Preregister `d1-e004-analog` as a separate-branch nearest-history delta forecaster before scoring. | Lagblend failed because shared weights lost road-specific dynamics; analog forecasting preserves road-level future deltas from similar causal network states. | MAIN | Implementation cannot meet leakage, runtime, or frozen-validation constraints. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -56,6 +57,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-008 | DAY 1 | MAIN | DONE | HIGH | User local notebook run | VS Code could not find `/kaggle/input` outside Kaggle | Automatic local/Kaggle data and output path discovery | 2026-07-18 12:43 WIB | 2026-07-18 12:45 WIB | Local Run All completed in 5.67s with zero difference from audited submission. |
 | D1-MAIN-009 | DAY 1 | MAIN | DONE | HIGH | SUBMISSION verdict `NOT READY` | Four concrete readiness blockers | Fail-closed validator, clean final notebook, and Kaggle Run All evidence | 2026-07-18 12:56 WIB | 2026-07-18 13:12 WIB | All four blockers closed; Kaggle-generated CSV exactly reproduces audited ridge and slot 1 is approved. |
 | D1-MAIN-010 | DAY 1 | MAIN | DONE | HIGH | Frozen `d1-multifold-v1` and slot 1 result | Shared convex lag weights per regime/horizon | Auditable structurally different candidate compared with mean15 and ridge | 2026-07-18 13:18 WIB | 2026-07-18 13:21 WIB | `REJECT`: MSE 42.8914, only fold 3 improves, all acceptance gates fail; no CSV or slot used. |
+| D1-MAIN-011 | DAY 1 | MAIN | DONE | HIGH | Rejected lagblend and frozen ridge reference | Nearest historical network states using training-only selected roads and future deltas | Structurally different candidate with fixed runtime-safe parameters | 2026-07-18 13:24 WIB | 2026-07-18 13:27 WIB | `REJECT`: MSE 55.4014, 0/3 folds and horizons improve; no CSV or slot used. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -64,13 +66,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-010
+Current Task: D1-MAIN-011
 Status: DONE
-Last Read Revision: 0027
-Last Update: 2026-07-18 13:21:30 +07:00
+Last Read Revision: 0029
+Last Update: 2026-07-18 13:27:22 +07:00
 
 ### Current Objective
-Test a simple shared lag-weight forecaster on frozen validation as a structurally different successor to ridge.
+Test nearest-history road-level delta forecasting on frozen validation as a structurally different successor to ridge.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -83,7 +85,8 @@ Test a simple shared lag-weight forecaster on frozen validation as a structurall
 ### Work in Progress
 - Slot 1 used `d1-e002-ridge`; public MSE is 45.980 and remains diagnostic only.
 - `d1-e002-ridge` remains frozen at commit `e2136b6`.
-- `d1-e003-lagblend` has restarted as a new preregistered task on `exp/d1-e003-lagblend`; the previously cancelled attempt produced no retained scores or artifacts.
+- `d1-e003-lagblend` is frozen as `REJECT` at commit `b341d6e`.
+- `d1-e004-analog` is isolated on `exp/d1-e004-analog` and rejected without producing a submission.
 - The fail-closed reference gate and clean local notebook are complete.
 - The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`.
 - Kaggle generated `submission.csv`; the downloaded file exactly matches the audited ridge predictions and is approved for slot 1.
@@ -99,6 +102,7 @@ Test a simple shared lag-weight forecaster on frozen validation as a structurall
 - Direct local Run All: 5.67s; automatic repository data discovery; exact numeric match retained.
 - Kaggle output validation: 2,041,200 exact unique IDs; finite and nonnegative; 0 reference mismatches; mean 52.8826; min 0.0; max 101.5696.
 - `d1-e003-lagblend`: mean 42.8914; folds 50.6941, 47.1967, 30.7834; worst 50.6941; `REJECT`; no submission generated.
+- `d1-e004-analog`: mean 55.4014; folds 62.6974, 57.1239, 46.3828; worst 62.6974; `REJECT`; no submission generated.
 ### Files Changed
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -118,14 +122,14 @@ Test a simple shared lag-weight forecaster on frozen validation as a structurall
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
 ### Decisions Needed
-- Preregister the structurally different analog/nearest-history candidate; slot 2 remains unused.
+- Preregister a per-road full-history AR15 ridge candidate on a new branch; slot 2 remains unused.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Commit the rejected lagblend evidence, then start analog/nearest-history forecasting on a separate branch.
+- Commit the rejected analog evidence, then start AR15 ridge on a separate branch.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -219,6 +223,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e001-persist | DAY 1 | MAIN | Mean/last/trend forecasts from the exact 15-step history establish a leakage-safe floor. | NONE | 540 contiguous tail origins per train block | 29.6995 | 29.8669; 29.5322 | 29.8669 | 0.1674 | min 0.0; max 101.9333; mean 52.7290 | 4.83s | INVESTIGATE | `task1/experiments/d1-e001-persist/metrics.json` |
 | d1-e002-ridge | DAY 1 | MAIN | Fixed per-road ridge on causal history summaries improves mean15 robustly. | d1-e001-persist | 3 purged 720-origin folds per block; 372:168 weighted | 39.0248 | 44.4867; 41.0327; 31.5551 | 44.4867 | 5.4669 | min 0.0; max 101.5696; mean 52.8826 | 9.59s | KEEP | `task1/experiments/d1-e002-ridge/metrics.json` |
 | d1-e003-lagblend | DAY 1 | MAIN | Shared convex weights over the 15 causal lags can improve robustness without per-road overfit. | d1-e002-ridge | Frozen `d1-multifold-v1` | 42.8914 | 50.6941; 47.1967; 30.7834 | 50.6941 | 8.6799 | min 0.0; max 103.4315; mean 52.7449 | 14.75s | REJECT | `task1/experiments/d1-e003-lagblend/metrics.json` |
+| d1-e004-analog | DAY 1 | MAIN | Road-level future deltas from nearest causal network states capture repeated traffic dynamics missed by ridge. | d1-e002-ridge | Frozen `d1-multifold-v1` | 55.4014 | 62.6974; 57.1239; 46.3828 | 62.6974 | 6.7709 | min 0.0; max 126.5625; mean 52.8064 | 6.98s | REJECT | `task1/experiments/d1-e004-analog/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -294,6 +299,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 13:12:33 +07:00 | 0026 | MAIN | D1-MAIN-009 | Validated Kaggle-generated submission and closed readiness repair | `submission.csv` is READY with 2,041,200 exact IDs and zero numeric mismatches against audited ridge; slot 1 approved | Submission Manager uploads the validated file and reports public score |
 | 2026-07-18 13:18:28 +07:00 | 0027 | MAIN | D1-MAIN-010 | Recorded slot 1 and preregistered next model experiment | Ridge public MSE 45.980, rank 12 at observation; `d1-e003-lagblend` will use frozen folds and no leaderboard tuning | Implement shared convex lag weights and protect slot 2 until validation and audit |
 | 2026-07-18 13:21:30 +07:00 | 0028 | MAIN | D1-MAIN-010 | Completed preregistered lagblend experiment | `REJECT`: mean 42.8914 versus ridge 39.0248; only fold 3 improves and all four gates fail; no submission generated | Preserve slot 2 and test a structurally different analog model |
+| 2026-07-18 13:24:04 +07:00 | 0029 | MAIN | D1-MAIN-011 | Started separate-branch analog experiment | `exp/d1-e004-analog` uses fixed training-only state features and nearest-neighbor future deltas; no score or slot used yet | Implement, test, and compare on frozen folds |
+| 2026-07-18 13:27:22 +07:00 | 0030 | MAIN | D1-MAIN-011 | Completed preregistered analog experiment | `REJECT`: mean 55.4014 versus ridge 39.0248; no fold or horizon improves; no submission generated | Preserve slot 2 and test per-road full-history AR15 ridge on a new branch |
 
 Append only. Correct errors with a new entry; do not erase history.
 
