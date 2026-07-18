@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0012
+Revision: 0013
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 12:15:05 +07:00
+Last Global Update: 2026-07-18 12:17:06 +07:00
 Competition Clock: RUNNING
 Repository Branch: main
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -44,7 +44,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-001 | PREPARATION | MAIN | DONE | MEDIUM | Official competition rules | Open-weight preparation requirement | Offline-ready candidate pantry tooling | 2026-07-17 22:50 WIB | 2026-07-17 23:06 WIB | Metadata/tooling only; no weights downloaded and no model selected. |
 | D1-MAIN-002 | PREPARATION | MAIN | DONE | HIGH | GitHub CLI installed and authenticated | Local project files and target `samindriano/datathon-2026-` | Independent Git repository pushed to GitHub | 2026-07-17 23:14 WIB | 2026-07-17 23:32 WIB | Initial baseline commit `53acffe` pushed to `origin/main`. |
 | D1-MAIN-003 | PREPARATION | MAIN | DONE | HIGH | Existing experiment protocol | Request for simple, searchable artifact names | Canonical experiment, branch, artifact, and submission naming rules | 2026-07-18 11:57 WIB | 2026-07-18 11:59 WIB | Use one short experiment ID everywhere; submission includes slot and experiment ID. |
-| D1-VAL-001 | DAY 1 | VALIDATION | IN_PROGRESS | HIGH | Official Task 1 dataset available | Competition statement and `datathon-task-1.zip` | Data, leakage, temporal validation, and baseline-risk audit | 2026-07-18 12:07 WIB | 2026-07-18 12:07 WIB | Read-only audit; no MAIN pipeline changes and no submission-slot use. |
+| D1-VAL-001 | DAY 1 | VALIDATION | DONE | HIGH | Official Task 1 dataset available | Competition statement and `datathon-task-1.zip` | Data, leakage, temporal validation, and baseline-risk audit | 2026-07-18 12:07 WIB | 2026-07-18 12:17 WIB | `INVESTIGATE`; audit at `task1/reports/d1-validation-audit.md`; do not submit baseline yet. |
 | D1-MAIN-004 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Official Task 1 data | Continuous speeds, text, network, and sample submission | Reproducible chronological baseline and valid submission candidate | 2026-07-18 12:04 WIB | 2026-07-18 12:15 WIB | `d1-e001-persist` pushed at `24d7165`; MSE 29.6995; waiting for VALIDATION verdict. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | READY | HIGH | Sample submission | Exact ID order and expected schema | Reusable submission validator and readiness verdict | TODO | 2026-07-18 12:09 WIB | May be handled alongside validation if the same teammate owns both scopes. |
 
@@ -107,33 +107,38 @@ Only MAIN may update this section.
 <!-- VALIDATION:START -->
 Role: VALIDATION
 Current Task: D1-VAL-001
-Status: IN_PROGRESS
-Last Read Revision: 0008
-Last Update: 2026-07-18 12:07:25 +07:00
+Status: DONE
+Last Read Revision: 0012
+Last Update: 2026-07-18 12:17:06 +07:00
 
 ### Scope Being Audited
 - Official Task 1 data schema, temporal sampling, leakage risk, validation design, and simple baselines.
 ### Evidence Reviewed
-- Official competition description supplied by the user; ZIP inventory pending detailed inspection.
+- Official description; all 10 ZIP files; train/test arrays, text, graph, road metadata, sample submission; `d1-e001-persist` code, metrics, config, notes, commit `24d7165`; targeted tests.
 ### Findings
-- TODO
+- Train blocks are `(11160,1260)` and `(5039,1260)`; test is `(540,15,1260)`; all arrays are finite and submission order is correct.
+- Test has 372 m1-like and 168 m2-like samples, matching train proportions; no train-window copy, duplicate test window, or shifted test-window overlap was found.
+- Baseline origin/target indexing, elementwise MSE, and submission reshape are correct; 3 targeted tests passed.
 ### Leakage Risks
-- TODO
+- Random window splits leak 14/15 overlapping history rows and persistent event text; adjacent train text is identical 42.5% in m1 and 54.0% in m2.
+- Fit every learned preprocessing/text component on the training fold only and purge 15 origins at validation boundaries.
 ### Validation Risks
-- TODO
+- Current MSE 29.6995 uses one tail slice and selects methods on that same slice; it is not a defensible official comparison score.
+- Equal 540-window block aggregation weights regimes 50/50 instead of the observed test mixture 372:168.
 ### Distribution or Fold Risks
-- TODO
+- Structural all-zero roads differ sharply: 13 in m1 versus 210 in m2; an all-zero 15-step history stays zero at targets more than 99.9% of the time.
+- Daily no-fit MSE varies widely (m1 31.659-73.964; m2 25.436-40.260); the current m1 tail is unusually easy.
 ### Recommendation
-- UNKNOWN
+- INVESTIGATE
 
 Allowed: `GO`, `NO-GO`, `INVESTIGATE`, `BLOCKED`.
 
 ### Required Action from Main
-- TODO
+- Establish at least three multi-day chronological folds per block, purge 15 origins, aggregate at 372:168, report horizon/block/fold/worst/std, separate selection from reporting, and preserve an all-zero-history guard.
 ### Blockers
 - NONE
 ### Next Action
-- Inspect array/JSON schemas and temporal structure, quantify missingness/distribution, then propose leakage-safe backtesting.
+- Review a revised official-validation artifact; keep `d1-e001-persist` provisional and do not spend a Kaggle slot yet.
 <!-- VALIDATION:END -->
 
 Only VALIDATION may update this section; it is read-only against the main pipeline.
@@ -219,7 +224,8 @@ Public score is never the sole final-selection reason.
 
 | Handoff ID | From | To | Time | Artifact or Evidence | Required Action | Status |
 |---|---|---|---|---|---|---|
-| D1-HO-001 | MAIN | VALIDATION | 2026-07-18 12:13 WIB | `task1/src/baseline.py`, `task1/experiments/d1-e001-persist/{config,metrics,notes}.json/md` | Audit origin construction, block aggregation, clipping, and whether MSE 29.6995 is a defensible comparison baseline. | WAITING |
+| D1-HO-001 | MAIN | VALIDATION | 2026-07-18 12:13 WIB | `task1/src/baseline.py`, `task1/experiments/d1-e001-persist/{config,metrics,notes}.json/md` | Audit origin construction, block aggregation, clipping, and whether MSE 29.6995 is a defensible comparison baseline. | COMPLETED |
+| D1-HO-002 | VALIDATION | MAIN | 2026-07-18 12:17 WIB | `task1/reports/d1-validation-audit.md` | Replace the single tail score with purged multi-fold chronological, 372:168 regime-weighted validation before submission. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -239,6 +245,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 12:09:37 +07:00 | 0010 | MAIN | D1-MAIN-004 | Inspected official Task 1 dataset | Verified shapes, finite values, text alignment, adjacency, and 2,041,200-row output schema | Build chronological baseline and await validation audit |
 | 2026-07-18 12:13:41 +07:00 | 0011 | MAIN | D1-MAIN-004 | Completed provisional baseline | Mean15 MSE 29.6995; 3 tests passed; 2,041,200-row preview is unique and finite | Publish artifacts and await VALIDATION verdict; do not submit yet |
 | 2026-07-18 12:15:05 +07:00 | 0012 | MAIN | D1-MAIN-004 | Published provisional baseline artifacts | Commit `24d7165` is on `origin/main`; raw data and submission preview remain ignored | VALIDATION reviews commit; MAIN explores next hypothesis |
+| 2026-07-18 12:17:06 +07:00 | 0013 | VALIDATION | D1-VAL-001 | Completed data, leakage, and baseline audit | `INVESTIGATE`: baseline code is leakage-safe, but MSE 29.6995 is a selected single-tail estimate with wrong regime weighting | MAIN implements purged multi-fold 372:168 validation; do not submit yet |
 
 Append only. Correct errors with a new entry; do not erase history.
 
