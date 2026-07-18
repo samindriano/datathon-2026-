@@ -1,9 +1,9 @@
 # D1 Validation and Leakage Audit
 
-Time: 2026-07-18 12:07-12:17 WIB  
-Role: VALIDATION  
-Task: `D1-VAL-001`  
-Data source: official `datathon-task-1.zip` archive (read-only, not committed)
+- Time: 2026-07-18 12:07-12:17 WIB
+- Role: VALIDATION
+- Task: `D1-VAL-001`
+- Data source: official `datathon-task-1.zip` archive (read-only, not committed)
 
 ## Verdict
 
