@@ -427,6 +427,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 Append only. Correct errors with a new entry; do not erase history.
 
 | 2026-07-18 16:27:07 +07:00 | E020-001 | EXPERIMENT | D1-E020 | Preregistered final fixed tri-state ensemble in isolated worktree | Exact equal average of frozen E013/E014/E016; rank 4, 360 PCA rows, alpha 0.1; no search; fail closed on any gate | Add frozen low-rank source, focused tests, freeze commit, then score once |
+| 2026-07-18 16:31:00 +07:00 | E020-002 | EXPERIMENT | D1-E020 | Rejected final tri-state ensemble without retuning | MSE 36.0779 is only 1.32% better than E013 and median chunk gain 0.3615; other robustness/inference gates pass; no CSV | Keep E013 final, stop modeling, and hand negative result to MAIN |
 
 ## 12. Day 1 Closing Summary
 

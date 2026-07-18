@@ -1,6 +1,6 @@
 # d1-e020-tristate
 
-Status before scoring: `RUNNING / PREREGISTERED`.
+Final status: `REJECT / DO NOT SUBMIT`.
 
 This is the final Task 1 modeling experiment. E013, E014, and E016 remain
 frozen; their failed gates are not revised. E020 tests one new ensemble
@@ -24,3 +24,20 @@ predictions. Any failure means `REJECT / DO NOT SUBMIT`, no CSV, and no E021.
 
 Leakage boundary: all component preprocessing and model fits occur separately
 inside each training fold. Validation targets are used only for scoring.
+
+Frozen-run result:
+
+- E013 reference MSE: `36.560253`;
+- reproduced E014 MSE: `36.260152`;
+- reproduced E016 MSE: `35.557597`;
+- E020 MSE: `36.077866`, a `1.3194%` improvement over E013;
+- all folds, horizons, worst fold, fold std, and `18/18` cells improve;
+- `35/36` temporal chunks improve and worst chunk is only `-0.037104`;
+- median chunk gain is `0.361548`;
+- inference correction, RMS shift, finite/nonnegative values, and zero guard pass;
+- no submission CSV was produced.
+
+Two frozen materiality gates fail: mean improvement is below `2%`, and median
+chunk gain is below `0.50`. The ensemble successfully reduces E016 tail risk
+but gives up too much aggregate gain. The weights and thresholds remain frozen;
+there is no E021 or follow-up tuning.
