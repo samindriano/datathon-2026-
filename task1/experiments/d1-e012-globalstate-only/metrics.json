@@ -1,0 +1,327 @@
+{
+  "experiment_id": "d1-e012-globalstate-only",
+  "selection_disclosure": "Globalstate aggregate score was observed as a diagnostic in rejected e011; e012 acceptance adds preregistered unseen temporal-chunk stress.",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "The discovered globalstate-only gain is broad enough to survive strict unseen temporal-chunk stress and justify independent audit.",
+  "preregistered_parameters": {
+    "features": [
+      "last",
+      "mean3",
+      "mean5",
+      "mean15",
+      "slope5",
+      "city_last",
+      "city_mean3",
+      "city_mean5",
+      "city_mean15",
+      "city_slope5"
+    ],
+    "active_road_rule": "any nonzero value in the causal 15-step history",
+    "alpha": 0.1,
+    "temporal_chunk_size_origins": 120,
+    "zero_history_guard": true,
+    "seed": null
+  },
+  "candidates": {
+    "graphtextblend": {
+      "mean_mse": 37.90403503652314,
+      "std_mse": 5.5644834172793765,
+      "worst_fold_mse": 43.43874174258988,
+      "fold_mse": [
+        43.43874174258988,
+        39.98131580900747,
+        30.292047557972072
+      ],
+      "mse_by_horizon": {
+        "5": 32.05053561919764,
+        "10": 38.53649233526152,
+        "15": 43.12507715511026
+      },
+      "fold_horizon_mse": [
+        [
+          35.95609524154962,
+          44.412652346286386,
+          49.947477639933645
+        ],
+        [
+          33.230396370961564,
+          40.81965152706376,
+          45.89389952899709
+        ],
+        [
+          26.965115245081737,
+          30.377173132434425,
+          33.53385429640006
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            40.27628028089545,
+            51.55888404509252,
+            58.95109944151962
+          ],
+          [
+            36.568623170356574,
+            45.26088315307233,
+            50.868468884029625
+          ],
+          [
+            28.177212945641784,
+            30.940097296053363,
+            33.5344209411378
+          ]
+        ],
+        [
+          [
+            26.38997122585529,
+            28.588853584644244,
+            30.01088650785042
+          ],
+          [
+            25.838608458015464,
+            30.985495783759088,
+            34.87878167142504
+          ],
+          [
+            24.28118462241306,
+            29.130698198706774,
+            33.53259958305219
+          ]
+        ]
+      ]
+    },
+    "globalstate": {
+      "mean_mse": 35.38940547810506,
+      "std_mse": 4.321658206058717,
+      "worst_fold_mse": 40.065413869291056,
+      "fold_mse": [
+        40.065413869291056,
+        36.45967116900295,
+        29.64313139602118
+      ],
+      "mse_by_horizon": {
+        "5": 30.795540573172957,
+        "10": 35.77275789298153,
+        "15": 39.59991796816071
+      },
+      "fold_horizon_mse": [
+        [
+          34.32048114182579,
+          40.658314344015324,
+          45.21744612203206
+        ],
+        [
+          31.354254827028818,
+          36.96266852952832,
+          41.06209015045173
+        ],
+        [
+          26.711885750664273,
+          29.697290805400936,
+          32.520217631998335
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.36539862996298,
+            46.86104291409378,
+            52.919535987177866
+          ],
+          [
+            34.3231554970448,
+            40.69789656428088,
+            45.16113298459094
+          ],
+          [
+            27.700240283227313,
+            30.343707845564175,
+            33.0183042423466
+          ]
+        ],
+        [
+          [
+            25.36387813237914,
+            26.92370108169875,
+            28.162818563494916
+          ],
+          [
+            24.780260486279143,
+            28.691806452576223,
+            31.985638160572055
+          ],
+          [
+            24.523386428560393,
+            28.26593878789662,
+            31.41731156622717
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 17,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 31,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": -1.9516727281614443,
+    "temporal_chunk_gain_median": 1.987113541566199,
+    "temporal_chunk_gain_max": 5.825945892265409,
+    "temporal_chunk_gains": [
+      4.959508284479114,
+      4.707833461554415,
+      2.253534661922174,
+      5.825945892265409,
+      4.806493111379439,
+      2.727257060945007,
+      5.5488768525463215,
+      2.304111527792088,
+      5.57563006712666,
+      4.897614790432129,
+      1.5792839065765563,
+      5.1260631786101385,
+      1.9385865066074643,
+      -0.6275475018697776,
+      -1.3941407839734872,
+      1.7241909678034517,
+      1.2374993076049066,
+      0.30036912721717,
+      1.0872134486752572,
+      3.617685888256105,
+      0.8301933566019315,
+      0.9308223064105725,
+      2.199366083513464,
+      0.4133459980967942,
+      2.0356405765249335,
+      0.7662186931859924,
+      2.8928591638252534,
+      2.547591866100035,
+      1.1092414737825997,
+      3.1388098541253484,
+      1.3941031879700319,
+      -0.1476157072971489,
+      -1.9516727281614443,
+      -0.002243459231635825,
+      1.167125547400616,
+      5.015994402295231
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.7541666666666667,
+      0.8444444444444444,
+      0.625,
+      0.8055555555555556,
+      0.7694444444444445,
+      0.49444444444444446
+    ]
+  },
+  "test_diagnostics": {
+    "global_m1_mean_correction_vs_ridge": 0.23777921497821808,
+    "global_m2_mean_correction_vs_ridge": -0.411698579788208,
+    "global_correction_min": -34.43669891357422,
+    "global_correction_max": 31.220123291015625,
+    "global_correction_mean": 0.03571947291493416,
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250
+  },
+  "acceptance_gate": {
+    "checks": {
+      "aggregate_mean_improves_e010_by_at_least_3_percent": true,
+      "all_three_folds_improve": true,
+      "all_three_horizons_improve": true,
+      "worst_fold_improves": true,
+      "fold_standard_deviation_not_worse": true,
+      "at_least_15_of_18_block_fold_horizon_cells_improve": true,
+      "at_least_34_of_36_temporal_chunks_improve": false,
+      "median_temporal_chunk_gain_at_least_1_mse": true,
+      "worst_temporal_chunk_gain_not_below_minus_0_25": false,
+      "test_m2_mean_correction_is_nonpositive": true,
+      "predictions_are_finite_nonnegative_and_zero_guarded": true
+    },
+    "status": "REJECT"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.5079574584961,
+    "mean": 52.91836166381836,
+    "submission_rows": 2041200
+  },
+  "submission": null,
+  "runtime_seconds": 36.670964399992954
+}

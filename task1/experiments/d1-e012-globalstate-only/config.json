@@ -1,0 +1,12 @@
+{
+  "experiment_id": "d1-e012-globalstate-only",
+  "baseline": "d1-e010-graphtextblend",
+  "selection_disclosure": "aggregate globalstate score observed in rejected e011",
+  "validation": "d1-multifold-v1",
+  "global_features": ["city_last", "city_mean3", "city_mean5", "city_mean15", "city_slope5"],
+  "active_road_rule": "road has any nonzero speed in the causal 15-step history",
+  "alpha": 0.1,
+  "temporal_chunk_size_origins": 120,
+  "seed": null,
+  "kaggle_slot_authorized": false
+}
