@@ -1,0 +1,384 @@
+{
+  "experiment_id": "d1-e013-stableblend",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "A fixed 75:25 shrinkage blend retains e010 temporal stability while capturing a bounded fraction of globalstate gain.",
+  "preregistered_parameters": {
+    "anchor_weight": 0.75,
+    "globalstate_weight": 0.25,
+    "alpha": 0.1,
+    "text_residual_alpha": 1.0,
+    "text_z_threshold": 3.0,
+    "temporal_chunk_size_origins": 120,
+    "seed": null
+  },
+  "candidates": {
+    "graphtextblend": {
+      "mean_mse": 37.90403503652314,
+      "std_mse": 5.5644834172793765,
+      "worst_fold_mse": 43.43874174258988,
+      "fold_mse": [
+        43.43874174258988,
+        39.98131580900747,
+        30.292047557972072
+      ],
+      "mse_by_horizon": {
+        "5": 32.05053561919764,
+        "10": 38.53649233526152,
+        "15": 43.12507715511026
+      },
+      "fold_horizon_mse": [
+        [
+          35.95609524154962,
+          44.412652346286386,
+          49.947477639933645
+        ],
+        [
+          33.230396370961564,
+          40.81965152706376,
+          45.89389952899709
+        ],
+        [
+          26.965115245081737,
+          30.377173132434425,
+          33.53385429640006
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            40.27628028089545,
+            51.55888404509252,
+            58.95109944151962
+          ],
+          [
+            36.568623170356574,
+            45.26088315307233,
+            50.868468884029625
+          ],
+          [
+            28.177212945641784,
+            30.940097296053363,
+            33.5344209411378
+          ]
+        ],
+        [
+          [
+            26.38997122585529,
+            28.588853584644244,
+            30.01088650785042
+          ],
+          [
+            25.838608458015464,
+            30.985495783759088,
+            34.87878167142504
+          ],
+          [
+            24.28118462241306,
+            29.130698198706774,
+            33.53259958305219
+          ]
+        ]
+      ]
+    },
+    "globalstate": {
+      "mean_mse": 35.38940547810506,
+      "std_mse": 4.321658206058717,
+      "worst_fold_mse": 40.065413869291056,
+      "fold_mse": [
+        40.065413869291056,
+        36.45967116900295,
+        29.64313139602118
+      ],
+      "mse_by_horizon": {
+        "5": 30.795540573172957,
+        "10": 35.77275789298153,
+        "15": 39.59991796816071
+      },
+      "fold_horizon_mse": [
+        [
+          34.32048114182579,
+          40.658314344015324,
+          45.21744612203206
+        ],
+        [
+          31.354254827028818,
+          36.96266852952832,
+          41.06209015045173
+        ],
+        [
+          26.711885750664273,
+          29.697290805400936,
+          32.520217631998335
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.36539862996298,
+            46.86104291409378,
+            52.919535987177866
+          ],
+          [
+            34.3231554970448,
+            40.69789656428088,
+            45.16113298459094
+          ],
+          [
+            27.700240283227313,
+            30.343707845564175,
+            33.0183042423466
+          ]
+        ],
+        [
+          [
+            25.36387813237914,
+            26.92370108169875,
+            28.162818563494916
+          ],
+          [
+            24.780260486279143,
+            28.691806452576223,
+            31.985638160572055
+          ],
+          [
+            24.523386428560393,
+            28.26593878789662,
+            31.41731156622717
+          ]
+        ]
+      ]
+    },
+    "stableblend": {
+      "mean_mse": 36.56025330476311,
+      "std_mse": 5.160867894455729,
+      "worst_fold_mse": 41.75151401530663,
+      "fold_mse": [
+        41.75151401530663,
+        38.40758877339898,
+        29.521657125583715
+      ],
+      "mse_by_horizon": {
+        "5": 31.29014153073365,
+        "10": 37.06222101818448,
+        "15": 41.32839736537119
+      },
+      "fold_horizon_mse": [
+        [
+          35.02931209003044,
+          42.54501964789959,
+          47.68021030798985
+        ],
+        [
+          32.348468002966314,
+          39.09789207588926,
+          43.77640624134136
+        ],
+        [
+          26.49264449920421,
+          29.543751330764575,
+          32.528575546782356
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.14133240891099,
+            49.169776642870616,
+            56.01506238631864
+          ],
+          [
+            35.55323380177352,
+            43.240702615642995,
+            48.362391014418016
+          ],
+          [
+            27.805592249757442,
+            30.335026810127214,
+            32.86057858917084
+          ]
+        ],
+        [
+          [
+            25.92412424108065,
+            27.875914873320898,
+            29.224466420261823
+          ],
+          [
+            25.25220087703606,
+            29.92452588072027,
+            33.62172567238592
+          ],
+          [
+            23.58540305155063,
+            27.791641340747308,
+            31.79342595292213
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 18,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 36,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": 0.1242690083044522,
+    "temporal_chunk_gain_median": 0.9968832566601904,
+    "temporal_chunk_gain_max": 2.756368990079274,
+    "temporal_chunk_gains": [
+      2.7135006242012167,
+      2.3109441725455326,
+      1.3001687901601144,
+      2.756368990079274,
+      2.4067320550065077,
+      1.4324700268217363,
+      2.561816794327342,
+      0.9546015673390826,
+      2.2496003652214682,
+      2.277459396581804,
+      0.8362893285290198,
+      2.203528099249297,
+      0.8761340661637433,
+      0.1242690083044522,
+      0.32075083970053697,
+      0.7442967835515617,
+      0.8463128873359516,
+      0.38930348249862234,
+      0.45460228239205946,
+      1.416813478487711,
+      0.40513476207148,
+      0.4371774492614371,
+      0.9121521250927707,
+      0.3045314700675945,
+      0.8684429953232566,
+      0.4092791721351361,
+      1.3427492866743407,
+      1.0391649459812982,
+      0.6489396850060025,
+      1.500290880994612,
+      0.844392821614548,
+      1.7095210669619583,
+      1.1582485637175601,
+      0.7241275954509803,
+      1.0670975159344138,
+      2.044636554224443
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.9013888888888889,
+      0.9222222222222223,
+      0.7333333333333333,
+      0.9125,
+      0.8777777777777778,
+      0.7555555555555555
+    ]
+  },
+  "test_diagnostics": {
+    "anchor_m2_mean_correction_vs_ridge": -0.16740953922271729,
+    "stableblend_m2_mean_correction_vs_ridge": -0.22848181426525116,
+    "stableblend_correction_vs_anchor_min": -8.074150085449219,
+    "stableblend_correction_vs_anchor_max": 6.852687835693359,
+    "stableblend_correction_vs_anchor_mean": 0.01836204156279564,
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_e010_by_at_least_1_percent": true,
+      "all_three_folds_improve": true,
+      "all_three_horizons_improve": true,
+      "worst_fold_improves": true,
+      "fold_standard_deviation_not_worse": true,
+      "at_least_17_of_18_block_fold_horizon_cells_improve": true,
+      "at_least_34_of_36_temporal_chunks_improve": true,
+      "median_temporal_chunk_gain_at_least_0_5_mse": true,
+      "worst_temporal_chunk_gain_not_below_minus_0_25": true,
+      "test_m2_mean_correction_is_nonpositive": true,
+      "predictions_are_finite_nonnegative_and_zero_guarded": true
+    },
+    "status": "KEEP"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.60399627685547,
+    "mean": 52.863277435302734,
+    "submission_rows": 2041200
+  },
+  "submission": "C:\\Users\\Sam\\OneDrive\\Documents\\Project\\datathon-2026\\task1\\experiments\\d1-e013-stableblend\\submission.csv",
+  "runtime_seconds": 61.14012599999842
+}

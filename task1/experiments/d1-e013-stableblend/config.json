@@ -1,0 +1,14 @@
+{
+  "experiment_id": "d1-e013-stableblend",
+  "baseline": "d1-e010-graphtextblend",
+  "anchor_weight": 0.75,
+  "globalstate_weight": 0.25,
+  "weight_search": false,
+  "validation": "d1-multifold-v1",
+  "temporal_chunk_size_origins": 120,
+  "alpha": 0.1,
+  "text_residual_alpha": 1.0,
+  "text_z_threshold": 3.0,
+  "seed": null,
+  "kaggle_slot_authorized": false
+}
