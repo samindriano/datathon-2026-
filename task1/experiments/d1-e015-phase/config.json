@@ -1,0 +1,13 @@
+{
+  "experiment_id": "d1-e015-phase",
+  "baseline": "d1-e013-stableblend",
+  "period": 360,
+  "road_groups": 4,
+  "anchor_weight": 0.75,
+  "seasonal_weight": 0.25,
+  "weight_search": false,
+  "validation": "d1-multifold-v1",
+  "temporal_chunk_size_origins": 120,
+  "seed": null,
+  "kaggle_slot_authorized": false
+}

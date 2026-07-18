@@ -420,6 +420,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
 Append only. Correct errors with a new entry; do not erase history.
 
+| 2026-07-18 16:01:00 +07:00 | E015-001 | EXPERIMENT | D1-E015 | Preregistered independent seasonal-phase candidate in isolated worktree | Fixed period 360, four training-only road strata, and 75:25 E013/seasonal blend; no parameter or weight search | Run focused tests, freeze implementation, then score once on official folds |
+
 ## 12. Day 1 Closing Summary
 
 - Final submission: TODO
