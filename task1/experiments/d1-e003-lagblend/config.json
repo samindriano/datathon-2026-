@@ -1,0 +1,22 @@
+{
+  "experiment_id": "d1-e003-lagblend",
+  "owner": "MAIN",
+  "branch": "exp/d1-e003-lagblend",
+  "baseline": "d1-e002-ridge",
+  "dataset_version": "official-task1-2026-07-18",
+  "validation_version": "d1-multifold-v1",
+  "model": "shared-convex-15-lag-blend",
+  "lag_alpha": 1.0,
+  "ridge_reference_alpha": 0.1,
+  "fold_count_per_block": 3,
+  "validation_origins_per_fold": 720,
+  "minimum_training_origins": 1440,
+  "purge_origins": 15,
+  "regime_sample_counts": [372, 168],
+  "simplex_constraint": true,
+  "exclude_zero_history_pairs_from_fit": true,
+  "zero_history_guard": true,
+  "seed": null,
+  "uses_event_text": false,
+  "uses_road_graph": false
+}
