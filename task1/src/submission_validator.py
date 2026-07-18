@@ -127,6 +127,12 @@ def validate_submission(
         raise SubmissionValidationError(
             f"Submission has {row_count} rows; expected {expected_row_count}"
         )
+    if reference_path is not None and reference_mismatch_count:
+        raise SubmissionValidationError(
+            "Submission differs from the requested reference: "
+            f"{reference_mismatch_count} values, maximum absolute difference "
+            f"{reference_max_abs_difference}"
+        )
     report: dict[str, object] = {
         "status": "READY",
         "row_count": row_count,

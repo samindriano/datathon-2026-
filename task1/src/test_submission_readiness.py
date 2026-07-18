@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -59,6 +61,53 @@ class SubmissionValidatorTest(unittest.TestCase):
                     road_count=2,
                     chunk_size=5,
                 )
+
+    def test_reference_mismatch_is_rejected(self):
+        template, submission = self._frames()
+        different = submission.copy()
+        different["speed"] = different["speed"] + 1
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            template_path = root / "sample.csv"
+            submission_path = root / "submission.csv"
+            reference_path = root / "reference.csv"
+            template.to_csv(template_path, index=False)
+            submission.to_csv(submission_path, index=False)
+            different.to_csv(reference_path, index=False)
+            with self.assertRaisesRegex(
+                SubmissionValidationError, "differs from the requested reference"
+            ):
+                validate_submission(
+                    template_path,
+                    submission_path,
+                    sample_count=2,
+                    road_count=2,
+                    chunk_size=5,
+                    reference_path=reference_path,
+                )
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(Path(__file__).with_name("submission_validator.py")),
+                    "--template",
+                    str(template_path),
+                    "--submission",
+                    str(submission_path),
+                    "--reference",
+                    str(reference_path),
+                    "--sample-count",
+                    "2",
+                    "--road-count",
+                    "2",
+                    "--chunk-size",
+                    "5",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("differs from the requested reference", result.stderr)
 
 
 class CleanNotebookRunnerTest(unittest.TestCase):
