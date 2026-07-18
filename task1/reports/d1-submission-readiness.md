@@ -55,6 +55,20 @@ previously audited ridge CSV.
 - maximum absolute reference difference: 0.0;
 - numeric values match the audited ridge submission exactly.
 
+## Local VS Code execution
+
+The notebook also supports direct local `Run All` without environment
+variables. It searches upward from the current working directory for
+`task1/data/competition/dataset-task1` (or the equivalent path when started
+inside `task1`) and writes the generated file to the Git-ignored path
+`task1/submissions/submission_d1-e002-ridge_local.csv`.
+
+This local path was exercised after a VS Code run exposed that the first
+version searched only `/kaggle/input`. The corrected notebook completed in
+5.67 seconds and again matched the audited ridge CSV with zero numeric
+differences. Kaggle behavior remains unchanged: it searches `/kaggle/input`
+and writes `/kaggle/working/submission.csv`.
+
 ## Readiness verdict
 
 Implementation verdict: `READY FOR SUBMISSION REVIEW`.

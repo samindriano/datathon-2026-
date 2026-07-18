@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0020
+Revision: 0021
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 12:40:03 +07:00
+Last Global Update: 2026-07-18 12:45:49 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-main-model
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -51,6 +51,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-005 | DAY 1 | MAIN | DONE | HIGH | Completed validation audit | Purged folds, observed regime mixture, and continuous train blocks | Official multi-fold harness and `d1-e002-ridge` candidate | 2026-07-18 12:20 WIB | 2026-07-18 12:32 WIB | Harness `GO`; ridge `KEEP`; submission remains `INVESTIGATE`. |
 | D1-MAIN-006 | DAY 1 | MAIN | CANCELLED | MEDIUM | Frozen ridge handoff | Same audited folds and 15-step histories | Independent lightweight `d1-e003-lagblend` candidate | 2026-07-18 12:28 WIB | 2026-07-18 12:32 WIB | Cancelled by user before commit; code, metrics, and local preview removed. |
 | D1-MAIN-007 | DAY 1 | MAIN | DONE | HIGH | Harness `GO` and ridge `KEEP` | Audited ridge runner, sample submission, and Kaggle constraints | Reusable validator and clean-session inference notebook | 2026-07-18 12:36 WIB | 2026-07-18 12:40 WIB | Clean process reproduced all 2,041,200 predictions exactly; ready for SUBMISSION review. |
+| D1-MAIN-008 | DAY 1 | MAIN | DONE | HIGH | User local notebook run | VS Code could not find `/kaggle/input` outside Kaggle | Automatic local/Kaggle data and output path discovery | 2026-07-18 12:43 WIB | 2026-07-18 12:45 WIB | Local Run All completed in 5.67s with zero difference from audited submission. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | READY | HIGH | Sample submission | Exact ID order and expected schema | Reusable submission validator and readiness verdict | TODO | 2026-07-18 12:09 WIB | May be handled alongside validation if the same teammate owns both scopes. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -88,8 +89,9 @@ Freeze the audited ridge candidate and prepare submission reproducibility withou
 - `d1-e002-ridge`: mean 39.0248; std 5.4669; worst fold 44.4867; 14.32% mean improvement.
 - Ridge folds: 44.4867, 41.0327, 31.5551; 7 tests passed; runtime 9.59s.
 - Clean notebook: 4.95s; 2,041,200 rows; exact numeric match with audited ridge CSV; 10 tests passed.
+- Direct local Run All: 5.67s; automatic repository data discovery; exact numeric match retained.
 ### Files Changed
-- `task1/notebooks/d1-ridge-inference.ipynb`; `task1/src/{submission_validator.py,clean_notebook_runner.py,test_submission_readiness.py}`; `task1/reports/d1-submission-readiness.{md,json}`; `coordination/TEAM_STATUS.md`
+- `task1/notebooks/d1-ridge-inference.ipynb`; `task1/reports/d1-submission-readiness.md`; `coordination/TEAM_STATUS.md`
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -272,6 +274,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 12:32:20 +07:00 | 0018 | MAIN | D1-MAIN-006 | Cancelled lightweight lagblend experiment | Removed all uncommitted lagblend code, metrics, and preview; preserved audit report and validation verdict | Return to frozen ridge branch and complete submission/notebook review |
 | 2026-07-18 12:36:27 +07:00 | 0019 | MAIN | D1-MAIN-007 | Started submission-readiness implementation | Pushed audit commit `41a30bb`; claimed validator and clean-session notebook work without changing the frozen model | Reproduce output exactly and request independent SUBMISSION verdict |
 | 2026-07-18 12:40:03 +07:00 | 0020 | MAIN | D1-MAIN-007 | Completed local submission-readiness implementation | Self-contained notebook reproduced the audited 2,041,200 predictions exactly in 4.95s; validator and 10 tests passed | SUBMISSION performs independent Kaggle `Run All`; verdict remains `INVESTIGATE` |
+| 2026-07-18 12:45:49 +07:00 | 0021 | MAIN | D1-MAIN-008 | Fixed direct local notebook execution | Added relative repository data discovery and ignored local output path; local Run All and exact CSV comparison passed | User may restart kernel and Run All locally; Kaggle behavior is unchanged |
 
 Append only. Correct errors with a new entry; do not erase history.
 
