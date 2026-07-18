@@ -1,0 +1,16 @@
+{
+  "experiment_id": "d1-e016-lowrank",
+  "baseline": "d1-e013-stableblend",
+  "anchor_weight": 0.75,
+  "lowrank_weight": 0.25,
+  "weight_search": false,
+  "rank": 4,
+  "rank_search": false,
+  "pca_sample_count": 360,
+  "pca_sampling": "evenly spaced causal training-history rows",
+  "validation": "d1-multifold-v1",
+  "temporal_chunk_size_origins": 120,
+  "alpha": 0.1,
+  "seed": null,
+  "kaggle_slot_authorized": false
+}
