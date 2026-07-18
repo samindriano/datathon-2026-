@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0058
+Revision: 0060
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 15:00:01 +07:00
+Last Global Update: 2026-07-18 15:19:03 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-e013-stableblend
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -54,6 +54,8 @@ Only MAIN may update this section.
 | D1-DEC-020 | 2026-07-18 14:50 WIB | Reject e012 without relaxing its unseen chunk gates, stop further large model experiments, and retain e010 as the final-selection recommendation. | E012 won only 31/36 chunks and its worst chunk regressed 1.9517 MSE; e010's independent audit won 36/36 chunks versus ridge and already passed Kaggle reproduction. | MAIN | A verified implementation defect invalidates e012 stress results or e010 artifacts; otherwise no further modeling before finalization. |
 | D1-DEC-021 | 2026-07-18 14:55 WIB | Use the remaining two-hour window for exactly one conservative `d1-e013-stableblend`: fixed 75% e010 plus 25% globalstate, with no weight search. | User explicitly prefers using the remaining opportunity; e012 exposed a large but volatile signal that can be shrunk toward the already stable e010 anchor. | MAIN | Any preregistered aggregate, chunk, inference-safety, audit, or notebook gate fails; then e010 remains final and modeling stops. |
 | D1-DEC-022 | 2026-07-18 15:00 WIB | Mark e013 `KEEP / NEEDS_REVIEW` locally and protect slot 3 until independent audit plus exact Kaggle notebook reproduction. | Fixed 75:25 blend improves e010 by 3.55%, wins 3/3 folds, 3/3 horizons, 18/18 cells, and 36/36 chunks with positive minimum chunk gain 0.1243. | MAIN | Audit is not `GO/KEEP`, notebook differs from frozen CSV, validator is not `READY`, or competition time becomes insufficient. |
+| D1-DEC-023 | 2026-07-18 15:15 WIB | Accept independent `GO/KEEP` for e013 and advance it to notebook/submission-readiness review while retaining e010 as final until public evidence exists. | Audit reproduced all metrics and CSV; stricter purge retained 3.543% gain; e013 won 17/17 walk-forward windows and 102/102 diagnostic chunks, with conservative RMS change 0.431 km/h. | MAIN | Kaggle Run All differs from frozen CSV, SUBMISSION is not `READY`, or public/operational evidence invalidates slot-3 use. |
+| D1-DEC-024 | 2026-07-18 15:19 WIB | Accept local e013 notebook readiness and require actual Kaggle Run All plus independent output review before slot 3. | Clean five-cell notebook completed in 18 seconds; validator found 0 mismatches, max difference 0.0, exact IDs, and hash `84703083...b6e1d`. | MAIN | Kaggle environment output differs, hidden dependency appears, or SUBMISSION returns other than `READY`. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -82,7 +84,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-018 | DAY 1 | MAIN | DONE | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:23 WIB | Actual Kaggle output matches frozen CSV exactly; independent SUBMISSION verdict remains. |
 | D1-MAIN-019 | DAY 1 | MAIN | DONE | HIGH | Audited e010 and graph topology-null finding | Direct active-road city-state features plus fixed guarded-text blend | Decide whether any candidate materially exceeds e010 without leaderboard tuning | 2026-07-18 14:41 WIB | 2026-07-18 14:45 WIB | `REJECT`: blend loses to globalstate alone; no CSV or slot. Globalstate-only becomes a separate post-discovery hypothesis. |
 | D1-MAIN-020 | DAY 1 | MAIN | DONE | HIGH | e011 globalstate-only diagnostic | Frozen globalstate model plus unseen temporal-chunk and correction-distribution stress tests | Determine whether the post-discovery candidate merits independent audit and notebook work | 2026-07-18 14:47 WIB | 2026-07-18 14:50 WIB | `REJECT`: 31/36 chunk wins and worst chunk -1.9517 fail frozen gates; no CSV, audit handoff, notebook, or slot. |
-| D1-MAIN-021 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Stable e010 plus volatile e012 signal | Fixed 75:25 e010/globalstate shrinkage blend | Capture meaningful globalstate gain while restoring temporal robustness | 2026-07-18 14:55 WIB | 2026-07-18 15:00 WIB | `KEEP`: all gates pass; validator `READY`; independent audit and notebook exact reproduction required before slot 3. |
+| D1-MAIN-021 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Stable e010 plus volatile e012 signal | Fixed 75:25 e010/globalstate shrinkage blend | Capture meaningful globalstate gain while restoring temporal robustness | 2026-07-18 14:55 WIB | 2026-07-18 15:19 WIB | Independent `GO/KEEP`; local notebook exact `READY`; awaiting actual Kaggle Run All and SUBMISSION review before slot 3. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | DONE | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 14:27 WIB | Actual Kaggle blend output is `READY`; exact frozen-output match and all schema/reproducibility gates pass. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -93,11 +95,11 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: D1-MAIN-021
 Status: NEEDS_REVIEW
-Last Read Revision: 0057
-Last Update: 2026-07-18 15:00:01 +07:00
+Last Read Revision: 0059
+Last Update: 2026-07-18 15:19:03 +07:00
 
 ### Current Objective
-Freeze the locally accepted e013 candidate for independent validation and exact notebook reproduction.
+Obtain actual Kaggle clean-session output and independent SUBMISSION readiness for the exact e013 notebook.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -132,6 +134,8 @@ Freeze the locally accepted e013 candidate for independent validation and exact 
 - `d1-e011-globalstate` is `REJECT` because its 50:50 blend does not beat globalstate alone; no submission was generated.
 - `d1-e012-globalstate-only` is `REJECT`: it fails two new temporal-chunk robustness gates; no submission was generated.
 - `d1-e013-stableblend` is local `KEEP`: fixed 75:25 weights pass every aggregate, temporal, inference-safety, and schema gate.
+- Independent e013 audit returns model/leakage `GO` and candidate `KEEP`; selection bias remains disclosed and e010 stays final pending public evidence.
+- The competition-named e013 notebook reproduces the frozen CSV locally with zero mismatches and clean outputs.
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 - Data integrity: all NPY arrays finite; all 2,041,200 submission IDs parse completely.
@@ -158,8 +162,10 @@ Freeze the locally accepted e013 candidate for independent validation and exact 
 - e011 diagnostic globalstate-only: mean 35.3894; folds 40.0654, 36.4597, 29.6431; worst 40.0654; std 4.3217; all folds/horizons beat e010; test-m2 correction -0.4117 km/h.
 - E012 unseen stress: 17/18 block-fold-horizon wins but only 31/36 temporal-chunk wins; median chunk gain 1.9871, minimum -1.9517, weakest origin win rate 49.44%; `REJECT`.
 - E013: mean 36.5603; folds 41.7515, 38.4076, 29.5217; worst 41.7515; std 5.1609; 18/18 cell and 36/36 chunk wins versus e010; minimum chunk gain 0.1243; `KEEP / NEEDS_REVIEW`.
+- E013 audit stress: stricter purge gain 3.543%; 17/17 walk-forward windows and 102/102 chunks improve; worst gains +0.5940 window and +0.0967 chunk; RMS test change 0.431 km/h.
+- E013 notebook: isolated 18-second run; exact 2,041,200 IDs; zero numeric mismatches; max difference 0.0; validator `READY`; 44 tests pass.
 ### Files Changed
-- `coordination/TEAM_STATUS.md`; `task1/src/{stable_blend.py,run_stableblend_experiment.py,test_stable_blend.py}`; `task1/experiments/d1-e013-stableblend/{config.json,metrics.json,notes.md,submission-validation.json}`.
+- `coordination/TEAM_STATUS.md`; `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `task1/reports/d1-e013-notebook-readiness.{md,json}`.
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -178,14 +184,14 @@ Freeze the locally accepted e013 candidate for independent validation and exact 
 - `task1/reports/d1-submission-readiness.{md,json}`
 - `task1/reports/d1-e010-kaggle-output-validation.json`
 ### Decisions Needed
-- Independent VALIDATION verdict and subsequent exact notebook/SUBMISSION readiness before any slot-3 approval.
+- Actual Kaggle output exact comparison and independent SUBMISSION `READY` before slot-3 approval.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Commit the frozen candidate, request independent audit, and prepare its notebook without using a Kaggle slot.
+- Human imports the committed notebook, performs Kaggle Restart Session / Run All, downloads `submission.csv`, and returns it for fail-closed comparison.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -334,7 +340,8 @@ Public score is never the sole final-selection reason.
 | D1-HO-007 | MAIN | VALIDATION | 2026-07-18 14:00 WIB | `d1-e009-textzguard` code, tests, config, metrics, notes, and ignored submission preview | Audit training-only z-score, fixed threshold, guard activation, exact score reproduction, correction direction, and zero guard. | COMPLETED |
 | D1-HO-008 | MAIN | VALIDATION | 2026-07-18 14:05 WIB | `d1-e010-graphtextblend` code, tests, config, metrics, notes, and ignored submission preview | Audit fixed weights, component identity, exact score reproduction, fold-2 regression, correction direction, and zero guard. | COMPLETED |
 | D1-HO-009 | MAIN | SUBMISSION | 2026-07-18 14:11 WIB | `EnterYourTeamName_Task1_Notebook.ipynb`, `d1-e010-notebook-readiness.{md,json}`, and downloaded Kaggle `submission.csv` | Inspect self-contained paths/dependencies, run clean Kaggle session, and compare output exactly with frozen blend CSV. | COMPLETED |
-| D1-HO-010 | MAIN | VALIDATION | 2026-07-18 15:00 WIB | Commit containing `d1-e013-stableblend` code, tests, config, metrics, notes, and ignored CSV | Reproduce fixed 75:25 weights, 3/3 folds, 18/18 cells, 36/36 chunks, correction direction, zero guard, and selection-history disclosure; return `GO`, `NO-GO`, or `INVESTIGATE`. | WAITING |
+| D1-HO-010 | MAIN | VALIDATION | 2026-07-18 15:00 WIB | Commit `27baf8f` containing `d1-e013-stableblend` code, tests, config, metrics, notes, and ignored CSV | Reproduce fixed 75:25 weights, 3/3 folds, 18/18 cells, 36/36 chunks, correction direction, zero guard, and selection-history disclosure; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
+| D1-HO-011 | MAIN | SUBMISSION | 2026-07-18 15:19 WIB | `EnterYourTeamName_Task1_Notebook.ipynb`, frozen e013 CSV, and `d1-e013-notebook-readiness.{md,json}` | Run committed notebook in a clean Kaggle session, compare output exactly, inspect dependencies/paths, and return `READY`, `NOT READY`, or `INVESTIGATE`. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -400,6 +407,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 14:50:18 +07:00 | 0056 | MAIN | D1-MAIN-020 | Completed strict globalstate-only stress testing and stopped further modeling | `REJECT`: 31/36 chunks improve and worst chunk is -1.9517; no CSV or slot. E010 remains the final-selection recommendation | Human selects e010 as the one final Kaggle entry, preserves the validated notebook, and prepares writeup |
 | 2026-07-18 14:55:26 +07:00 | 0057 | MAIN | D1-MAIN-021 | Reopened one bounded opportunity at the user's request | Preregistered exactly one fixed 75:25 e010/globalstate shrinkage blend; no weight grid and no slot authorization | Run once and continue only if aggregate, 34/36 chunks, worst chunk, inference safety, audit, and notebook gates pass |
 | 2026-07-18 15:00:01 +07:00 | 0058 | MAIN | D1-MAIN-021 | Completed fixed conservative stable-blend experiment | `KEEP / NEEDS_REVIEW`: MSE 36.5603, 18/18 cells and 36/36 chunks improve e010, minimum chunk gain 0.1243, validator `READY`, 44 tests pass | Freeze commit for independent audit; prepare notebook without spending slot 3 |
+| 2026-07-18 15:15:23 +07:00 | 0059 | MAIN | D1-MAIN-021 | Accepted independent e013 audit and started notebook readiness | `GO/KEEP`; exact reproduction, stricter purge, 17/17 windows, and 102/102 diagnostic chunks pass; selection bias and m2 global-feature shift remain disclosed | Build clean e013 notebook and require exact Kaggle Run All plus SUBMISSION `READY` before slot 3 |
+| 2026-07-18 15:19:03 +07:00 | 0060 | MAIN | D1-MAIN-021 | Completed local e013 notebook readiness | Clean notebook reproduced all 2,041,200 values exactly in 18 seconds; validator `READY`, zero mismatches, max difference 0.0, and 44 tests pass | Human performs Kaggle Restart Session / Run All and returns downloaded CSV for independent SUBMISSION review |
 
 Append only. Correct errors with a new entry; do not erase history.
 
