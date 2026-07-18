@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0060
+Revision: 0061
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 15:19:03 +07:00
+Last Global Update: 2026-07-18 15:25:22 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-e013-stableblend
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -56,6 +56,7 @@ Only MAIN may update this section.
 | D1-DEC-022 | 2026-07-18 15:00 WIB | Mark e013 `KEEP / NEEDS_REVIEW` locally and protect slot 3 until independent audit plus exact Kaggle notebook reproduction. | Fixed 75:25 blend improves e010 by 3.55%, wins 3/3 folds, 3/3 horizons, 18/18 cells, and 36/36 chunks with positive minimum chunk gain 0.1243. | MAIN | Audit is not `GO/KEEP`, notebook differs from frozen CSV, validator is not `READY`, or competition time becomes insufficient. |
 | D1-DEC-023 | 2026-07-18 15:15 WIB | Accept independent `GO/KEEP` for e013 and advance it to notebook/submission-readiness review while retaining e010 as final until public evidence exists. | Audit reproduced all metrics and CSV; stricter purge retained 3.543% gain; e013 won 17/17 walk-forward windows and 102/102 diagnostic chunks, with conservative RMS change 0.431 km/h. | MAIN | Kaggle Run All differs from frozen CSV, SUBMISSION is not `READY`, or public/operational evidence invalidates slot-3 use. |
 | D1-DEC-024 | 2026-07-18 15:19 WIB | Accept local e013 notebook readiness and require actual Kaggle Run All plus independent output review before slot 3. | Clean five-cell notebook completed in 18 seconds; validator found 0 mismatches, max difference 0.0, exact IDs, and hash `84703083...b6e1d`. | MAIN | Kaggle environment output differs, hidden dependency appears, or SUBMISSION returns other than `READY`. |
+| D1-DEC-025 | 2026-07-18 15:25 WIB | Accept actual Kaggle e013 Run All output as an exact frozen-candidate reproduction; keep slot 3 pending only independent SUBMISSION confirmation. | Downloaded `submission.csv` has 2,041,200 exact IDs, zero mismatches, max difference 0.0, and hash `84703083...b6e1d`. | MAIN | SUBMISSION finds a provenance/path/schema issue or the human upload target differs from the validated file. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -95,11 +96,11 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: D1-MAIN-021
 Status: NEEDS_REVIEW
-Last Read Revision: 0059
-Last Update: 2026-07-18 15:19:03 +07:00
+Last Read Revision: 0060
+Last Update: 2026-07-18 15:25:22 +07:00
 
 ### Current Objective
-Obtain actual Kaggle clean-session output and independent SUBMISSION readiness for the exact e013 notebook.
+Obtain independent SUBMISSION confirmation for the already exact actual-Kaggle e013 output.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -136,6 +137,7 @@ Obtain actual Kaggle clean-session output and independent SUBMISSION readiness f
 - `d1-e013-stableblend` is local `KEEP`: fixed 75:25 weights pass every aggregate, temporal, inference-safety, and schema gate.
 - Independent e013 audit returns model/leakage `GO` and candidate `KEEP`; selection bias remains disclosed and e010 stays final pending public evidence.
 - The competition-named e013 notebook reproduces the frozen CSV locally with zero mismatches and clean outputs.
+- Actual Kaggle Run All produced `C:\Users\Sam\Downloads\submission.csv`; it matches the frozen e013 CSV exactly.
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 - Data integrity: all NPY arrays finite; all 2,041,200 submission IDs parse completely.
@@ -164,8 +166,9 @@ Obtain actual Kaggle clean-session output and independent SUBMISSION readiness f
 - E013: mean 36.5603; folds 41.7515, 38.4076, 29.5217; worst 41.7515; std 5.1609; 18/18 cell and 36/36 chunk wins versus e010; minimum chunk gain 0.1243; `KEEP / NEEDS_REVIEW`.
 - E013 audit stress: stricter purge gain 3.543%; 17/17 walk-forward windows and 102/102 chunks improve; worst gains +0.5940 window and +0.0967 chunk; RMS test change 0.431 km/h.
 - E013 notebook: isolated 18-second run; exact 2,041,200 IDs; zero numeric mismatches; max difference 0.0; validator `READY`; 44 tests pass.
+- Actual Kaggle e013 output: 2,041,200 exact IDs; min 0.0; max 101.6040; mean 52.863277; zero mismatches; max difference 0.0; hash `84703083...b6e1d`.
 ### Files Changed
-- `coordination/TEAM_STATUS.md`; `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `task1/reports/d1-e013-notebook-readiness.{md,json}`.
+- `coordination/TEAM_STATUS.md`; `task1/reports/d1-e013-kaggle-output-validation.json`.
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -184,14 +187,14 @@ Obtain actual Kaggle clean-session output and independent SUBMISSION readiness f
 - `task1/reports/d1-submission-readiness.{md,json}`
 - `task1/reports/d1-e010-kaggle-output-validation.json`
 ### Decisions Needed
-- Actual Kaggle output exact comparison and independent SUBMISSION `READY` before slot-3 approval.
+- Independent SUBMISSION `READY` for the exact downloaded Kaggle output before slot-3 approval.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Human imports the committed notebook, performs Kaggle Restart Session / Run All, downloads `submission.csv`, and returns it for fail-closed comparison.
+- SUBMISSION reviews `d1-e013-kaggle-output-validation.json`; MAIN then issues the final slot-3 verdict.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -341,7 +344,7 @@ Public score is never the sole final-selection reason.
 | D1-HO-008 | MAIN | VALIDATION | 2026-07-18 14:05 WIB | `d1-e010-graphtextblend` code, tests, config, metrics, notes, and ignored submission preview | Audit fixed weights, component identity, exact score reproduction, fold-2 regression, correction direction, and zero guard. | COMPLETED |
 | D1-HO-009 | MAIN | SUBMISSION | 2026-07-18 14:11 WIB | `EnterYourTeamName_Task1_Notebook.ipynb`, `d1-e010-notebook-readiness.{md,json}`, and downloaded Kaggle `submission.csv` | Inspect self-contained paths/dependencies, run clean Kaggle session, and compare output exactly with frozen blend CSV. | COMPLETED |
 | D1-HO-010 | MAIN | VALIDATION | 2026-07-18 15:00 WIB | Commit `27baf8f` containing `d1-e013-stableblend` code, tests, config, metrics, notes, and ignored CSV | Reproduce fixed 75:25 weights, 3/3 folds, 18/18 cells, 36/36 chunks, correction direction, zero guard, and selection-history disclosure; return `GO`, `NO-GO`, or `INVESTIGATE`. | COMPLETED |
-| D1-HO-011 | MAIN | SUBMISSION | 2026-07-18 15:19 WIB | `EnterYourTeamName_Task1_Notebook.ipynb`, frozen e013 CSV, and `d1-e013-notebook-readiness.{md,json}` | Run committed notebook in a clean Kaggle session, compare output exactly, inspect dependencies/paths, and return `READY`, `NOT READY`, or `INVESTIGATE`. | WAITING |
+| D1-HO-011 | MAIN | SUBMISSION | 2026-07-18 15:19 WIB | `EnterYourTeamName_Task1_Notebook.ipynb`, frozen e013 CSV, `d1-e013-notebook-readiness.{md,json}`, and actual Kaggle output validation | Inspect clean-session provenance, paths/dependencies, and exact output comparison; return `READY`, `NOT READY`, or `INVESTIGATE`. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -409,6 +412,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 15:00:01 +07:00 | 0058 | MAIN | D1-MAIN-021 | Completed fixed conservative stable-blend experiment | `KEEP / NEEDS_REVIEW`: MSE 36.5603, 18/18 cells and 36/36 chunks improve e010, minimum chunk gain 0.1243, validator `READY`, 44 tests pass | Freeze commit for independent audit; prepare notebook without spending slot 3 |
 | 2026-07-18 15:15:23 +07:00 | 0059 | MAIN | D1-MAIN-021 | Accepted independent e013 audit and started notebook readiness | `GO/KEEP`; exact reproduction, stricter purge, 17/17 windows, and 102/102 diagnostic chunks pass; selection bias and m2 global-feature shift remain disclosed | Build clean e013 notebook and require exact Kaggle Run All plus SUBMISSION `READY` before slot 3 |
 | 2026-07-18 15:19:03 +07:00 | 0060 | MAIN | D1-MAIN-021 | Completed local e013 notebook readiness | Clean notebook reproduced all 2,041,200 values exactly in 18 seconds; validator `READY`, zero mismatches, max difference 0.0, and 44 tests pass | Human performs Kaggle Restart Session / Run All and returns downloaded CSV for independent SUBMISSION review |
+| 2026-07-18 15:25:22 +07:00 | 0061 | MAIN | D1-MAIN-021 | Validated actual Kaggle e013 output | `READY`: 2,041,200 exact IDs, finite/nonnegative, zero reference mismatches, max difference 0.0, and frozen hash match | Obtain independent SUBMISSION confirmation, then decide slot 3 |
 
 Append only. Correct errors with a new entry; do not erase history.
 
