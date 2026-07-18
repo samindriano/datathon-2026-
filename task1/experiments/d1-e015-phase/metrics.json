@@ -1,0 +1,386 @@
+{
+  "experiment_id": "d1-e015-phase",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "A training-only 360-step phase prototype adds recurring road-specific daily deltas missing from E013.",
+  "preregistered_parameters": {
+    "period": 360,
+    "road_groups": 4,
+    "anchor_weight": 0.75,
+    "seasonal_weight": 0.25,
+    "weight_search": false,
+    "temporal_chunk_size_origins": 120,
+    "alpha": 0.1,
+    "text_residual_alpha": 1.0,
+    "text_z_threshold": 3.0,
+    "seed": null
+  },
+  "candidates": {
+    "stableblend": {
+      "mean_mse": 36.56025330476311,
+      "std_mse": 5.160867894455729,
+      "worst_fold_mse": 41.75151401530663,
+      "fold_mse": [
+        41.75151401530663,
+        38.40758877339898,
+        29.521657125583715
+      ],
+      "mse_by_horizon": {
+        "5": 31.29014153073365,
+        "10": 37.06222101818448,
+        "15": 41.32839736537119
+      },
+      "fold_horizon_mse": [
+        [
+          35.02931209003044,
+          42.54501964789959,
+          47.68021030798985
+        ],
+        [
+          32.348468002966314,
+          39.09789207588926,
+          43.77640624134136
+        ],
+        [
+          26.49264449920421,
+          29.543751330764575,
+          32.528575546782356
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.14133240891099,
+            49.169776642870616,
+            56.01506238631864
+          ],
+          [
+            35.55323380177352,
+            43.240702615642995,
+            48.362391014418016
+          ],
+          [
+            27.805592249757442,
+            30.335026810127214,
+            32.86057858917084
+          ]
+        ],
+        [
+          [
+            25.92412424108065,
+            27.875914873320898,
+            29.224466420261823
+          ],
+          [
+            25.25220087703606,
+            29.92452588072027,
+            33.62172567238592
+          ],
+          [
+            23.58540305155063,
+            27.791641340747308,
+            31.79342595292213
+          ]
+        ]
+      ]
+    },
+    "seasonal": {
+      "mean_mse": 66.51896317251665,
+      "std_mse": 8.107407417865137,
+      "worst_fold_mse": 77.92588908638301,
+      "fold_mse": [
+        77.92588908638301,
+        61.81880149414096,
+        59.81219893702598
+      ],
+      "mse_by_horizon": {
+        "5": 55.24371903562576,
+        "10": 67.43330418034769,
+        "15": 76.87986630157651
+      },
+      "fold_horizon_mse": [
+        [
+          65.86436632709925,
+          80.29921836572849,
+          87.61408256632129
+        ],
+        [
+          52.305228453834516,
+          63.26202095981765,
+          69.88915506877073
+        ],
+        [
+          47.5615623259435,
+          58.738673215496924,
+          73.13636126963753
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            70.78409315751763,
+            89.37870694168872,
+            98.96172653494268
+          ],
+          [
+            55.74463415106111,
+            67.82962013040827,
+            74.28250463843277
+          ],
+          [
+            51.84815385771574,
+            64.06243341012635,
+            81.63741082076639
+          ]
+        ],
+        [
+          [
+            54.970685488315695,
+            60.194636518959435,
+            62.48715663580247
+          ],
+          [
+            44.689401552832756,
+            53.148051367795546,
+            60.16102387880482
+          ],
+          [
+            38.069823934162116,
+            46.95034707024607,
+            54.31260869213792
+          ]
+        ]
+      ]
+    },
+    "phaseblend": {
+      "mean_mse": 37.86786567872839,
+      "std_mse": 4.80299871036546,
+      "worst_fold_mse": 43.101034624511165,
+      "fold_mse": [
+        43.101034624511165,
+        39.001434803535304,
+        31.501127608138702
+      ],
+      "mse_by_horizon": {
+        "5": 32.443012518965354,
+        "10": 38.369709305202385,
+        "15": 42.790875212017426
+      },
+      "fold_horizon_mse": [
+        [
+          36.41762380096144,
+          44.01552347373971,
+          48.869956598832346
+        ],
+        [
+          33.18196628473218,
+          39.77243562507867,
+          44.049902500795056
+        ],
+        [
+          27.72944747120245,
+          31.321168816788777,
+          35.452766536424875
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            40.36375764517108,
+            50.44205073195707,
+            56.96749013057902
+          ],
+          [
+            36.42309600884775,
+            43.76718255519995,
+            48.17069493962534
+          ],
+          [
+            29.696494797664638,
+            32.90911627843421,
+            36.95496278790377
+          ]
+        ],
+        [
+          [
+            27.679756003068658,
+            29.785355973401273,
+            30.939703778536124
+          ],
+          [
+            26.005179038476253,
+            30.926924565524402,
+            34.925290671956574
+          ],
+          [
+            23.37384267689332,
+            27.80499943743103,
+            32.12647483672162
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 2,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 3,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": -4.3822940497124065,
+    "temporal_chunk_gain_median": -1.178428535000771,
+    "temporal_chunk_gain_max": 2.141249878761414,
+    "temporal_chunk_gains": [
+      -1.4800756954977459,
+      -1.2724377270160616,
+      -1.0266149563140132,
+      -0.7068113978386634,
+      -1.153822517160485,
+      -1.2544918453869052,
+      -0.8071544146411682,
+      -0.743251016474936,
+      0.10961485175793939,
+      -0.5324245464689881,
+      -0.41813559238417497,
+      -0.017941425465672012,
+      -3.9753205864661254,
+      -1.2791686289175175,
+      -1.9318325240971532,
+      -4.3822940497124065,
+      -1.203034552841057,
+      -4.347102087859849,
+      -2.153626358462425,
+      -1.7048713645990645,
+      -1.5542743605820242,
+      -2.036751632873216,
+      -1.7942309645776113,
+      -1.5168657595910986,
+      -1.1331208853363108,
+      -1.007145608183233,
+      -0.7323272900719253,
+      -0.7958269821454351,
+      -1.4186579606560308,
+      -1.030804965236971,
+      -1.2623905895524103,
+      1.292223297105764,
+      2.141249878761414,
+      -0.40262796431242975,
+      -0.48577748137304155,
+      -1.552370352281109
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.225,
+      0.3236111111111111,
+      0.0875,
+      0.09861111111111111,
+      0.1486111111111111,
+      0.3763888888888889
+    ],
+    "inferred_validation_phase_coverage": 354
+  },
+  "test_diagnostics": {
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250,
+    "candidate_vs_e013_delta_mean": 0.0748714383456045,
+    "candidate_vs_e013_delta_rms": 1.2870418510682482,
+    "candidate_vs_e013_delta_abs_gt_5_fraction": 0.00753135410542818,
+    "inferred_test_phase_coverage": 216
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_e013_by_at_least_1_percent": false,
+      "all_three_folds_improve": false,
+      "all_three_horizons_improve": false,
+      "worst_fold_improves": false,
+      "fold_standard_deviation_not_worse": true,
+      "at_least_17_of_18_cells_improve": false,
+      "at_least_34_of_36_chunks_improve": false,
+      "median_chunk_gain_at_least_0_30": false,
+      "worst_chunk_not_below_minus_0_25": false,
+      "predictions_are_finite_nonnegative_and_zero_guarded": true
+    },
+    "status": "REJECT"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.54170227050781,
+    "mean": 52.938148498535156,
+    "submission_rows": 2041200
+  },
+  "submission": null,
+  "runtime_seconds": 59.94261749999714
+}

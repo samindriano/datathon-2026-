@@ -421,6 +421,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 Append only. Correct errors with a new entry; do not erase history.
 
 | 2026-07-18 16:01:00 +07:00 | E015-001 | EXPERIMENT | D1-E015 | Preregistered independent seasonal-phase candidate in isolated worktree | Fixed period 360, four training-only road strata, and 75:25 E013/seasonal blend; no parameter or weight search | Run focused tests, freeze implementation, then score once on official folds |
+| 2026-07-18 16:06:00 +07:00 | E015-002 | EXPERIMENT | D1-E015 | Rejected seasonal-phase candidate without retuning | Blend MSE 37.8679 versus E013 36.5603; 2/18 cells and 3/36 chunks improve; no CSV | Preserve E013 and hand off negative result to MAIN |
 
 ## 12. Day 1 Closing Summary
 

@@ -1,6 +1,6 @@
 # d1-e015-phase
 
-Status before scoring: `RUNNING / PREREGISTERED`.
+Final status: `REJECT / DO NOT SUBMIT`.
 
 Hypothesis: the continuous blocks encode a 360-step daily cycle. A training-only
 phase prototype can learn road-specific recurring future deltas that are absent
@@ -24,3 +24,17 @@ test predictions. Failure means `REJECT`; no tuning follow-up and no Kaggle slot
 Leakage boundary: all road strata, phase templates, feature scaling, and future
 deltas are fit independently inside each training fold. Validation history is
 used only to infer phase; validation targets are never features.
+
+Frozen-run result:
+
+- E013 anchor MSE: `36.5603`;
+- seasonal component MSE: `66.5190`;
+- fixed blend MSE: `37.8679`;
+- only `2/18` block-fold-horizon cells and `3/36` temporal chunks improve;
+- worst chunk gain: `-4.3823` MSE;
+- all acceptance gates except output validity fail;
+- no submission CSV was produced.
+
+Interpretation: a 360-step calendar structure exists in block length, but phase
+cannot be recovered reliably enough from an anonymous 15-step traffic history.
+Do not retune the period, phase matcher, groups, or weight from this result.
