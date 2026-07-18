@@ -426,6 +426,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
 Append only. Correct errors with a new entry; do not erase history.
 
+| 2026-07-18 16:27:07 +07:00 | E020-001 | EXPERIMENT | D1-E020 | Preregistered final fixed tri-state ensemble in isolated worktree | Exact equal average of frozen E013/E014/E016; rank 4, 360 PCA rows, alpha 0.1; no search; fail closed on any gate | Add frozen low-rank source, focused tests, freeze commit, then score once |
+
 ## 12. Day 1 Closing Summary
 
 - Final submission: TODO
