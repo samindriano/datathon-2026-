@@ -1,1 +1,2 @@
-# Add and pin task dependencies only after the active task requirements are known.
+numpy>=1.26,<3
+pandas>=2,<4

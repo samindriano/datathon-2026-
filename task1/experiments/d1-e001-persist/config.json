@@ -1,0 +1,12 @@
+{
+  "experiment_id": "d1-e001-persist",
+  "seed": null,
+  "training": "none",
+  "uses_event_text": false,
+  "uses_road_graph": false,
+  "speed_clip": [
+    0.0,
+    160.0
+  ],
+  "validation_count_per_block": 540
+}

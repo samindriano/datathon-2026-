@@ -27,6 +27,12 @@ task1/data/
 task2/data/
 data/
 
+# Generated predictions and submission CSVs stay local; metrics/config stay tracked
+task*/experiments/*/submission.csv
+task*/experiments/*/oof.csv
+task*/experiments/*/test.csv
+task*/submissions/*.csv
+
 # Large model artifacts
 *.ckpt
 *.h5
