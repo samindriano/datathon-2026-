@@ -1,0 +1,239 @@
+{
+  "experiment_id": "d1-e002-ridge",
+  "metric": "mse",
+  "validation": {
+    "scheme": "expanding_chronological_multifold",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "Fixed per-road ridge on causal history summaries improves mean15 across purged folds.",
+  "preregistered_parameters": {
+    "features": [
+      "last",
+      "mean3",
+      "mean5",
+      "mean15",
+      "slope5"
+    ],
+    "alpha": 0.1,
+    "zero_history_guard": true,
+    "upper_speed_clip": null,
+    "seed": null
+  },
+  "candidates": {
+    "mean15": {
+      "mean_mse": 45.548238148265405,
+      "std_mse": 10.382012175183183,
+      "worst_fold_mse": 54.83708490351014,
+      "fold_mse": [
+        54.83708490351014,
+        50.75101029407316,
+        31.05661924721291
+      ],
+      "mse_by_horizon": {
+        "5": 38.50675773213191,
+        "10": 45.83749609290674,
+        "15": 52.30046061975756
+      },
+      "fold_horizon_mse": [
+        [
+          45.47041773348193,
+          55.28652226511978,
+          63.75431471192869
+        ],
+        [
+          42.05464020788446,
+          51.108055984436774,
+          59.09033468989827
+        ],
+        [
+          27.995215255029354,
+          31.117910029163664,
+          34.056732457445726
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            52.928645376095,
+            66.04604317293435,
+            77.30454687825828
+          ],
+          [
+            46.90725899638648,
+            57.146551172695595,
+            66.06540034849559
+          ],
+          [
+            29.32611854933055,
+            31.696668133341685,
+            33.87359170266478
+          ]
+        ],
+        [
+          [
+            28.955770810553,
+            31.461868826387526,
+            33.75022920077033
+          ],
+          [
+            31.309555747629997,
+            37.73710235329225,
+            43.64554644586136
+          ],
+          [
+            25.048215103362423,
+            29.836374227055188,
+            34.46225841446067
+          ]
+        ]
+      ]
+    },
+    "ridge-history": {
+      "mean_mse": 39.02484392649849,
+      "std_mse": 5.4669051870677805,
+      "worst_fold_mse": 44.48673628988013,
+      "fold_mse": [
+        44.48673628988013,
+        41.032713772541605,
+        31.55508171707375
+      ],
+      "mse_by_horizon": {
+        "5": 32.80017823244118,
+        "10": 39.741926532502944,
+        "15": 44.53242701455135
+      },
+      "fold_horizon_mse": [
+        [
+          36.67938954695238,
+          45.5704173998386,
+          51.210401922849385
+        ],
+        [
+          33.94149396899047,
+          41.95995431809057,
+          47.19669303054377
+        ],
+        [
+          27.7796511813807,
+          31.695407879579665,
+          35.1901860902609
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            41.12784813930186,
+            52.9969672357524,
+            60.559239776970294
+          ],
+          [
+            37.367260139256295,
+            46.58317084605388,
+            52.396479565397335
+          ],
+          [
+            29.012132757852818,
+            32.358379237266206,
+            35.36132359268742
+          ]
+        ],
+        [
+          [
+            26.82923123532139,
+            29.12591419174375,
+            30.50940381729594
+          ],
+          [
+            26.355868877687566,
+            31.722832006171807,
+            35.6828799890823
+          ],
+          [
+            25.050584833478155,
+            30.22739987327375,
+            34.81123876345932
+          ]
+        ]
+      ]
+    }
+  },
+  "ridge_improvement_mse": 6.523394221766914,
+  "ridge_improvement_percent": 14.321946329806265,
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.5695571899414,
+    "mean": 52.88264083862305,
+    "submission_rows": 2041200
+  },
+  "runtime_seconds": 9.590148999996018
+}

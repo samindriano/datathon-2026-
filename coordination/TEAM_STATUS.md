@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0013
+Revision: 0015
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 12:17:06 +07:00
+Last Global Update: 2026-07-18 12:24:29 +07:00
 Competition Clock: RUNNING
-Repository Branch: main
+Repository Branch: exp/d1-main-model
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -34,6 +34,7 @@ Only MAIN may update this section.
 |---|---|---|---|---|---|
 | D1-DEC-001 | 2026-07-18 12:13 WIB | Use direct mean squared error across samples, horizons, and roads as metric implementation. | Official task statement and `task1/src/baseline.py`. | MAIN | Official clarification changes metric aggregation. |
 | D1-DEC-002 | 2026-07-18 12:13 WIB | Treat `d1-e001-persist` mean-of-15 forecast as provisional baseline only. | Tail backtest MSE 29.6995; validation review pending. | MAIN | VALIDATION returns NO-GO or a safer baseline is established. |
+| D1-DEC-003 | 2026-07-18 12:20 WIB | Accept the audit recommendation: official comparisons require purged multi-fold chronological validation weighted to the observed 372:168 test regimes. | `task1/reports/d1-validation-audit.md`; VALIDATION verdict `INVESTIGATE`. | MAIN | New competition evidence disproves the observed regime mixture. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -45,7 +46,8 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-002 | PREPARATION | MAIN | DONE | HIGH | GitHub CLI installed and authenticated | Local project files and target `samindriano/datathon-2026-` | Independent Git repository pushed to GitHub | 2026-07-17 23:14 WIB | 2026-07-17 23:32 WIB | Initial baseline commit `53acffe` pushed to `origin/main`. |
 | D1-MAIN-003 | PREPARATION | MAIN | DONE | HIGH | Existing experiment protocol | Request for simple, searchable artifact names | Canonical experiment, branch, artifact, and submission naming rules | 2026-07-18 11:57 WIB | 2026-07-18 11:59 WIB | Use one short experiment ID everywhere; submission includes slot and experiment ID. |
 | D1-VAL-001 | DAY 1 | VALIDATION | DONE | HIGH | Official Task 1 dataset available | Competition statement and `datathon-task-1.zip` | Data, leakage, temporal validation, and baseline-risk audit | 2026-07-18 12:07 WIB | 2026-07-18 12:17 WIB | `INVESTIGATE`; audit at `task1/reports/d1-validation-audit.md`; do not submit baseline yet. |
-| D1-MAIN-004 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Official Task 1 data | Continuous speeds, text, network, and sample submission | Reproducible chronological baseline and valid submission candidate | 2026-07-18 12:04 WIB | 2026-07-18 12:15 WIB | `d1-e001-persist` pushed at `24d7165`; MSE 29.6995; waiting for VALIDATION verdict. |
+| D1-MAIN-004 | DAY 1 | MAIN | DONE | HIGH | Official Task 1 data | Continuous speeds, text, network, and sample submission | Reproducible chronological baseline and valid submission candidate | 2026-07-18 12:04 WIB | 2026-07-18 12:20 WIB | `d1-e001-persist` is reproducible but remains `INVESTIGATE`; MSE 29.6995 is not an official comparison score. |
+| D1-MAIN-005 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Completed validation audit | Purged folds, observed regime mixture, and continuous train blocks | Official multi-fold harness and `d1-e002-ridge` candidate | 2026-07-18 12:20 WIB | 2026-07-18 12:24 WIB | Ridge 39.0248 vs mean15 45.5482; `KEEP` for review, submission `INVESTIGATE`. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | READY | HIGH | Sample submission | Exact ID order and expected schema | Reusable submission validator and readiness verdict | TODO | 2026-07-18 12:09 WIB | May be handled alongside validation if the same teammate owns both scopes. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -54,13 +56,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: NONE
+Current Task: D1-MAIN-005
 Status: NEEDS_REVIEW
-Last Read Revision: 0011
-Last Update: 2026-07-18 12:15:05 +07:00
+Last Read Revision: 0014
+Last Update: 2026-07-18 12:24:29 +07:00
 
 ### Current Objective
-Read the official Day 1 task, populate the competition brief, and build the first end-to-end baseline.
+Implement the accepted leakage-safe official validation harness and evaluate one fixed ridge-history hypothesis.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -70,14 +72,17 @@ Read the official Day 1 task, populate the competition brief, and build the firs
 - Simplified canonical naming for experiments, branches, artifacts, and submissions.
 - Built `d1-e001-persist` and generated a schema-valid submission preview.
 ### Work in Progress
-- Awaiting VALIDATION review of `d1-e001-persist`; no Kaggle slot used.
+- Awaiting independent validation review of `d1-e002-ridge`; no Kaggle slot has been used.
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 - Data integrity: all NPY arrays finite; all 2,041,200 submission IDs parse completely.
 - `d1-e001-persist`: MSE 29.6995; h5 25.9261; h10 29.7722; h15 33.4003.
 - Block mean scores: 29.8669 and 29.5322; prediction mean 52.7290 km/h.
+- Official-v1 mean15: mean 45.5482; std 10.3820; worst fold 54.8371.
+- `d1-e002-ridge`: mean 39.0248; std 5.4669; worst fold 44.4867; 14.32% mean improvement.
+- Ridge folds: 44.4867, 41.0327, 31.5551; 7 tests passed; runtime 9.59s.
 ### Files Changed
-- `.gitignore`; `requirements.txt`; `task1/src/`; `task1/experiments/d1-e001-persist/`; `coordination/TEAM_STATUS.md`
+- `task1/src/multifold.py`; `task1/src/ridge_model.py`; `task1/src/run_ridge_experiment.py`; `task1/src/test_multifold_ridge.py`; `task1/experiments/d1-e002-ridge/`; `coordination/TEAM_STATUS.md`
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -89,15 +94,17 @@ Read the official Day 1 task, populate the competition brief, and build the firs
 - `task1/experiments/d1-e001-persist/metrics.json`
 - `task1/experiments/d1-e001-persist/config.json`
 - `task1/experiments/d1-e001-persist/submission.csv` (local, ignored)
+- `task1/experiments/d1-e002-ridge/{config.json,metrics.json,notes.md}`
+- `task1/experiments/d1-e002-ridge/submission.csv` (local, ignored)
 ### Decisions Needed
-- VALIDATION verdict on the chronological tail split and provisional mean15 baseline.
+- VALIDATION verdict on fold construction and whether a small fold-3 regression is acceptable.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Continue with a stronger independent hypothesis while VALIDATION reviews commit `24d7165`; do not submit yet.
+- Commit the isolated branch and hand `d1-e002-ridge` to VALIDATION; do not submit yet.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -188,6 +195,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | Experiment ID | Day | Owner | Hypothesis | Baseline | Validation | Mean | Fold Scores | Worst Fold | Std | Prediction Distribution | Runtime | Status | Artifact |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | d1-e001-persist | DAY 1 | MAIN | Mean/last/trend forecasts from the exact 15-step history establish a leakage-safe floor. | NONE | 540 contiguous tail origins per train block | 29.6995 | 29.8669; 29.5322 | 29.8669 | 0.1674 | min 0.0; max 101.9333; mean 52.7290 | 4.83s | INVESTIGATE | `task1/experiments/d1-e001-persist/metrics.json` |
+| d1-e002-ridge | DAY 1 | MAIN | Fixed per-road ridge on causal history summaries improves mean15 robustly. | d1-e001-persist | 3 purged 720-origin folds per block; 372:168 weighted | 39.0248 | 44.4867; 41.0327; 31.5551 | 44.4867 | 5.4669 | min 0.0; max 101.5696; mean 52.8826 | 9.59s | KEEP | `task1/experiments/d1-e002-ridge/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -225,7 +233,8 @@ Public score is never the sole final-selection reason.
 | Handoff ID | From | To | Time | Artifact or Evidence | Required Action | Status |
 |---|---|---|---|---|---|---|
 | D1-HO-001 | MAIN | VALIDATION | 2026-07-18 12:13 WIB | `task1/src/baseline.py`, `task1/experiments/d1-e001-persist/{config,metrics,notes}.json/md` | Audit origin construction, block aggregation, clipping, and whether MSE 29.6995 is a defensible comparison baseline. | COMPLETED |
-| D1-HO-002 | VALIDATION | MAIN | 2026-07-18 12:17 WIB | `task1/reports/d1-validation-audit.md` | Replace the single tail score with purged multi-fold chronological, 372:168 regime-weighted validation before submission. | WAITING |
+| D1-HO-002 | VALIDATION | MAIN | 2026-07-18 12:17 WIB | `task1/reports/d1-validation-audit.md` | Replace the single tail score with purged multi-fold chronological, 372:168 regime-weighted validation before submission. | COMPLETED |
+| D1-HO-003 | MAIN | VALIDATION | 2026-07-18 12:24 WIB | `task1/src/{multifold.py,ridge_model.py}` and `task1/experiments/d1-e002-ridge/metrics.json` | Audit purge boundaries, training-only moments, 372:168 aggregation, zero guard, and fold-3 regression. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -246,6 +255,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 12:13:41 +07:00 | 0011 | MAIN | D1-MAIN-004 | Completed provisional baseline | Mean15 MSE 29.6995; 3 tests passed; 2,041,200-row preview is unique and finite | Publish artifacts and await VALIDATION verdict; do not submit yet |
 | 2026-07-18 12:15:05 +07:00 | 0012 | MAIN | D1-MAIN-004 | Published provisional baseline artifacts | Commit `24d7165` is on `origin/main`; raw data and submission preview remain ignored | VALIDATION reviews commit; MAIN explores next hypothesis |
 | 2026-07-18 12:17:06 +07:00 | 0013 | VALIDATION | D1-VAL-001 | Completed data, leakage, and baseline audit | `INVESTIGATE`: baseline code is leakage-safe, but MSE 29.6995 is a selected single-tail estimate with wrong regime weighting | MAIN implements purged multi-fold 372:168 validation; do not submit yet |
+| 2026-07-18 12:20:39 +07:00 | 0014 | MAIN | D1-MAIN-005 | Accepted audit and started isolated model experiment | Created `exp/d1-main-model`; preregistered purged multi-fold comparison of mean15 versus fixed ridge-history model | Implement, test, and report before any submission decision |
+| 2026-07-18 12:24:29 +07:00 | 0015 | MAIN | D1-MAIN-005 | Completed first official-v1 model comparison | Ridge improved weighted mean MSE 14.32% and worst fold, but regressed 0.4985 on fold 3; 7 tests and submission preview checks passed | VALIDATION independently reviews branch; verdict remains `INVESTIGATE` |
 
 Append only. Correct errors with a new entry; do not erase history.
 

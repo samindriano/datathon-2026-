@@ -1,0 +1,21 @@
+{
+  "experiment_id": "d1-e002-ridge",
+  "owner": "MAIN",
+  "branch": "exp/d1-main-model",
+  "baseline": "d1-e001-persist",
+  "dataset_version": "official-task1-2026-07-18",
+  "validation_version": "d1-multifold-v1",
+  "model": "per-road-ridge-history-summary",
+  "features": ["last", "mean3", "mean5", "mean15", "slope5"],
+  "alpha": 0.1,
+  "fold_count_per_block": 3,
+  "validation_origins_per_fold": 720,
+  "minimum_training_origins": 1440,
+  "purge_origins": 15,
+  "regime_sample_counts": [372, 168],
+  "zero_history_guard": true,
+  "upper_speed_clip": null,
+  "seed": null,
+  "uses_event_text": false,
+  "uses_road_graph": false
+}
