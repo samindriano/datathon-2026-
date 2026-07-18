@@ -1,0 +1,450 @@
+{
+  "experiment_id": "d1-e019-orthostate",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "Explicit global summaries plus PCA of cross-sectionally residualized road state separate city level from spatial modes and stabilize E016.",
+  "preregistered_parameters": {
+    "features": [
+      "last",
+      "mean3",
+      "mean5",
+      "mean15",
+      "slope5",
+      "city_last",
+      "city_mean3",
+      "city_mean5",
+      "city_mean15",
+      "city_slope5",
+      "orthofactor0_last",
+      "orthofactor0_mean3",
+      "orthofactor0_mean5",
+      "orthofactor0_mean15",
+      "orthofactor0_slope5",
+      "orthofactor1_last",
+      "orthofactor1_mean3",
+      "orthofactor1_mean5",
+      "orthofactor1_mean15",
+      "orthofactor1_slope5",
+      "orthofactor2_last",
+      "orthofactor2_mean3",
+      "orthofactor2_mean5",
+      "orthofactor2_mean15",
+      "orthofactor2_slope5",
+      "orthofactor3_last",
+      "orthofactor3_mean3",
+      "orthofactor3_mean5",
+      "orthofactor3_mean15",
+      "orthofactor3_slope5"
+    ],
+    "anchor_weight": 0.75,
+    "orthostate_weight": 0.25,
+    "rank": 4,
+    "pca_sample_count": 360,
+    "city_level_residualization": "cross-sectional mean after per-road standardization",
+    "alpha": 0.1,
+    "temporal_chunk_size_origins": 120,
+    "weight_search": false,
+    "rank_search": false,
+    "seed": null
+  },
+  "candidates": {
+    "stableblend": {
+      "mean_mse": 36.56025330476311,
+      "std_mse": 5.160867894455729,
+      "worst_fold_mse": 41.75151401530663,
+      "fold_mse": [
+        41.75151401530663,
+        38.40758877339898,
+        29.521657125583715
+      ],
+      "mse_by_horizon": {
+        "5": 31.29014153073365,
+        "10": 37.06222101818448,
+        "15": 41.32839736537119
+      },
+      "fold_horizon_mse": [
+        [
+          35.02931209003044,
+          42.54501964789959,
+          47.68021030798985
+        ],
+        [
+          32.348468002966314,
+          39.09789207588926,
+          43.77640624134136
+        ],
+        [
+          26.49264449920421,
+          29.543751330764575,
+          32.528575546782356
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.14133240891099,
+            49.169776642870616,
+            56.01506238631864
+          ],
+          [
+            35.55323380177352,
+            43.240702615642995,
+            48.362391014418016
+          ],
+          [
+            27.805592249757442,
+            30.335026810127214,
+            32.86057858917084
+          ]
+        ],
+        [
+          [
+            25.92412424108065,
+            27.875914873320898,
+            29.224466420261823
+          ],
+          [
+            25.25220087703606,
+            29.92452588072027,
+            33.62172567238592
+          ],
+          [
+            23.58540305155063,
+            27.791641340747308,
+            31.79342595292213
+          ]
+        ]
+      ]
+    },
+    "orthostate": {
+      "mean_mse": 33.31156591169322,
+      "std_mse": 3.6073144573033837,
+      "worst_fold_mse": 37.89397349085527,
+      "fold_mse": [
+        37.89397349085527,
+        32.96207064159541,
+        29.078653602628986
+      ],
+      "mse_by_horizon": {
+        "5": 29.60907393799863,
+        "10": 33.58045980720187,
+        "15": 36.74516398987917
+      },
+      "fold_horizon_mse": [
+        [
+          33.58174465066395,
+          38.48712977371489,
+          41.613046048186966
+        ],
+        [
+          29.33003523500362,
+          33.30933598270309,
+          36.24684070707953
+        ],
+        [
+          25.915441928328327,
+          28.94491366518763,
+          32.375605214371
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            37.52625418632242,
+            44.14510993858131,
+            48.31645846697024
+          ],
+          [
+            32.186907806443195,
+            36.67755134649378,
+            39.66340236537487
+          ],
+          [
+            27.00608388794498,
+            29.485462638880854,
+            32.17827221126875
+          ]
+        ],
+        [
+          [
+            24.847473535991636,
+            25.95874512293927,
+            26.769775692309725
+          ],
+          [
+            23.004103112530277,
+            25.8511448200237,
+            28.68159703513985
+          ],
+          [
+            23.500449017748604,
+            27.747983794866926,
+            32.812556864097424
+          ]
+        ]
+      ]
+    },
+    "orthoblend": {
+      "mean_mse": 35.468004301920736,
+      "std_mse": 4.706133484396356,
+      "worst_fold_mse": 40.3906714484588,
+      "fold_mse": [
+        40.3906714484588,
+        36.88572340717143,
+        29.12761805013199
+      ],
+      "mse_by_horizon": {
+        "5": 30.608307037545305,
+        "10": 35.917728627840155,
+        "15": 39.87797724037676
+      },
+      "fold_horizon_mse": [
+        [
+          34.25016944636918,
+          41.12920931125138,
+          45.79263558775584
+        ],
+        [
+          31.43501898333524,
+          37.5059406492443,
+          41.71621058893476
+        ],
+        [
+          26.13973268293149,
+          29.1180359230248,
+          32.125085544439685
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.200134683681355,
+            47.38712335423587,
+            53.61494841852658
+          ],
+          [
+            34.590053840619895,
+            41.477525394755276,
+            45.98981979188928
+          ],
+          [
+            27.412200190674938,
+            29.75383567928866,
+            32.143389841270356
+          ]
+        ],
+        [
+          [
+            25.503817849463648,
+            27.27239964464287,
+            28.47180003390635
+          ],
+          [
+            24.448870370776362,
+            28.71171728418429,
+            32.25321878239259
+          ],
+          [
+            23.322126058642432,
+            27.710193605583395,
+            32.084554601457484
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 17,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 33,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": -1.4157036592055903,
+    "temporal_chunk_gain_median": 0.8029588249928352,
+    "temporal_chunk_gain_max": 3.0165906625219776,
+    "temporal_chunk_gains": [
+      3.0165906625219776,
+      1.4522481207707756,
+      1.1857995416748253,
+      2.4025833013019096,
+      1.1233811782110266,
+      1.067327158832505,
+      1.9372697538388692,
+      0.6854436646429214,
+      2.5243154593103867,
+      1.9234047570811015,
+      0.6655581762167593,
+      2.461864998050139,
+      0.6820524332426601,
+      1.022705003430314,
+      0.6557474709695441,
+      0.7932682973456551,
+      0.37151960993193,
+      -0.14174893927704346,
+      0.9147405460424736,
+      0.8126493526400154,
+      0.3512039821062878,
+      0.6681344115186398,
+      0.5862050114271682,
+      0.22004270956645655,
+      1.68340509247178,
+      0.42470006638014546,
+      1.0026427718456183,
+      1.8634210821436454,
+      0.7205104117241738,
+      1.0746125610127777,
+      0.06471259596844448,
+      -1.4157036592055903,
+      -0.4291197991356057,
+      0.44335450308398805,
+      0.5705090119723693,
+      0.8734395063899392
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.9513888888888888,
+      0.9319444444444445,
+      0.7958333333333333,
+      0.9375,
+      0.9194444444444444,
+      0.6125
+    ],
+    "pca_row_ranges": [
+      [
+        [
+          0,
+          1453
+        ],
+        [
+          0,
+          5931
+        ],
+        [
+          0,
+          10409
+        ]
+      ],
+      [
+        [
+          0,
+          1453
+        ],
+        [
+          0,
+          2870
+        ],
+        [
+          0,
+          4288
+        ]
+      ]
+    ]
+  },
+  "test_diagnostics": {
+    "orthoblend_m2_mean_correction_vs_ridge": -0.2786324620246887,
+    "orthoblend_vs_e013_rms": 0.4508473285636882,
+    "orthoblend_vs_e013_mean": -0.007818275458574903,
+    "orthoblend_vs_e013_min": -9.628042221069336,
+    "orthoblend_vs_e013_max": 7.942417144775391,
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_e013_by_at_least_1_percent": true,
+      "all_three_folds_improve": true,
+      "all_three_horizons_improve": true,
+      "worst_fold_improves": true,
+      "fold_standard_deviation_not_worse": true,
+      "all_18_cells_improve": false,
+      "all_36_chunks_improve": false,
+      "median_chunk_gain_at_least_0_25": true,
+      "worst_chunk_is_positive": false,
+      "test_m2_correction_is_nonpositive": true,
+      "test_change_vs_e013_is_conservative": true,
+      "predictions_are_valid_and_zero_guarded": true
+    },
+    "status": "REJECT"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 100.54960632324219,
+    "mean": 52.8554573059082,
+    "submission_rows": 2041200
+  },
+  "submission": null,
+  "runtime_seconds": 112.73189759999514
+}

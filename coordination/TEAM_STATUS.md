@@ -429,6 +429,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 Append only. Correct errors with a new entry; do not erase history.
 
 | 2026-07-18 16:15:34 +07:00 | E019-001 | EXPERIMENT | D1-E019 | Preregistered orthogonal hybrid-state candidate in isolated worktree | Preserve E016 rank/sample/alpha/weight; combine explicit global summaries with PCA of cross-sectionally residualized road state; require 36/36 chunks | Run focused tests, freeze commit, then score once |
+| 2026-07-18 16:19:30 +07:00 | E019-002 | EXPERIMENT | D1-E019 | Rejected orthogonal hybrid-state candidate without retuning | Mean improves 2.99%, but only 17/18 cells and 33/36 chunks improve; worst chunk -1.4157; no CSV | Preserve E013 and compare only against frozen E018 evidence |
 
 ## 12. Day 1 Closing Summary
 
