@@ -1,0 +1,30 @@
+{
+  "experiment_id": "d1-e006-textres",
+  "owner": "MAIN",
+  "branch": "exp/d1-e006-textres",
+  "baseline": "d1-e002-ridge",
+  "dataset_version": "official-task1-2026-07-18",
+  "validation_version": "d1-multifold-v1",
+  "model": "per-road-ridge-plus-event-count-residual",
+  "features": [
+    "a general traffic accident",
+    "road closure",
+    "construction",
+    "road traffic control",
+    "an announcement",
+    "prohibit left turn",
+    "total_events"
+  ],
+  "base_alpha": 0.1,
+  "residual_alpha": 1.0,
+  "fold_count_per_block": 3,
+  "validation_origins_per_fold": 720,
+  "minimum_training_origins": 1440,
+  "purge_origins": 15,
+  "regime_sample_counts": [372, 168],
+  "zero_history_guard": true,
+  "seed": null,
+  "uses_event_text": true,
+  "uses_road_graph": false,
+  "uses_external_model": false
+}
