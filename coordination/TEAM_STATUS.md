@@ -1,20 +1,20 @@
 # Datathon 2026 Team Status
 
-Revision: 0007
-Active Day: PREPARATION
-Active Task: NONE
-Last Global Update: 2026-07-17 23:32:32 +07:00
-Competition Clock: NOT STARTED
+Revision: 0008
+Active Day: DAY 1
+Active Task: TASK 1
+Last Global Update: 2026-07-18 11:59:11 +07:00
+Competition Clock: STARTING
 Repository Branch: main
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
 
-- Day: PREPARATION
-- Task: NONE
-- Start time: TODO
-- End time: TODO
-- Notebook deadline: TODO
+- Day: DAY 1
+- Task: TASK 1
+- Start time: 2026-07-18 12:00 WIB
+- End time: 2026-07-18 17:00 WIB
+- Notebook deadline: 2026-07-18 18:00 WIB
 - Target: UNKNOWN
 - Metric: UNKNOWN
 - Train path: UNKNOWN
@@ -41,6 +41,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 |---|---|---|---|---|---|---|---|---|---|---|
 | D1-MAIN-001 | PREPARATION | MAIN | DONE | MEDIUM | Official competition rules | Open-weight preparation requirement | Offline-ready candidate pantry tooling | 2026-07-17 22:50 WIB | 2026-07-17 23:06 WIB | Metadata/tooling only; no weights downloaded and no model selected. |
 | D1-MAIN-002 | PREPARATION | MAIN | DONE | HIGH | GitHub CLI installed and authenticated | Local project files and target `samindriano/datathon-2026-` | Independent Git repository pushed to GitHub | 2026-07-17 23:14 WIB | 2026-07-17 23:32 WIB | Initial baseline commit `53acffe` pushed to `origin/main`. |
+| D1-MAIN-003 | PREPARATION | MAIN | DONE | HIGH | Existing experiment protocol | Request for simple, searchable artifact names | Canonical experiment, branch, artifact, and submission naming rules | 2026-07-18 11:57 WIB | 2026-07-18 11:59 WIB | Use one short experiment ID everywhere; submission includes slot and experiment ID. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -50,23 +51,24 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: NONE
 Status: IDLE
-Last Read Revision: 0006
-Last Update: 2026-07-17 23:32:32 +07:00
+Last Read Revision: 0007
+Last Update: 2026-07-18 11:59:11 +07:00
 
 ### Current Objective
-Publish a safe, independent Datathon repository baseline for team collaboration.
+Read the official Day 1 task, populate the competition brief, and build the first end-to-end baseline.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
 - Cleaned the latest `AGENTS.md` formatting without changing its substantive rules.
 - Added an opt-in pretrained candidate pantry with pinned-revision receipts, checksum verification, and selection gates.
 - Initialized the independent repository and pushed the collaboration baseline to GitHub `main`.
+- Simplified canonical naming for experiments, branches, artifacts, and submissions.
 ### Work in Progress
 - TODO
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 ### Files Changed
-- `coordination/TEAM_STATUS.md`
+- `AGENTS.md`; `coordination/TEAM_STATUS.md`
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -82,7 +84,7 @@ Publish a safe, independent Datathon repository baseline for team collaboration.
 ### Blockers
 - NONE
 ### Next Action
-- Teammates may clone the repository; inspect the official task before creating the first stable baseline and experiment branches.
+- Read the official Task 1 statement and update all remaining `UNKNOWN` fields before modeling.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -217,6 +219,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-17 23:14:37 +07:00 | 0005 | MAIN | D1-MAIN-002 | Attempted GitHub repository setup | BLOCKED: GitHub CLI is not installed; local repo was not initialized or pushed | Install `gh`, authenticate, then resume setup |
 | 2026-07-17 23:31:03 +07:00 | 0006 | MAIN | D1-MAIN-002 | Resumed GitHub repository setup | Authentication verified; independent repo initialized on `main`; remote is empty and connected; 4 tests passed | Review, commit, and push initial baseline |
 | 2026-07-17 23:32:32 +07:00 | 0007 | MAIN | D1-MAIN-002 | Published initial collaboration baseline | Commit `53acffe` pushed to `origin/main`; task directories and pretrained tooling are available to teammates | Clone repository and wait for the official task |
+| 2026-07-18 11:59:11 +07:00 | 0008 | MAIN | D1-MAIN-003 | Simplified project naming rules | One sortable experiment ID now links branch, directory, artifacts, status, and submission filename | Read Task 1 and populate the active brief |
 
 Append only. Correct errors with a new entry; do not erase history.
 

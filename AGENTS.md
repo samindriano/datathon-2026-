@@ -257,11 +257,9 @@ After the baseline is complete, experiments must use separate branches.
 Recommended branch names:
 
 ```text
-exp/d1-main-model
-exp/d1-person2-alternative
-exp/d1-person3-feature
-exp/d2-main-model
-exp/d2-person2-alternative
+exp/d1-e001-lgbm
+exp/d1-e002-alt
+exp/d2-e001-baseline
 ```
 
 Rules:
@@ -367,14 +365,20 @@ One experiment must test one clear hypothesis.
 Experiment ID format:
 
 ```text
-EXP-D1-001-short-description
-EXP-D2-001-short-description
+d1-e001-short-name
+d2-e001-short-name
 ```
+
+MAIN assigns the next sequential number. Use lowercase ASCII letters, digits,
+and hyphens only. Keep `short-name` to one or two useful words such as `lgbm`,
+`catboost`, `vit`, `text-emb`, or `ensemble`. Do not include owner names,
+timestamps, fold scores, or words such as `new`, `latest`, `fix`, and `final` in
+the experiment ID.
 
 Each experiment must have its own directory:
 
 ```text
-task1/experiments/EXP-D1-001-baseline/
+task1/experiments/d1-e001-lgbm/
 ├── config.yaml
 ├── metrics.json
 └── notes.md
@@ -383,11 +387,38 @@ task1/experiments/EXP-D1-001-baseline/
 Optional artifacts may include:
 
 ```text
-oof_predictions.csv
-feature_importance.csv
-confusion_matrix.csv
-test_predictions.csv
+oof.csv
+test.csv
+feature-importance.csv
+confusion-matrix.csv
+model.<extension>
 ```
+
+## Simple Naming Rules
+
+Use the same experiment ID everywhere: directory, branch, config, metrics,
+artifact metadata, handoff, and `TEAM_STATUS.md`.
+
+| Item | Required pattern | Example |
+| --- | --- | --- |
+| Experiment | `d<day>-e<number>-<short-name>` | `d1-e003-catboost` |
+| Branch | `exp/<experiment-id>` | `exp/d1-e003-catboost` |
+| Experiment directory | `task<day>/experiments/<experiment-id>/` | `task1/experiments/d1-e003-catboost/` |
+| Submission | `sub-s<slot>-<experiment-id>.csv` | `sub-s02-d1-e003-catboost.csv` |
+
+Rules:
+
+* Submission slot is always two digits: `s01` through `s05`.
+* Keep only one canonical copy of each artifact inside its experiment directory.
+* Never use ambiguous names such as `submission-final-v2-fix.csv`,
+  `best-model-new.pkl`, or `notebook-latest.ipynb`.
+* Do not place validation or public leaderboard scores in filenames. Record
+  scores in `metrics.json` and `TEAM_STATUS.md`.
+* Never overwrite a submitted file. A new submission uses a new slot number.
+* Once submitted, do not rename the file; the Submission Registry must match
+  the exact filename on Kaggle.
+* The official inference notebook and writeup keep the competition-required
+  `TeamName_TaskName_Notebook.ipynb` and `TeamName_TaskName_Writeup.pdf` names.
 
 Do not commit very large artifacts unless they are required for
 reproducibility.
@@ -592,12 +623,12 @@ Never:
 * print secrets into logs;
 * delete old artifacts without checking whether they are still needed.
 
-Submission files must use explicit versioned names.
+Submission files must use the canonical day-slot-experiment name.
 
 Example:
 
 ```text
-submission_EXP-D1-004_lgbm-ensemble.csv
+sub-s04-d1-e007-ensemble.csv
 ```
 
 ---
