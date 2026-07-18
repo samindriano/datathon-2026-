@@ -1,0 +1,414 @@
+{
+  "experiment_id": "d1-e014-diststate",
+  "metric": "mse",
+  "validation": {
+    "version": "d1-multifold-v1",
+    "fold_count_per_block": 3,
+    "validation_origins_per_fold": 720,
+    "minimum_training_origins": 1440,
+    "purge_origins": 15,
+    "regime_weights": {
+      "m1": 0.6888888888888889,
+      "m2": 0.3111111111111111
+    },
+    "folds": [
+      [
+        {
+          "block": 1,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 1,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 5931,
+          "validation_origin_start": 5947,
+          "validation_origin_end": 6666
+        },
+        {
+          "block": 1,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 10409,
+          "validation_origin_start": 10425,
+          "validation_origin_end": 11144
+        }
+      ],
+      [
+        {
+          "block": 2,
+          "fold": 1,
+          "train_origin_start": 14,
+          "train_origin_end": 1453,
+          "validation_origin_start": 1469,
+          "validation_origin_end": 2188
+        },
+        {
+          "block": 2,
+          "fold": 2,
+          "train_origin_start": 14,
+          "train_origin_end": 2870,
+          "validation_origin_start": 2886,
+          "validation_origin_end": 3605
+        },
+        {
+          "block": 2,
+          "fold": 3,
+          "train_origin_start": 14,
+          "train_origin_end": 4288,
+          "validation_origin_start": 4304,
+          "validation_origin_end": 5023
+        }
+      ]
+    ]
+  },
+  "hypothesis": "City dispersion and slow-road fractions add robust congestion-shape information beyond city mean under the unchanged 75:25 anchor blend.",
+  "preregistered_parameters": {
+    "features": [
+      "last",
+      "mean3",
+      "mean5",
+      "mean15",
+      "slope5",
+      "city_mean_last",
+      "city_mean_mean3",
+      "city_mean_mean5",
+      "city_mean_mean15",
+      "city_mean_slope5",
+      "city_std_last",
+      "city_std_mean3",
+      "city_std_mean5",
+      "city_std_mean15",
+      "city_std_slope5",
+      "fraction_below_30_last",
+      "fraction_below_30_mean3",
+      "fraction_below_30_mean5",
+      "fraction_below_30_mean15",
+      "fraction_below_30_slope5",
+      "fraction_below_50_last",
+      "fraction_below_50_mean3",
+      "fraction_below_50_mean5",
+      "fraction_below_50_mean15",
+      "fraction_below_50_slope5"
+    ],
+    "anchor_weight": 0.75,
+    "diststate_weight": 0.25,
+    "slow_thresholds_kmh": [
+      30.0,
+      50.0
+    ],
+    "alpha": 0.1,
+    "temporal_chunk_size_origins": 120,
+    "seed": null
+  },
+  "candidates": {
+    "stableblend": {
+      "mean_mse": 36.56025330476311,
+      "std_mse": 5.160867894455729,
+      "worst_fold_mse": 41.75151401530663,
+      "fold_mse": [
+        41.75151401530663,
+        38.40758877339898,
+        29.521657125583715
+      ],
+      "mse_by_horizon": {
+        "5": 31.29014153073365,
+        "10": 37.06222101818448,
+        "15": 41.32839736537119
+      },
+      "fold_horizon_mse": [
+        [
+          35.02931209003044,
+          42.54501964789959,
+          47.68021030798985
+        ],
+        [
+          32.348468002966314,
+          39.09789207588926,
+          43.77640624134136
+        ],
+        [
+          26.49264449920421,
+          29.543751330764575,
+          32.528575546782356
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            39.14133240891099,
+            49.169776642870616,
+            56.01506238631864
+          ],
+          [
+            35.55323380177352,
+            43.240702615642995,
+            48.362391014418016
+          ],
+          [
+            27.805592249757442,
+            30.335026810127214,
+            32.86057858917084
+          ]
+        ],
+        [
+          [
+            25.92412424108065,
+            27.875914873320898,
+            29.224466420261823
+          ],
+          [
+            25.25220087703606,
+            29.92452588072027,
+            33.62172567238592
+          ],
+          [
+            23.58540305155063,
+            27.791641340747308,
+            31.79342595292213
+          ]
+        ]
+      ]
+    },
+    "diststate": {
+      "mean_mse": 34.901334320308536,
+      "std_mse": 3.9950183122018976,
+      "worst_fold_mse": 39.489289598934796,
+      "fold_mse": [
+        39.489289598934796,
+        35.462747502448195,
+        29.75196585954262
+      ],
+      "mse_by_horizon": {
+        "5": 30.49759969148607,
+        "10": 35.29443749254025,
+        "15": 38.911965776899294
+      },
+      "fold_horizon_mse": [
+        [
+          34.091669297381074,
+          40.11656227187877,
+          44.25963722754455
+        ],
+        [
+          30.753052528526155,
+          35.964556764753816,
+          39.67063321406462
+        ],
+        [
+          26.648077248550976,
+          29.802193440988166,
+          32.805626889088714
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.10812452505707,
+            46.181697711638584,
+            51.69580678081049
+          ],
+          [
+            33.68743645353598,
+            39.50747815918013,
+            43.319156514921424
+          ],
+          [
+            27.59626074972397,
+            30.451267133440215,
+            33.45680837291043
+          ]
+        ],
+        [
+          [
+            25.198089864669928,
+            26.686619512410605,
+            27.793833216741398
+          ],
+          [
+            24.255488123147256,
+            28.11951653423841,
+            31.591760190738853
+          ],
+          [
+            24.548528067382204,
+            28.364958836272912,
+            31.363725032054916
+          ]
+        ]
+      ]
+    },
+    "distblend": {
+      "mean_mse": 36.260151986931106,
+      "std_mse": 5.0736754330819736,
+      "worst_fold_mse": 41.40141843383563,
+      "fold_mse": [
+        41.40141843383563,
+        38.02412463850827,
+        29.354912888449416
+      ],
+      "mse_by_horizon": {
+        "5": 31.079019213953774,
+        "10": 36.75854529132449,
+        "15": 40.942891455515046
+      },
+      "fold_horizon_mse": [
+        [
+          34.80190347933237,
+          42.186423612383464,
+          47.21592820979105
+        ],
+        [
+          32.10262379016465,
+          38.70883972016453,
+          43.26091040519563
+        ],
+        [
+          26.332530372364314,
+          29.380372541425483,
+          32.35183575155845
+        ]
+      ],
+      "block_fold_horizon_mse": [
+        [
+          [
+            38.87671268173126,
+            48.73084498801202,
+            55.447248215870836
+          ],
+          [
+            35.303121011684325,
+            42.79045185387863,
+            47.710326160905446
+          ],
+          [
+            27.756964637779568,
+            30.30799429835643,
+            32.8475911265107
+          ]
+        ],
+        [
+          [
+            25.779111674020527,
+            27.695204852063096,
+            28.989433910614384
+          ],
+          [
+            25.0158085139425,
+            29.670984281226158,
+            33.40863266040962
+          ],
+          [
+            23.178425927516255,
+            27.32635293679268,
+            31.254091707021313
+          ]
+        ]
+      ]
+    }
+  },
+  "stress": {
+    "block_fold_horizon_cells_improved": 18,
+    "block_fold_horizon_cell_count": 18,
+    "temporal_chunk_size_origins": 120,
+    "temporal_chunks_improved": 34,
+    "temporal_chunk_count": 36,
+    "temporal_chunk_gain_min": -0.10546898001603822,
+    "temporal_chunk_gain_median": 0.271420119410962,
+    "temporal_chunk_gain_max": 1.0461456810026029,
+    "temporal_chunk_gains": [
+      0.9689961138019783,
+      0.047467679250658534,
+      0.32764473670958694,
+      0.7566736542384547,
+      0.17211608873258655,
+      0.26983283223904664,
+      0.27300740658287737,
+      0.30284022846434056,
+      0.7159950790630489,
+      0.4162871006296882,
+      0.26081174497356585,
+      0.7359152510188025,
+      0.1458622890607657,
+      0.1729518224568949,
+      -0.07436591645370072,
+      0.023359976439046193,
+      0.014955981330530221,
+      -0.10546898001603822,
+      0.47278790275846916,
+      0.19293829743686075,
+      0.049134059542772945,
+      0.3265653313767416,
+      0.055774670370624335,
+      0.02430993444519558,
+      0.40938527953547066,
+      0.027795311010081036,
+      0.2959902088447244,
+      0.3713811920178216,
+      0.05342158537712649,
+      0.24808037234274494,
+      0.36894268878641867,
+      0.4709664206202042,
+      1.0461456810026029,
+      0.3043494086732039,
+      0.08355634313588922,
+      0.5492390055612901
+    ],
+    "per_block_fold_origin_win_rates": [
+      0.8069444444444445,
+      0.8944444444444445,
+      0.5333333333333333,
+      0.7569444444444444,
+      0.7930555555555555,
+      0.8986111111111111
+    ]
+  },
+  "test_diagnostics": {
+    "distblend_m2_mean_correction_vs_ridge": -0.16827093064785004,
+    "distblend_vs_e013_rms": 0.25999245059989684,
+    "distblend_vs_e013_mean": 0.027390875872761133,
+    "distblend_vs_e013_min": -7.349082946777344,
+    "distblend_vs_e013_max": 9.177467346191406,
+    "prediction_values_valid": true,
+    "all_zero_history_guard_valid": true,
+    "all_zero_history_pairs": 40250
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_improves_e013_by_at_least_1_percent": false,
+      "all_three_folds_improve": true,
+      "all_three_horizons_improve": true,
+      "worst_fold_improves": true,
+      "fold_standard_deviation_not_worse": true,
+      "at_least_17_of_18_cells_improve": true,
+      "at_least_34_of_36_chunks_improve": true,
+      "median_chunk_gain_at_least_0_25_mse": true,
+      "worst_chunk_gain_not_below_minus_0_25": true,
+      "test_m2_correction_is_nonpositive": true,
+      "test_change_vs_e013_is_conservative": true,
+      "predictions_are_valid_and_zero_guarded": true
+    },
+    "status": "REJECT"
+  },
+  "test_regime_counts": {
+    "m1": 372,
+    "m2": 168
+  },
+  "prediction": {
+    "shape": [
+      540,
+      3,
+      1260
+    ],
+    "min": 0.0,
+    "max": 101.48025512695312,
+    "mean": 52.89066696166992,
+    "submission_rows": 2041200
+  },
+  "submission": null,
+  "runtime_seconds": 68.13141730001371
+}

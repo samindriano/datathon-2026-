@@ -1,0 +1,14 @@
+{
+  "experiment_id": "d1-e014-diststate",
+  "baseline": "d1-e013-stableblend",
+  "anchor_weight": 0.75,
+  "diststate_weight": 0.25,
+  "weight_search": false,
+  "state_series": ["city_mean", "city_std", "fraction_below_30", "fraction_below_50"],
+  "slow_thresholds_kmh": [30.0, 50.0],
+  "validation": "d1-multifold-v1",
+  "temporal_chunk_size_origins": 120,
+  "alpha": 0.1,
+  "seed": null,
+  "kaggle_slot_authorized": false
+}

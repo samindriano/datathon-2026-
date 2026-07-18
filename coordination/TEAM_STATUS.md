@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0062
+Revision: 0064
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 15:52:09 +07:00
+Last Global Update: 2026-07-18 15:58:38 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e013-stableblend
+Repository Branch: exp/d1-e014-diststate
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -58,6 +58,8 @@ Only MAIN may update this section.
 | D1-DEC-024 | 2026-07-18 15:19 WIB | Accept local e013 notebook readiness and require actual Kaggle Run All plus independent output review before slot 3. | Clean five-cell notebook completed in 18 seconds; validator found 0 mismatches, max difference 0.0, exact IDs, and hash `84703083...b6e1d`. | MAIN | Kaggle environment output differs, hidden dependency appears, or SUBMISSION returns other than `READY`. |
 | D1-DEC-025 | 2026-07-18 15:25 WIB | Accept actual Kaggle e013 Run All output as an exact frozen-candidate reproduction; keep slot 3 pending only independent SUBMISSION confirmation. | Downloaded `submission.csv` has 2,041,200 exact IDs, zero mismatches, max difference 0.0, and hash `84703083...b6e1d`. | MAIN | SUBMISSION finds a provenance/path/schema issue or the human upload target differs from the validated file. |
 | D1-DEC-026 | 2026-07-18 15:52 WIB | Record slot 3 and prefer e013 as the current final-selection candidate over e010. | Public MSE improved `45.168` to `43.511`, closely matching the 3.545% local gain; post-submission audit gives `GO/KEEP` and medium-high private confidence. | MAIN | A final bounded candidate passes stricter frozen validation, audit, Kaggle reproduction, and provides stronger evidence before freeze. |
+| D1-DEC-027 | 2026-07-18 15:53 WIB | Preregister one final `d1-e014-diststate` using fixed 75% e010 plus 25% distribution-state ridge; do not retune weights. | City mean was valuable, but mean alone cannot distinguish widespread congestion from localized low-speed pockets; causal city dispersion and fixed slow-road fractions test new information. | MAIN | Any aggregate, cell, temporal-chunk, inference-shift, runtime, or reproducibility gate fails; e013 remains final and experimentation stops. |
+| D1-DEC-028 | 2026-07-18 15:58 WIB | Reject e014 without relaxing its 1% materiality gate and stop all Task 1 modeling; retain e013 as final. | E014 improves e013 by only 0.82% despite broad fold/cell/chunk gains; changing the threshold now would be post-result goalpost movement. | MAIN | None; model freeze is final unless a verified defect invalidates e013. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -87,6 +89,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-019 | DAY 1 | MAIN | DONE | HIGH | Audited e010 and graph topology-null finding | Direct active-road city-state features plus fixed guarded-text blend | Decide whether any candidate materially exceeds e010 without leaderboard tuning | 2026-07-18 14:41 WIB | 2026-07-18 14:45 WIB | `REJECT`: blend loses to globalstate alone; no CSV or slot. Globalstate-only becomes a separate post-discovery hypothesis. |
 | D1-MAIN-020 | DAY 1 | MAIN | DONE | HIGH | e011 globalstate-only diagnostic | Frozen globalstate model plus unseen temporal-chunk and correction-distribution stress tests | Determine whether the post-discovery candidate merits independent audit and notebook work | 2026-07-18 14:47 WIB | 2026-07-18 14:50 WIB | `REJECT`: 31/36 chunk wins and worst chunk -1.9517 fail frozen gates; no CSV, audit handoff, notebook, or slot. |
 | D1-MAIN-021 | DAY 1 | MAIN | DONE | HIGH | Stable e010 plus volatile e012 signal | Fixed 75:25 e010/globalstate shrinkage blend | Capture meaningful globalstate gain while restoring temporal robustness | 2026-07-18 14:55 WIB | 2026-07-18 15:52 WIB | Slot 3 public 43.511; audit `GO/KEEP`; e013 is current final-selection candidate. |
+| D1-MAIN-022 | DAY 1 | MAIN | DONE | HIGH | Confirmed e013 global-state gain | Fixed city mean, dispersion, and slow-road distribution summaries within the same 75:25 anchor blend | Test whether traffic-distribution shape adds robust signal beyond city mean | 2026-07-18 15:53 WIB | 2026-07-18 15:58 WIB | `REJECT`: 0.82% gain misses frozen 1% gate; no CSV, audit, notebook, or slot. Modeling is frozen. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | DONE | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 14:27 WIB | Actual Kaggle blend output is `READY`; exact frozen-output match and all schema/reproducibility gates pass. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -95,13 +98,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-021
+Current Task: D1-MAIN-022
 Status: DONE
-Last Read Revision: 0061
-Last Update: 2026-07-18 15:52:09 +07:00
+Last Read Revision: 0063
+Last Update: 2026-07-18 15:58:38 +07:00
 
 ### Current Objective
-Freeze e013 as the current final candidate after aligned local/public confirmation.
+Freeze all Task 1 modeling and preserve e013 as the final-selection candidate.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -171,7 +174,7 @@ Freeze e013 as the current final candidate after aligned local/public confirmati
 - Actual Kaggle e013 output: 2,041,200 exact IDs; min 0.0; max 101.6040; mean 52.863277; zero mismatches; max difference 0.0; hash `84703083...b6e1d`.
 - E013 public confirmation: gain 1.657 MSE (3.669%) versus e010, closely aligned with local gain 1.3438 (3.545%); public retains 123.3% of local gain.
 ### Files Changed
-- `coordination/TEAM_STATUS.md`; `task1/reports/d1-e013-kaggle-output-validation.json`.
+- `coordination/TEAM_STATUS.md`; `task1/src/{distribution_state_model.py,run_diststate_experiment.py,test_distribution_state_model.py,test_diststate_experiment.py}`; `task1/experiments/d1-e014-diststate/{config.json,metrics.json,notes.md}`.
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -190,14 +193,14 @@ Freeze e013 as the current final candidate after aligned local/public confirmati
 - `task1/reports/d1-submission-readiness.{md,json}`
 - `task1/reports/d1-e010-kaggle-output-validation.json`
 ### Decisions Needed
-- Whether one final preregistered distribution-state hypothesis can materially improve e013 before the freeze; e013 remains selected meanwhile.
+- Human must ensure e013 is explicitly selected `1/1`; no additional model or submission is approved.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Keep e013 selected as final and test at most one distinct distribution-state hypothesis; do not retune blend weights.
+- Select e013 as final, freeze the validated notebook, and focus only on deliverable/writeup completion.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -301,6 +304,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e011-globalstate | DAY 1 | MAIN | Direct citywide active-road summaries capture the generic cross-road context found by graph audit; a fixed 50:50 blend with frozen textzguard can materially improve e010 without tuning. | d1-e010-graphtextblend | Frozen `d1-multifold-v1` | 35.7488 | 40.7378; 37.4727; 29.0358 | 40.7378 | 4.9304 | min 0.0; max 101.6245; mean 52.8851 | 36.81s | REJECT | `task1/experiments/d1-e011-globalstate/metrics.json` |
 | d1-e012-globalstate-only | DAY 1 | MAIN | The post-discovery globalstate-only signal is broad enough to survive strict unseen temporal-chunk stress and justify audit despite selection after e011 diagnostics. | d1-e010-graphtextblend | Frozen `d1-multifold-v1` plus preregistered 120-origin chunks | 35.3894 | 40.0654; 36.4597; 29.6431 | 40.0654 | 4.3217 | min 0.0; max 101.5080; mean 52.9184 | 36.67s | REJECT | `task1/experiments/d1-e012-globalstate-only/metrics.json` |
 | d1-e013-stableblend | DAY 1 | MAIN | Fixed 75% e010 plus 25% globalstate captures part of the large global signal while shrinking the five unstable e012 chunks toward the audited anchor. | d1-e010-graphtextblend; d1-e012-globalstate-only | Frozen `d1-multifold-v1` plus fixed 120-origin chunks | 36.5603 | 41.7515; 38.4076; 29.5217 | 41.7515 | 5.1609 | min 0.0; max 101.6040; mean 52.8633 | 61.14s | KEEP | `task1/experiments/d1-e013-stableblend/metrics.json` |
+| d1-e014-diststate | DAY 1 | MAIN | Citywide speed dispersion and fixed slow-road fractions add congestion-shape information beyond city mean while retaining the frozen 75:25 e010 anchor. | d1-e013-stableblend | Frozen `d1-multifold-v1` plus fixed 120-origin chunks | 36.2602 | 41.4014; 38.0241; 29.3549 | 41.4014 | 5.0737 | min 0.0; max 101.4803; mean 52.8907 | 68.13s | REJECT | `task1/experiments/d1-e014-diststate/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -417,6 +421,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 15:19:03 +07:00 | 0060 | MAIN | D1-MAIN-021 | Completed local e013 notebook readiness | Clean notebook reproduced all 2,041,200 values exactly in 18 seconds; validator `READY`, zero mismatches, max difference 0.0, and 44 tests pass | Human performs Kaggle Restart Session / Run All and returns downloaded CSV for independent SUBMISSION review |
 | 2026-07-18 15:25:22 +07:00 | 0061 | MAIN | D1-MAIN-021 | Validated actual Kaggle e013 output | `READY`: 2,041,200 exact IDs, finite/nonnegative, zero reference mismatches, max difference 0.0, and frozen hash match | Obtain independent SUBMISSION confirmation, then decide slot 3 |
 | 2026-07-18 15:52:09 +07:00 | 0062 | MAIN | D1-MAIN-021 | Recorded slot 3 and accepted post-submission risk audit | Public MSE 43.511; gain magnitude aligns with local validation; e013 becomes current final-selection recommendation over e010 | Keep e013 selected and permit only one final distinct feature hypothesis, not weight retuning |
+| 2026-07-18 15:53:00 +07:00 | 0063 | MAIN | D1-MAIN-022 | Preregistered the final distribution-state experiment | Fixed 75:25 anchor weight; new causal mean/std/fraction-below-30/fraction-below-50 histories; no grid or follow-up model | Run once against e013 and stop on any failed gate |
+| 2026-07-18 15:58:38 +07:00 | 0064 | MAIN | D1-MAIN-022 | Completed and rejected the final distribution-state experiment | E014 gains 0.82% but misses the frozen 1% gate; 3/3 folds, 18/18 cells, and 34/36 chunks improve; no CSV or slot | Freeze Task 1 modeling, keep e013 final, and finish notebook/writeup deliverables |
 
 Append only. Correct errors with a new entry; do not erase history.
 
