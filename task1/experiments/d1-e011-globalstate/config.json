@@ -1,0 +1,15 @@
+{
+  "experiment_id": "d1-e011-globalstate",
+  "baseline": "d1-e010-graphtextblend",
+  "validation": "d1-multifold-v1",
+  "global_features": ["city_last", "city_mean3", "city_mean5", "city_mean15", "city_slope5"],
+  "active_road_rule": "road has any nonzero speed in the causal 15-step history",
+  "global_alpha": 0.1,
+  "text_base_alpha": 0.1,
+  "text_residual_alpha": 1.0,
+  "text_z_threshold": 3.0,
+  "global_weight": 0.5,
+  "textzguard_weight": 0.5,
+  "seed": null,
+  "kaggle_slot_authorized": false
+}

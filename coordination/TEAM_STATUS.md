@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0052
+Revision: 0054
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 14:40:30 +07:00
+Last Global Update: 2026-07-18 14:45:28 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d1-e010-notebook
+Repository Branch: exp/d1-e011-globalstate
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
 
 ## 1. Active Competition Brief
@@ -48,6 +48,8 @@ Only MAIN may update this section.
 | D1-DEC-014 | 2026-07-18 14:16 WIB | Accept independent `GO`/`KEEP` for `d1-e010-graphtextblend` and designate it the conditional slot-2 candidate. | Audit reproduced commit `e99d6d6`, fixed 50:50 weights, MSE 37.9040, 15/18 cell gains, safer m2 correction, and no material leakage. | MAIN | Kaggle Run All or SUBMISSION review fails exact reproduction, or a verified implementation defect appears. |
 | D1-DEC-015 | 2026-07-18 14:17 WIB | Human Submission Manager retains exclusive control of Chrome/Kaggle upload, Run All, and submission actions. | User explicitly requested that Codex not control Chrome and will upload the notebook manually. | MAIN | User explicitly requests browser assistance again. |
 | D1-DEC-016 | 2026-07-18 14:40 WIB | Record slot 2 and prefer `d1-e010-graphtextblend` as the current final-selection candidate; retain ridge only as a reproducible fallback. | Public MSE improved `45.980` to `45.168`; independent audit found positive paired gains on 3/3 folds, 6/6 block-folds, 18/18 block-fold-horizons, and 36/36 temporal chunks. | MAIN | A later preregistered candidate passes frozen validation, independent audit, and reproducibility gates with materially stronger evidence. |
+| D1-DEC-017 | 2026-07-18 14:41 WIB | Preregister one final bounded `d1-e011-globalstate` experiment that replaces graph-neighbor summaries with five active-road city-state summaries and uses a fixed 50:50 blend with frozen textzguard. | Graph audit found cross-road/global context gain but no topology-specific advantage; direct city-state features test that mechanism without weight or fold tuning. | MAIN | Implementation cannot preserve causal history-only features, zero guards, frozen folds, or the fixed acceptance gate. |
+| D1-DEC-018 | 2026-07-18 14:45 WIB | Freeze e011 as `REJECT` because its blend loses to globalstate alone; treat the unexpectedly strong globalstate-only result as a new post-discovery hypothesis rather than changing the failed gate. | Fixed blend MSE `35.7488` versus globalstate `35.3894`; e011 failed its component-dominance condition even though globalstate beat e010 by `6.63%`. | MAIN | None; e011 remains rejected. Any globalstate-only continuation requires a new experiment ID, stricter preregistration, and independent audit. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -74,6 +76,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-016 | DAY 1 | MAIN | DONE | HIGH | Rejected raw-range guard and audit `z=-3.434` | Fixed `|z| > 3` neutralization for one text feature | Decide whether a safe text path remains viable before graph-plus-text | 2026-07-18 13:56 WIB | 2026-07-18 14:16 WIB | `KEEP`; component identity, fixed guard, correction direction, and leakage safety verified in blend audit. |
 | D1-MAIN-017 | DAY 1 | MAIN | DONE | HIGH | Graphres audit `GO`/`KEEP` and locally accepted textzguard | Fixed 50:50 graphres/textzguard prediction blend | Test complementary official graph and text signals without weight tuning | 2026-07-18 14:02 WIB | 2026-07-18 14:16 WIB | Independent audit `GO`/`KEEP`; conditional slot-2 candidate after Kaggle/SUBMISSION readiness. |
 | D1-MAIN-018 | DAY 1 | MAIN | DONE | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:23 WIB | Actual Kaggle output matches frozen CSV exactly; independent SUBMISSION verdict remains. |
+| D1-MAIN-019 | DAY 1 | MAIN | DONE | HIGH | Audited e010 and graph topology-null finding | Direct active-road city-state features plus fixed guarded-text blend | Decide whether any candidate materially exceeds e010 without leaderboard tuning | 2026-07-18 14:41 WIB | 2026-07-18 14:45 WIB | `REJECT`: blend loses to globalstate alone; no CSV or slot. Globalstate-only becomes a separate post-discovery hypothesis. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | DONE | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 14:27 WIB | Actual Kaggle blend output is `READY`; exact frozen-output match and all schema/reproducibility gates pass. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -82,13 +85,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D1-MAIN-018
+Current Task: D1-MAIN-019
 Status: DONE
-Last Read Revision: 0051
-Last Update: 2026-07-18 14:40:30 +07:00
+Last Read Revision: 0053
+Last Update: 2026-07-18 14:45:28 +07:00
 
 ### Current Objective
-Freeze the validated slot-2 result and protect it as the current final-selection candidate.
+Freeze the failed e011 blend honestly and isolate the discovered globalstate-only signal for a stricter new experiment.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -120,6 +123,7 @@ Freeze the validated slot-2 result and protect it as the current final-selection
 - The final competition-named notebook is `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`.
 - Kaggle generated `submission.csv`; the downloaded file exactly matches the audited ridge predictions and is approved for slot 1.
 - Slot 2 used `d1-e010-graphtextblend`; public MSE is 45.168 and the independent post-submission audit prefers it over ridge for final selection.
+- `d1-e011-globalstate` is `REJECT` because its 50:50 blend does not beat globalstate alone; no submission was generated.
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 - Data integrity: all NPY arrays finite; all 2,041,200 submission IDs parse completely.
@@ -143,8 +147,9 @@ Freeze the validated slot-2 result and protect it as the current final-selection
 - Blend audit: 15/18 block-fold-horizon cells improve graphres; fold 2 regresses +0.0391; correction m2 remains -0.1674 km/h.
 - Kaggle-generated `C:\Users\Sam\Downloads\submission.csv` is an exact numeric match to frozen `d1-e010-graphtextblend`: 2,041,200 rows, zero mismatches, max difference 0.0.
 - Public-to-private audit: e010 retains 72.45% of its local gain on public and improves ridge on all 36/36 consecutive temporal chunks; current final-selection recommendation is e010.
+- e011 diagnostic globalstate-only: mean 35.3894; folds 40.0654, 36.4597, 29.6431; worst 40.0654; std 4.3217; all folds/horizons beat e010; test-m2 correction -0.4117 km/h.
 ### Files Changed
-- `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
+- `coordination/TEAM_STATUS.md`; `task1/src/global_state_model.py`; `task1/src/run_globalstate_experiment.py`; two focused tests; `task1/experiments/d1-e011-globalstate/{config.json,metrics.json,notes.md}`.
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -163,14 +168,14 @@ Freeze the validated slot-2 result and protect it as the current final-selection
 - `task1/reports/d1-submission-readiness.{md,json}`
 - `task1/reports/d1-e010-kaggle-output-validation.json`
 ### Decisions Needed
-- Whether one final preregistered local experiment provides enough evidence to justify further audit; no additional Kaggle slot is approved.
+- Whether a separately preregistered globalstate-only stress audit confirms the post-discovery signal; no additional Kaggle slot is approved.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- Preserve e010 as the current final candidate and test at most one bounded global-city-state hypothesis on a separate branch without using a Kaggle slot.
+- Freeze e011, then create a new branch and preregister globalstate-only robustness checks before considering audit or notebook work.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -271,6 +276,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e008-textood | DAY 1 | MAIN | Neutralizing the single OOD turn-restriction path preserves text gain while avoiding risky test-m2 extrapolation. | d1-e006-textres | Frozen `d1-multifold-v1` | 38.2840 | 44.0077; 40.5864; 30.2579 | 44.0077 | 5.8446 | min 0.0; max 101.7411; mean 52.9878 | 18.54s | REJECT | `task1/experiments/d1-e008-textood/metrics.json` |
 | d1-e009-textzguard | DAY 1 | MAIN | A standard three-sigma guard neutralizes the audited text OOD path while preserving causal aligned-text gain. | d1-e006-textres | Frozen `d1-multifold-v1` | 38.2840 | 44.0077; 40.5864; 30.2579 | 44.0077 | 5.8446 | min 0.0; max 101.7411; mean 52.8519 | 21.65s | KEEP | `task1/experiments/d1-e009-textzguard/metrics.json` |
 | d1-e010-graphtextblend | DAY 1 | MAIN | Equal averaging of complementary graph and guarded-text predictions improves robustness without tuning blend weights. | d1-e007-graphres; d1-e009-textzguard | Frozen `d1-multifold-v1` | 37.9040 | 43.4387; 39.9813; 30.2920 | 43.4387 | 5.5645 | min 0.0; max 101.6360; mean 52.8449 | 37.25s | KEEP | `task1/experiments/d1-e010-graphtextblend/metrics.json` |
+| d1-e011-globalstate | DAY 1 | MAIN | Direct citywide active-road summaries capture the generic cross-road context found by graph audit; a fixed 50:50 blend with frozen textzguard can materially improve e010 without tuning. | d1-e010-graphtextblend | Frozen `d1-multifold-v1` | 35.7488 | 40.7378; 37.4727; 29.0358 | 40.7378 | 4.9304 | min 0.0; max 101.6245; mean 52.8851 | 36.81s | REJECT | `task1/experiments/d1-e011-globalstate/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -375,6 +381,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 14:27:46 +07:00 | 0050 | SUBMISSION | D1-SUB-001 | Completed final independent review of actual Kaggle blend output | `READY`; exact template IDs, finite/nonnegative values, zero mismatches and max difference 0.0 versus frozen `e99d6d6`; verdict `SUBMIT` for slot 2 | MAIN authorizes designated Submission Manager; upload the byte-identical canonical-named copy and record result |
 | 2026-07-18 14:35:23 +07:00 | 0051 | VALIDATION | D1-VAL-003 | Completed post-submission public-to-private risk audit | Public gain retains 72.45% of local gain; blend beats ridge on 18/18 block-fold-horizon cells and 36/36 temporal chunks; `GO`/`KEEP`, prefer blend for final selection | MAIN records slot 2 and avoids spending another slot solely on public-score chasing |
 | 2026-07-18 14:40:30 +07:00 | 0052 | MAIN | D1-MAIN-018 | Recorded slot 2 and accepted the post-submission audit | Public MSE 45.168; e010 is the current final-selection candidate and ridge remains fallback; three Kaggle slots remain protected | Freeze e010 artifacts and run at most one bounded local hypothesis on a separate branch |
+| 2026-07-18 14:41:30 +07:00 | 0053 | MAIN | D1-MAIN-019 | Preregistered the final bounded city-state hypothesis on a separate branch | Five causal global summaries, fixed 50:50 guarded-text blend, frozen folds, and no leaderboard tuning; no slot authorized | Implement once and retain only if it materially beats e010 across folds, horizons, and worst fold |
+| 2026-07-18 14:45:28 +07:00 | 0054 | MAIN | D1-MAIN-019 | Completed and froze the preregistered city-state blend experiment | `REJECT`: blend 35.7488 loses to globalstate 35.3894; no CSV or slot. Globalstate alone improves e010 by 6.63% and becomes a disclosed post-discovery hypothesis | Commit e011 unchanged, then preregister stricter globalstate-only stress tests on a new branch |
 
 Append only. Correct errors with a new entry; do not erase history.
 
