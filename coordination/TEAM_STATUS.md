@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0061
+Revision: 0062
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 15:25:22 +07:00
+Last Global Update: 2026-07-18 15:52:09 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-e013-stableblend
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -57,6 +57,7 @@ Only MAIN may update this section.
 | D1-DEC-023 | 2026-07-18 15:15 WIB | Accept independent `GO/KEEP` for e013 and advance it to notebook/submission-readiness review while retaining e010 as final until public evidence exists. | Audit reproduced all metrics and CSV; stricter purge retained 3.543% gain; e013 won 17/17 walk-forward windows and 102/102 diagnostic chunks, with conservative RMS change 0.431 km/h. | MAIN | Kaggle Run All differs from frozen CSV, SUBMISSION is not `READY`, or public/operational evidence invalidates slot-3 use. |
 | D1-DEC-024 | 2026-07-18 15:19 WIB | Accept local e013 notebook readiness and require actual Kaggle Run All plus independent output review before slot 3. | Clean five-cell notebook completed in 18 seconds; validator found 0 mismatches, max difference 0.0, exact IDs, and hash `84703083...b6e1d`. | MAIN | Kaggle environment output differs, hidden dependency appears, or SUBMISSION returns other than `READY`. |
 | D1-DEC-025 | 2026-07-18 15:25 WIB | Accept actual Kaggle e013 Run All output as an exact frozen-candidate reproduction; keep slot 3 pending only independent SUBMISSION confirmation. | Downloaded `submission.csv` has 2,041,200 exact IDs, zero mismatches, max difference 0.0, and hash `84703083...b6e1d`. | MAIN | SUBMISSION finds a provenance/path/schema issue or the human upload target differs from the validated file. |
+| D1-DEC-026 | 2026-07-18 15:52 WIB | Record slot 3 and prefer e013 as the current final-selection candidate over e010. | Public MSE improved `45.168` to `43.511`, closely matching the 3.545% local gain; post-submission audit gives `GO/KEEP` and medium-high private confidence. | MAIN | A final bounded candidate passes stricter frozen validation, audit, Kaggle reproduction, and provides stronger evidence before freeze. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -85,7 +86,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-018 | DAY 1 | MAIN | DONE | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:23 WIB | Actual Kaggle output matches frozen CSV exactly; independent SUBMISSION verdict remains. |
 | D1-MAIN-019 | DAY 1 | MAIN | DONE | HIGH | Audited e010 and graph topology-null finding | Direct active-road city-state features plus fixed guarded-text blend | Decide whether any candidate materially exceeds e010 without leaderboard tuning | 2026-07-18 14:41 WIB | 2026-07-18 14:45 WIB | `REJECT`: blend loses to globalstate alone; no CSV or slot. Globalstate-only becomes a separate post-discovery hypothesis. |
 | D1-MAIN-020 | DAY 1 | MAIN | DONE | HIGH | e011 globalstate-only diagnostic | Frozen globalstate model plus unseen temporal-chunk and correction-distribution stress tests | Determine whether the post-discovery candidate merits independent audit and notebook work | 2026-07-18 14:47 WIB | 2026-07-18 14:50 WIB | `REJECT`: 31/36 chunk wins and worst chunk -1.9517 fail frozen gates; no CSV, audit handoff, notebook, or slot. |
-| D1-MAIN-021 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Stable e010 plus volatile e012 signal | Fixed 75:25 e010/globalstate shrinkage blend | Capture meaningful globalstate gain while restoring temporal robustness | 2026-07-18 14:55 WIB | 2026-07-18 15:19 WIB | Independent `GO/KEEP`; local notebook exact `READY`; awaiting actual Kaggle Run All and SUBMISSION review before slot 3. |
+| D1-MAIN-021 | DAY 1 | MAIN | DONE | HIGH | Stable e010 plus volatile e012 signal | Fixed 75:25 e010/globalstate shrinkage blend | Capture meaningful globalstate gain while restoring temporal robustness | 2026-07-18 14:55 WIB | 2026-07-18 15:52 WIB | Slot 3 public 43.511; audit `GO/KEEP`; e013 is current final-selection candidate. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | DONE | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 14:27 WIB | Actual Kaggle blend output is `READY`; exact frozen-output match and all schema/reproducibility gates pass. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -95,12 +96,12 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 <!-- MAIN:START -->
 Role: MAIN
 Current Task: D1-MAIN-021
-Status: NEEDS_REVIEW
-Last Read Revision: 0060
-Last Update: 2026-07-18 15:25:22 +07:00
+Status: DONE
+Last Read Revision: 0061
+Last Update: 2026-07-18 15:52:09 +07:00
 
 ### Current Objective
-Obtain independent SUBMISSION confirmation for the already exact actual-Kaggle e013 output.
+Freeze e013 as the current final candidate after aligned local/public confirmation.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -138,6 +139,7 @@ Obtain independent SUBMISSION confirmation for the already exact actual-Kaggle e
 - Independent e013 audit returns model/leakage `GO` and candidate `KEEP`; selection bias remains disclosed and e010 stays final pending public evidence.
 - The competition-named e013 notebook reproduces the frozen CSV locally with zero mismatches and clean outputs.
 - Actual Kaggle Run All produced `C:\Users\Sam\Downloads\submission.csv`; it matches the frozen e013 CSV exactly.
+- Slot 3 public MSE is 43.511; independent public/private risk audit recommends e013 over e010.
 ### Latest Metrics
 - Pretrained tooling tests: 4 passed.
 - Data integrity: all NPY arrays finite; all 2,041,200 submission IDs parse completely.
@@ -167,6 +169,7 @@ Obtain independent SUBMISSION confirmation for the already exact actual-Kaggle e
 - E013 audit stress: stricter purge gain 3.543%; 17/17 walk-forward windows and 102/102 chunks improve; worst gains +0.5940 window and +0.0967 chunk; RMS test change 0.431 km/h.
 - E013 notebook: isolated 18-second run; exact 2,041,200 IDs; zero numeric mismatches; max difference 0.0; validator `READY`; 44 tests pass.
 - Actual Kaggle e013 output: 2,041,200 exact IDs; min 0.0; max 101.6040; mean 52.863277; zero mismatches; max difference 0.0; hash `84703083...b6e1d`.
+- E013 public confirmation: gain 1.657 MSE (3.669%) versus e010, closely aligned with local gain 1.3438 (3.545%); public retains 123.3% of local gain.
 ### Files Changed
 - `coordination/TEAM_STATUS.md`; `task1/reports/d1-e013-kaggle-output-validation.json`.
 ### Commands Running
@@ -187,14 +190,14 @@ Obtain independent SUBMISSION confirmation for the already exact actual-Kaggle e
 - `task1/reports/d1-submission-readiness.{md,json}`
 - `task1/reports/d1-e010-kaggle-output-validation.json`
 ### Decisions Needed
-- Independent SUBMISSION `READY` for the exact downloaded Kaggle output before slot-3 approval.
+- Whether one final preregistered distribution-state hypothesis can materially improve e013 before the freeze; e013 remains selected meanwhile.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
 - NONE
 ### Next Action
-- SUBMISSION reviews `d1-e013-kaggle-output-validation.json`; MAIN then issues the final slot-3 verdict.
+- Keep e013 selected as final and test at most one distinct distribution-state hypothesis; do not retune blend weights.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -309,7 +312,7 @@ Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`
 |---|---|---|---|---|---|---|---|---|
 | 1 | `submission.csv` | d1-e002-ridge | 39.0248 | 45.980 | 2026-07-18 13:14 WIB | Samuel Indriano | NO | First validated ridge entry; public 30% score is diagnostic only. |
 | 2 | `sub-s02-d1-e010-graphtextblend.csv` | d1-e010-graphtextblend | 37.9040 | 45.168 | 2026-07-18 14:34 WIB | Samuel Indriano | YES | Exact Kaggle Run All output; independently `READY`; preferred over ridge by paired temporal audit. |
-| 3 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+| 3 | `sub-s03-d1-e013-stableblend.csv` | d1-e013-stableblend | 36.5603 | 43.511 | 2026-07-18 15:51 WIB | Samuel Indriano | YES | Exact Kaggle Run All output; audit `GO/KEEP`; local and public gains align closely. |
 | 4 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 | 5 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 
@@ -413,6 +416,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 15:15:23 +07:00 | 0059 | MAIN | D1-MAIN-021 | Accepted independent e013 audit and started notebook readiness | `GO/KEEP`; exact reproduction, stricter purge, 17/17 windows, and 102/102 diagnostic chunks pass; selection bias and m2 global-feature shift remain disclosed | Build clean e013 notebook and require exact Kaggle Run All plus SUBMISSION `READY` before slot 3 |
 | 2026-07-18 15:19:03 +07:00 | 0060 | MAIN | D1-MAIN-021 | Completed local e013 notebook readiness | Clean notebook reproduced all 2,041,200 values exactly in 18 seconds; validator `READY`, zero mismatches, max difference 0.0, and 44 tests pass | Human performs Kaggle Restart Session / Run All and returns downloaded CSV for independent SUBMISSION review |
 | 2026-07-18 15:25:22 +07:00 | 0061 | MAIN | D1-MAIN-021 | Validated actual Kaggle e013 output | `READY`: 2,041,200 exact IDs, finite/nonnegative, zero reference mismatches, max difference 0.0, and frozen hash match | Obtain independent SUBMISSION confirmation, then decide slot 3 |
+| 2026-07-18 15:52:09 +07:00 | 0062 | MAIN | D1-MAIN-021 | Recorded slot 3 and accepted post-submission risk audit | Public MSE 43.511; gain magnitude aligns with local validation; e013 becomes current final-selection recommendation over e010 | Keep e013 selected and permit only one final distinct feature hypothesis, not weight retuning |
 
 Append only. Correct errors with a new entry; do not erase history.
 
