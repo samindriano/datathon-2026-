@@ -1,0 +1,20 @@
+{
+  "status": "READY",
+  "row_count": 2041200,
+  "expected_row_count": 2041200,
+  "columns": [
+    "id",
+    "speed"
+  ],
+  "ids_exact_and_unique": true,
+  "finite": true,
+  "nonnegative": true,
+  "speed_min": 0.0,
+  "speed_max": 101.63601,
+  "speed_mean": 52.844914930838925,
+  "zero_count": 120750,
+  "speed_values_sha256": "a1e1f9f9296022fea70682333145f3a798dc33a4472e93f7f822e51c87d4644e",
+  "reference_mismatch_count": 0,
+  "reference_max_abs_difference": 0.0,
+  "reference_exact_numeric_match": true
+}

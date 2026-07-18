@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0048
+Revision: 0049
 Active Day: DAY 1
 Active Task: TASK 1
-Last Global Update: 2026-07-18 14:17:59 +07:00
+Last Global Update: 2026-07-18 14:23:35 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d1-e010-notebook
 Current Stable Commit: 53acffe229cad28e934c36d54e97771b37a6cd1a
@@ -72,7 +72,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D1-MAIN-015 | DAY 1 | MAIN | DONE | HIGH | Textres audit `INVESTIGATE` inference | Training-range OOD neutralization for one risky text feature | Robust textres variant before any graph-text combination | 2026-07-18 13:50 WIB | 2026-07-18 13:54 WIB | `REJECT`: raw-range guard never activates on test and leaves risky m2 correction unchanged; no CSV. |
 | D1-MAIN-016 | DAY 1 | MAIN | DONE | HIGH | Rejected raw-range guard and audit `z=-3.434` | Fixed `|z| > 3` neutralization for one text feature | Decide whether a safe text path remains viable before graph-plus-text | 2026-07-18 13:56 WIB | 2026-07-18 14:16 WIB | `KEEP`; component identity, fixed guard, correction direction, and leakage safety verified in blend audit. |
 | D1-MAIN-017 | DAY 1 | MAIN | DONE | HIGH | Graphres audit `GO`/`KEEP` and locally accepted textzguard | Fixed 50:50 graphres/textzguard prediction blend | Test complementary official graph and text signals without weight tuning | 2026-07-18 14:02 WIB | 2026-07-18 14:16 WIB | Independent audit `GO`/`KEEP`; conditional slot-2 candidate after Kaggle/SUBMISSION readiness. |
-| D1-MAIN-018 | DAY 1 | MAIN | NEEDS_REVIEW | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:17 WIB | Local exact run complete; user will manually upload and Run All in Kaggle; Codex browser control released. |
+| D1-MAIN-018 | DAY 1 | MAIN | DONE | HIGH | Frozen blend commit `e99d6d6` | Self-contained clean-session inference notebook and exact CSV reproduction | Prepare reproducibility gate without spending a Kaggle slot | 2026-07-18 14:06 WIB | 2026-07-18 14:23 WIB | Actual Kaggle output matches frozen CSV exactly; independent SUBMISSION verdict remains. |
 | D1-SUB-001 | DAY 1 | SUBMISSION | BLOCKED | HIGH | Handoff `D1-HO-004` | Notebook, validator, readiness report, audited ridge reference | Independent leakage, schema, reproducibility, and Kaggle readiness verdict | 2026-07-18 12:49 WIB | 2026-07-18 12:53 WIB | Leakage `GO`, local reproduction passes; not ready pending fail-closed validator, final filename, clean notebook, and actual Kaggle Run All. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
@@ -83,11 +83,11 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 Role: MAIN
 Current Task: D1-MAIN-018
 Status: NEEDS_REVIEW
-Last Read Revision: 0047
-Last Update: 2026-07-18 14:17:59 +07:00
+Last Read Revision: 0048
+Last Update: 2026-07-18 14:23:35 +07:00
 
 ### Current Objective
-Wait for the human-run Kaggle notebook output, then validate it against frozen blend commit `e99d6d6`.
+Hand off the exact Kaggle-generated blend CSV for independent SUBMISSION verdict.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -139,6 +139,7 @@ Wait for the human-run Kaggle notebook output, then validate it against frozen b
 - `d1-e010-graphtextblend`: mean 37.9040; folds 43.4387, 39.9813, 30.2920; worst 43.4387; all horizons improve graphres; correction -0.1674; `KEEP`; runtime 37.25s.
 - Blend notebook: 16.18s; 2,041,200 exact values; zero reference mismatches; validator `READY`; 34 tests pass.
 - Blend audit: 15/18 block-fold-horizon cells improve graphres; fold 2 regresses +0.0391; correction m2 remains -0.1674 km/h.
+- Kaggle-generated `C:\Users\Sam\Downloads\submission.csv` is an exact numeric match to frozen `d1-e010-graphtextblend`: 2,041,200 rows, zero mismatches, max difference 0.0.
 ### Files Changed
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -157,15 +158,16 @@ Wait for the human-run Kaggle notebook output, then validate it against frozen b
 - `task1/notebooks/d1-ridge-inference.ipynb`
 - `task1/notebooks/EnterYourTeamName_Task1_Notebook.ipynb`
 - `task1/reports/d1-submission-readiness.{md,json}`
+- `task1/reports/d1-e010-kaggle-output-validation.json`
 ### Decisions Needed
-- Actual Kaggle clean Run All evidence and SUBMISSION verdict before slot-2 approval; user performs all browser actions manually.
+- Independent SUBMISSION `READY` verdict before slot-2 approval; actual Kaggle output reproduction is complete.
 ### Tasks Dispatched to Other Agents
 - `D1-VAL-001` to VALIDATION: temporal split, leakage, distribution, and metric audit.
 - `D1-SUB-001` to SUBMISSION: schema/order/ID/value validator.
 ### Blockers
-- Human-run Kaggle Run All and downloaded output evidence remain; no model blocker remains.
+- Independent SUBMISSION review remains; no model, leakage, format, or reproduction blocker is known.
 ### Next Action
-- User manually uploads the final notebook and runs it in Kaggle; MAIN validates the downloaded `submission.csv` without controlling Chrome.
+- SUBMISSION reviews `d1-e010-kaggle-output-validation.json`; MAIN then issues the final slot-2 verdict.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -368,6 +370,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-18 14:11:00 +07:00 | 0046 | MAIN | D1-MAIN-018 | Completed local clean-session blend notebook reproduction | `python -I` finished in 16.18s; validator READY with zero reference mismatches; 34 tests pass; notebook outputs are clean | VALIDATION/SUBMISSION review and actual Kaggle Run All remain; do not submit |
 | 2026-07-18 14:16:52 +07:00 | 0047 | MAIN | D1-MAIN-018 | Accepted independent blend audit and prepared Kaggle handoff | Leakage `GO`, candidate `KEEP`, conditional slot-2 recommendation; browser is at Import Notebook but upload requires user confirmation | Upload exact notebook, Run All, validate output, and obtain SUBMISSION `READY`; do not submit yet |
 | 2026-07-18 14:17:59 +07:00 | 0048 | MAIN | D1-MAIN-018 | Returned all Chrome/Kaggle control to the user | No upload, Run All, version save, or submission was performed; user will complete browser steps manually | Validate the user-downloaded Kaggle CSV against frozen blend predictions |
+| 2026-07-18 14:23:35 +07:00 | 0049 | MAIN | D1-MAIN-018 | Validated actual Kaggle-generated blend CSV | `READY`: 2,041,200 exact IDs; finite/nonnegative; zero reference mismatches and max absolute difference 0.0 versus frozen commit `e99d6d6` | Obtain independent SUBMISSION verdict, then decide slot 2 |
 
 Append only. Correct errors with a new entry; do not erase history.
 
