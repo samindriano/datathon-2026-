@@ -1,0 +1,10 @@
+{
+  "experiment_id": "d2-e007-catroute",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "validation": "d2-targetgroup-v1",
+  "seed": 20260719,
+  "prior_strength": 5,
+  "weight_search": false,
+  "runtime_limit_seconds": 180
+}

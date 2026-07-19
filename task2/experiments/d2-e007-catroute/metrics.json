@@ -1,0 +1,264 @@
+{
+  "experiment_id": "d2-e007-catroute",
+  "owner": "MAIN",
+  "branch": "exp/d2-e007-catroute",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "metric": "accuracy",
+  "validation": {
+    "version": "d2-targetgroup-v1",
+    "fold_count": 5,
+    "seed": 20260719,
+    "group": "target_article_id",
+    "folds": [
+      {
+        "fold": 0,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "bc8e8ecf5a66be6affdf2fae7f2decb2fd377add53d5e1f5ffdfe43aa7517d4a",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.795,
+        "current_seen_accuracy": 0.3158630328441649,
+        "current_unseen_accuracy": 0.13279132791327913,
+        "baseline_current_unseen_accuracy": 0.13279132791327913,
+        "next_label_seen_rate": 0.9433333333333334,
+        "observed_candidate_coverage": 0.30777777777777776,
+        "entirely_unseen_target_category_rate": 0.041666666666666664,
+        "category_seen_accuracy": 0.27594202898550724,
+        "category_entirely_unseen_accuracy": 0.3333333333333333,
+        "baseline_category_entirely_unseen_accuracy": 0.29333333333333333,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "heldout_label_ablation_exact_match": true,
+        "unique_predictions": 285,
+        "top_prediction_share": 0.31666666666666665,
+        "prediction_change_rate_from_baseline": 0.14,
+        "scores": {
+          "current_mode": 0.2677777777777778,
+          "e002_metarank": 0.29055555555555557,
+          "catroute": 0.2783333333333333
+        }
+      },
+      {
+        "fold": 1,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "0a458097d42ba7fde0db28d4887f1d655badd2ededf7daccfd0460932329d488",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.7911111111111111,
+        "current_seen_accuracy": 0.30969101123595505,
+        "current_unseen_accuracy": 0.13031914893617022,
+        "baseline_current_unseen_accuracy": 0.13031914893617022,
+        "next_label_seen_rate": 0.9411111111111111,
+        "observed_candidate_coverage": 0.29833333333333334,
+        "entirely_unseen_target_category_rate": 0.041666666666666664,
+        "category_seen_accuracy": 0.2678260869565217,
+        "category_entirely_unseen_accuracy": 0.37333333333333335,
+        "baseline_category_entirely_unseen_accuracy": 0.29333333333333333,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "heldout_label_ablation_exact_match": true,
+        "unique_predictions": 275,
+        "top_prediction_share": 0.33,
+        "prediction_change_rate_from_baseline": 0.125,
+        "scores": {
+          "current_mode": 0.25555555555555554,
+          "e002_metarank": 0.2827777777777778,
+          "catroute": 0.2722222222222222
+        }
+      },
+      {
+        "fold": 2,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "de428921a9020152dd166b49f05d9365355c77c8d318b7bdae762b8c92ef5bf8",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.8011111111111111,
+        "current_seen_accuracy": 0.31345353675450766,
+        "current_unseen_accuracy": 0.1005586592178771,
+        "baseline_current_unseen_accuracy": 0.1005586592178771,
+        "next_label_seen_rate": 0.9361111111111111,
+        "observed_candidate_coverage": 0.30722222222222223,
+        "entirely_unseen_target_category_rate": 0.1388888888888889,
+        "category_seen_accuracy": 0.2670967741935484,
+        "category_entirely_unseen_accuracy": 0.296,
+        "baseline_category_entirely_unseen_accuracy": 0.292,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "heldout_label_ablation_exact_match": true,
+        "unique_predictions": 301,
+        "top_prediction_share": 0.32055555555555554,
+        "prediction_change_rate_from_baseline": 0.125,
+        "scores": {
+          "current_mode": 0.26555555555555554,
+          "e002_metarank": 0.2783333333333333,
+          "catroute": 0.27111111111111114
+        }
+      },
+      {
+        "fold": 3,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "64997cacbbb16182f47506dc371179a46769d7abe5880358a0cb5378d679ba09",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.8233333333333334,
+        "current_seen_accuracy": 0.29959514170040485,
+        "current_unseen_accuracy": 0.12264150943396226,
+        "baseline_current_unseen_accuracy": 0.12264150943396226,
+        "next_label_seen_rate": 0.95,
+        "observed_candidate_coverage": 0.30333333333333334,
+        "entirely_unseen_target_category_rate": 0.06944444444444445,
+        "category_seen_accuracy": 0.2656716417910448,
+        "category_entirely_unseen_accuracy": 0.304,
+        "baseline_category_entirely_unseen_accuracy": 0.256,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "heldout_label_ablation_exact_match": true,
+        "unique_predictions": 301,
+        "top_prediction_share": 0.3011111111111111,
+        "prediction_change_rate_from_baseline": 0.13444444444444445,
+        "scores": {
+          "current_mode": 0.255,
+          "e002_metarank": 0.28055555555555556,
+          "catroute": 0.2683333333333333
+        }
+      },
+      {
+        "fold": 4,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "b230f3126a424cbde2ab1cc09a7602cdf3f05885ad004e7572ed8a0934895f27",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.7911111111111111,
+        "current_seen_accuracy": 0.3265449438202247,
+        "current_unseen_accuracy": 0.13031914893617022,
+        "baseline_current_unseen_accuracy": 0.13031914893617022,
+        "next_label_seen_rate": 0.9394444444444444,
+        "observed_candidate_coverage": 0.31,
+        "entirely_unseen_target_category_rate": 0.05555555555555555,
+        "category_seen_accuracy": 0.2847058823529412,
+        "category_entirely_unseen_accuracy": 0.3,
+        "baseline_category_entirely_unseen_accuracy": 0.26,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "heldout_label_ablation_exact_match": true,
+        "unique_predictions": 289,
+        "top_prediction_share": 0.32055555555555554,
+        "prediction_change_rate_from_baseline": 0.1388888888888889,
+        "scores": {
+          "current_mode": 0.2627777777777778,
+          "e002_metarank": 0.29444444444444445,
+          "catroute": 0.28555555555555556
+        }
+      }
+    ]
+  },
+  "hypothesis": "Broad target category conditions the outgoing transition distribution within an exact current article.",
+  "model": {
+    "prior_strength": 5.0,
+    "candidate_source": "fold-training current-to-next labels",
+    "unseen_current_fallback": "fold-training global mode",
+    "weight_search": false
+  },
+  "candidates": {
+    "current_mode": {
+      "mean_accuracy": 0.2613333333333333,
+      "fold_accuracy": [
+        0.2677777777777778,
+        0.25555555555555554,
+        0.26555555555555554,
+        0.255,
+        0.2627777777777778
+      ],
+      "worst_fold_accuracy": 0.255,
+      "std_accuracy": 0.005194964323360429
+    },
+    "e002_metarank": {
+      "mean_accuracy": 0.2853333333333333,
+      "fold_accuracy": [
+        0.29055555555555557,
+        0.2827777777777778,
+        0.2783333333333333,
+        0.28055555555555556,
+        0.29444444444444445
+      ],
+      "worst_fold_accuracy": 0.2783333333333333,
+      "std_accuracy": 0.006142344427149007
+    },
+    "catroute": {
+      "mean_accuracy": 0.2751111111111111,
+      "fold_accuracy": [
+        0.2783333333333333,
+        0.2722222222222222,
+        0.27111111111111114,
+        0.2683333333333333,
+        0.28555555555555556
+      ],
+      "worst_fold_accuracy": 0.2683333333333333,
+      "std_accuracy": 0.006160407233612943
+    }
+  },
+  "comparison": {
+    "mean_accuracy_gain": 0.013777777777777778,
+    "mean_accuracy_gain_vs_e002": -0.010222222222222244,
+    "fold_wins": 0,
+    "subset_accuracy": {
+      "current_unseen": {
+        "rows": 1797,
+        "current_mode_accuracy": 0.12353923205342238,
+        "catroute_accuracy": 0.12353923205342238,
+        "accuracy_delta": 0.0
+      },
+      "category_entirely_unseen": {
+        "rows": 625,
+        "current_mode_accuracy": 0.28,
+        "catroute_accuracy": 0.312,
+        "accuracy_delta": 0.03199999999999997
+      }
+    }
+  },
+  "test_diagnostics": {
+    "rows": 6000,
+    "current_seen_rate": 0.8741666666666666,
+    "unique_predictions": 503,
+    "top_prediction_share": 0.266,
+    "prediction_min": 3,
+    "prediction_max": 4600,
+    "prediction_change_rate_from_baseline": 0.15483333333333332
+  },
+  "acceptance_gate": {
+    "checks": {
+      "e002_reference_reproduced": true,
+      "mean_at_least_0_290333": false,
+      "wins_at_least_4_of_5_folds": false,
+      "worst_fold_at_least_0_273333": false,
+      "current_unseen_at_least_0_118539": true,
+      "category_ood_at_least_0_310200": true,
+      "target_seen_rate_is_zero": true,
+      "state_id_ablation_is_exact": true,
+      "heldout_label_ablation_is_exact": true,
+      "test_top_share_at_most_0_3252": true,
+      "test_unique_at_least_337": true,
+      "runtime_under_180_seconds": true,
+      "submission_is_ready": true
+    },
+    "status": "REJECT"
+  },
+  "leakage_check": {
+    "static_metadata_available_at_test": true,
+    "label_derived_candidates_fit_per_fold": true,
+    "state_id_used": false,
+    "external_data_or_api": false
+  },
+  "submission_validation": {
+    "status": "READY",
+    "rows": 6000,
+    "unique_predictions": 503,
+    "csv_sha256": "454aa406a3bc5766eb8bbac0b3c0f5c097a215baaac093c16202338c87059d17",
+    "int64_prediction_sha256": "df0c11055ac0f75906e93a2f0d0adbb147ac093435d875d8427f98e915a7fdf1"
+  },
+  "submission": "C:\\tmp\\datathon-d2-e007-catroute\\task2\\experiments\\d2-e007-catroute\\submission.csv",
+  "runtime_seconds": 41.85259450000012,
+  "recommendation": "REJECT",
+  "submission_verdict": "INVESTIGATE_PENDING_INDEPENDENT_AUDIT"
+}
