@@ -1,0 +1,26 @@
+{
+  "experiment_id": "d2-e003-routeknn",
+  "owner": "MAIN",
+  "branch": "exp/d2-e003-routeknn",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "dataset_version": "official-task2-2026-07-19",
+  "feature_version": "d2-routeknn-v1",
+  "metric": "accuracy",
+  "validation": "d2-targetgroup-v1",
+  "fold_count": 5,
+  "seed": 20260719,
+  "neighbor_count": 1,
+  "category_weight": 2.0,
+  "title_weight": 1.0,
+  "seen_current_rule": "restrict to fold-training states with exact current",
+  "unseen_current_rule": "select one fold-training proxy current by metadata similarity",
+  "route_rule": "select one state by target metadata similarity",
+  "tie_break": [
+    "next frequency for selected current descending",
+    "global next frequency descending",
+    "article ID ascending"
+  ],
+  "search_performed": false,
+  "dependencies": ["python", "numpy", "pandas"]
+}

@@ -1,0 +1,253 @@
+{
+  "experiment_id": "d2-e003-routeknn",
+  "owner": "MAIN",
+  "branch": "exp/d2-e003-routeknn",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "metric": "accuracy",
+  "validation": {
+    "version": "d2-targetgroup-v1",
+    "fold_count": 5,
+    "seed": 20260719,
+    "group": "target_article_id",
+    "folds": [
+      {
+        "fold": 0,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "bc8e8ecf5a66be6affdf2fae7f2decb2fd377add53d5e1f5ffdfe43aa7517d4a",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.795,
+        "current_seen_accuracy": 0.32914046121593293,
+        "baseline_current_seen_accuracy": 0.3025856044723969,
+        "current_unseen_accuracy": 0.07588075880758807,
+        "category_entirely_unseen_accuracy": 0.30666666666666664,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 281,
+        "top_prediction_share": 0.15611111111111112,
+        "prediction_change_rate_from_metarank": 0.18888888888888888,
+        "scores": {
+          "current_mode": 0.2677777777777778,
+          "metarank": 0.29055555555555557,
+          "routeknn": 0.2772222222222222
+        }
+      },
+      {
+        "fold": 1,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "0a458097d42ba7fde0db28d4887f1d655badd2ededf7daccfd0460932329d488",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.7911111111111111,
+        "current_seen_accuracy": 0.31952247191011235,
+        "baseline_current_seen_accuracy": 0.288623595505618,
+        "current_unseen_accuracy": 0.06382978723404255,
+        "category_entirely_unseen_accuracy": 0.36,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 289,
+        "top_prediction_share": 0.15388888888888888,
+        "prediction_change_rate_from_metarank": 0.20555555555555555,
+        "scores": {
+          "current_mode": 0.25555555555555554,
+          "metarank": 0.2827777777777778,
+          "routeknn": 0.26611111111111113
+        }
+      },
+      {
+        "fold": 2,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "de428921a9020152dd166b49f05d9365355c77c8d318b7bdae762b8c92ef5bf8",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.8011111111111111,
+        "current_seen_accuracy": 0.3217753120665742,
+        "baseline_current_seen_accuracy": 0.3065187239944521,
+        "current_unseen_accuracy": 0.06983240223463687,
+        "category_entirely_unseen_accuracy": 0.304,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 294,
+        "top_prediction_share": 0.15444444444444444,
+        "prediction_change_rate_from_metarank": 0.19333333333333333,
+        "scores": {
+          "current_mode": 0.26555555555555554,
+          "metarank": 0.2783333333333333,
+          "routeknn": 0.27166666666666667
+        }
+      },
+      {
+        "fold": 3,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "64997cacbbb16182f47506dc371179a46769d7abe5880358a0cb5378d679ba09",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.8233333333333334,
+        "current_seen_accuracy": 0.31309041835357626,
+        "baseline_current_seen_accuracy": 0.2834008097165992,
+        "current_unseen_accuracy": 0.07861635220125786,
+        "category_entirely_unseen_accuracy": 0.312,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 301,
+        "top_prediction_share": 0.16777777777777778,
+        "prediction_change_rate_from_metarank": 0.16166666666666665,
+        "scores": {
+          "current_mode": 0.255,
+          "metarank": 0.28055555555555556,
+          "routeknn": 0.27166666666666667
+        }
+      },
+      {
+        "fold": 4,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "b230f3126a424cbde2ab1cc09a7602cdf3f05885ad004e7572ed8a0934895f27",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.7911111111111111,
+        "current_seen_accuracy": 0.33286516853932585,
+        "baseline_current_seen_accuracy": 0.29775280898876405,
+        "current_unseen_accuracy": 0.061170212765957445,
+        "category_entirely_unseen_accuracy": 0.29,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 296,
+        "top_prediction_share": 0.15,
+        "prediction_change_rate_from_metarank": 0.19444444444444445,
+        "scores": {
+          "current_mode": 0.2627777777777778,
+          "metarank": 0.29444444444444445,
+          "routeknn": 0.2761111111111111
+        }
+      }
+    ]
+  },
+  "hypothesis": "One nearest fold-local route transfers across unseen targets using exact current and static target metadata.",
+  "model": {
+    "neighbor_count": 1,
+    "category_weight": 2.0,
+    "title_weight": 1.0,
+    "seen_current_rule": "exact current only",
+    "unseen_current_rule": "one metadata-nearest training current",
+    "parameter_search": false
+  },
+  "candidates": {
+    "current_mode": {
+      "mean_accuracy": 0.2613333333333333,
+      "fold_accuracy": [
+        0.2677777777777778,
+        0.25555555555555554,
+        0.26555555555555554,
+        0.255,
+        0.2627777777777778
+      ],
+      "worst_fold_accuracy": 0.255,
+      "std_accuracy": 0.005194964323360429
+    },
+    "metarank": {
+      "mean_accuracy": 0.2853333333333333,
+      "fold_accuracy": [
+        0.29055555555555557,
+        0.2827777777777778,
+        0.2783333333333333,
+        0.28055555555555556,
+        0.29444444444444445
+      ],
+      "worst_fold_accuracy": 0.2783333333333333,
+      "std_accuracy": 0.006142344427149007
+    },
+    "routeknn": {
+      "mean_accuracy": 0.27255555555555555,
+      "fold_accuracy": [
+        0.2772222222222222,
+        0.26611111111111113,
+        0.27166666666666667,
+        0.27166666666666667,
+        0.2761111111111111
+      ],
+      "worst_fold_accuracy": 0.26611111111111113,
+      "std_accuracy": 0.003937787810370951
+    }
+  },
+  "comparison": {
+    "mean_gain_vs_baseline": 0.011222222222222245,
+    "mean_gain_vs_metarank": -0.012777777777777777,
+    "fold_wins_vs_baseline": 5,
+    "fold_wins_vs_metarank": 0,
+    "subset_accuracy": {
+      "current_seen": {
+        "rows": 7203,
+        "current_mode_accuracy": 0.29571012078300707,
+        "metarank_accuracy": 0.3256976259891712,
+        "routeknn_accuracy": 0.3231986672219908,
+        "routeknn_delta_vs_baseline": 0.02748854643898374,
+        "routeknn_delta_vs_metarank": -0.0024989587671803704
+      },
+      "current_unseen": {
+        "rows": 1797,
+        "current_mode_accuracy": 0.12353923205342238,
+        "metarank_accuracy": 0.12353923205342238,
+        "routeknn_accuracy": 0.06956037840845854,
+        "routeknn_delta_vs_baseline": -0.05397885364496384,
+        "routeknn_delta_vs_metarank": -0.05397885364496384
+      },
+      "category_entirely_unseen": {
+        "rows": 625,
+        "current_mode_accuracy": 0.28,
+        "metarank_accuracy": 0.3152,
+        "routeknn_accuracy": 0.3104,
+        "routeknn_delta_vs_baseline": 0.030399999999999983,
+        "routeknn_delta_vs_metarank": -0.004799999999999971
+      }
+    },
+    "oof_diversity_vs_metarank": {
+      "rows": 9000,
+      "disagreements": 1699,
+      "routeknn_correct_metarank_wrong": 109,
+      "metarank_correct_routeknn_wrong": 224,
+      "disagreement_rate": 0.18877777777777777
+    }
+  },
+  "test_diagnostics": {
+    "rows": 6000,
+    "current_seen_rate": 0.8741666666666666,
+    "unique_predictions": 464,
+    "top_prediction_share": 0.16916666666666666,
+    "prediction_min": 3,
+    "prediction_max": 4560,
+    "change_rate_from_baseline": 0.258,
+    "disagreement_rate_from_metarank": 0.134
+  },
+  "acceptance_gate": {
+    "checks": {
+      "mean_gain_at_least_0_015": false,
+      "wins_at_least_4_of_5_folds": true,
+      "seen_current_gain_at_least_0_010": true,
+      "worst_fold_drop_within_0_005": true,
+      "category_ood_drop_within_0_005": true,
+      "target_seen_rate_is_zero": true,
+      "state_id_ablation_is_exact": true,
+      "runtime_under_600_seconds": true,
+      "submission_is_ready": true
+    },
+    "status": "REJECT"
+  },
+  "leakage_check": {
+    "static_metadata_available_at_test": true,
+    "route_index_fit_per_fold": true,
+    "state_id_used": false,
+    "external_data_or_api": false
+  },
+  "submission_validation": {
+    "status": "READY",
+    "rows": 6000,
+    "unique_predictions": 464,
+    "csv_sha256": "d2ba847be192edfe2347cfd7aa7ee026a77b501c8f7474f08aac9286418f521e",
+    "int64_prediction_sha256": "789baa50c036e725e09ed8c8538b4da68e65c8b8b612f806b43ef87243ca7013"
+  },
+  "submission": "C:\\Users\\Sam\\OneDrive\\Documents\\Project\\datathon-2026\\task2\\experiments\\d2-e003-routeknn\\submission.csv",
+  "runtime_seconds": 25.07655210001394,
+  "recommendation": "REJECT",
+  "submission_verdict": "DO_NOT_SUBMIT"
+}

@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0021
+Revision: 0023
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 13:01:28 +07:00
+Last Global Update: 2026-07-19 13:10:41 +07:00
 Competition Clock: RUNNING
-Repository Branch: exp/d2-e002-metarank
+Repository Branch: exp/d2-e003-routeknn
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
 
 ## 1. Active Competition Brief
@@ -57,6 +57,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-002 | DAY 2 | MAIN | NEEDS_REVIEW | HIGH | `d2-baseline-v1` and frozen validation | Reproduce the audit-only title/category heuristic without tuning | `d2-e002-metarank` with comparable fold/subset diagnostics | 2026-07-19 12:48 WIB | 2026-07-19 13:01 WIB | Commit `8365193` pushed to `origin/exp/d2-e002-metarank`; candidate awaits independent VALIDATION review. |
 | D2-VAL-002 | DAY 2 | VALIDATION | IN_PROGRESS | HIGH | Stable MAIN baseline commit | Independently reproduce baseline artifacts and audit `d2-e002-metarank` after handoff | GO/NO-GO candidate verdict with gate evidence | 2026-07-19 12:38 WIB | 2026-07-19 12:50 WIB | Baseline audit complete at `task2/reports/d2-e001-baseline-validation-audit.md`; E002 audit awaits its immutable handoff commit. |
 | D2-SUB-002 | DAY 2 | SUBMISSION | DONE | HIGH | MAIN commit `0f94a1c` with validator ancestor `721c4bf` | Clean local dual-environment notebook reproduction and exact-reference check | Notebook readiness verdict without Kaggle slot | 2026-07-19 12:39 WIB | 2026-07-19 12:49 WIB | `READY`; 12 tests pass, isolated smoke output is byte-identical to reference with SHA-256 `20e629...b70b96`; actual Kaggle Run All remains deferred. |
+| D2-MAIN-003 | DAY 2 | MAIN | DONE | HIGH | E002 immutable handoff and frozen validation | Test an instance-based nearest-route hypothesis without changing E002 or its notebook | `d2-e003-routeknn` with directly comparable diagnostics | 2026-07-19 13:02 WIB | 2026-07-19 13:10 WIB | `REJECT`: +0.011222 over baseline misses the frozen +0.015 gate; unseen-current proxy accuracy collapses; do not submit or retune. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -64,13 +65,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D2-MAIN-002
-Status: NEEDS_REVIEW
-Last Read Revision: 0018
-Last Update: 2026-07-19 12:56:27 +07:00
+Current Task: D2-MAIN-003
+Status: DONE
+Last Read Revision: 0022
+Last Update: 2026-07-19 13:10:41 +07:00
 
 ### Current Objective
-Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` on the unchanged `d2-targetgroup-v1` harness.
+Test a structurally independent nearest-route retrieval hypothesis on the unchanged `d2-targetgroup-v1` harness while E002 is audited.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -88,7 +89,8 @@ Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` o
 - Published `exp/d2-e001-baseline` and tag `d2-baseline-v1` at commit `0f94a1c` so teammates can branch independently.
 - Implemented the exact frozen `d2-e002-metarank` formula with no weight/tokenizer/seed search and reproduced the independent audit mean accuracy exactly.
 ### Work in Progress
-- E002 immutable commit `8365193` is pushed and waiting for VALIDATION; notebook integration and Kaggle submission remain deferred.
+- E002 immutable commit `8365193` is pushed and waiting for VALIDATION.
+- Notebook integration and Kaggle submission remain deferred until E002 receives an independent verdict.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -98,6 +100,8 @@ Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` o
 - `d2-e002-metarank`: mean 0.285333 versus baseline 0.261333, gain +0.024000; folds 0.290556, 0.282778, 0.278333, 0.280556, 0.294444; 5/5 wins; worst 0.278333.
 - E002 current-unseen delta 0.000000; entirely-unseen-target-category accuracy 0.280000 -> 0.315200; test change rate 0.151333; 449 unique predictions; final recorded runtime 12.04s.
 - Tests: 7 model/validation plus 12 submission-validator tests pass; E002 submission validator `READY`.
+- `d2-e003-routeknn`: mean 0.272556, gain +0.011222 over baseline, 5/5 baseline fold wins, worst 0.266111, but below the frozen +0.015 gate and 0/5 versus E002.
+- E003 seen-current accuracy improves 0.295710 -> 0.323199, while unseen-current accuracy falls 0.123539 -> 0.069560; verdict `REJECT / DO NOT SUBMIT` without retuning.
 ### Files Changed
 - `task2/src/`; `task2/tests/`; `task2/experiments/d2-e001-baseline/`; `task2/notebooks/`; `task2/reports/`; `task2/README.md`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -119,6 +123,8 @@ Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` o
 - `task2/experiments/d2-e002-metarank/{config,metrics,notes}`
 - `task2/reports/d2-e001-baseline-notebook-audit.md`
 - `task2/src/metarank.py`; `task2/src/run_metarank_experiment.py`; `task2/src/test_metarank.py`
+- `task2/experiments/d2-e003-routeknn/{config,metrics,notes}`
+- `task2/src/routeknn.py`; `task2/src/run_routeknn_experiment.py`; `task2/src/test_routeknn.py`
 ### Decisions Needed
 - Independent VALIDATION verdict on the immutable `d2-e002-metarank` commit.
 - Whether screenshot link extraction clears its fixed 100-page precision/recall/runtime feasibility gate.
@@ -128,7 +134,7 @@ Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` o
 ### Blockers
 - NONE
 ### Next Action
-- While VALIDATION audits E002 commit `8365193`, start the next structurally independent candidate from `d2-baseline-v1`; do not submit or alter the final notebook.
+- Preserve E003 as a rejected diagnostic, wait for E002 audit closure, then integrate only an independently approved candidate into the final notebook.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -227,6 +233,7 @@ Only SUBMISSION may update this section; it may not change model/validation with
 | d1-e001-persist | DAY 1 | MAIN | Mean/last/trend forecasts from the exact 15-step history establish a leakage-safe floor. | NONE | 540 contiguous tail origins per train block | 29.6995 | 29.8669; 29.5322 | 29.8669 | 0.1674 | min 0.0; max 101.9333; mean 52.7290 | 4.83s | INVESTIGATE | `task1/experiments/d1-e001-persist/metrics.json` |
 | d2-e001-baseline | DAY 2 | MAIN | Current-specific next-click mode is the cheapest transferable floor when test targets are unseen. | NONE | `d2-targetgroup-v1` | 0.261333 | 0.267778; 0.255556; 0.265556; 0.255000; 0.262778 | 0.255000 | 0.005195 | 544 unique test predictions; top share 0.2715 | 4.96s | KEEP | `task2/experiments/d2-e001-baseline/metrics.json` |
 | d2-e002-metarank | DAY 2 | MAIN | Frozen target-aware category/title similarity improves candidate selection without changing candidate coverage. | `d2-baseline-v1` | `d2-targetgroup-v1` | 0.285333 | 0.290556; 0.282778; 0.278333; 0.280556; 0.294444 | 0.278333 | 0.006142 | 449 unique test predictions; top share 0.2752; change rate 0.1513 | 12.04s | KEEP | `task2/experiments/d2-e002-metarank/metrics.json` |
+| d2-e003-routeknn | DAY 2 | MAIN | One nearest fold-local route transfers across unseen targets using exact current and static metadata. | `d2-baseline-v1` | `d2-targetgroup-v1` | 0.272556 | 0.277222; 0.266111; 0.271667; 0.271667; 0.276111 | 0.266111 | 0.003938 | 464 unique test predictions; top share 0.1692; 13.40% disagreement vs E002 | 25.08s | REJECT | `task2/experiments/d2-e003-routeknn/metrics.json` |
 
 Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`. Record validation, seed, fold scores, worst fold, std, runtime, artifact, and decision. Never invent scores.
 
@@ -298,6 +305,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 12:56:27 +07:00 | 0019 | MAIN | D2-MAIN-002 | Completed the frozen metadata-rank challenger | Exact audit mean 0.285333 reproduced; +0.024000 over baseline; 5/5 folds and all preregistered gates pass; no notebook or Kaggle slot changed | Commit and push the immutable candidate, then request independent VALIDATION review |
 | 2026-07-19 12:50:11 +07:00 | 0020 | VALIDATION | D2-VAL-002 | Independently reproduced and audited `d2-e001-baseline` at `0f94a1c` | Harness `GO`; baseline `DIAGNOSTIC ONLY`; submission `DO NOT SUBMIT`; manifest and stable metrics reproduced with no material leakage | Await the frozen `d2-e002-metarank` handoff commit and apply preregistered gates |
 | 2026-07-19 13:01:28 +07:00 | 0021 | MAIN | D2-MAIN-002 | Published the immutable E002 challenger | Commit `8365193` pushed; exact audit score and all frozen gates pass; submission remains `INVESTIGATE` pending independent review | VALIDATION audits `8365193`; MAIN starts a structurally independent candidate from `d2-baseline-v1` |
+| 2026-07-19 13:02:41 +07:00 | 0022 | MAIN | D2-MAIN-003 | Started the structurally independent route-neighbor challenger | Branch `exp/d2-e003-routeknn` preserves E002 commit `8365193` and the frozen validation; no notebook or slot changed | Preregister the exact neighbor rule, implement once, and apply the fixed gate |
+| 2026-07-19 13:10:41 +07:00 | 0023 | MAIN | D2-MAIN-003 | Completed the preregistered one-nearest-route challenger | `REJECT`: mean gain +0.011222 misses +0.015 gate; unseen-current proxy accuracy falls to 0.069560; validator remains READY | Preserve the diagnostic without retuning or submission; E002 remains the candidate awaiting audit |
 
 Append only. Correct errors with a new entry; do not erase history.
 
