@@ -23,3 +23,11 @@ This does not invalidate the screenshot signal: the earlier fixed diagnostic
 improved E002 by +0.0708 accuracy on 226 covered validation rows and won 5/5
 diagnostic folds. It means the available OCR/runtime/reproducibility path is not
 competition-ready before the deadline. E002 remains the only audited final.
+
+After the competition decision was frozen, the human requested a local research
+notebook so the full hypothesis could be tested without deadline pressure.
+`task2/notebooks/d2-e014-prelink-local.ipynb` now provides resumable extraction,
+the unchanged five-fold target-group comparison, a separate local CSV, and
+fail-closed submission validation. This tooling does not revise the stored
+`REJECT` verdict: E014 remains diagnostic until a complete run and independent
+audit exist.

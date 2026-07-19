@@ -24,6 +24,46 @@ _MAPPER: TitleMapper | None = None
 _ZIP_PATH: Path | None = None
 
 
+def resolve_zip_path(explicit: Path | None = None) -> Path:
+    """Resolve the official Task 2 ZIP for local or Kaggle execution."""
+
+    if explicit is not None:
+        candidates = [explicit]
+    else:
+        candidates = []
+        configured = os.environ.get("TASK2_ZIP_PATH")
+        if configured:
+            candidates.append(Path(configured))
+        candidates.extend(
+            [
+                Path("task2/data/competition/datathon-task-2.zip"),
+                Path.home() / "Downloads" / "datathon-task-2.zip",
+            ]
+        )
+        kaggle_input = Path("/kaggle/input")
+        if kaggle_input.is_dir():
+            candidates.extend(kaggle_input.rglob("datathon-task-2.zip"))
+
+    matches = sorted(
+        {
+            candidate.expanduser().resolve()
+            for candidate in candidates
+            if candidate.is_file()
+        },
+        key=str,
+    )
+    if len(matches) == 1:
+        return matches[0]
+    if not matches:
+        raise FileNotFoundError(
+            "Task 2 ZIP not found. Set TASK2_ZIP_PATH or pass --zip-path."
+        )
+    raise RuntimeError(
+        "multiple Task 2 ZIP files found; set TASK2_ZIP_PATH explicitly: "
+        + ", ".join(str(path) for path in matches)
+    )
+
+
 def _init_worker(data_root: str, zip_path: str) -> None:
     global _ENGINE, _MAPPER, _ZIP_PATH
     os.environ.setdefault("OMP_NUM_THREADS", "1")
@@ -117,12 +157,39 @@ def source_article_ids(data_root: Path) -> list[int]:
     )
 
 
+def _shard_cache_path(resume_dir: Path, article_ids: list[int]) -> Path:
+    digest = hashlib.sha256(
+        np.asarray(article_ids, dtype="<i8").tobytes()
+    ).hexdigest()[:16]
+    return resume_dir / f"shard-{article_ids[0]:05d}-{len(article_ids):04d}-{digest}.json"
+
+
+def _read_cached_shard(path: Path, expected_ids: list[int]) -> dict[str, object]:
+    result = json.loads(path.read_text(encoding="utf-8"))
+    if {int(value) for value in result.get("links", {})} != set(expected_ids):
+        raise ValueError(f"checkpoint does not match expected shard: {path}")
+    return result
+
+
+def _write_cached_shard(
+    resume_dir: Path, article_ids: list[int], result: dict[str, object]
+) -> None:
+    resume_dir.mkdir(parents=True, exist_ok=True)
+    destination = _shard_cache_path(resume_dir, article_ids)
+    temporary = destination.with_suffix(".tmp")
+    temporary.write_text(
+        json.dumps(result, separators=(",", ":")) + "\n", encoding="utf-8"
+    )
+    temporary.replace(destination)
+
+
 def run(
     data_root: Path,
     zip_path: Path,
     workers: int,
     shard_pages: int,
     limit: int | None,
+    resume_dir: Path | None = None,
 ) -> dict[str, object]:
     article_ids = source_article_ids(data_root)
     if limit is not None:
@@ -146,24 +213,42 @@ def run(
         "fuzzy_mapping_rows": 0,
     }
     shard_runtimes: list[float] = []
-    with ProcessPoolExecutor(
-        max_workers=workers,
-        initializer=_init_worker,
-        initargs=(str(data_root), str(zip_path)),
-    ) as executor:
-        futures = [executor.submit(_extract_shard, shard) for shard in shards]
-        completed_pages = 0
-        for future in as_completed(futures):
-            result = future.result()
-            links.update(result["links"])
-            for key in totals:
-                totals[key] += int(result["totals"][key])
-            completed_pages += int(result["totals"]["pages"])
-            shard_runtimes.append(float(result["runtime_seconds"]))
-            print(
-                f"prelink pages {completed_pages}/{len(article_ids)}",
-                flush=True,
-            )
+    completed_pages = 0
+
+    def merge_result(result: dict[str, object]) -> None:
+        nonlocal completed_pages
+        links.update(result["links"])
+        for key in totals:
+            totals[key] += int(result["totals"][key])
+        completed_pages += int(result["totals"]["pages"])
+        shard_runtimes.append(float(result["runtime_seconds"]))
+        print(f"prelink pages {completed_pages}/{len(article_ids)}", flush=True)
+
+    pending: list[list[int]] = []
+    cached_shards = 0
+    for shard in shards:
+        checkpoint = None if resume_dir is None else _shard_cache_path(resume_dir, shard)
+        if checkpoint is not None and checkpoint.is_file():
+            merge_result(_read_cached_shard(checkpoint, shard))
+            cached_shards += 1
+        else:
+            pending.append(shard)
+
+    if pending:
+        with ProcessPoolExecutor(
+            max_workers=workers,
+            initializer=_init_worker,
+            initargs=(str(data_root), str(zip_path)),
+        ) as executor:
+            futures = {
+                executor.submit(_extract_shard, shard): shard for shard in pending
+            }
+            for future in as_completed(futures):
+                shard = futures[future]
+                result = future.result()
+                if resume_dir is not None:
+                    _write_cached_shard(resume_dir, shard, result)
+                merge_result(result)
     runtime = time.perf_counter() - started
     mapping_rows = totals["exact_mapping_rows"] + totals["fuzzy_mapping_rows"]
     payload = {
@@ -183,11 +268,16 @@ def run(
             "workers": workers,
             "shard_pages": shard_pages,
             "shard_runtimes": shard_runtimes,
+            "cached_shards": cached_shards,
+            "computed_shards": len(pending),
             "runtime_seconds": runtime,
             "runtime_seconds_per_page": runtime / len(article_ids),
-            "projected_union_runtime_seconds": runtime
-            if limit is None
-            else runtime / len(article_ids) * 4312,
+            "runtime_projection_available": cached_shards == 0,
+            "projected_union_runtime_seconds": (
+                runtime if limit is None else runtime / len(article_ids) * 4312
+            )
+            if cached_shards == 0
+            else None,
         },
     }
     return payload
@@ -200,22 +290,20 @@ def main() -> None:
         type=Path,
         default=Path("task2/data/competition/dataset-task2"),
     )
-    parser.add_argument(
-        "--zip-path",
-        type=Path,
-        default=Path(r"C:\Users\Sam\Downloads\datathon-task-2.zip"),
-    )
+    parser.add_argument("--zip-path", type=Path)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--shard-pages", type=int, default=128)
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--resume-dir", type=Path)
     parser.add_argument("--output-json", type=Path, required=True)
     args = parser.parse_args()
     payload = run(
         args.data_root.resolve(),
-        args.zip_path.resolve(),
+        resolve_zip_path(args.zip_path),
         args.workers,
         args.shard_pages,
         args.limit,
+        None if args.resume_dir is None else args.resume_dir.resolve(),
     )
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(

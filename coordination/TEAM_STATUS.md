@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0041
+Revision: 0042
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 15:51:11 +07:00
+Last Global Update: 2026-07-19 16:33:11 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d2-e014-prelink
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -76,6 +76,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-010 | DAY 2 | MAIN | DONE | HIGH | Final E002 selection and notebook readiness | Produce the required maximum-three-page technical writeup consistent with the frozen model and submission | Rendered Task 2 writeup PDF plus reproducible source/build script | 2026-07-19 14:45 WIB | 2026-07-19 15:09 WIB | `READY`: local commit `feca95c`, independent report `877b7b1` integrated as `2343f1e`; 2 pages, exact PDF hash, clean render, consistent content and naming. |
 | D2-MAIN-011 | DAY 2 | MAIN | DONE | HIGH | Official screenshot ZIP, E002 fallback, and bounded Stage-0 gate | Test blue-link OCR and closed-vocabulary title mapping before any full graph/model run | Immutable `d2-e012-linkgraph` feasibility verdict; candidate only if every gate passes | 2026-07-19 15:16 WIB | 2026-07-19 15:37 WIB | E012 and detector-free E013 both `REJECT`: recall/precision pass, runtime and Kaggle-packaging gates fail; no full graph, rescue, or slot. |
 | D2-MAIN-012 | DAY 2 | MAIN | DONE | HIGH | Strong sampled link-rank signal and rejected online OCR runtime | Precompute official screenshot candidates as a compact reproducible model artifact, then run unchanged frozen validation | `d2-e014-prelink` full-fold verdict, artifact, notebook plan, and slot decision | 2026-07-19 15:37 WIB | 2026-07-19 15:46 WIB | `REJECT`: 200-page benchmark projects 89.72 minutes, failing the frozen 60-minute precompute gate; stopped before full extraction/validation/artifact/notebook/slot. |
+| D2-MAIN-013 | DAY 2 | MAIN | DONE | MEDIUM | Human requests a post-competition local E014 rerun | Clean VS Code notebook with resumable official-ZIP extraction, frozen-fold evaluation, CSV creation, and validation | `task2/notebooks/d2-e014-prelink-local.ipynb` plus focused pipeline support | 2026-07-19 16:20 WIB | 2026-07-19 16:33 WIB | Local experiment tooling only; E014 remains unaudited/rejected and E002 remains the official final candidate. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -83,13 +84,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D2-MAIN-012
+Current Task: D2-MAIN-013
 Status: DONE
-Last Read Revision: 0041
-Last Update: 2026-07-19 15:51:11 +07:00
+Last Read Revision: 0042
+Last Update: 2026-07-19 16:33:11 +07:00
 
 ### Current Objective
-Freeze the rejected screenshot-link evidence, preserve all remaining slots, and hand off the READY E002 final notebook/submission/writeup.
+Provide a clean, resumable local E014 notebook without changing the frozen E002 final decision.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -110,8 +111,9 @@ Freeze the rejected screenshot-link evidence, preserve all remaining slots, and 
 - Completed E003 without retuning; the failed +0.015 mean-gain gate makes it `REJECT / DO NOT SUBMIT`.
 - Closed E010 at immutable candidate commit `13194222` and independent audit `8f5ee0a`: `NO-GO / REJECT / DO NOT SUBMIT`, 0/5 wins, no material leakage, and no rescue tuning.
 - Selected E002 as the final candidate and stopped further Task 2 modeling.
+- Added a local-only E014 notebook that extracts official screenshot links with resumable shards, evaluates the unchanged target-group folds, writes a separate CSV, and invokes the fail-closed validator.
 ### Work in Progress
-- NONE; E012-E014 are closed and E002 remains final.
+- NONE; the E014 local notebook is ready for the human to run, while E002 remains final.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -387,6 +389,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 15:37:38 +07:00 | 0039 | MAIN | D2-MAIN-011/012 | Rejected two online OCR implementations, then admitted one final artifact-first attempt | E012/E013 recall and precision pass but runtime/Kaggle packaging fail; sampled link-ranking gains +0.0708 across 5/5 diagnostic folds; E002 remains READY fallback | Precompute with fixed rules for at most 60 minutes, then require full frozen-fold promotion and reproducibility before any slot |
 | 2026-07-19 15:46:09 +07:00 | 0040 | MAIN | D2-MAIN-012 | Stopped E014 at the frozen precompute gate and refroze E002 | 200-page four-worker benchmark projects 5,383 seconds for the relevant union, exceeding 3,600 seconds; no full extraction, validation, notebook, or slot | Commit/push negative evidence; human selects E002 slot 1 and uploads the READY notebook before 18:00 WIB |
 | 2026-07-19 15:51:11 +07:00 | 0041 | MAIN | D2-MAIN-012 | Applied the human-supplied panitia clarification to final eligibility | Screenshot preprocessing must run end-to-end inside the submitted notebook; E014's precomputed-artifact architecture is ineligible in addition to failing runtime | Preserve E002 as the only eligible READY final and use no more slots |
+| 2026-07-19 16:33:11 +07:00 | 0042 | MAIN | D2-MAIN-013 | Prepared a resumable local E014 experiment notebook at the human's request | Clean 12-cell notebook, focused ranker tests, syntax checks, two-page OCR smoke extraction, and checkpoint reuse pass; full 4,312-page extraction intentionally not run | Human may run `d2-e014-prelink-local.ipynb` in VS Code; treat its CSV as diagnostic until frozen-fold results and independent audit pass |
 
 Append only. Correct errors with a new entry; do not erase history.
 
@@ -406,6 +409,7 @@ Append only. Correct errors with a new entry; do not erase history.
 - Final submission: `sub-s01-d2-e002-metarank.csv`, public accuracy 0.321; model decision frozen, Kaggle final-selection checkbox remains a human action.
 - Final experiment: `d2-e002-metarank` at immutable model commit `8365193`; local mean accuracy 0.285333 with 5/5 fold wins over baseline.
 - Notebook status: `READY` at clean delivery commit `3b28567`, independently re-audited in report commit `691b452`; final Kaggle notebook upload remains a human action.
+- Optional post-competition experiment: `task2/notebooks/d2-e014-prelink-local.ipynb` can run E014 end-to-end locally with resumable checkpoints; it is not the selected final notebook and has not completed full validation.
 - Writeup status: `READY`; two-page `output/pdf/EnterYourTeamName_Task2_Writeup.pdf` is independently audited in `task2/reports/d2-final-writeup-audit.md`.
 - Unresolved reproducibility risk: no known model/notebook blocker; only the human Kaggle final-selection and deliverable uploads remain outside the repository.
 - Final deliverable checklist: submission exists; select slot 1 as final; upload/run the clean notebook before 18:00 WIB; deliver the reviewed writeup by 20 July 23:59 WIB.
