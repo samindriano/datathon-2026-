@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0023
+Revision: 0024
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 13:10:41 +07:00
+Last Global Update: 2026-07-19 13:13:24 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d2-e003-routeknn
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -38,6 +38,7 @@ Only MAIN may update this section.
 | D2-DEC-001 | 2026-07-19 12:15 WIB | Reset Task 2 from `origin/main` on `exp/d2-e001-baseline`; reuse no Task 1 model, metric, validation, feature, or submission assumption. | Official Task 2 is exact-match next-click prediction over Wikipedia states and screenshots, structurally different from Task 1. | MAIN | None; only generic tooling may be reused after compatibility checks. |
 | D2-DEC-002 | 2026-07-19 12:15 WIB | Treat target-article-disjoint validation as the leading proposal pending independent audit. | Train and test target sets are disjoint (360 versus 240 unique targets; zero overlap), while 5,245/6,000 test current articles appear in train. | MAIN | VALIDATION demonstrates a more faithful split or finds the observed partition is an artifact. |
 | D2-DEC-003 | 2026-07-19 12:38 WIB | Freeze `d2-targetgroup-v1`: five deterministic category-balanced folds grouped by target article, seed 20260719; never use random-row validation. | Independent VALIDATION verdict `GO`; every hidden-test target is unseen, every fold has 72 disjoint targets/1,800 rows, and fold target hashes plus coverage/OOD/state-ID diagnostics are now recorded. | MAIN | Only an official rule/data correction or independently demonstrated structural mismatch can supersede it; model scores do not justify changing folds. |
+| D2-DEC-004 | 2026-07-19 13:13 WIB | Promote `d2-e002-metarank` to the leading model candidate after independent `GO/KEEP`; do not submit until its notebook reproduces exactly and SUBMISSION returns `READY`. | Audit commit `2e76cab`: 10/10 gates pass, +0.024000 accuracy, 5/5 fold wins, no material leakage, exact CSV reproduction. | MAIN | A later candidate passes its preregistered gate and independent audit with stronger robustness evidence. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -54,10 +55,12 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-001 | DAY 2 | MAIN | DONE | HIGH | Official Task 2 ZIP | Schema audit, target-group validation, cheapest end-to-end baseline, and experiment map | Reproducible `d2-e001-baseline` plus audited handoffs | 2026-07-19 12:08 WIB | 2026-07-19 12:38 WIB | Mean accuracy 0.261333; diagnostic floor only; clean local notebook output exactly matches runner; do not submit. |
 | D2-VAL-001 | DAY 2 | VALIDATION | IN_PROGRESS | HIGH | Extracted official CSV metadata | Independent group split, duplicate, leakage, and distribution audit | `GO`, `INVESTIGATE`, or `NO-GO` validation verdict | 2026-07-19 12:15 WIB | 2026-07-19 12:15 WIB | Read-only audit delegated; target-group proposal not yet frozen. |
 | D2-SUB-001 | DAY 2 | SUBMISSION | DONE | HIGH | Test, sample submission, and articles CSVs | Fail-closed schema contract and dual local/Kaggle path requirements | Validator, regression tests, and readiness report | 2026-07-19 12:15 WIB | 2026-07-19 12:29 WIB | `READY` for CSV validation at commit `be28757`; no submission authorized or slot used. |
-| D2-MAIN-002 | DAY 2 | MAIN | NEEDS_REVIEW | HIGH | `d2-baseline-v1` and frozen validation | Reproduce the audit-only title/category heuristic without tuning | `d2-e002-metarank` with comparable fold/subset diagnostics | 2026-07-19 12:48 WIB | 2026-07-19 13:01 WIB | Commit `8365193` pushed to `origin/exp/d2-e002-metarank`; candidate awaits independent VALIDATION review. |
-| D2-VAL-002 | DAY 2 | VALIDATION | IN_PROGRESS | HIGH | Stable MAIN baseline commit | Independently reproduce baseline artifacts and audit `d2-e002-metarank` after handoff | GO/NO-GO candidate verdict with gate evidence | 2026-07-19 12:38 WIB | 2026-07-19 12:50 WIB | Baseline audit complete at `task2/reports/d2-e001-baseline-validation-audit.md`; E002 audit awaits its immutable handoff commit. |
+| D2-MAIN-002 | DAY 2 | MAIN | DONE | HIGH | `d2-baseline-v1` and frozen validation | Reproduce the audit-only title/category heuristic without tuning | `d2-e002-metarank` with comparable fold/subset diagnostics | 2026-07-19 12:48 WIB | 2026-07-19 13:13 WIB | Independent audit `GO/KEEP`; commit `8365193` remains the immutable model snapshot and leading candidate. |
+| D2-VAL-002 | DAY 2 | VALIDATION | DONE | HIGH | Stable MAIN baseline commit | Independently reproduce baseline artifacts and audit `d2-e002-metarank` after handoff | GO/NO-GO candidate verdict with gate evidence | 2026-07-19 12:38 WIB | 2026-07-19 13:08 WIB | E002 audit `GO/KEEP`; report at `task2/reports/d2-e002-metarank-validation-audit.md`; submission remains `DO NOT SUBMIT` pending notebook review. |
 | D2-SUB-002 | DAY 2 | SUBMISSION | DONE | HIGH | MAIN commit `0f94a1c` with validator ancestor `721c4bf` | Clean local dual-environment notebook reproduction and exact-reference check | Notebook readiness verdict without Kaggle slot | 2026-07-19 12:39 WIB | 2026-07-19 12:49 WIB | `READY`; 12 tests pass, isolated smoke output is byte-identical to reference with SHA-256 `20e629...b70b96`; actual Kaggle Run All remains deferred. |
 | D2-MAIN-003 | DAY 2 | MAIN | DONE | HIGH | E002 immutable handoff and frozen validation | Test an instance-based nearest-route hypothesis without changing E002 or its notebook | `d2-e003-routeknn` with directly comparable diagnostics | 2026-07-19 13:02 WIB | 2026-07-19 13:10 WIB | `REJECT`: +0.011222 over baseline misses the frozen +0.015 gate; unseen-current proxy accuracy collapses; do not submit or retune. |
+| D2-MAIN-004 | DAY 2 | MAIN | IN_PROGRESS | HIGH | E002 independent `GO/KEEP` | Convert the verified dual-environment notebook to exact E002 inference | Clean E002 notebook and byte-identical local CSV | 2026-07-19 13:13 WIB | 2026-07-19 13:13 WIB | No Kaggle slot until local clean reproduction and SUBMISSION audit both pass. |
+| D2-SUB-003 | DAY 2 | SUBMISSION | BACKLOG | HIGH | Immutable E002 notebook handoff | Audit clean notebook, exact CSV/hash, paths, dependencies, and Run-All contract | `READY`, `NOT READY`, or `INVESTIGATE` without using a slot | TODO | 2026-07-19 13:13 WIB | MAIN must provide a clean immutable notebook commit first. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -65,13 +68,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D2-MAIN-003
-Status: DONE
-Last Read Revision: 0022
-Last Update: 2026-07-19 13:10:41 +07:00
+Current Task: D2-MAIN-004
+Status: IN_PROGRESS
+Last Read Revision: 0023
+Last Update: 2026-07-19 13:13:24 +07:00
 
 ### Current Objective
-Test a structurally independent nearest-route retrieval hypothesis on the unchanged `d2-targetgroup-v1` harness while E002 is audited.
+Produce a clean dual-environment E002 inference notebook whose local output is byte-identical to the independently audited CSV.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -88,9 +91,10 @@ Test a structurally independent nearest-route retrieval hypothesis on the unchan
 - Preregistered four structurally distinct post-baseline hypotheses and their acceptance gates.
 - Published `exp/d2-e001-baseline` and tag `d2-baseline-v1` at commit `0f94a1c` so teammates can branch independently.
 - Implemented the exact frozen `d2-e002-metarank` formula with no weight/tokenizer/seed search and reproduced the independent audit mean accuracy exactly.
+- Integrated independent E002 audit commit `2e76cab`: `GO/KEEP`, all 10 gates pass, no material leakage, and exact CSV reproduction.
+- Completed E003 without retuning; the failed +0.015 mean-gain gate makes it `REJECT / DO NOT SUBMIT`.
 ### Work in Progress
-- E002 immutable commit `8365193` is pushed and waiting for VALIDATION.
-- Notebook integration and Kaggle submission remain deferred until E002 receives an independent verdict.
+- Converting the verified baseline notebook contract to exact E002 inference; Kaggle submission remains deferred.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -126,15 +130,15 @@ Test a structurally independent nearest-route retrieval hypothesis on the unchan
 - `task2/experiments/d2-e003-routeknn/{config,metrics,notes}`
 - `task2/src/routeknn.py`; `task2/src/run_routeknn_experiment.py`; `task2/src/test_routeknn.py`
 ### Decisions Needed
-- Independent VALIDATION verdict on the immutable `d2-e002-metarank` commit.
 - Whether screenshot link extraction clears its fixed 100-page precision/recall/runtime feasibility gate.
 ### Tasks Dispatched to Other Agents
-- `D2-VAL-002` queued: close the validation report in-repo and independently audit the stable baseline/E002 handoff.
+- `D2-VAL-002` completed: E002 is `GO/KEEP` at immutable model commit `8365193`.
 - `D2-SUB-002` completed: baseline notebook locally reproducible and byte-identical; actual Kaggle Run All remains deferred.
+- `D2-SUB-003` queued after MAIN produces an immutable E002 notebook commit.
 ### Blockers
 - NONE
 ### Next Action
-- Preserve E003 as a rejected diagnostic, wait for E002 audit closure, then integrate only an independently approved candidate into the final notebook.
+- Update only the final notebook to E002, reproduce its audited CSV in a clean local process, then hand the immutable commit to SUBMISSION.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -144,40 +148,40 @@ Only MAIN may update this section.
 <!-- VALIDATION:START -->
 Role: VALIDATION
 Current Task: D2-VAL-002
-Status: IN_PROGRESS
-Last Read Revision: 0016
-Last Update: 2026-07-19 12:50:11 +07:00
+Status: DONE
+Last Read Revision: 0022
+Last Update: 2026-07-19 13:08:06 +07:00
 
 ### Scope Being Audited
-- MAIN commit `0f94a1c`, experiment `d2-e001-baseline`, and frozen validation `d2-targetgroup-v1`.
+- MAIN commit `8365193`, experiment `d2-e002-metarank`, baseline `d2-baseline-v1`, and unchanged validation `d2-targetgroup-v1`.
 ### Evidence Reviewed
-- Baseline/validation source, committed metrics and manifest, extracted official CSVs, temporary clean reproduction, five independently recomputed target hashes, mutation ablations, and 3 focused tests.
+- Immutable model/runner/config/metrics/notes, frozen baseline manifest, official CSVs, clean temporary reproduction, candidate-provenance and held-out-label mutation checks, 7 model/validation tests, and 12 submission-validator tests.
 ### Findings
-- Manifest reproduces byte-for-byte; stable metric fields reproduce exactly after excluding runtime/output path. Mean accuracy is `0.261333` with worst fold `0.255000`.
-- All five folds contain 72 disjoint targets and 1,800 rows; all 360 targets occur exactly once; seed is `20260719`; all five recorded SHA-256 values match independent recomputation.
-- Aggregate validation current-seen coverage is `0.800333` with accuracy `0.295710`; unseen accuracy is `0.123539`; next-label coverage is `0.942000`; observed outgoing-candidate coverage is `0.305333`.
-- Entirely-unseen target categories cover 25 targets/625 rows with accuracy `0.280000`, versus `0.259940` on seen-category rows. Test predictions have 544 unique labels and top share `0.271500`.
+- Stable metrics reproduce exactly after excluding runtime/output path; independently generated CSV matches recorded SHA-256 `87b4a480...ad3d81`.
+- E002 improves mean accuracy `0.261333 -> 0.285333` (`+0.024000`), wins 5/5 folds, and improves worst fold `0.255000 -> 0.278333`; all 10 frozen checks pass.
+- Current-unseen accuracy is unchanged at `0.123539`; entirely-unseen-category accuracy improves `0.280000 -> 0.315200` and does not regress in any fold.
+- Test change rate is `0.151333`; 449 unique predictions and top share `0.275167` show moderate consolidation without collapse.
 ### Leakage Risks
-- No material baseline leakage found: fold construction ignores `state_id`/next labels, and all current-mode/global-mode/candidate statistics are fit on training-fold rows only.
-- Prediction equality holds after mutating validation `state_id` and validation labels in all folds. Future models must repeat this ablation independently.
+- No material leakage found. All label-derived candidates/frequencies are training-fold-only; full-data titles/categories are official static metadata available at test time.
+- Every current-seen prediction comes from its training-fold candidate set; validation-label and state-ID mutation leaves predictions exact in all five folds.
 ### Validation Risks
-- The gate field `target_groups_are_disjoint` is serialized as literal `True`, although runtime intersection guards and the manifest independently prove the invariant for this snapshot. Future maintenance should compute the reporting flag.
-- Validation current-seen coverage (`0.800333`) is lower than test (`0.874167`); retain subset reporting and do not rescale scores from unlabeled test coverage.
+- Fold standard deviation rises slightly `0.005195 -> 0.006142`, but every fold and the worst fold improve; this is not a frozen rejection gate.
+- The model cannot improve unseen-current cases because it deliberately preserves the baseline global fallback; keep subset reporting visible.
 ### Distribution or Fold Risks
-- Entirely-unseen-category support varies from 3 to 10 targets per fold, so both per-fold and pooled subset accuracy must remain visible.
-- Only 30.53% of validation truths appear among training outgoing candidates for the same current article; the baseline is a diagnostic floor, not a competitive final model.
+- Unique test predictions fall `544 -> 449`, but top share changes only `0.271500 -> 0.275167`; no class collapse is evident.
+- Hidden leaderboard labels remain unknown. Local `KEEP` is not notebook readiness or submission authorization.
 ### Recommendation
 - GO
 
 Allowed: `GO`, `NO-GO`, `INVESTIGATE`, `BLOCKED`.
 
 ### Required Action from Main
-- Keep `d2-targetgroup-v1` frozen. Treat `d2-e001-baseline` as `DIAGNOSTIC ONLY` and `DO NOT SUBMIT`.
-- Hand off the frozen `d2-e002-metarank` commit for independent audit against baseline `0.261333` and the preregistered gates.
+- Retain E002 as `KEEP` and compare later structural candidates on the unchanged harness.
+- If E002 is selected, build/reproduce its candidate notebook and obtain independent SUBMISSION `READY` before using a slot.
 ### Blockers
-- E002 audit is waiting for a commit beyond baseline snapshot `0f94a1c`.
+- None for model acceptance. Candidate notebook reproduction remains outstanding for submission readiness.
 ### Next Action
-- Audit `d2-e002-metarank` when MAIN publishes its handoff commit; do not alter the model, folds, or Kaggle slots.
+- Review the next immutable candidate handoff or E002 notebook artifact without changing the frozen validation.
 <!-- VALIDATION:END -->
 
 Only VALIDATION may update this section; it is read-only against the main pipeline.
@@ -276,7 +280,8 @@ Public score is never the sole final-selection reason.
 | D2-HO-002 | SUBMISSION | MAIN | 2026-07-19 12:29 WIB | Commit `be28757`, 12 tests, and `task2/reports/d2-submission-readiness.md` | Reconcile MAIN validator, integrate the fail-closed implementation, and validate notebook output by exact reference. | COMPLETED |
 | D2-HO-003 | SUBMISSION | MAIN | 2026-07-19 12:49 WIB | Audit commit `6d337a8` and `task2/reports/d2-e001-baseline-notebook-audit.md` | Preserve the verified dual-environment contract; defer actual Kaggle Run All until a competitive candidate exists. | ACKNOWLEDGED |
 | D2-HO-004 | VALIDATION | MAIN | 2026-07-19 12:50 WIB | Audit commit `6e7d41a` and `task2/reports/d2-e001-baseline-validation-audit.md` | Keep the harness frozen, baseline diagnostic only, and provide an immutable E002 commit for the next audit. | ACKNOWLEDGED |
-| D2-HO-005 | MAIN | VALIDATION | 2026-07-19 13:01 WIB | E002 commit `8365193`, branch `exp/d2-e002-metarank`, and `task2/experiments/d2-e002-metarank/metrics.json` | Independently reproduce E002, apply frozen gates, and return GO/NO-GO/INVESTIGATE without changing model/folds/notebook or using a slot. | WAITING |
+| D2-HO-005 | MAIN | VALIDATION | 2026-07-19 13:01 WIB | E002 commit `8365193`, branch `exp/d2-e002-metarank`, and `task2/experiments/d2-e002-metarank/metrics.json` | Independently reproduce E002, apply frozen gates, and return GO/NO-GO/INVESTIGATE without changing model/folds/notebook or using a slot. | COMPLETED |
+| D2-HO-006 | VALIDATION | MAIN | 2026-07-19 13:08 WIB | Audit commit `2e76cab` and `task2/reports/d2-e002-metarank-validation-audit.md` | Retain E002 as `KEEP`; build its notebook and obtain independent SUBMISSION `READY` before any slot. | ACKNOWLEDGED |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -307,6 +312,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 13:01:28 +07:00 | 0021 | MAIN | D2-MAIN-002 | Published the immutable E002 challenger | Commit `8365193` pushed; exact audit score and all frozen gates pass; submission remains `INVESTIGATE` pending independent review | VALIDATION audits `8365193`; MAIN starts a structurally independent candidate from `d2-baseline-v1` |
 | 2026-07-19 13:02:41 +07:00 | 0022 | MAIN | D2-MAIN-003 | Started the structurally independent route-neighbor challenger | Branch `exp/d2-e003-routeknn` preserves E002 commit `8365193` and the frozen validation; no notebook or slot changed | Preregister the exact neighbor rule, implement once, and apply the fixed gate |
 | 2026-07-19 13:10:41 +07:00 | 0023 | MAIN | D2-MAIN-003 | Completed the preregistered one-nearest-route challenger | `REJECT`: mean gain +0.011222 misses +0.015 gate; unseen-current proxy accuracy falls to 0.069560; validator remains READY | Preserve the diagnostic without retuning or submission; E002 remains the candidate awaiting audit |
+| 2026-07-19 13:08:06 +07:00 | 0024 | VALIDATION | D2-VAL-002 | Independently reproduced and audited E002 commit `8365193` | `GO/KEEP`; mean gain `+0.024000`, 5/5 folds, improved worst fold/OOD, exact state-ID ablation, all frozen gates pass; submission remains `DO NOT SUBMIT` | MAIN retains E002 and prepares an immutable notebook for SUBMISSION review |
 
 Append only. Correct errors with a new entry; do not erase history.
 
