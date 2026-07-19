@@ -1,0 +1,10 @@
+{
+  "experiment_id": "d2-e008-routeproto",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "validation": "d2-targetgroup-v1",
+  "seed": 20260719,
+  "model": "word TF-IDF route prototypes; fixed ngram_range (1,2), sublinear_tf, min_df=1, L2",
+  "runtime_limit_seconds": 300,
+  "retuning": false
+}
