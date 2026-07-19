@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0044
+Revision: 0045
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 18:43:17 +07:00
+Last Global Update: 2026-07-19 18:47:38 +07:00
 Competition Clock: CLOSED
 Repository Branch: exp/d2-e014-prelink
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -392,6 +392,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 16:33:11 +07:00 | 0042 | MAIN | D2-MAIN-013 | Prepared a resumable local E014 experiment notebook at the human's request | Clean 12-cell notebook, focused ranker tests, syntax checks, two-page OCR smoke extraction, and checkpoint reuse pass; full 4,312-page extraction intentionally not run | Human may run `d2-e014-prelink-local.ipynb` in VS Code; treat its CSV as diagnostic until frozen-fold results and independent audit pass |
 | 2026-07-19 17:35:42 +07:00 | 0043 | MAIN | D2-MAIN-014 | Reconfigured the E014 local notebook for a responsive checkpoint-resume run | Balanced CPU mode uses 2 workers with 1 thread each; notebook cleanliness tests and a one-page OCR smoke run pass | Start VS Code `Run All`; leave the long local run unattended and do not treat its output as an official submission without audit |
 | 2026-07-19 18:43:17 +07:00 | 0044 | MAIN | D2-MAIN-014 | Closed and documented the post-competition E014 research run | Full local validation reached 0.369556 versus E002 0.285333 with 5/5 fold wins; Kaggle late diagnostic displayed 0.375 versus official E002 0.321 | Preserve E002 as official; publish reproducible E014 code and documentation without raw data, checkpoints, or generated CSV |
+| 2026-07-19 18:47:38 +07:00 | 0045 | MAIN | ARCHIVE | Archived remaining independent Task 1 audit reports and local-tooling exclusions | E006, E007, and public-leaderboard-gap reports are now tracked; local worktrees and temporary files remain excluded without deletion | Keep experiment history on remote branch `exp/d2-e014-prelink` for future research |
 
 Append only. Correct errors with a new entry; do not erase history.
 
