@@ -1,0 +1,43 @@
+{
+  "experiment_id": "d2-e012-linkgraph",
+  "owner": "MAIN",
+  "branch": "exp/d2-e012-linkgraph",
+  "baseline_tag": "d2-baseline-v1",
+  "e002_reference_commit": "8365193fd84d754e8b9b45a9b7f9b4af5f201f7a",
+  "dataset_version": "official-task2-2026-07-19",
+  "feature_version": "d2-blue-link-ocr-v1-frozen",
+  "hypothesis": "The official screenshots expose the true outgoing Wikipedia links, enabling graph routing that is structurally unavailable to metadata-only E002.",
+  "stage0": {
+    "sample_rule": "sort unique training current_article_id values by SHA256('20260719:<id>') and take 100",
+    "sample_pages": 100,
+    "evaluation_unit": "unique observed current_article_id,next_article_id edge on sampled pages",
+    "blue_mask": {
+      "blue_min": 140,
+      "red_max": 150,
+      "green_max": 130,
+      "blue_minus_red_min": 60,
+      "blue_minus_green_min": 50
+    },
+    "ocr": {
+      "package": "rapidocr-onnxruntime==1.2.3",
+      "minimum_text_confidence": 0.65
+    },
+    "mapping": {
+      "exact_normalized_title_or_unique_parenthetical_alias": true,
+      "fuzzy_analyzer": "char_wb_tfidf_2_4",
+      "fuzzy_min_cosine": 0.9,
+      "fuzzy_min_margin": 0.1,
+      "minimum_normalized_characters": 3
+    },
+    "acceptance_gates": {
+      "readable_pages": 100,
+      "unique_true_next_candidate_recall_min": 0.85,
+      "exact_mapping_share_precision_proxy_min": 0.97,
+      "projected_full_runtime_seconds_max": 1200,
+      "external_api_or_data": false,
+      "open_weight_provenance_closed": true,
+      "kaggle_reproducibility_closed": true
+    },
+    "stop_rule": "Any failed gate rejects E012 before full-graph validation; no threshold, sample, OCR, or blend rescue."
+  }
+}

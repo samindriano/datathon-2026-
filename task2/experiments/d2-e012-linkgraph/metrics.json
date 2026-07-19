@@ -1,0 +1,46 @@
+{
+  "experiment_id": "d2-e012-linkgraph",
+  "status": "REJECT",
+  "verdict": "DO NOT SUBMIT",
+  "sample_pages": 100,
+  "readable_pages": 100,
+  "unique_true_edges": 186,
+  "recovered_true_edges": 168,
+  "unique_true_next_candidate_recall": 0.9032258064516129,
+  "accepted_mapping_rows": 2887,
+  "exact_mapping_rows": 2860,
+  "fuzzy_mapping_rows": 27,
+  "exact_mapping_share_precision_proxy": 0.9906477312088673,
+  "runtime_seconds": 177.8831659000134,
+  "projected_full_runtime_seconds": 8189.7409580366175,
+  "sample_current_ids_sha256": "f88c519bd7b25ce3b4b88d0d25143450b55c9f33acb759662e9c045038be36bf",
+  "raw_diagnostic_sha256": "52e74c859b83fef4cfa2c8ba4851b0c0ae07804d2a2f3c033dba4357dd5de2dd",
+  "sample_validation_diagnostic": {
+    "rows": 226,
+    "e002_accuracy": 0.3053097345132743,
+    "linkrank_accuracy": 0.37610619469026546,
+    "gain": 0.07079646017699115,
+    "fold_wins": 5,
+    "fold_count": 5,
+    "fold_gains": [
+      0.054545454545454564,
+      0.021739130434782594,
+      0.09090909090909091,
+      0.06666666666666671,
+      0.12765957446808507
+    ],
+    "scope": "diagnostic subset only; not official full-fold validation"
+  },
+  "gates": {
+    "readable_pages_100": true,
+    "recall_at_least_0_85": true,
+    "precision_proxy_at_least_0_97": true,
+    "projected_runtime_at_most_1200_seconds": false,
+    "open_weight_provenance_closed": true,
+    "kaggle_dependency_and_weight_reproduction_closed": false,
+    "all_pass": false
+  },
+  "external_api_or_data": false,
+  "submission_slot_used": false,
+  "recommendation": "Reject without rescue; retain E002. The screenshot-link signal is real, but this detector-based implementation is too slow and not Kaggle-packaged."
+}

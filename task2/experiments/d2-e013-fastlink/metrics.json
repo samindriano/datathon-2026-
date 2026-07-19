@@ -1,0 +1,32 @@
+{
+  "experiment_id": "d2-e013-fastlink",
+  "status": "REJECT",
+  "verdict": "DO NOT SUBMIT",
+  "sample_pages": 100,
+  "readable_pages": 100,
+  "component_crops": 2834,
+  "unique_true_edges": 186,
+  "recovered_true_edges": 163,
+  "unique_true_next_candidate_recall": 0.8763440860215054,
+  "accepted_mapping_rows": 2569,
+  "exact_mapping_rows": 2543,
+  "fuzzy_mapping_rows": 26,
+  "exact_mapping_share_precision_proxy": 0.9898793304787855,
+  "recognition_seconds": 70.5019679069519,
+  "runtime_seconds": 82.4141866999853,
+  "projected_full_runtime_seconds": 3794.349155667323,
+  "sample_current_ids_sha256": "f88c519bd7b25ce3b4b88d0d25143450b55c9f33acb759662e9c045038be36bf",
+  "raw_diagnostic_sha256": "429d10bf1c0d268b11145202358480515f3ecae079d3d2ffd1ff54856f37c1cc",
+  "gates": {
+    "readable_pages_100": true,
+    "recall_at_least_0_85": true,
+    "precision_proxy_at_least_0_97": true,
+    "projected_runtime_at_most_1200_seconds": false,
+    "open_weight_provenance_closed": true,
+    "kaggle_dependency_and_weight_reproduction_closed": false,
+    "all_pass": false
+  },
+  "external_api_or_data": false,
+  "submission_slot_used": false,
+  "recommendation": "Reject without morphology, batch-size, GPU, or mapping rescue; retain E002."
+}

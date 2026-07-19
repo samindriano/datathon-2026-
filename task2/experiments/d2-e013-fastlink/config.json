@@ -1,0 +1,28 @@
+{
+  "experiment_id": "d2-e013-fastlink",
+  "owner": "MAIN",
+  "branch": "exp/d2-e012-linkgraph",
+  "parent_experiment": "d2-e012-linkgraph",
+  "e002_reference_commit": "8365193fd84d754e8b9b45a9b7f9b4af5f201f7a",
+  "hypothesis": "The known blue-pixel coordinates can replace the OCR detector, making outgoing-link extraction fast enough without changing the frozen title mapping or validation rule.",
+  "preregistration": {
+    "sample_rule": "reuse the frozen E012 100-current sample only for direct runtime and recall comparability",
+    "blue_mask": "identical to d2-e012-linkgraph",
+    "component_dilation_height_width": [3, 25],
+    "component_minimum_area": 12,
+    "component_minimum_width": 8,
+    "component_minimum_height": 5,
+    "crop_padding_x_y": [13, 4],
+    "ocr_detector": false,
+    "ocr_angle_classifier": false,
+    "recognition_batch_size": 64,
+    "title_mapping": "identical to d2-e012-linkgraph",
+    "acceptance_gates": {
+      "readable_pages": 100,
+      "unique_true_next_candidate_recall_min": 0.85,
+      "exact_mapping_share_precision_proxy_min": 0.97,
+      "projected_full_runtime_seconds_max": 1200
+    },
+    "stop_rule": "Any failed gate rejects E013. No morphology, batch-size, mapping-threshold, or sample rescue after scoring."
+  }
+}
