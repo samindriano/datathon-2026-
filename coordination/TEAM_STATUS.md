@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0029
+Revision: 0030
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 14:14:02 +07:00
+Last Global Update: 2026-07-19 14:25:59 +07:00
 Competition Clock: RUNNING
 Repository Branch: codex/d2-e002-notebook
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -40,6 +40,7 @@ Only MAIN may update this section.
 | D2-DEC-003 | 2026-07-19 12:38 WIB | Freeze `d2-targetgroup-v1`: five deterministic category-balanced folds grouped by target article, seed 20260719; never use random-row validation. | Independent VALIDATION verdict `GO`; every hidden-test target is unseen, every fold has 72 disjoint targets/1,800 rows, and fold target hashes plus coverage/OOD/state-ID diagnostics are now recorded. | MAIN | Only an official rule/data correction or independently demonstrated structural mismatch can supersede it; model scores do not justify changing folds. |
 | D2-DEC-004 | 2026-07-19 13:13 WIB | Promote `d2-e002-metarank` to the leading model candidate after independent `GO/KEEP`; do not submit until its notebook reproduces exactly and SUBMISSION returns `READY`. | Audit commit `2e76cab`: 10/10 gates pass, +0.024000 accuracy, 5/5 fold wins, no material leakage, exact CSV reproduction. | MAIN | A later candidate passes its preregistered gate and independent audit with stronger robustness evidence. |
 | D2-DEC-005 | 2026-07-19 14:05 WIB | Record E002 as slot 1 and retain it as the provisional leading final candidate; treat public accuracy 0.321 as diagnostic only. | Human Kaggle Run All completed from portability notebook `ef59c31` and submission `sub-s01-d2-e002-metarank.csv` completed successfully. | MAIN | A later candidate passes frozen local gates, immutable audit, and notebook reproduction with stronger private-risk evidence. |
+| D2-DEC-006 | 2026-07-19 14:25 WIB | Run only `d2-e010-treerank`; stop `d2-e011-nestedselect` before implementation. | E002+E004 oracle is only 0.292333; E004 net correct by fold is +3/-2/-3/+3/-5, so nested selection lacks distributed headroom. E010 has a frozen nonlinear, fold-local, leave-one-out design and unchanged E002 promotion gate. | MAIN | E010 fails any frozen gate or an immutable audit finds leakage/reproducibility failure. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -65,7 +66,8 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-005 | DAY 2 | MAIN | DONE | HIGH | E002 immutable model and frozen validation | Test category-conditioned route posterior without duplicating scout experiments | `d2-e007-catroute` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 14:00 WIB | `REJECT`: mean 0.275111, 0/5 wins vs E002, worst 0.268333; main commit `eaa6915`; no retuning or slot. |
 | D2-MAIN-006 | DAY 2 | MAIN | DONE | HIGH | E002 immutable model and frozen validation | Test target-title prototypes per exact-current route | `d2-e008-routeproto` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 14:00 WIB | `REJECT`: mean 0.282111, 0/5 wins vs E002; comparator reporting repaired at main commit `47178af`; no slot. |
 | D2-MAIN-007 | DAY 2 | MAIN | DONE | HIGH | E002 immutable model and frozen validation | Test candidate-free global next-label prototypes | `d2-e009-nextproto` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 14:00 WIB | `REJECT`: mean 0.042667, 0/5 wins vs E002; exact comparator repaired at main commit `dcfda11`; no slot. |
-| D2-MAIN-008 | DAY 2 | MAIN | IN_PROGRESS | HIGH | Scout E004-E006 working trees and E002 immutable reference | Independently audit scout results and select at most two evidence-backed next hypotheses | Immutable audit verdict and preregistered next-candidate decision | 2026-07-19 14:01 WIB | 2026-07-19 14:05 WIB | Provisional audit confirms all three rejects, but scout files remain uncommitted at E002 HEAD `8365193`; wait for immutable hashes before closure. |
+| D2-MAIN-008 | DAY 2 | MAIN | DONE | HIGH | Scout E004-E006 working trees and E002 immutable reference | Independently audit scout results and select at most two evidence-backed next hypotheses | Immutable audit verdict and preregistered next-candidate decision | 2026-07-19 14:01 WIB | 2026-07-19 14:25 WIB | E004 `a5933a3`, E005 `e0043b6`, and E006 `a9d195d` are clean direct children of `8365193`; all remain `REJECT / DO NOT SUBMIT`. |
+| D2-MAIN-009 | DAY 2 | MAIN | IN_PROGRESS | HIGH | Immutable scout audit and frozen E010 preregistration | Evaluate nonlinear exact-current candidate ranking without feature/parameter rescue | Immutable `d2-e010-treerank` result and independent VALIDATION verdict | 2026-07-19 14:25 WIB | 2026-07-19 14:25 WIB | Scout implementation runs in an isolated worktree; VALIDATION waits for a final hash; no notebook or slot change. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -73,13 +75,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D2-MAIN-008
+Current Task: D2-MAIN-009
 Status: IN_PROGRESS
-Last Read Revision: 0027
-Last Update: 2026-07-19 14:05:59 +07:00
+Last Read Revision: 0029
+Last Update: 2026-07-19 14:25:59 +07:00
 
 ### Current Objective
-Audit the scout's E004-E006 results, preserve E002 as the slot-1 anchor, and admit at most two new hypotheses only when their expected value is supported by immutable evidence.
+Evaluate the single frozen E010 TreeRank challenger, independently audit it if complete, and preserve E002 as the slot-1 anchor unless every promotion gate passes.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -99,7 +101,7 @@ Audit the scout's E004-E006 results, preserve E002 as the slot-1 anchor, and adm
 - Integrated independent E002 audit commit `2e76cab`: `GO/KEEP`, all 10 gates pass, no material leakage, and exact CSV reproduction.
 - Completed E003 without retuning; the failed +0.015 mean-gain gate makes it `REJECT / DO NOT SUBMIT`.
 ### Work in Progress
-- Slot 1 E002 completed on Kaggle with public accuracy 0.321; formal SUBMISSION review of `ef59c31` and immutable scout E004-E006 handoffs remain pending.
+- E010 TreeRank is running in an isolated scout worktree; VALIDATION is waiting for an immutable hash, while SUBMISSION audits notebook portability commit `ef59c31` in parallel.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -120,7 +122,8 @@ Audit the scout's E004-E006 results, preserve E002 as the slot-1 anchor, and adm
 - Integrated focused verification: 20 tests plus 8 subtests pass for E007-E009 and notebook/validator contracts.
 - Kaggle slot 1: `sub-s01-d2-e002-metarank.csv`, public accuracy 0.321; public 30% remains diagnostic, not a final-selection proof.
 - Provisional scout audit: E004 mean 0.284889, 2/5 wins vs E002, with 63 E004-only-correct versus 67 E002-only-correct; E005 mean 0.281778, 0/5 wins, with unfavorable 19 versus 51 complementarity; both are `REJECT / DO NOT SUBMIT`.
-- E006 correctly stopped before scoring because its inspected extraction had only 8 PNGs and no offline OCR stack; the official ZIP manifest still contains 4,604 screenshots, so availability and extraction feasibility must not be conflated.
+- E006 direct ZIP access succeeds for 100/100 deterministic samples from all 4,604 PNGs. RapidOCR exists locally, but weight-license provenance and Kaggle dependency/input reproducibility are unverified; verdict remains `REJECT_FEASIBILITY / DO NOT SUBMIT` at `a9d195d`.
+- E011 stopped before implementation: oracle ceiling 0.292333 is only 0.002 above the promotion gate and pairrank's per-fold net corrections are positive in only 2/5 folds.
 ### Files Changed
 - `task2/src/`; `task2/tests/`; `task2/experiments/d2-e001-baseline/`; `task2/notebooks/`; `task2/reports/`; `task2/README.md`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -151,17 +154,17 @@ Audit the scout's E004-E006 results, preserve E002 as the slot-1 anchor, and adm
 - `task2/experiments/d2-e009-nextproto/{config,metrics,notes}` and `task2/src/{nextproto,run_nextproto_experiment,test_nextproto}.py`
 - `task2/tests/test_notebook_portability.py`
 ### Decisions Needed
-- Whether immutable E004-E006 commits preserve the provisional audit evidence, and whether a nonlinear ranker or strictly nested selector has enough preregistered upside to justify one further experiment.
+- Whether E010 passes every frozen local gate and independent audit strongly enough to justify replacing or complementing E002.
 ### Tasks Dispatched to Other Agents
 - `D2-VAL-002` completed: E002 is `GO/KEEP` at immutable model commit `8365193`.
 - `D2-SUB-002` completed: baseline notebook locally reproducible and byte-identical; actual Kaggle Run All remains deferred.
 - `D2-SUB-003` must audit superseding notebook commit `ef59c31` without changing model, validation, notebook, or using a slot.
 - `D2-MAIN-005/006/007` completed; all three failed the shared E002 promotion gate and remain diagnostic only.
-- A read-only independent audit of E004-E006 found no material leakage or verdict reversal, but all three scout worktrees still point to E002 commit `8365193` with untracked candidate files.
+- Scout E010 runs from exact E002 snapshot `8365193`; VALIDATION will receive its immutable hash automatically, and SUBMISSION is auditing `ef59c31` at `gpt-5.6-sol` medium.
 ### Blockers
 - NONE
 ### Next Action
-- Keep E002 as the slot-1 anchor; obtain immutable scout commits, then preregister at most one nonlinear ranker and one strictly nested disagreement selector without public-score tuning.
+- Wait for immutable E010 metrics; reject on the first failed gate, otherwise send the exact hash to VALIDATION before any notebook or slot decision.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -346,6 +349,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 14:00:14 +07:00 | 0027 | MAIN | D2-MAIN-004/005/006/007 | Fixed Kaggle CSV portability and integrated three parallel challenger results | E002 numeric hash remains exact; 13 notebook/validator tests and 20 integrated experiment tests pass; E007-E009 all `REJECT`; no slot recorded | Human reruns fixed notebook on Kaggle; SUBMISSION audits `ef59c31`; retain E002 as leading candidate |
 | 2026-07-19 14:05:59 +07:00 | 0028 | MAIN | D2-MAIN-008 | Recorded successful E002 slot 1 and independently audited scout E004-E006 working artifacts | Public accuracy 0.321; E004/E005 remain below E002 and E006 remains feasibility-rejected; scout verdicts are provisional until immutable commits exist | Preserve E002, obtain scout commit hashes, and preregister no more than two genuinely distinct follow-up hypotheses |
 | 2026-07-19 14:14:02 +07:00 | 0029 | MAIN | D2-MAIN-008 | Corrected submission-registry placement | E002 slot 1 moved from the Day 1 table to Day 2; experiment, score, and submission evidence are unchanged | Continue immutable scout audit and keep E002 as the provisional anchor |
+| 2026-07-19 14:25:59 +07:00 | 0030 | MAIN | D2-MAIN-008/009 | Closed immutable E004-E006 audit and admitted only frozen E010 TreeRank | Three reject commits verified; E006 ZIP access corrected but OCR provenance remains blocked; E011 stopped before implementation; VALIDATION and SUBMISSION handoffs sent at `gpt-5.6-sol` medium | Await E010 immutable result and parallel notebook readiness audit |
 
 Append only. Correct errors with a new entry; do not erase history.
 
