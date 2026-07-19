@@ -1,0 +1,16 @@
+{
+  "experiment_id": "d2-e009-nextproto",
+  "owner": "SUBMISSION",
+  "branch": "exp/d2-e009-nextproto",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "dataset_version": "official-task2-2026-07-19",
+  "feature_version": "d2-nextproto-v1",
+  "metric": "accuracy",
+  "validation": "d2-targetgroup-v1",
+  "fold_count": 5,
+  "seed": 20260719,
+  "model": "global next-label state-document TF-IDF prototypes",
+  "tfidf": {"lowercase": true, "ngram_range": [1, 2], "sublinear_tf": true, "min_df": 1, "norm": "l2"},
+  "dependencies": ["python", "numpy", "pandas", "scikit-learn"]
+}
