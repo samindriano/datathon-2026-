@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0020
+Revision: 0021
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 12:58:01 +07:00
+Last Global Update: 2026-07-19 13:01:28 +07:00
 Competition Clock: RUNNING
 Repository Branch: exp/d2-e002-metarank
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -54,7 +54,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-001 | DAY 2 | MAIN | DONE | HIGH | Official Task 2 ZIP | Schema audit, target-group validation, cheapest end-to-end baseline, and experiment map | Reproducible `d2-e001-baseline` plus audited handoffs | 2026-07-19 12:08 WIB | 2026-07-19 12:38 WIB | Mean accuracy 0.261333; diagnostic floor only; clean local notebook output exactly matches runner; do not submit. |
 | D2-VAL-001 | DAY 2 | VALIDATION | IN_PROGRESS | HIGH | Extracted official CSV metadata | Independent group split, duplicate, leakage, and distribution audit | `GO`, `INVESTIGATE`, or `NO-GO` validation verdict | 2026-07-19 12:15 WIB | 2026-07-19 12:15 WIB | Read-only audit delegated; target-group proposal not yet frozen. |
 | D2-SUB-001 | DAY 2 | SUBMISSION | DONE | HIGH | Test, sample submission, and articles CSVs | Fail-closed schema contract and dual local/Kaggle path requirements | Validator, regression tests, and readiness report | 2026-07-19 12:15 WIB | 2026-07-19 12:29 WIB | `READY` for CSV validation at commit `be28757`; no submission authorized or slot used. |
-| D2-MAIN-002 | DAY 2 | MAIN | NEEDS_REVIEW | HIGH | `d2-baseline-v1` and frozen validation | Reproduce the audit-only title/category heuristic without tuning | `d2-e002-metarank` with comparable fold/subset diagnostics | 2026-07-19 12:48 WIB | 2026-07-19 12:56 WIB | Exact audit score reproduced; all gates pass; candidate awaits immutable-commit VALIDATION review. |
+| D2-MAIN-002 | DAY 2 | MAIN | NEEDS_REVIEW | HIGH | `d2-baseline-v1` and frozen validation | Reproduce the audit-only title/category heuristic without tuning | `d2-e002-metarank` with comparable fold/subset diagnostics | 2026-07-19 12:48 WIB | 2026-07-19 13:01 WIB | Commit `8365193` pushed to `origin/exp/d2-e002-metarank`; candidate awaits independent VALIDATION review. |
 | D2-VAL-002 | DAY 2 | VALIDATION | IN_PROGRESS | HIGH | Stable MAIN baseline commit | Independently reproduce baseline artifacts and audit `d2-e002-metarank` after handoff | GO/NO-GO candidate verdict with gate evidence | 2026-07-19 12:38 WIB | 2026-07-19 12:50 WIB | Baseline audit complete at `task2/reports/d2-e001-baseline-validation-audit.md`; E002 audit awaits its immutable handoff commit. |
 | D2-SUB-002 | DAY 2 | SUBMISSION | DONE | HIGH | MAIN commit `0f94a1c` with validator ancestor `721c4bf` | Clean local dual-environment notebook reproduction and exact-reference check | Notebook readiness verdict without Kaggle slot | 2026-07-19 12:39 WIB | 2026-07-19 12:49 WIB | `READY`; 12 tests pass, isolated smoke output is byte-identical to reference with SHA-256 `20e629...b70b96`; actual Kaggle Run All remains deferred. |
 
@@ -88,7 +88,7 @@ Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` o
 - Published `exp/d2-e001-baseline` and tag `d2-baseline-v1` at commit `0f94a1c` so teammates can branch independently.
 - Implemented the exact frozen `d2-e002-metarank` formula with no weight/tokenizer/seed search and reproduced the independent audit mean accuracy exactly.
 ### Work in Progress
-- Preparing the immutable E002 commit and VALIDATION handoff; notebook integration and Kaggle submission remain deferred.
+- E002 immutable commit `8365193` is pushed and waiting for VALIDATION; notebook integration and Kaggle submission remain deferred.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -128,7 +128,7 @@ Reproduce the frozen audit-only title/category heuristic as `d2-e002-metarank` o
 ### Blockers
 - NONE
 ### Next Action
-- Commit and push E002, then hand the immutable hash to VALIDATION; do not submit or alter the final notebook until the audit verdict returns.
+- While VALIDATION audits E002 commit `8365193`, start the next structurally independent candidate from `d2-baseline-v1`; do not submit or alter the final notebook.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -269,6 +269,7 @@ Public score is never the sole final-selection reason.
 | D2-HO-002 | SUBMISSION | MAIN | 2026-07-19 12:29 WIB | Commit `be28757`, 12 tests, and `task2/reports/d2-submission-readiness.md` | Reconcile MAIN validator, integrate the fail-closed implementation, and validate notebook output by exact reference. | COMPLETED |
 | D2-HO-003 | SUBMISSION | MAIN | 2026-07-19 12:49 WIB | Audit commit `6d337a8` and `task2/reports/d2-e001-baseline-notebook-audit.md` | Preserve the verified dual-environment contract; defer actual Kaggle Run All until a competitive candidate exists. | ACKNOWLEDGED |
 | D2-HO-004 | VALIDATION | MAIN | 2026-07-19 12:50 WIB | Audit commit `6e7d41a` and `task2/reports/d2-e001-baseline-validation-audit.md` | Keep the harness frozen, baseline diagnostic only, and provide an immutable E002 commit for the next audit. | ACKNOWLEDGED |
+| D2-HO-005 | MAIN | VALIDATION | 2026-07-19 13:01 WIB | E002 commit `8365193`, branch `exp/d2-e002-metarank`, and `task2/experiments/d2-e002-metarank/metrics.json` | Independently reproduce E002, apply frozen gates, and return GO/NO-GO/INVESTIGATE without changing model/folds/notebook or using a slot. | WAITING |
 
 Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 
@@ -296,6 +297,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 12:49:19 +07:00 | 0018 | SUBMISSION | D2-SUB-002 | Independently audited MAIN commit `0f94a1c` notebook in a separate worktree | `READY`; 12 tests pass; isolated smoke output is byte-identical to reference and matches SHA-256 `20e629...b70b96`; no Kaggle slot used | MAIN preserves the notebook contract and defers actual Kaggle Run All until a competitive candidate exists |
 | 2026-07-19 12:56:27 +07:00 | 0019 | MAIN | D2-MAIN-002 | Completed the frozen metadata-rank challenger | Exact audit mean 0.285333 reproduced; +0.024000 over baseline; 5/5 folds and all preregistered gates pass; no notebook or Kaggle slot changed | Commit and push the immutable candidate, then request independent VALIDATION review |
 | 2026-07-19 12:50:11 +07:00 | 0020 | VALIDATION | D2-VAL-002 | Independently reproduced and audited `d2-e001-baseline` at `0f94a1c` | Harness `GO`; baseline `DIAGNOSTIC ONLY`; submission `DO NOT SUBMIT`; manifest and stable metrics reproduced with no material leakage | Await the frozen `d2-e002-metarank` handoff commit and apply preregistered gates |
+| 2026-07-19 13:01:28 +07:00 | 0021 | MAIN | D2-MAIN-002 | Published the immutable E002 challenger | Commit `8365193` pushed; exact audit score and all frozen gates pass; submission remains `INVESTIGATE` pending independent review | VALIDATION audits `8365193`; MAIN starts a structurally independent candidate from `d2-baseline-v1` |
 
 Append only. Correct errors with a new entry; do not erase history.
 
