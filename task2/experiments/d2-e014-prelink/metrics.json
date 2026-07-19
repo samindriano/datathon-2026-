@@ -1,0 +1,33 @@
+{
+  "experiment_id": "d2-e014-prelink",
+  "status": "REJECT",
+  "verdict": "DO NOT SUBMIT",
+  "benchmark": {
+    "pages": 200,
+    "readable_pages": 200,
+    "component_crops": 5406,
+    "exact_mapping_rows": 4831,
+    "fuzzy_mapping_rows": 35,
+    "accepted_mapping_rows": 4866,
+    "exact_mapping_share": 0.9928072338676531,
+    "workers": 4,
+    "shard_pages": 128,
+    "shard_runtime_seconds": [147.17554560001008, 244.14596349999192],
+    "runtime_seconds": 249.67824649999966,
+    "runtime_seconds_per_page": 1.2483912324999984,
+    "projected_union_runtime_seconds": 5383.062994539993,
+    "raw_sha256": "d4bf66f49f63952a315d8ca490a3b687dd7aabad2002f208e79ada0c69632071"
+  },
+  "gates": {
+    "precompute_runtime_seconds_max": 3600,
+    "precompute_runtime_pass": false,
+    "full_validation_run": false,
+    "inference_artifact_built": false,
+    "notebook_reproduction_run": false,
+    "end_to_end_preprocessing_in_notebook": false,
+    "all_pass": false
+  },
+  "external_api_or_data": false,
+  "submission_slot_used": false,
+  "recommendation": "Stop before full extraction; the panitia requires preprocessing to run end-to-end in the notebook, so the artifact-first architecture is ineligible. Retain the independently audited E002 submission as final."
+}

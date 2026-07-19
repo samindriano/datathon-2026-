@@ -1,11 +1,11 @@
 # Datathon 2026 Team Status
 
-Revision: 0037
+Revision: 0041
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 15:09:50 +07:00
+Last Global Update: 2026-07-19 15:51:11 +07:00
 Competition Clock: RUNNING
-Repository Branch: codex/d2-e002-notebook
+Repository Branch: exp/d2-e014-prelink
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
 
 ## 1. Active Competition Brief
@@ -42,6 +42,10 @@ Only MAIN may update this section.
 | D2-DEC-005 | 2026-07-19 14:05 WIB | Record E002 as slot 1 and retain it as the provisional leading final candidate; treat public accuracy 0.321 as diagnostic only. | Human Kaggle Run All completed from portability notebook `ef59c31` and submission `sub-s01-d2-e002-metarank.csv` completed successfully. | MAIN | A later candidate passes frozen local gates, immutable audit, and notebook reproduction with stronger private-risk evidence. |
 | D2-DEC-006 | 2026-07-19 14:25 WIB | Run only `d2-e010-treerank`; stop `d2-e011-nestedselect` before implementation. | E002+E004 oracle is only 0.292333; E004 net correct by fold is +3/-2/-3/+3/-5, so nested selection lacks distributed headroom. E010 has a frozen nonlinear, fold-local, leave-one-out design and unchanged E002 promotion gate. | MAIN | E010 fails any frozen gate or an immutable audit finds leakage/reproducibility failure. |
 | D2-DEC-007 | 2026-07-19 14:56 WIB | Stop Task 2 modeling and select `d2-e002-metarank` as the final candidate; preserve all remaining Kaggle slots. | Independent E010 audit `8f5ee0a` confirms `NO-GO`: mean 0.255556, 0/5 wins, four frozen gates fail, while E002 remains independently `GO/KEEP`, notebook `READY`, and public 0.321 is diagnostic only. | MAIN | Only an official data/rule correction or reproducibility failure in the frozen E002 artifact may reopen selection. |
+| D2-DEC-008 | 2026-07-19 15:16 WIB | Reopen only bounded `d2-e012-linkgraph` Stage-0 feasibility while retaining E002 as the fallback final candidate. | Human confirms about two hours remain; leaderboard-gap analysis indicates screenshot hyperlinks are the only structurally credible high-upside path, while E003-E010 ranking variants failed. | MAIN | Any Stage-0 gate failure stops E012 immediately; no slot, notebook, or final-selection change before full validation and audit. |
+| D2-DEC-009 | 2026-07-19 15:37 WIB | Reject E012/E013 without rescue, then allow one artifact-first `d2-e014-prelink` attempt while preserving E002. | Both OCR variants exceed their frozen 20-minute projection, but the fixed link-ranker improves a 226-row target-group diagnostic by +0.0708 and wins 5/5 folds; the human explicitly authorizes one more high-upside attempt. | MAIN | E014 must precompute only official-data link candidates within 60 minutes, pass the unchanged full E002 promotion gates, and close notebook/artifact reproducibility before any slot. |
+| D2-DEC-010 | 2026-07-19 15:46 WIB | Reject E014 at its precompute gate and refreeze E002 as the final Task 2 candidate; no further model or slot use. | Four-worker benchmark projects 5,383 seconds for the 4,312 relevant pages versus the frozen 3,600-second maximum; full validation, artifact, notebook, and slot were correctly not run. | MAIN | None before the competition close; only a reproducibility failure in E002 would justify emergency action. |
+| D2-DEC-011 | 2026-07-19 15:51 WIB | Treat precomputed screenshot-link features as ineligible for the final notebook and retain only end-to-end E002. | Panitia clarification supplied by the human: every preprocessing step before modeling must run end-to-end in the submitted notebook and may not load externally preprocessed data. | MAIN | Only a written official clarification explicitly permitting the exact artifact architecture could reverse this, and runtime would still fail. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -70,6 +74,8 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-008 | DAY 2 | MAIN | DONE | HIGH | Scout E004-E006 working trees and E002 immutable reference | Independently audit scout results and select at most two evidence-backed next hypotheses | Immutable audit verdict and preregistered next-candidate decision | 2026-07-19 14:01 WIB | 2026-07-19 14:25 WIB | E004 `a5933a3`, E005 `e0043b6`, and E006 `a9d195d` are clean direct children of `8365193`; all remain `REJECT / DO NOT SUBMIT`. |
 | D2-MAIN-009 | DAY 2 | MAIN | DONE | HIGH | Immutable scout audit and frozen E010 preregistration | Evaluate nonlinear exact-current candidate ranking without feature/parameter rescue | Immutable `d2-e010-treerank` result and independent VALIDATION verdict | 2026-07-19 14:25 WIB | 2026-07-19 14:56 WIB | `REJECT / DO NOT SUBMIT`: commit `13194222`, audit `8f5ee0a`, mean 0.255556, 0/5 wins, no material leakage, no rescue tuning. |
 | D2-MAIN-010 | DAY 2 | MAIN | DONE | HIGH | Final E002 selection and notebook readiness | Produce the required maximum-three-page technical writeup consistent with the frozen model and submission | Rendered Task 2 writeup PDF plus reproducible source/build script | 2026-07-19 14:45 WIB | 2026-07-19 15:09 WIB | `READY`: local commit `feca95c`, independent report `877b7b1` integrated as `2343f1e`; 2 pages, exact PDF hash, clean render, consistent content and naming. |
+| D2-MAIN-011 | DAY 2 | MAIN | DONE | HIGH | Official screenshot ZIP, E002 fallback, and bounded Stage-0 gate | Test blue-link OCR and closed-vocabulary title mapping before any full graph/model run | Immutable `d2-e012-linkgraph` feasibility verdict; candidate only if every gate passes | 2026-07-19 15:16 WIB | 2026-07-19 15:37 WIB | E012 and detector-free E013 both `REJECT`: recall/precision pass, runtime and Kaggle-packaging gates fail; no full graph, rescue, or slot. |
+| D2-MAIN-012 | DAY 2 | MAIN | DONE | HIGH | Strong sampled link-rank signal and rejected online OCR runtime | Precompute official screenshot candidates as a compact reproducible model artifact, then run unchanged frozen validation | `d2-e014-prelink` full-fold verdict, artifact, notebook plan, and slot decision | 2026-07-19 15:37 WIB | 2026-07-19 15:46 WIB | `REJECT`: 200-page benchmark projects 89.72 minutes, failing the frozen 60-minute precompute gate; stopped before full extraction/validation/artifact/notebook/slot. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -77,13 +83,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D2-MAIN-010
+Current Task: D2-MAIN-012
 Status: DONE
-Last Read Revision: 0037
-Last Update: 2026-07-19 15:09:50 +07:00
+Last Read Revision: 0041
+Last Update: 2026-07-19 15:51:11 +07:00
 
 ### Current Objective
-Freeze E002 as the final Task 2 candidate, preserve the remaining submission slots, and complete the required notebook/writeup delivery artifacts without reopening model selection.
+Freeze the rejected screenshot-link evidence, preserve all remaining slots, and hand off the READY E002 final notebook/submission/writeup.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -105,7 +111,7 @@ Freeze E002 as the final Task 2 candidate, preserve the remaining submission slo
 - Closed E010 at immutable candidate commit `13194222` and independent audit `8f5ee0a`: `NO-GO / REJECT / DO NOT SUBMIT`, 0/5 wins, no material leakage, and no rescue tuning.
 - Selected E002 as the final candidate and stopped further Task 2 modeling.
 ### Work in Progress
-- NONE; modeling, notebook, and writeup reviews are closed.
+- NONE; E012-E014 are closed and E002 remains final.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -130,6 +136,10 @@ Freeze E002 as the final Task 2 candidate, preserve the remaining submission slo
 - E011 stopped before implementation: oracle ceiling 0.292333 is only 0.002 above the promotion gate and pairrank's per-fold net corrections are positive in only 2/5 folds.
 - E002 notebook delivery: commit `3b28567`, all code-cell outputs/counts cleared, source identical to `ef59c31`, 14 tests pass, exact numeric SHA and reference validator pass; report integrated at `c70f964`.
 - `d2-e010-treerank`: mean 0.255556 versus E002 0.285333; folds 0.265000/0.250556/0.253333/0.250556/0.258333; 0/5 wins; worst 0.250556; category-OOD 0.278400. Independent reproduction and 19 tests confirm `REJECT` without leakage.
+- `d2-e012-linkgraph`: 100/100 pages, 90.32% unique-edge recall, 99.06% exact mapping share, but projected full OCR 8,189.74s; `REJECT`.
+- `d2-e013-fastlink`: 87.63% recall and 98.99% exact mapping share, but projected full OCR 3,794.35s; `REJECT`.
+- `d2-e014-prelink`: 200/200 benchmark pages and 99.28% exact mapping share, but projected relevant-page precompute 5,383.06s versus 3,600s gate; `REJECT` before full validation.
+- Panitia clarification closes the artifact shortcut: preprocessing must execute end-to-end in the final notebook, so a locally precomputed outgoing-link graph cannot make E014 submission-eligible.
 ### Files Changed
 - `task2/src/`; `task2/tests/`; `task2/experiments/d2-e001-baseline/`; `task2/notebooks/`; `task2/reports/`; `task2/README.md`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -164,7 +174,7 @@ Freeze E002 as the final Task 2 candidate, preserve the remaining submission slo
 - `task2/reports/build_task2_writeup.py`
 - `output/pdf/EnterYourTeamName_Task2_Writeup.pdf`
 ### Decisions Needed
-- NONE; E002 is frozen as the final model candidate.
+- NONE; E002 is refrozen as final.
 ### Tasks Dispatched to Other Agents
 - `D2-VAL-002` completed: E002 is `GO/KEEP` at immutable model commit `8365193`.
 - `D2-SUB-002` completed: baseline notebook locally reproducible and byte-identical; actual Kaggle Run All remains deferred.
@@ -172,10 +182,11 @@ Freeze E002 as the final Task 2 candidate, preserve the remaining submission slo
 - `D2-MAIN-005/006/007` completed; all three failed the shared E002 promotion gate and remain diagnostic only.
 - VALIDATION completed E010 audit `8f5ee0a`; Scout and VALIDATION are closed with no additional experiment authorized.
 - SUBMISSION completed the immutable writeup audit at `877b7b1` with verdict `READY`; report integrated as `2343f1e`.
+- No role task is dispatched during E014 precompute; MAIN works alone to avoid duplicate/fast-mode cost. VALIDATION/SUBMISSION receive a handoff only after a complete immutable candidate passes local gates.
 ### Blockers
 - NONE
 ### Next Action
-- Human Submission Manager selects slot 1 as the final Kaggle submission, uploads the clean notebook before 18:00 WIB, and delivers the reviewed writeup by 20 July 23:59 WIB. Do not use another slot.
+- Human Submission Manager selects slot 1 as final and uploads the already READY clean notebook before 18:00 WIB; preserve every remaining Kaggle slot.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -372,6 +383,10 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 15:06:03 +07:00 | 0035 | SUBMISSION | D2-SUB-004 | Independently audited Task 2 writeup commit `feca95c` in an isolated worktree | `NOT READY`: two-page render, exact PDF SHA/Git binary contract, all method/metric claims, and isolated local rebuild pass; filename/title/footer/metadata still use an unverified team-name placeholder | MAIN obtains the registered team name, applies naming-only remediation, rebuilds the PDF, and requests quick re-audit; no Kaggle or slot action needed |
 | 2026-07-19 15:06:49 +07:00 | 0036 | SUBMISSION | D2-SUB-004 | Resolved the provisional writeup naming blocker using authoritative human registration context | `READY`: registered team name is exactly `Enter Your Team Name`; compact token `EnterYourTeamName` is authorized, and every remaining technical/content/build check passes | Preserve `feca95c` artifacts unchanged, cherry-pick the immutable audit report, and hand the reviewed PDF to the human Submission Manager |
 | 2026-07-19 15:09:50 +07:00 | 0037 | MAIN | D2-MAIN-010 | Integrated the immutable final-writeup audit and closed all repository-side Task 2 work | Audit report `877b7b1` integrated as `2343f1e`; notebook and writeup are `READY`; E002 remains the frozen final candidate | Human selects slot 1 and uploads the clean notebook/writeup by their official deadlines; no further model or slot use |
+| 2026-07-19 15:16:13 +07:00 | 0038 | MAIN | D2-MAIN-011 | Reopened one bounded screenshot-link feasibility path while preserving E002 as the READY fallback | Only `d2-e012-linkgraph` may proceed; all Stage-0 OCR provenance, mapping quality, recall, and runtime gates are frozen before scoring | Run deterministic Stage-0; stop without a slot on any failed gate, otherwise validate the full graph against E002 |
+| 2026-07-19 15:37:38 +07:00 | 0039 | MAIN | D2-MAIN-011/012 | Rejected two online OCR implementations, then admitted one final artifact-first attempt | E012/E013 recall and precision pass but runtime/Kaggle packaging fail; sampled link-ranking gains +0.0708 across 5/5 diagnostic folds; E002 remains READY fallback | Precompute with fixed rules for at most 60 minutes, then require full frozen-fold promotion and reproducibility before any slot |
+| 2026-07-19 15:46:09 +07:00 | 0040 | MAIN | D2-MAIN-012 | Stopped E014 at the frozen precompute gate and refroze E002 | 200-page four-worker benchmark projects 5,383 seconds for the relevant union, exceeding 3,600 seconds; no full extraction, validation, notebook, or slot | Commit/push negative evidence; human selects E002 slot 1 and uploads the READY notebook before 18:00 WIB |
+| 2026-07-19 15:51:11 +07:00 | 0041 | MAIN | D2-MAIN-012 | Applied the human-supplied panitia clarification to final eligibility | Screenshot preprocessing must run end-to-end inside the submitted notebook; E014's precomputed-artifact architecture is ineligible in addition to failing runtime | Preserve E002 as the only eligible READY final and use no more slots |
 
 Append only. Correct errors with a new entry; do not erase history.
 

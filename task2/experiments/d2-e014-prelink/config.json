@@ -1,0 +1,43 @@
+{
+  "experiment_id": "d2-e014-prelink",
+  "owner": "MAIN",
+  "branch": "exp/d2-e014-prelink",
+  "e002_reference_commit": "8365193fd84d754e8b9b45a9b7f9b4af5f201f7a",
+  "validation": "d2-targetgroup-v1",
+  "hypothesis": "A compact outgoing-link artifact precomputed solely from official screenshots can make the strong screenshot signal reproducible at inference without online OCR runtime.",
+  "extraction": {
+    "source_pages": "union of official train and test current_article_id values",
+    "blue_mask_component_and_title_mapping": "exactly d2-e013-fastlink; frozen without rescue",
+    "workers": 4,
+    "shard_pages": 128,
+    "recognition_page_batch": 20,
+    "recognition_batch_size": 64,
+    "maximum_precompute_seconds": 3600
+  },
+  "prediction": {
+    "candidate_source": "precomputed screenshot outgoing-link article IDs",
+    "semantic_score": "2 * category Jaccard + title-token Jaccard",
+    "tie_break": [
+      "fold-training current-to-next count descending",
+      "fold-training global next count descending",
+      "article ID ascending"
+    ],
+    "empty_candidate_fallback": "exact E002 prediction",
+    "parameters_or_threshold_search": false
+  },
+  "acceptance_gates": {
+    "mean_accuracy_min": 0.29033333333333333,
+    "fold_wins_vs_e002_min": 4,
+    "worst_fold_min": 0.2733333333333333,
+    "pooled_current_unseen_min": 0.118539,
+    "category_ood_min": 0.3102,
+    "state_id_mutation_exact": true,
+    "heldout_label_mutation_exact": true,
+    "test_unique_predictions_min": 337,
+    "test_top_prediction_share_max": 0.3252,
+    "validator_ready": true,
+    "inference_runtime_seconds_max": 180,
+    "precompute_runtime_seconds_max": 3600
+  },
+  "stop_rule": "Any failed full gate rejects E014. No OCR, mapping, score-weight, fallback, or public-leaderboard rescue."
+}
