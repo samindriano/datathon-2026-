@@ -35,7 +35,8 @@
         "prediction_change_rate_from_baseline": 0.1272222222222222,
         "scores": {
           "current_mode": 0.2677777777777778,
-          "routeproto": 0.2872222222222222
+          "routeproto": 0.2872222222222222,
+          "e002_reference": 0.29055555555555557
         }
       },
       {
@@ -62,7 +63,8 @@
         "prediction_change_rate_from_baseline": 0.11944444444444445,
         "scores": {
           "current_mode": 0.25555555555555554,
-          "routeproto": 0.2761111111111111
+          "routeproto": 0.2761111111111111,
+          "e002_reference": 0.2827777777777778
         }
       },
       {
@@ -89,7 +91,8 @@
         "prediction_change_rate_from_baseline": 0.12166666666666667,
         "scores": {
           "current_mode": 0.26555555555555554,
-          "routeproto": 0.2777777777777778
+          "routeproto": 0.2777777777777778,
+          "e002_reference": 0.2783333333333333
         }
       },
       {
@@ -116,7 +119,8 @@
         "prediction_change_rate_from_baseline": 0.12555555555555556,
         "scores": {
           "current_mode": 0.255,
-          "routeproto": 0.27944444444444444
+          "routeproto": 0.27944444444444444,
+          "e002_reference": 0.28055555555555556
         }
       },
       {
@@ -143,7 +147,8 @@
         "prediction_change_rate_from_baseline": 0.1322222222222222,
         "scores": {
           "current_mode": 0.2627777777777778,
-          "routeproto": 0.29
+          "routeproto": 0.29,
+          "e002_reference": 0.29444444444444445
         }
       }
     ]
@@ -185,6 +190,7 @@
   "comparison": {
     "mean_accuracy_gain": 0.020777777777777784,
     "fold_wins": 5,
+    "e002_reference_fold_wins": 0,
     "subset_accuracy": {
       "current_unseen": {
         "rows": 1797,
@@ -213,7 +219,7 @@
     "checks": {
       "audit_reference_reproduced": false,
       "mean_at_least_0_290333": false,
-      "wins_at_least_4_of_5_folds": true,
+      "wins_vs_e002_at_least_4_of_5_folds": false,
       "worst_fold_at_least_0_273333": true,
       "current_unseen_at_least_0_118539": true,
       "category_ood_at_least_0_310200": true,
@@ -241,7 +247,7 @@
     "int64_prediction_sha256": "1578e5b97996cb90eb00d2928f2382da2eca99afb617c8d134f7253cdfd048db"
   },
   "submission": "C:\\Users\\Sam\\OneDrive\\Documents\\Project\\datathon-2026\\.worktrees\\datathon-d2-e008-routeproto\\task2\\experiments\\d2-e008-routeproto\\submission.csv",
-  "runtime_seconds": 180.3504813000036,
+  "runtime_seconds": 151.4224971999938,
   "recommendation": "REJECT",
   "submission_verdict": "DO_NOT_SUBMIT"
 }

@@ -20,6 +20,7 @@ from validation import DEFAULT_FOLD_COUNT, DEFAULT_SEED, accuracy, make_target_g
 EXPERIMENT_ID = "d2-e008-routeproto"
 VALIDATION_VERSION = "d2-targetgroup-v1"
 AUDIT_REFERENCE_MEAN = 0.2853333333333333
+E002_FOLD_SCORES = [0.29055555555555557, 0.2827777777777778, 0.2783333333333333, 0.28055555555555556, 0.29444444444444445]
 MINIMUM_MEAN = 0.290333
 MINIMUM_WORST = 0.273333
 MINIMUM_CURRENT_UNSEEN = 0.118539
@@ -234,6 +235,7 @@ def main() -> int:
                 "scores": {
                     "current_mode": method_scores["current_mode"][-1],
                     "routeproto": method_scores["routeproto"][-1],
+                    "e002_reference": E002_FOLD_SCORES[fold],
                 },
             }
         )
@@ -257,6 +259,7 @@ def main() -> int:
             )
         )
     )
+    e002_fold_wins = int(sum(route > ref for route, ref in zip(method_scores["routeproto"], E002_FOLD_SCORES, strict=True)))
     subset_summary = {}
     for subset_name, values in aggregate.items():
         baseline_accuracy = aggregate_accuracy(
@@ -297,7 +300,7 @@ def main() -> int:
             )
         ),
         "mean_at_least_0_290333": ranker_summary["mean_accuracy"] >= MINIMUM_MEAN,
-        "wins_at_least_4_of_5_folds": fold_wins >= 4,
+        "wins_vs_e002_at_least_4_of_5_folds": e002_fold_wins >= 4,
         "worst_fold_at_least_0_273333": ranker_summary["worst_fold_accuracy"] >= MINIMUM_WORST,
         "current_unseen_at_least_0_118539": subset_summary["current_unseen"]["routeproto_accuracy"] >= MINIMUM_CURRENT_UNSEEN,
         "category_ood_at_least_0_310200": subset_summary["category_entirely_unseen"]["routeproto_accuracy"] >= MINIMUM_CATEGORY_OOD,
@@ -344,6 +347,7 @@ def main() -> int:
             "mean_accuracy_gain": ranker_summary["mean_accuracy"]
             - baseline_summary["mean_accuracy"],
             "fold_wins": fold_wins,
+            "e002_reference_fold_wins": e002_fold_wins,
             "subset_accuracy": subset_summary,
         },
         "test_diagnostics": {
