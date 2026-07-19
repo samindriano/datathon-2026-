@@ -11,6 +11,22 @@ NOTEBOOK = (
 
 
 class NotebookPortabilityTest(unittest.TestCase):
+    def test_notebook_is_a_clean_delivery_artifact(self):
+        notebook = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
+        for index, cell in enumerate(notebook["cells"]):
+            if cell.get("cell_type") != "code":
+                continue
+            self.assertIsNone(
+                cell.get("execution_count"),
+                f"code cell {index} retains an execution count",
+            )
+            self.assertEqual(
+                cell.get("outputs", []),
+                [],
+                f"code cell {index} retains saved output",
+            )
+        self.assertNotIn("C:\\\\Users\\\\", NOTEBOOK.read_text(encoding="utf-8"))
+
     def test_numeric_hash_remains_fail_closed_but_csv_bytes_are_portable(self):
         notebook = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
         source = "\n".join(
