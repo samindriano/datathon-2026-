@@ -1,0 +1,28 @@
+{
+  "experiment_id": "d2-e002-metarank",
+  "owner": "MAIN",
+  "branch": "exp/d2-e002-metarank",
+  "baseline_tag": "d2-baseline-v1",
+  "baseline_commit": "0f94a1cdb8da4929520fce80a64e5203947ed4d9",
+  "dataset_version": "official-task2-2026-07-19",
+  "feature_version": "d2-metarank-v1",
+  "metric": "accuracy",
+  "validation": "d2-targetgroup-v1",
+  "fold_count": 5,
+  "seed": 20260719,
+  "category_weight": 2.0,
+  "title_weight": 1.0,
+  "title_tokenizer": "lowercase ASCII alphanumeric set",
+  "candidate_source": "fold-training observed current-to-next labels",
+  "tie_break": [
+    "current-specific frequency descending",
+    "global next frequency descending",
+    "article ID ascending"
+  ],
+  "unseen_current_fallback": "fold-training deterministic global next mode",
+  "dependencies": [
+    "python",
+    "numpy",
+    "pandas"
+  ]
+}
