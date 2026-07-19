@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0028
+Revision: 0029
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 14:05:59 +07:00
+Last Global Update: 2026-07-19 14:14:02 +07:00
 Competition Clock: RUNNING
 Repository Branch: codex/d2-e002-notebook
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -273,7 +273,7 @@ Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`
 
 | Slot | File | Experiment ID | Local Score | Public Score | Time | Submitted By | Final Candidate | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `sub-s01-d2-e002-metarank.csv` | `d2-e002-metarank` | 0.285333 | 0.321 | 2026-07-19 ~14:05 WIB | Samuel Indriano | YES (provisional) | Independent model audit `GO/KEEP`; Kaggle Run All used portability notebook `ef59c31`; public score is diagnostic only. |
+| 1 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 | 2 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 | 3 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 | 4 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
@@ -283,7 +283,7 @@ Status: `PLANNED`, `RUNNING`, `KEEP`, `REJECT`, `INVESTIGATE`, `FINAL_CANDIDATE`
 
 | Slot | File | Experiment ID | Local Score | Public Score | Time | Submitted By | Final Candidate | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 1 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+| 1 | `sub-s01-d2-e002-metarank.csv` | `d2-e002-metarank` | 0.285333 | 0.321 | 2026-07-19 ~14:05 WIB | Samuel Indriano | YES (provisional) | Independent model audit `GO/KEEP`; Kaggle Run All used portability notebook `ef59c31`; public score is diagnostic only. |
 | 2 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 | 3 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
 | 4 | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
@@ -345,6 +345,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 13:27:12 +07:00 | 0026 | MAIN | D2-MAIN-005/006/007 | Preregistered three challengers orthogonal to the scout's E004-E006 work | Frozen category-route, route-prototype, and candidate-free next-prototype rules plus shared E002 gate; no scoring, notebook change, or slot use | Execute in isolated high-reasoning workers and accept `REJECT` without retuning if any gate fails |
 | 2026-07-19 14:00:14 +07:00 | 0027 | MAIN | D2-MAIN-004/005/006/007 | Fixed Kaggle CSV portability and integrated three parallel challenger results | E002 numeric hash remains exact; 13 notebook/validator tests and 20 integrated experiment tests pass; E007-E009 all `REJECT`; no slot recorded | Human reruns fixed notebook on Kaggle; SUBMISSION audits `ef59c31`; retain E002 as leading candidate |
 | 2026-07-19 14:05:59 +07:00 | 0028 | MAIN | D2-MAIN-008 | Recorded successful E002 slot 1 and independently audited scout E004-E006 working artifacts | Public accuracy 0.321; E004/E005 remain below E002 and E006 remains feasibility-rejected; scout verdicts are provisional until immutable commits exist | Preserve E002, obtain scout commit hashes, and preregister no more than two genuinely distinct follow-up hypotheses |
+| 2026-07-19 14:14:02 +07:00 | 0029 | MAIN | D2-MAIN-008 | Corrected submission-registry placement | E002 slot 1 moved from the Day 1 table to Day 2; experiment, score, and submission evidence are unchanged | Continue immutable scout audit and keep E002 as the provisional anchor |
 
 Append only. Correct errors with a new entry; do not erase history.
 
