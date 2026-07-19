@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0025
+Revision: 0026
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 13:19:20 +07:00
+Last Global Update: 2026-07-19 13:27:12 +07:00
 Competition Clock: RUNNING
 Repository Branch: codex/d2-e002-notebook
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -61,6 +61,9 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-003 | DAY 2 | MAIN | DONE | HIGH | E002 immutable handoff and frozen validation | Test an instance-based nearest-route hypothesis without changing E002 or its notebook | `d2-e003-routeknn` with directly comparable diagnostics | 2026-07-19 13:02 WIB | 2026-07-19 13:10 WIB | `REJECT`: +0.011222 over baseline misses the frozen +0.015 gate; unseen-current proxy accuracy collapses; do not submit or retune. |
 | D2-MAIN-004 | DAY 2 | MAIN | DONE | HIGH | E002 independent `GO/KEEP` | Convert the verified dual-environment notebook to exact E002 inference | Clean E002 notebook and byte-identical local CSV | 2026-07-19 13:13 WIB | 2026-07-19 13:19 WIB | Commit `51d7a9f`; clean local output is byte-identical to audited E002 CSV; no Kaggle slot used. |
 | D2-SUB-003 | DAY 2 | SUBMISSION | READY | HIGH | Immutable E002 notebook handoff | Audit clean notebook, exact CSV/hash, paths, dependencies, and Run-All contract | `READY`, `NOT READY`, or `INVESTIGATE` without using a slot | TODO | 2026-07-19 13:19 WIB | Audit notebook commit `51d7a9f`; actual Kaggle Run All remains deferred to the human Submission Manager. |
+| D2-MAIN-005 | DAY 2 | MAIN | IN_PROGRESS | HIGH | E002 immutable model and frozen validation | Test category-conditioned route posterior without duplicating scout experiments | `d2-e007-catroute` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 13:27 WIB | Preregistered with shared E002 promotion gate; isolated high-reasoning worker. |
+| D2-MAIN-006 | DAY 2 | MAIN | IN_PROGRESS | HIGH | E002 immutable model and frozen validation | Test target-title prototypes per exact-current route | `d2-e008-routeproto` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 13:27 WIB | Preregistered with shared E002 promotion gate; isolated high-reasoning worker. |
+| D2-MAIN-007 | DAY 2 | MAIN | IN_PROGRESS | HIGH | E002 immutable model and frozen validation | Test candidate-free global next-label prototypes | `d2-e009-nextproto` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 13:27 WIB | Preregistered with shared E002 promotion gate; isolated high-reasoning worker. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -68,13 +71,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: D2-MAIN-004
-Status: DONE
-Last Read Revision: 0024
-Last Update: 2026-07-19 13:19:20 +07:00
+Current Task: D2-MAIN-005/006/007
+Status: IN_PROGRESS
+Last Read Revision: 0025
+Last Update: 2026-07-19 13:27:12 +07:00
 
 ### Current Objective
-Produce a clean dual-environment E002 inference notebook whose local output is byte-identical to the independently audited CSV.
+Evaluate three additional preregistered challengers orthogonal to E002, E003, and the independent scout's E004-E006 work.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -95,6 +98,7 @@ Produce a clean dual-environment E002 inference notebook whose local output is b
 - Completed E003 without retuning; the failed +0.015 mean-gain gate makes it `REJECT / DO NOT SUBMIT`.
 ### Work in Progress
 - SUBMISSION review of immutable E002 notebook commit `51d7a9f` is pending; Kaggle submission remains deferred.
+- E007 category-route posterior, E008 route-title prototype, and E009 global next-label prototype are isolated for parallel high-reasoning execution.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -132,16 +136,18 @@ Produce a clean dual-environment E002 inference notebook whose local output is b
 - `task2/experiments/d2-e003-routeknn/{config,metrics,notes}`
 - `task2/src/routeknn.py`; `task2/src/run_routeknn_experiment.py`; `task2/src/test_routeknn.py`
 - `task2/notebooks/EnterYourTeamName_Task2_Notebook.ipynb` at commit `51d7a9f`
+- `task2/reports/d2-e007-e009-preregister.md`
 ### Decisions Needed
 - Whether screenshot link extraction clears its fixed 100-page precision/recall/runtime feasibility gate.
 ### Tasks Dispatched to Other Agents
 - `D2-VAL-002` completed: E002 is `GO/KEEP` at immutable model commit `8365193`.
 - `D2-SUB-002` completed: baseline notebook locally reproducible and byte-identical; actual Kaggle Run All remains deferred.
 - `D2-SUB-003` ready: independently audit notebook commit `51d7a9f` without changing model, validation, notebook, or using a slot.
+- `D2-MAIN-005/006/007` dispatched with non-overlapping files and the same frozen E002 promotion gate.
 ### Blockers
 - NONE
 ### Next Action
-- Await independent SUBMISSION verdict on `51d7a9f`; do not use a Kaggle slot until `READY` and actual Kaggle Restart Session -> Run All both pass.
+- Integrate E007-E009 evidence without retuning; keep E002 notebook and every Kaggle slot untouched while SUBMISSION audits `51d7a9f`.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -318,6 +324,7 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 13:10:41 +07:00 | 0023 | MAIN | D2-MAIN-003 | Completed the preregistered one-nearest-route challenger | `REJECT`: mean gain +0.011222 misses +0.015 gate; unseen-current proxy accuracy falls to 0.069560; validator remains READY | Preserve the diagnostic without retuning or submission; E002 remains the candidate awaiting audit |
 | 2026-07-19 13:08:06 +07:00 | 0024 | VALIDATION | D2-VAL-002 | Independently reproduced and audited E002 commit `8365193` | `GO/KEEP`; mean gain `+0.024000`, 5/5 folds, improved worst fold/OOD, exact state-ID ablation, all frozen gates pass; submission remains `DO NOT SUBMIT` | MAIN retains E002 and prepares an immutable notebook for SUBMISSION review |
 | 2026-07-19 13:19:20 +07:00 | 0025 | MAIN | D2-MAIN-004 | Reproduced the audited E002 candidate in the final dual-environment notebook | Commit `51d7a9f`; local clean CSV is byte-identical, validator READY, 7/7 plus 12/12 tests pass; no slot used | SUBMISSION audits the immutable notebook, then the human runs it cleanly on Kaggle |
+| 2026-07-19 13:27:12 +07:00 | 0026 | MAIN | D2-MAIN-005/006/007 | Preregistered three challengers orthogonal to the scout's E004-E006 work | Frozen category-route, route-prototype, and candidate-free next-prototype rules plus shared E002 gate; no scoring, notebook change, or slot use | Execute in isolated high-reasoning workers and accept `REJECT` without retuning if any gate fails |
 
 Append only. Correct errors with a new entry; do not erase history.
 
