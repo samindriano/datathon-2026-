@@ -27,6 +27,26 @@
     "end_to_end_preprocessing_in_notebook": false,
     "all_pass": false
   },
+  "postcompetition_diagnostic": {
+    "pages": 4312,
+    "readable_pages": 4312,
+    "accepted_mapping_rows": 101300,
+    "exact_mapping_share": 0.992497532082922,
+    "local_e002_accuracy": 0.2853333333333333,
+    "local_e014_accuracy": 0.3695555555555555,
+    "local_gain": 0.0842222222222222,
+    "fold_wins_vs_e002": 5,
+    "worst_fold": 0.35888888888888887,
+    "test_unique_predictions": 766,
+    "test_top_prediction_share": 0.15666666666666668,
+    "prediction_change_rate_vs_e002": 0.3155,
+    "prediction_sha256": "05457a8f6290e49e44feb832edce191cafd4eb38a992e2989191e8c493053396",
+    "csv_sha256": "8d353ec3e3dcf07416e06fb408cee3a2e8936a0ee006bb3e381afa790e1392f6",
+    "late_public_accuracy": 0.375,
+    "official_e002_public_accuracy": 0.321,
+    "late_submission_is_official": false,
+    "independent_validation_audit": false
+  },
   "external_api_or_data": false,
   "submission_slot_used": false,
   "recommendation": "Stop before full extraction; the panitia requires preprocessing to run end-to-end in the notebook, so the artifact-first architecture is ineligible. Retain the independently audited E002 submission as final."

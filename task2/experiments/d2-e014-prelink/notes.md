@@ -31,3 +31,22 @@ the unchanged five-fold target-group comparison, a separate local CSV, and
 fail-closed submission validation. This tooling does not revise the stored
 `REJECT` verdict: E014 remains diagnostic until a complete run and independent
 audit exist.
+
+## Post-competition diagnostic result
+
+The resumable notebook subsequently completed all 4,312 required current pages
+using only official Task 2 screenshots. It mapped 101,300 outgoing-link rows,
+with 99.25% coming from exact normalized title matches. The frozen target-group
+validation improved from E002 accuracy 0.285333 to E014 accuracy 0.369556,
+winning all 5 folds with a 0.358889 worst fold. The generated CSV passed the
+fail-closed local validator and changed 31.55% of E002 predictions.
+
+The human submitted this CSV only through Kaggle's post-deadline diagnostic
+path. Kaggle displayed public accuracy 0.375 versus E002's official 0.321.
+Because it was explicitly marked `after deadline`, this score is research
+evidence rather than an official competition result. E002 remains the selected
+official submission and E014 remains unaudited for final-use purposes.
+
+The repository intentionally excludes the 4.1 GB official ZIP, extracted
+screenshots, resumable checkpoint shards, compact link JSON, and generated CSV.
+They are reproducible from the notebook and are ignored by Git.

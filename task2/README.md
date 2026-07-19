@@ -34,3 +34,22 @@ override opsional `TASK2_DATA_DIR`. Output lokal ditulis ke
 `task2/submissions/submission.csv`; output Kaggle ditulis ke
 `/kaggle/working/submission.csv`. `TASK2_SUBMISSION_PATH` dapat dipakai untuk
 override eksplisit.
+
+## Eksperimen riset E014
+
+Eksperimen screenshot-link pascalomba dapat direproduksi melalui:
+
+```text
+task2/notebooks/d2-e014-prelink-local.ipynb
+```
+
+Gunakan Python 3.12 bila membuat environment baru, kemudian pasang dependensi
+dengan `python -m pip install -r task2/requirements-e014.txt`. Buka notebook
+dari root repository lalu gunakan `Run All`. Notebook membaca ZIP resmi melalui
+`DATATHON_TASK2_ZIP` atau lokasi unduhan yang dideteksi otomatis, menyimpan
+checkpoint yang dapat dilanjutkan di `task2/data/derived/`, menjalankan validasi
+target-group yang sama dengan E002, dan membuat CSV diagnostik terpisah.
+
+Dataset, ZIP, checkpoint, link JSON, serta CSV tidak disimpan di Git. Hasil,
+provenance, batasan, dan skor late submission dicatat di
+`task2/experiments/d2-e014-prelink/`. E014 bukan submission resmi yang dipilih.

@@ -64,9 +64,17 @@ def resolve_zip_path(explicit: Path | None = None) -> Path:
     )
 
 
-def _init_worker(data_root: str, zip_path: str) -> None:
+def _init_worker(
+    data_root: str,
+    zip_path: str,
+    cpu_threads: int,
+) -> None:
     global _ENGINE, _MAPPER, _ZIP_PATH
-    os.environ.setdefault("OMP_NUM_THREADS", "1")
+    if cpu_threads < 1:
+        raise ValueError("cpu_threads must be positive")
+    os.environ["OMP_NUM_THREADS"] = str(cpu_threads)
+    os.environ["OPENBLAS_NUM_THREADS"] = str(cpu_threads)
+    os.environ["MKL_NUM_THREADS"] = str(cpu_threads)
     articles = pd.read_csv(Path(data_root) / "articles.csv")
     _MAPPER = TitleMapper(articles)
     _ENGINE = RapidOCR(
@@ -190,6 +198,7 @@ def run(
     shard_pages: int,
     limit: int | None,
     resume_dir: Path | None = None,
+    cpu_threads: int = 1,
 ) -> dict[str, object]:
     article_ids = source_article_ids(data_root)
     if limit is not None:
@@ -238,7 +247,7 @@ def run(
         with ProcessPoolExecutor(
             max_workers=workers,
             initializer=_init_worker,
-            initargs=(str(data_root), str(zip_path)),
+            initargs=(str(data_root), str(zip_path), cpu_threads),
         ) as executor:
             futures = {
                 executor.submit(_extract_shard, shard): shard for shard in pending
@@ -266,6 +275,8 @@ def run(
                 totals["exact_mapping_rows"] / mapping_rows if mapping_rows else 0.0
             ),
             "workers": workers,
+            "device": "cpu",
+            "cpu_threads_per_worker": cpu_threads,
             "shard_pages": shard_pages,
             "shard_runtimes": shard_runtimes,
             "cached_shards": cached_shards,
@@ -292,6 +303,7 @@ def main() -> None:
     )
     parser.add_argument("--zip-path", type=Path)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--cpu-threads", type=int, default=1)
     parser.add_argument("--shard-pages", type=int, default=128)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--resume-dir", type=Path)
@@ -304,6 +316,7 @@ def main() -> None:
         args.shard_pages,
         args.limit,
         None if args.resume_dir is None else args.resume_dir.resolve(),
+        args.cpu_threads,
     )
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(
