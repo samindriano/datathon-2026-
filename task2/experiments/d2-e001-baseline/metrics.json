@@ -1,0 +1,207 @@
+{
+  "experiment_id": "d2-e001-baseline",
+  "metric": "accuracy",
+  "validation": {
+    "version": "d2-targetgroup-v1",
+    "fold_count": 5,
+    "seed": 20260719,
+    "group": "target_article_id",
+    "category_balance": "broad target category",
+    "folds": [
+      {
+        "fold": 0,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "bc8e8ecf5a66be6affdf2fae7f2decb2fd377add53d5e1f5ffdfe43aa7517d4a",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.795,
+        "current_seen_accuracy": 0.3025856044723969,
+        "current_unseen_accuracy": 0.13279132791327913,
+        "next_label_seen_rate": 0.9433333333333334,
+        "observed_candidate_coverage": 0.30777777777777776,
+        "entirely_unseen_target_category_rate": 0.041666666666666664,
+        "category_seen_accuracy": 0.26666666666666666,
+        "category_entirely_unseen_accuracy": 0.29333333333333333,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 322,
+        "top_prediction_share": 0.32,
+        "scores": {
+          "sample_current": 0.0,
+          "global_mode": 0.11333333333333333,
+          "current_mode": 0.2677777777777778
+        }
+      },
+      {
+        "fold": 1,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "0a458097d42ba7fde0db28d4887f1d655badd2ededf7daccfd0460932329d488",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.7911111111111111,
+        "current_seen_accuracy": 0.288623595505618,
+        "current_unseen_accuracy": 0.13031914893617022,
+        "next_label_seen_rate": 0.9411111111111111,
+        "observed_candidate_coverage": 0.29833333333333334,
+        "entirely_unseen_target_category_rate": 0.041666666666666664,
+        "category_seen_accuracy": 0.2539130434782609,
+        "category_entirely_unseen_accuracy": 0.29333333333333333,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 308,
+        "top_prediction_share": 0.3322222222222222,
+        "scores": {
+          "sample_current": 0.0,
+          "global_mode": 0.11555555555555555,
+          "current_mode": 0.25555555555555554
+        }
+      },
+      {
+        "fold": 2,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "de428921a9020152dd166b49f05d9365355c77c8d318b7bdae762b8c92ef5bf8",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.8011111111111111,
+        "current_seen_accuracy": 0.3065187239944521,
+        "current_unseen_accuracy": 0.1005586592178771,
+        "next_label_seen_rate": 0.9361111111111111,
+        "observed_candidate_coverage": 0.30722222222222223,
+        "entirely_unseen_target_category_rate": 0.1388888888888889,
+        "category_seen_accuracy": 0.26129032258064516,
+        "category_entirely_unseen_accuracy": 0.292,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 330,
+        "top_prediction_share": 0.3238888888888889,
+        "scores": {
+          "sample_current": 0.0,
+          "global_mode": 0.1111111111111111,
+          "current_mode": 0.26555555555555554
+        }
+      },
+      {
+        "fold": 3,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "64997cacbbb16182f47506dc371179a46769d7abe5880358a0cb5378d679ba09",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.8233333333333334,
+        "current_seen_accuracy": 0.2834008097165992,
+        "current_unseen_accuracy": 0.12264150943396226,
+        "next_label_seen_rate": 0.95,
+        "observed_candidate_coverage": 0.30333333333333334,
+        "entirely_unseen_target_category_rate": 0.06944444444444445,
+        "category_seen_accuracy": 0.25492537313432834,
+        "category_entirely_unseen_accuracy": 0.256,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 334,
+        "top_prediction_share": 0.30944444444444447,
+        "scores": {
+          "sample_current": 0.0,
+          "global_mode": 0.11888888888888889,
+          "current_mode": 0.255
+        }
+      },
+      {
+        "fold": 4,
+        "rows": 1800,
+        "targets": 72,
+        "target_sha256": "b230f3126a424cbde2ab1cc09a7602cdf3f05885ad004e7572ed8a0934895f27",
+        "target_seen_rate": 0.0,
+        "current_seen_rate": 0.7911111111111111,
+        "current_seen_accuracy": 0.29775280898876405,
+        "current_unseen_accuracy": 0.13031914893617022,
+        "next_label_seen_rate": 0.9394444444444444,
+        "observed_candidate_coverage": 0.31,
+        "entirely_unseen_target_category_rate": 0.05555555555555555,
+        "category_seen_accuracy": 0.26294117647058823,
+        "category_entirely_unseen_accuracy": 0.26,
+        "state_id_feature_used": false,
+        "state_id_ablation_exact_match": true,
+        "unique_predictions": 321,
+        "top_prediction_share": 0.32222222222222224,
+        "scores": {
+          "sample_current": 0.0,
+          "global_mode": 0.12333333333333334,
+          "current_mode": 0.2627777777777778
+        }
+      }
+    ]
+  },
+  "hypothesis": "The per-current most frequent observed next click is the cheapest transferable baseline when test targets are unseen but most current articles recur.",
+  "candidates": {
+    "sample_current": {
+      "mean_accuracy": 0.0,
+      "fold_accuracy": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "worst_fold_accuracy": 0.0,
+      "std_accuracy": 0.0
+    },
+    "global_mode": {
+      "mean_accuracy": 0.11644444444444443,
+      "fold_accuracy": [
+        0.11333333333333333,
+        0.11555555555555555,
+        0.1111111111111111,
+        0.11888888888888889,
+        0.12333333333333334
+      ],
+      "worst_fold_accuracy": 0.1111111111111111,
+      "std_accuracy": 0.004297573245736385
+    },
+    "current_mode": {
+      "mean_accuracy": 0.2613333333333333,
+      "fold_accuracy": [
+        0.2677777777777778,
+        0.25555555555555554,
+        0.26555555555555554,
+        0.255,
+        0.2627777777777778
+      ],
+      "worst_fold_accuracy": 0.255,
+      "std_accuracy": 0.005194964323360429
+    }
+  },
+  "test_diagnostics": {
+    "rows": 6000,
+    "current_seen_rate": 0.8741666666666666,
+    "global_fallback_article_id": 237,
+    "unique_predictions": 544,
+    "top_prediction_share": 0.2715,
+    "prediction_min": 3,
+    "prediction_max": 4560
+  },
+  "acceptance_gate": {
+    "checks": {
+      "target_groups_are_disjoint": true,
+      "target_seen_rate_is_zero": true,
+      "state_id_ablation_is_exact": true,
+      "fold_hashes_recorded": true,
+      "current_mode_beats_global_mean": true,
+      "current_mode_beats_sample_current_mean": true,
+      "submission_is_ready": true
+    },
+    "status": "KEEP"
+  },
+  "submission_validation": {
+    "status": "READY",
+    "rows": 6000,
+    "columns": [
+      "state_id",
+      "predicted_next_article_id"
+    ],
+    "unique_state_ids": 6000,
+    "unique_predictions": 544,
+    "reference_exact_match": null,
+    "errors": []
+  },
+  "submission": "C:\\Users\\Sam\\OneDrive\\Documents\\Project\\datathon-2026\\task2\\experiments\\d2-e001-baseline\\submission.csv",
+  "runtime_seconds": 4.962540000007721
+}

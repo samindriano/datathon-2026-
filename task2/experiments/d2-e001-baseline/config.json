@@ -1,0 +1,13 @@
+{
+  "experiment_id": "d2-e001-baseline",
+  "owner": "MAIN",
+  "branch": "exp/d2-e001-baseline",
+  "metric": "accuracy",
+  "validation": "d2-targetgroup-v1",
+  "fold_count": 5,
+  "group": "target_article_id",
+  "category_balance": "broad target category",
+  "seed": 20260719,
+  "model": "current_article_id to deterministic mode next_article_id",
+  "fallback": "global deterministic next_article_id mode"
+}
