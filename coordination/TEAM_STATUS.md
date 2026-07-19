@@ -1,9 +1,9 @@
 # Datathon 2026 Team Status
 
-Revision: 0034
+Revision: 0037
 Active Day: DAY 2
 Active Task: TASK 2
-Last Global Update: 2026-07-19 14:56:43 +07:00
+Last Global Update: 2026-07-19 15:09:50 +07:00
 Competition Clock: RUNNING
 Repository Branch: codex/d2-e002-notebook
 Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
@@ -69,7 +69,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-007 | DAY 2 | MAIN | DONE | HIGH | E002 immutable model and frozen validation | Test candidate-free global next-label prototypes | `d2-e009-nextproto` immutable result | 2026-07-19 13:27 WIB | 2026-07-19 14:00 WIB | `REJECT`: mean 0.042667, 0/5 wins vs E002; exact comparator repaired at main commit `dcfda11`; no slot. |
 | D2-MAIN-008 | DAY 2 | MAIN | DONE | HIGH | Scout E004-E006 working trees and E002 immutable reference | Independently audit scout results and select at most two evidence-backed next hypotheses | Immutable audit verdict and preregistered next-candidate decision | 2026-07-19 14:01 WIB | 2026-07-19 14:25 WIB | E004 `a5933a3`, E005 `e0043b6`, and E006 `a9d195d` are clean direct children of `8365193`; all remain `REJECT / DO NOT SUBMIT`. |
 | D2-MAIN-009 | DAY 2 | MAIN | DONE | HIGH | Immutable scout audit and frozen E010 preregistration | Evaluate nonlinear exact-current candidate ranking without feature/parameter rescue | Immutable `d2-e010-treerank` result and independent VALIDATION verdict | 2026-07-19 14:25 WIB | 2026-07-19 14:56 WIB | `REJECT / DO NOT SUBMIT`: commit `13194222`, audit `8f5ee0a`, mean 0.255556, 0/5 wins, no material leakage, no rescue tuning. |
-| D2-MAIN-010 | DAY 2 | MAIN | NEEDS_REVIEW | HIGH | Final E002 selection and notebook readiness | Produce the required maximum-three-page technical writeup consistent with the frozen model and submission | Rendered Task 2 writeup PDF plus reproducible source/build script | 2026-07-19 14:45 WIB | 2026-07-19 14:56 WIB | Local PDF is 2 pages and visually verified; independent SUBMISSION consistency review remains. |
+| D2-MAIN-010 | DAY 2 | MAIN | DONE | HIGH | Final E002 selection and notebook readiness | Produce the required maximum-three-page technical writeup consistent with the frozen model and submission | Rendered Task 2 writeup PDF plus reproducible source/build script | 2026-07-19 14:45 WIB | 2026-07-19 15:09 WIB | `READY`: local commit `feca95c`, independent report `877b7b1` integrated as `2343f1e`; 2 pages, exact PDF hash, clean render, consistent content and naming. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -78,9 +78,9 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 <!-- MAIN:START -->
 Role: MAIN
 Current Task: D2-MAIN-010
-Status: NEEDS_REVIEW
-Last Read Revision: 0034
-Last Update: 2026-07-19 14:56:43 +07:00
+Status: DONE
+Last Read Revision: 0037
+Last Update: 2026-07-19 15:09:50 +07:00
 
 ### Current Objective
 Freeze E002 as the final Task 2 candidate, preserve the remaining submission slots, and complete the required notebook/writeup delivery artifacts without reopening model selection.
@@ -105,7 +105,7 @@ Freeze E002 as the final Task 2 candidate, preserve the remaining submission slo
 - Closed E010 at immutable candidate commit `13194222` and independent audit `8f5ee0a`: `NO-GO / REJECT / DO NOT SUBMIT`, 0/5 wins, no material leakage, and no rescue tuning.
 - Selected E002 as the final candidate and stopped further Task 2 modeling.
 ### Work in Progress
-- A two-page Task 2 technical writeup has been rendered and visually checked; an independent SUBMISSION consistency review is the only remaining repository-side review.
+- NONE; modeling, notebook, and writeup reviews are closed.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -171,11 +171,11 @@ Freeze E002 as the final Task 2 candidate, preserve the remaining submission slo
 - `D2-SUB-003` completed: clean E002 notebook commit `3b28567` is independently `READY`.
 - `D2-MAIN-005/006/007` completed; all three failed the shared E002 promotion gate and remain diagnostic only.
 - VALIDATION completed E010 audit `8f5ee0a`; Scout and VALIDATION are closed with no additional experiment authorized.
-- SUBMISSION will receive the immutable writeup commit for a final consistency/page-limit review at `gpt-5.6-sol` medium.
+- SUBMISSION completed the immutable writeup audit at `877b7b1` with verdict `READY`; report integrated as `2343f1e`.
 ### Blockers
 - NONE
 ### Next Action
-- Commit the writeup artifact, request one independent SUBMISSION review, then hand the exact final notebook/writeup paths to the human Submission Manager. Do not use Chrome or another Kaggle slot.
+- Human Submission Manager selects slot 1 as the final Kaggle submission, uploads the clean notebook before 18:00 WIB, and delivers the reviewed writeup by 20 July 23:59 WIB. Do not use another slot.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -227,10 +227,10 @@ Only VALIDATION may update this section; it is read-only against the main pipeli
 
 <!-- SUBMISSION:START -->
 Role: SUBMISSION
-Current Task: D2-SUB-003
+Current Task: D2-SUB-004
 Status: READY
-Last Read Revision: 0030
-Last Update: 2026-07-19 14:38:00 +07:00
+Last Read Revision: 0034
+Last Update: 2026-07-19 15:06:49 +07:00
 
 ### Submission Schema Status
 - `states_test.csv` has 6,000 rows and columns `state_id,current_article_id,target_article_id`; sample has 6,000 rows and exact columns `state_id,predicted_next_article_id`.
@@ -253,18 +253,19 @@ Last Update: 2026-07-19 14:38:00 +07:00
 - Reference `submission.csv` is ignored and not stored in commit `0f94a1c`, but the clean notebook output reproduced it byte-for-byte and matched tracked expected SHA-256 `20e629735bb22da17e46c707d0a7ffb0560c00db3c9703b385c22d7503b70b96`.
 - Test target IDs have 0% overlap with train target IDs; test current IDs overlap train at 87.42% and current→mode baseline has 62.46% train accuracy (87.42% test coverage, global-mode fallback). Avoid target memorization.
 ### Writeup Status
-- TODO
+- Commit `feca95c` PDF is technically valid: 2 A4 pages, readable render with no clipping/overlap, exact SHA-256 `fcfcc27858b4cca7659ef85327f2eaf9a85e01f92e6002c50e68984023631db3`, and Git binary handling. Claims match immutable E002/E010 audits, notebook `3b28567`, slot-1 public `0.321`, and the actual final method. Isolated local rebuild produces the same two-page text and pixel-identical render without network or external data.
+- Direct human confirmation establishes that the registered team name is exactly `Enter Your Team Name` and authorizes compact filename token `EnterYourTeamName`; filename, visible title/footer, metadata, source, and notebook naming are therefore intentional and compliant.
 ### Recommendation
-- READY: final E002 notebook delivery at `3b28567` is clean and source-identical to the audited portability logic. All 14 tests, isolated numeric SHA-256, alternate-byte serialization, and exact-reference validator checks pass. Immutable re-audit report: commit `691b452`, `task2/reports/d2-e002-notebook-clean-reaudit.md`.
+- READY: technical PDF, content consistency, filename/team/task identity, Git binary contract, and reproducible local build all pass. The earlier provisional naming blocker is closed by authoritative human confirmation.
 
 Allowed: `READY`, `NOT READY`, `INVESTIGATE`, `BLOCKED`.
 
 ### Required Action from Main
-- Cherry-pick report commit `691b452` and retain notebook commit `3b28567` as the clean E002 delivery artifact.
+- Cherry-pick the immutable SUBMISSION report commit and retain `feca95c` PDF/source/build artifacts unchanged for delivery.
 ### Blockers
-- None for final notebook delivery.
+- None for Task 2 writeup delivery.
 ### Next Action
-- MAIN may use the clean notebook as the E002 delivery artifact; no additional Kaggle slot or browser action is required for this remediation audit.
+- MAIN hands the reviewed PDF to the human Submission Manager for upload before the writeup deadline; no additional model, validation, notebook, Kaggle, or slot action is required by this audit.
 <!-- SUBMISSION:END -->
 
 Only SUBMISSION may update this section; it may not change model/validation without MAIN instruction.
@@ -368,6 +369,9 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 14:38:00 +07:00 | 0032 | SUBMISSION | D2-SUB-003 | Re-audited clean-notebook remediation commit `3b28567` in an isolated worktree | `READY`: clean JSON and source equality pass; 14 tests pass; isolated numeric hash `292bb156...d1ba0`, alternate serialization, and exact-reference validator pass; report `691b452` | MAIN cherry-picks the immutable report and retains `3b28567` as the clean E002 delivery notebook; no additional slot required |
 | 2026-07-19 14:53:25 +07:00 | 0033 | VALIDATION | D2-MAIN-009 (audit) | Independently reproduced and audited immutable E010 commit `13194222` | `NO-GO / REJECT`; four gates fail, 0/5 wins versus exact E002, LOO/outer-fold leakage checks pass, prediction hashes and validator reproduce | Preserve negative evidence, do not retune or submit; E002 remains anchor and E011 stays stopped |
 | 2026-07-19 14:56:43 +07:00 | 0034 | MAIN | D2-MAIN-009/010 | Froze E002 as the final model candidate, stopped further modeling, and produced a two-page technical writeup | E010 audit `8f5ee0a` confirms rejection; E002 notebook remains `READY`; writeup PDF passes local page-count/text/render checks | Request one independent writeup consistency review, then hand notebook/writeup paths to the human Submission Manager |
+| 2026-07-19 15:06:03 +07:00 | 0035 | SUBMISSION | D2-SUB-004 | Independently audited Task 2 writeup commit `feca95c` in an isolated worktree | `NOT READY`: two-page render, exact PDF SHA/Git binary contract, all method/metric claims, and isolated local rebuild pass; filename/title/footer/metadata still use an unverified team-name placeholder | MAIN obtains the registered team name, applies naming-only remediation, rebuilds the PDF, and requests quick re-audit; no Kaggle or slot action needed |
+| 2026-07-19 15:06:49 +07:00 | 0036 | SUBMISSION | D2-SUB-004 | Resolved the provisional writeup naming blocker using authoritative human registration context | `READY`: registered team name is exactly `Enter Your Team Name`; compact token `EnterYourTeamName` is authorized, and every remaining technical/content/build check passes | Preserve `feca95c` artifacts unchanged, cherry-pick the immutable audit report, and hand the reviewed PDF to the human Submission Manager |
+| 2026-07-19 15:09:50 +07:00 | 0037 | MAIN | D2-MAIN-010 | Integrated the immutable final-writeup audit and closed all repository-side Task 2 work | Audit report `877b7b1` integrated as `2343f1e`; notebook and writeup are `READY`; E002 remains the frozen final candidate | Human selects slot 1 and uploads the clean notebook/writeup by their official deadlines; no further model or slot use |
 
 Append only. Correct errors with a new entry; do not erase history.
 
@@ -387,6 +391,6 @@ Append only. Correct errors with a new entry; do not erase history.
 - Final submission: `sub-s01-d2-e002-metarank.csv`, public accuracy 0.321; model decision frozen, Kaggle final-selection checkbox remains a human action.
 - Final experiment: `d2-e002-metarank` at immutable model commit `8365193`; local mean accuracy 0.285333 with 5/5 fold wins over baseline.
 - Notebook status: `READY` at clean delivery commit `3b28567`, independently re-audited in report commit `691b452`; final Kaggle notebook upload remains a human action.
-- Writeup status: two-page `output/pdf/EnterYourTeamName_Task2_Writeup.pdf` rendered and visually checked; independent consistency review pending.
+- Writeup status: `READY`; two-page `output/pdf/EnterYourTeamName_Task2_Writeup.pdf` is independently audited in `task2/reports/d2-final-writeup-audit.md`.
 - Unresolved reproducibility risk: no known model/notebook blocker; only the human Kaggle final-selection and deliverable uploads remain outside the repository.
 - Final deliverable checklist: submission exists; select slot 1 as final; upload/run the clean notebook before 18:00 WIB; deliver the reviewed writeup by 20 July 23:59 WIB.
