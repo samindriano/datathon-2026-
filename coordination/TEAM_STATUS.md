@@ -1,12 +1,12 @@
 # Datathon 2026 Team Status
 
-Revision: 0050
-Active Day: DAY 2
-Active Task: TASK 2
-Last Global Update: 2026-07-19 18:47:38 +07:00
+Revision: 0057
+Active Day: CONCEPT
+Active Task: D'COAST PHASE 0.6
+Last Global Update: 2026-07-25 02:32:00 +07:00
 Competition Clock: CLOSED
-Repository Branch: exp/d2-e014-prelink
-Current Stable Commit: 0f94a1cdb8da4929520fce80a64e5203947ed4d9
+Repository Branch: codex/dcoast-phase0
+Current Stable Commit: ef8b7ee141577d34866decc55ee8385c13194bc7
 
 ## 1. Active Competition Brief
 
@@ -46,6 +46,7 @@ Only MAIN may update this section.
 | D2-DEC-009 | 2026-07-19 15:37 WIB | Reject E012/E013 without rescue, then allow one artifact-first `d2-e014-prelink` attempt while preserving E002. | Both OCR variants exceed their frozen 20-minute projection, but the fixed link-ranker improves a 226-row target-group diagnostic by +0.0708 and wins 5/5 folds; the human explicitly authorizes one more high-upside attempt. | MAIN | E014 must precompute only official-data link candidates within 60 minutes, pass the unchanged full E002 promotion gates, and close notebook/artifact reproducibility before any slot. |
 | D2-DEC-010 | 2026-07-19 15:46 WIB | Reject E014 at its precompute gate and refreeze E002 as the final Task 2 candidate; no further model or slot use. | Four-worker benchmark projects 5,383 seconds for the 4,312 relevant pages versus the frozen 3,600-second maximum; full validation, artifact, notebook, and slot were correctly not run. | MAIN | None before the competition close; only a reproducibility failure in E002 would justify emergency action. |
 | D2-DEC-011 | 2026-07-19 15:51 WIB | Treat precomputed screenshot-link features as ineligible for the final notebook and retain only end-to-end E002. | Panitia clarification supplied by the human: every preprocessing step before modeling must run end-to-end in the submitted notebook and may not load externally preprocessed data. | MAIN | Only a written official clarification explicitly permitting the exact artifact architecture could reverse this, and runtime would still fail. |
+| DCOAST-DEC-001 | 2026-07-25 02:32 WIB | Close Cilegon as `NO_GO_CILEGON_FOR_PHASE1` for the current optical pipeline; retain Teluk Awur only as a conditional technical benchmark and do not start Phase 1. | Credential-enabled Phase 0.6 output: Cilegon has 0 quality-70 dates and fails 3/3 frozen cadence gates; Teluk Awur has 167 quality-70 dates but a 120-day maximum full-period gap and still lacks secured georeferenced validation. | MAIN | A newly preregistered coastal/turbid-water quality method, reviewed AOI/boundary evidence, and secured validation data may justify a fresh gate; do not reverse by lowering the frozen 70% threshold on this evidence. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -78,6 +79,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-012 | DAY 2 | MAIN | DONE | HIGH | Strong sampled link-rank signal and rejected online OCR runtime | Precompute official screenshot candidates as a compact reproducible model artifact, then run unchanged frozen validation | `d2-e014-prelink` full-fold verdict, artifact, notebook plan, and slot decision | 2026-07-19 15:37 WIB | 2026-07-19 15:46 WIB | `REJECT`: 200-page benchmark projects 89.72 minutes, failing the frozen 60-minute precompute gate; stopped before full extraction/validation/artifact/notebook/slot. |
 | D2-MAIN-013 | DAY 2 | MAIN | DONE | MEDIUM | Human requests a post-competition local E014 rerun | Clean VS Code notebook with resumable official-ZIP extraction, frozen-fold evaluation, CSV creation, and validation | `task2/notebooks/d2-e014-prelink-local.ipynb` plus focused pipeline support | 2026-07-19 16:20 WIB | 2026-07-19 16:33 WIB | Local experiment tooling only; E014 remains unaudited/rejected and E002 remains the official final candidate. |
 | DCOAST-PHASE05-001 | CONCEPT | MAIN | DONE | HIGH | Completed Phase 0 feasibility and unresolved OAuth/validation/AOI blockers | Refined water AOIs, per-acquisition quality contract, supplementary evidence, validation classification, and frozen site gates | Phase 0.5 site-lock verdict and reproducible blocker-closure artifacts | 2026-07-24 23:49 WIB | 2026-07-25 00:12 WIB | `CONDITIONAL_GO_CILEGON`; Teluk Awur remains the benchmark; CDSE clear-water and secured georeferenced validation gates remain open; no Phase 1 work authorized. |
+| DCOAST-PHASE06-001 | CONCEPT | MAIN | DONE | HIGH | Valid Sentinel Hub OAuth client credentials | Deduplicated site-date clear-water query with retry, provenance, sensitivity, and fail-closed validation | Audited Cilegon/Teluk Awur optical-quality evidence and Phase 0.6 gate verdict | 2026-07-25 01:49 WIB | 2026-07-25 02:32 WIB | `NO_GO_CILEGON_FOR_PHASE1`; Cilegon fails all frozen quality-70 cadence gates, Teluk Awur remains a conditional technical benchmark, and Phase 1 was not started. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -85,13 +87,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: DCOAST-PHASE05-001
+Current Task: DCOAST-PHASE06-001
 Status: DONE
-Last Read Revision: 0049
-Last Update: 2026-07-25 00:12:04 +07:00
+Last Read Revision: 0056
+Last Update: 2026-07-25 02:32:00 +07:00
 
 ### Current Objective
-Close the bounded D'Coast Phase 0.5 feasibility blockers and stop before Phase 1.
+Close Phase 0.6 with a reproducible clear-water gate verdict and stop before Phase 1.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -117,8 +119,10 @@ Close the bounded D'Coast Phase 0.5 feasibility blockers and stop before Phase 1
 - Inspected the complete Cilegon article and both supplementary files; classified heavy metals as context evidence and declined to invent station coordinates.
 - Added fail-closed per-acquisition optical-quality tooling, a transparent 858-row OAuth-blocked work queue, validation inventory, and frozen site-lock gates.
 - Issued `CONDITIONAL_GO_CILEGON`; retained Teluk Awur as the technical benchmark and did not start Phase 1.
+- Completed the credential-enabled Statistical API workflow: 848 unique site-date rows representing 858 source acquisitions, with provenance, rejection reasons, and bounded retry.
+- Aggregated the preregistered 50/70/80 sensitivity and cadence gates; closed Cilegon as no-go for the current optical pipeline and retained Teluk Awur only as a conditional technical benchmark.
 ### Work in Progress
-- NONE; CDSE OAuth and a reusable georeferenced validation path are human-owned prerequisites before Phase 1.
+- NONE; Phase 1 remains blocked pending a new human approval gate.
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -147,6 +151,8 @@ Close the bounded D'Coast Phase 0.5 feasibility blockers and stop before Phase 1
 - `d2-e013-fastlink`: 87.63% recall and 98.99% exact mapping share, but projected full OCR 3,794.35s; `REJECT`.
 - `d2-e014-prelink`: 200/200 benchmark pages and 99.28% exact mapping share, but projected relevant-page precompute 5,383.06s versus 3,600s gate; `REJECT` before full validation.
 - Panitia clarification closes the artifact shortcut: preprocessing must execute end-to-end in the final notebook, so a locally precomputed outgoing-link graph cannot make E014 submission-eligible.
+- D'Coast Phase 0.6: Cilegon quality-70 usable dates 0/423, full-year average 0, median 0/month, and no usable-date gap metric; all 3/3 frozen gates fail.
+- D'Coast Phase 0.6: Teluk Awur quality-70 usable dates 167/425, full-year average 29, median 2/month, and maximum full-period gap 120 days; cadence passes 2/3 gates.
 ### Files Changed
 - `task2/src/`; `task2/tests/`; `task2/experiments/d2-e001-baseline/`; `task2/notebooks/`; `task2/reports/`; `task2/README.md`; `coordination/TEAM_STATUS.md`
 ### Commands Running
@@ -180,8 +186,13 @@ Close the bounded D'Coast Phase 0.5 feasibility blockers and stop before Phase 1
 - `task2/reports/EnterYourTeamName_Task2_Writeup.md`
 - `task2/reports/build_task2_writeup.py`
 - `output/pdf/EnterYourTeamName_Task2_Writeup.pdf`
+- `concept-paper/dcoast/reports/sentinel2_observation_quality.csv`
+- `concept-paper/dcoast/reports/sentinel2_monthly_availability.csv`
+- `concept-paper/dcoast/reports/phase06_site_quality_summary.csv`
+- `concept-paper/dcoast/reports/phase06_monthly_seasonality.csv`
+- `concept-paper/dcoast/reports/phase06_clear_water_assessment.md`
 ### Decisions Needed
-- NONE; E002 is refrozen as final.
+- Human approval is required before any D'Coast Phase 1 work.
 ### Tasks Dispatched to Other Agents
 - `D2-VAL-002` completed: E002 is `GO/KEEP` at immutable model commit `8365193`.
 - `D2-SUB-002` completed: baseline notebook locally reproducible and byte-identical; actual Kaggle Run All remains deferred.
@@ -191,9 +202,9 @@ Close the bounded D'Coast Phase 0.5 feasibility blockers and stop before Phase 1
 - SUBMISSION completed the immutable writeup audit at `877b7b1` with verdict `READY`; report integrated as `2343f1e`.
 - No role task is dispatched during E014 precompute; MAIN works alone to avoid duplicate/fast-mode cost. VALIDATION/SUBMISSION receive a handoff only after a complete immutable candidate passes local gates.
 ### Blockers
-- NONE
+- Secured georeferenced optical validation data and expert/AOI review remain absent; Cilegon also fails the frozen optical cadence gate.
 ### Next Action
-- Human Submission Manager selects slot 1 as final and uploads the already READY clean notebook before 18:00 WIB; preserve every remaining Kaggle slot.
+- Stop. Review BIG coastline/AOI evidence and secure dated, georeferenced Teluk Awur TSS observations before proposing a new Phase 1 gate.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -330,7 +341,7 @@ Public score is never the sole final-selection reason.
 
 | Blocker ID | Reported By | Time | Description | Blocking Task | Owner | Status | Resolution |
 |---|---|---|---|---|---|---|---|
-| DCOAST-BLK-001 | MAIN | 2026-07-24 22:00 WIB | CDSE public catalogue is accessible, but AOI-level Statistical API clear-water fractions require OAuth credentials that are absent from the environment | Final 50/70/80 clear-water sensitivity and Phase 1 approval | Human / MAIN | OPEN | Follow `docs/data_access_requirements.md`, run `query_clear_water_stats.py` for the two locked water AOIs, and never commit credential values; the current 858-row quality inventory remains explicitly blocked |
+| DCOAST-BLK-001 | MAIN | 2026-07-24 22:00 WIB | CDSE public catalogue was accessible, but AOI-level Statistical API clear-water fractions required OAuth credentials that were initially absent | Final 50/70/80 clear-water sensitivity and Phase 1 approval | Human / MAIN | CLOSED | Human supplied credentials privately; 848 site-date rows were generated and validated without storing credentials. The result closes Cilegon as no-go rather than authorizing Phase 1. |
 
 ## 10. Handoff Queue
 
@@ -404,6 +415,13 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-24 22:00:19 +07:00 | 0048 | MAIN | DCOAST-PHASE0-001 | Completed the D'Coast pilot-site feasibility study and stopped at the Phase 0 gate | Conditional recommendation: Cilegon operational pilot and Teluk Awur technical benchmark; 4 valid provisional AOIs, 1,704 unique acquisitions, 268 monthly rows, source inventory, scores, and fail-closed scripts validated at 424,071 bytes; AOI clear-water sensitivity remains blocked by absent CDSE OAuth | Human reviews the recommendation and supplies OAuth plus validation/boundary access before approving any Phase 1 download, preprocessing, or model work |
 | 2026-07-24 23:49:40 +07:00 | 0049 | MAIN | DCOAST-PHASE05-001 | Started the bounded D'Coast Phase 0.5 blocker-closure and site-lock review | CDSE OAuth remains absent; supplementary Cilegon map and calculation workbook were inspected without adopting unverifiable coordinates; no imagery download, training, or Phase 1 work started | Refine water-only AOIs, prepare fail-closed observation-quality tooling, classify validation evidence, test artifacts, and issue one site-lock verdict |
 | 2026-07-25 00:12:04 +07:00 | 0050 | MAIN | DCOAST-PHASE05-001 | Completed Phase 0.5 and stopped at the site-lock gate | `CONDITIONAL_GO_CILEGON`; Teluk Awur remains benchmark; 4 AOIs, 1,704 acquisitions, 858 blocked quality rows, 268 monthly rows, 5 tests, syntax checks, and fail-closed artifact validation pass; no station coordinates, imagery download, model, or Phase 1 artifact was created | Human configures CDSE OAuth and secures a georeferenced validation/expert-review path before requesting any Phase 1 work |
+| 2026-07-25 01:49:53 +07:00 | 0051 | MAIN | DCOAST-PHASE06-001 | Started the credential-enabled clear-water blocker closure | Human confirmed credentials are ready in a private PowerShell; runner preparation is migrating 858 acquisition rows to 848 unique site-date mosaics with bounded retry, explicit quality status, rejection reason, and provenance | Complete local regression checks, then hand one secret-safe command to the human for execution in the credential-bearing PowerShell |
+| 2026-07-25 02:05:00 +07:00 | 0052 | MAIN | DCOAST-PHASE06-001 | Diagnosed the first credential-bearing runner failure | Token endpoint returned HTTP 401 before any Statistical API call; non-empty environment variables were present but the pair was not accepted as a Sentinel Hub OAuth client | Human creates or recopies a dedicated client under CDSE Dashboard User Settings > OAuth clients, resets the two environment variables, and reruns the same one-command workflow |
+| 2026-07-25 02:12:00 +07:00 | 0053 | MAIN | DCOAST-PHASE06-001 | Diagnosed the second runner failure after valid authentication | Token exchange succeeded; the first statistics request returned HTTP 400 because the runner used an obsolete `/api/v1/statistics` path instead of the current documented `/statistics/v1` endpoint | Rerun the corrected one-command workflow; any further non-transient API rejection will now expose a bounded server validation message without credential values |
+| 2026-07-25 02:20:00 +07:00 | 0054 | MAIN | DCOAST-PHASE06-001 | Diagnosed the current endpoint's precise resolution rejection | API reported an effective 21,132.99 m pixel because numeric `60` was interpreted in WGS84 coordinate units; payload now declares EPSG:4326 and uses 0.00054-degree resolution, approximately 60 m near the pilot latitudes | Rerun the corrected workflow in the same credential-bearing PowerShell |
+| 2026-07-25 02:27:00 +07:00 | 0055 | MAIN | DCOAST-PHASE06-001 | Removed remaining Statistical API resolution ambiguity | The API repeated the same effective one-pixel rejection despite decimal WGS84 resolution; runner now calculates and sends explicit width/height from AOI extent at the frozen approximate 60 m target, with a 2500-pixel fail-closed guard | Rerun the corrected workflow in the same credential-bearing PowerShell |
+| 2026-07-25 02:31:00 +07:00 | 0056 | MAIN | DCOAST-PHASE06-001 | Detected and validated the completed Statistical API artifact despite stale pasted traceback | `sentinel2_observation_quality.csv` now has 848 unique site-date rows representing 858 acquisitions; validator passes; Cilegon quality-70 count is 0 versus Teluk Awur 167 | Freeze the proven request configuration, aggregate frozen gates, explain the Cilegon SCL-screening failure without relabeling it as pollution, and issue the Phase 0.6 verdict |
+| 2026-07-25 02:32:00 +07:00 | 0057 | MAIN | DCOAST-PHASE06-001 | Completed Phase 0.6 and stopped before Phase 1 | Cilegon has 0 quality-70 dates and fails 3/3 frozen cadence gates; Teluk Awur has 167 quality-70 dates and passes volume but fails the 120-day gap gate; all 848 rows, summaries, seasonality, report, and fail-closed checks are reproducible | Keep `NO_GO_CILEGON_FOR_PHASE1`; require new AOI/expert evidence and secured georeferenced validation before any new human-approved phase |
 
 Append only. Correct errors with a new entry; do not erase history.
 

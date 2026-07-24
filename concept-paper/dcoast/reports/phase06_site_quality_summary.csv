@@ -1,0 +1,7 @@
+site,threshold_pct,all_period_observations,all_period_usable,all_period_rejection_pct,usable_2021,usable_2022,usable_2023,usable_2024,usable_2025,full_year_average_usable,full_year_median_usable_per_month,full_year_longest_gap_days,gate_median_month_pass,gate_average_year_pass,gate_max_gap_pass
+cilegon-industrial-coast,50,423,108,74.468,13,8,26,18,21,17.200,1.000,170,1,0,0
+cilegon-industrial-coast,70,423,0,100.000,0,0,0,0,0,0.000,0.000,,0,0,0
+cilegon-industrial-coast,80,423,0,100.000,0,0,0,0,0,0.000,0.000,,0,0,0
+teluk-awur-jepara,50,425,189,55.529,26,24,41,34,40,33.000,2.000,75,1,1,0
+teluk-awur-jepara,70,425,167,60.706,23,21,39,27,35,29.000,2.000,120,1,1,0
+teluk-awur-jepara,80,425,153,64.000,20,20,36,26,30,26.400,2.000,135,1,1,0

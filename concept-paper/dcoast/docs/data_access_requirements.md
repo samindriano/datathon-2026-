@@ -8,7 +8,7 @@ source attribution.
 | Source | Intended use | Coverage / resolution | Access and format | Account | Automation | Important limitation |
 |---|---|---|---|---|---|---|
 | Copernicus Data Space STAC, `sentinel-2-l2a` | Acquisition inventory and scene metadata | Sentinel-2 archive; nominal 10-60 m bands | Public STAC JSON at `https://stac.dataspace.copernicus.eu/v1/` | No for catalogue | Yes | Scene cloud cover is not AOI clear-water coverage. |
-| CDSE Sentinel Hub Statistical API | AOI-level SCL clear-water fraction | Server-side user AOI; Phase 0 script requests 60 m diagnostic statistics | JSON API | Yes; OAuth client | Yes after credentials | Free-account quota applies. SCL class 6 is a screening proxy and mixed land-water AOIs need a stable water mask later. |
+| CDSE Sentinel Hub Statistical API | AOI-level SCL clear-water fraction | Server-side user AOI; Phase 0 script requests an approximate 60 m (`0.00054` degree WGS84) diagnostic grid | JSON API | Yes; OAuth client | Yes after credentials | Free-account quota applies. SCL class 6 is a screening proxy and mixed land-water AOIs need a stable water mask later. |
 | Sentinel-2 L1C / L2A | Optical imagery | L1C TOA; L2A surface reflectance and SCL | CDSE browser, APIs, S3/object access | Catalogue no; most data access yes | Yes | Do not bulk-download in Phase 0. Prefer L2A; compare L1C only for documented gaps. |
 | GPM IMERG V07 | Minimum rainfall context | June 2000 to delayed present; 0.1 degree, half-hourly | NASA Earthdata files/services | Usually NASA Earthdata account for download | Yes | Coarse relative to a narrow coast; rainfall is context, not a causal verdict. |
 | ERA5 single levels | Rainfall, wind and broad meteorology | 1940-present; hourly, 0.25 degree | CDS API; GRIB | Yes | Yes | Coarser than the pilot AOI and not a replacement for local observations. |
@@ -52,7 +52,14 @@ history that will be shared. Set them only in the local process environment.
 The repository ignores `.env`, `.env.*`, PEM/key files, and therefore
 `.env.local`, but the Phase 0.5 scripts do not require or parse an env file.
 
-Safe interactive PowerShell setup:
+First create a dedicated Sentinel Hub OAuth client in CDSE Dashboard:
+
+1. Open `https://shapps.dataspace.copernicus.eu/dashboard/#/account/settings`.
+2. Open **User Settings** and find **OAuth clients**.
+3. Create a non-SPA client and copy the displayed client ID and one-time client
+   secret. A Copernicus Browser login/email/password is not an API client.
+
+Then use this safe interactive PowerShell setup:
 
 ```powershell
 $env:CDSE_CLIENT_ID = Read-Host "CDSE client ID"
@@ -88,30 +95,32 @@ EARTHDATA_PASSWORD
 These are not required for the Phase 0 metadata inventory and must not be
 created merely to make the current report look complete.
 
-## Exact current blocker
+## CDSE access status
 
-On 24 July 2026 the public CDSE STAC catalogue was accessible, but no
-`CDSE_CLIENT_ID` or `CDSE_CLIENT_SECRET` was available in the working
-environment. AOI-level clear-water fractions therefore could not be obtained
-from the Statistical API. The report leaves the 50%, 70% and 80% clear-water
-fields empty with status `BLOCKED_NO_CDSE_OAUTH`.
+The credential blocker was closed on 25 July 2026. Credentials were supplied
+only through the local process environment and were not written to repository
+files. The Statistical API query completed for both locked water AOIs.
 
 Whole-tile scene cloud metadata is retained only as a diagnostic proxy. It is
 not silently substituted for the requested AOI pixel statistic.
 
 The checked-in `reports/sentinel2_observation_quality.csv` contains one row per
-catalogue acquisition for Cilegon and Teluk Awur (858 rows). Its quality fields
-are empty and its status is `BLOCKED_NO_CDSE_OAUTH`. This is an explicit work
-queue, not a synthetic measurement table.
+unique site-date for Cilegon and Teluk Awur (848 rows representing 858 source
+acquisitions). Its populated quality fields, status, rejection reason,
+processing timestamp, and method provenance are validated fail-closed. The
+derived frozen-gate verdict is recorded in
+`reports/phase06_clear_water_assessment.md`.
 
 ## Manual steps before Phase 1
 
-1. Create a free CDSE account and OAuth client.
-2. Run the clear-water script with credentials set only in the process
-   environment.
-3. Review processing-unit use before requesting the full date range.
-4. Obtain and cite the BIG coastline package; refine each provisional polygon
+1. Obtain and cite the BIG coastline package; refine each provisional polygon
    without losing provenance.
+2. Secure dated, georeferenced water-quality observations and permission to use
+   them.
+3. Review the AOIs and representative SCL/true-colour dates with a
+   coastal-water expert.
+4. Require a new human approval gate before any bulk imagery download or model
+   training.
 5. Ask the relevant agency or site owner for an official estate/jurisdiction
    boundary and any public monitoring or sampling record.
 6. Acquire published station coordinates or data-use permission for the chosen

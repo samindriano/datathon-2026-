@@ -60,7 +60,9 @@ def main() -> None:
         if row.get("clear_water_fraction", "") == "":
             continue
         stamp = parse_datetime(
-            row.get("acquisition_datetime") or row.get("interval_from", "")
+            row.get("observation_date")
+            or row.get("acquisition_datetime")
+            or row.get("interval_from", "")
         )
         clear_fraction = float(row["clear_water_fraction"])
         clear_by_month[(row["site"], stamp.year, stamp.month)].append(clear_fraction)

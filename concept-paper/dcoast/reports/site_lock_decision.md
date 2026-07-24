@@ -1,5 +1,9 @@
 # D'Coast Phase 0.5 Site-Lock Decision
 
+> Historical Phase 0.5 decision. The Phase 1 gate is superseded by
+> `phase06_clear_water_assessment.md`, which closes Cilegon as no-go for the
+> current optical pipeline.
+
 Decision date: 24 July 2026  
 Final verdict: **CONDITIONAL_GO_CILEGON**  
 Technical benchmark: **Teluk Awur remains confirmed**

@@ -27,30 +27,23 @@ python concept-paper/dcoast/scripts/site_feasibility/query_sentinel2_odata.py `
   --end 2026-07-24
 ```
 
-AOI-level clear-water sensitivity needs CDSE OAuth credentials:
+AOI-level clear-water sensitivity needs CDSE OAuth credentials. After setting
+them in a private PowerShell session, run the complete Phase 0.6 workflow with
+one command:
 
 ```powershell
 $env:CDSE_CLIENT_ID = '<local value>'
 $env:CDSE_CLIENT_SECRET = '<local value>'
-python concept-paper/dcoast/scripts/site_feasibility/query_clear_water_stats.py `
-  --aoi-dir concept-paper/dcoast/data/aoi_candidates `
-  --metadata concept-paper/dcoast/data/sentinel2_metadata_observations.csv `
-  --site cilegon-industrial-coast `
-  --site teluk-awur-jepara `
-  --output concept-paper/dcoast/reports/sentinel2_observation_quality.csv `
-  --start-year 2021 `
-  --end 2026-07-24
-
-python concept-paper/dcoast/scripts/site_feasibility/build_availability_table.py `
-  --metadata concept-paper/dcoast/data/sentinel2_metadata_observations.csv `
-  --clear-water concept-paper/dcoast/reports/sentinel2_observation_quality.csv `
-  --output concept-paper/dcoast/reports/sentinel2_monthly_availability.csv
+python concept-paper/dcoast/scripts/site_feasibility/run_phase06.py
 ```
 
 Do not commit credentials, full Sentinel-2 imagery, or large raw environmental
 archives. The clear-water diagnostic uses SCL class 6 and cloud/shadow classes
-3, 8, 9, 10, and 11 at 60 m over the water-only AOIs. It is not a pollution
-detector.
+3, 8, 9, 10, and 11 at an approximate 60 m diagnostic grid
+(`0.00054` degree WGS84) over the water-only AOIs. It is not a pollution
+detector. The runner makes one daily mosaic per unique site-date, retries only
+transient API failures, rebuilds the monthly and frozen-gate assessment tables,
+writes the Phase 0.6 decision report, and validates all outputs.
 
 If OAuth is unavailable, rebuild the transparent blocked work queue:
 

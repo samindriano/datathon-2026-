@@ -9,7 +9,8 @@ from pathlib import Path
 TARGET_SITES = {"cilegon-industrial-coast", "teluk-awur-jepara"}
 FIELDS = [
     "site",
-    "acquisition_datetime",
+    "observation_date",
+    "source_acquisition_count",
     "water_support_pixel_count",
     "valid_water_pixel_count",
     "clear_water_pixel_count",
@@ -21,8 +22,10 @@ FIELDS = [
     "quality_50",
     "quality_70",
     "quality_80",
-    "status",
-    "method",
+    "quality_status",
+    "rejection_reason",
+    "processed_at_utc",
+    "api_provenance",
 ]
 
 
@@ -33,22 +36,23 @@ def main() -> None:
     args = parser.parse_args()
     with args.metadata.open(encoding="utf-8", newline="") as handle:
         metadata = list(csv.DictReader(handle))
-    keys = sorted(
-        {
-            (row["site"], row["acquisition_datetime"])
-            for row in metadata
-            if row["site"] in TARGET_SITES
-        }
-    )
+    counts: dict[tuple[str, str], int] = {}
+    for row in metadata:
+        if row["site"] not in TARGET_SITES:
+            continue
+        key = (row["site"], row["acquisition_datetime"][:10])
+        counts[key] = counts.get(key, 0) + 1
     rows = []
-    for site, stamp in keys:
+    for (site, observation_date), source_count in sorted(counts.items()):
         row = {field: "" for field in FIELDS}
         row.update(
             {
                 "site": site,
-                "acquisition_datetime": stamp,
-                "status": "BLOCKED_NO_CDSE_OAUTH",
-                "method": (
+                "observation_date": observation_date,
+                "source_acquisition_count": source_count,
+                "quality_status": "BLOCKED_NO_CDSE_OAUTH",
+                "rejection_reason": "CDSE_OAUTH_MISSING",
+                "api_provenance": (
                     "Awaiting CDSE Statistical API; no scene-cloud substitution"
                 ),
             }
