@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "name": "cilegon-monitoring-water-provisional",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "cilegon-industrial-coast",
+        "site_name": "Cilegon industrial coast",
+        "candidate_role": "operational_pilot",
+        "geometry_role": "monitoring_water",
+        "boundary_status": "provisional_derived",
+        "boundary_reason": "Water-side feasibility polygon facing the Cilegon industrial and port corridor. The landward edge is an approximate coastline reference, not an estate, port, jurisdiction, or discharge boundary.",
+        "coastline_reference": [
+          [105.980, -5.915],
+          [105.958, -6.100]
+        ],
+        "offshore_width_km_target": "2-5",
+        "included_segments": [
+          {
+            "segment": "north",
+            "role": "industrial-port waterfront screening",
+            "status": "contextual only; exact facility and jurisdiction boundaries not adopted"
+          },
+          {
+            "segment": "central",
+            "role": "urban waterfront and river-mouth screening",
+            "status": "candidate context; river mouths must be confirmed against official hydrography"
+          },
+          {
+            "segment": "south",
+            "role": "port-industrial waterfront screening",
+            "status": "contextual only; no outfall is inferred"
+          },
+          {
+            "segment": "offshore edge",
+            "role": "candidate reference/control water",
+            "status": "provisional; must be tested for circulation and plume influence"
+          }
+        ],
+        "land_geometry": "excluded from the monitoring polygon",
+        "station_geometry": "not created because the published supplementary map has no graticule, coordinate labels, or geospatial metadata",
+        "warning": "Phase 0.5 water-support AOI only. Confirm against BIG coastline and an official monitoring jurisdiction before operational use."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [105.940, -5.910],
+            [105.925, -6.095],
+            [105.958, -6.100],
+            [105.980, -5.915],
+            [105.940, -5.910]
+          ]
+        ]
+      }
+    }
+  ]
+}

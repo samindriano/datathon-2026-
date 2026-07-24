@@ -1,10 +1,10 @@
-# D'Coast Phase 0 - Pilot-Site Feasibility Study
+# D'Coast Phase 0/0.5 - Pilot-Site Feasibility Study
 
 Date of assessment: 24 July 2026  
 Satellite inventory period: 1 January 2021-31 December 2025, plus
 1 January-24 July 2026 as a partial year  
-Decision status: conditional recommendation; no pilot is approved for Phase 1
-until the human owner accepts it
+Decision status: `CONDITIONAL_GO_CILEGON`; no pilot is approved for Phase 1
+until the optical-quality and validation gates are closed
 
 ## Executive summary
 
@@ -12,7 +12,7 @@ This feasibility study compares four Indonesian coastal areas without training
 a model or downloading a multi-year image archive.
 
 **Recommended operational pilot: Cilegon industrial coast.** It offers the best
-current balance of industrial relevance, a manageable 18.4 km screening strip,
+current balance of industrial relevance, a manageable 20.7 km screening strip,
 regular Sentinel-2 acquisition cadence, and a peer-reviewed 2022 seawater study
 that can become a validation lead. The recommendation is conditional: the
 proposed polygon is provisional, AOI-level clear-water statistics still need
@@ -72,8 +72,8 @@ and catalogue screening, not legal or field navigation.
 | Site | Approx. area | Approx. coastline | Boundary status | Reason |
 |---|---:|---:|---|---|
 | Morowali IMIP context | 81.802 km2 | 16.574 km | Provisional/derived | Covers a compact Bahodopi industrial waterfront context without claiming the IMIP estate or an outfall. |
-| Cilegon industrial coast | 83.616 km2 | 18.443 km | Provisional/derived | Covers a manageable industrial coastal strip facing the Sunda Strait. |
-| Teluk Awur, Jepara | 77.118 km2 | 16.397 km | Provisional/derived | Provides a nearshore test area around the published TSS setting without claiming the paper's exact study polygon. |
+| Cilegon industrial coast | 84.170 km2 | 20.714 km | Provisional/derived, water-only | Covers the water side of a manageable industrial coastal strip facing the Sunda Strait; land is excluded. |
+| Teluk Awur, Jepara | 77.069 km2 | 18.480 km | Provisional/derived, water-only | Provides water-side benchmark coverage around the published TSS setting without claiming the paper's exact study polygon. |
 | Nusa Lembongan | 92.893 km2 | 7.190 km | Provisional/derived | Compact island-water optical benchmark; the coastline reference is shorter than the normal 10 km guideline and is explicitly treated as an exception. |
 
 Polygon rings, in longitude/latitude order:
@@ -81,9 +81,9 @@ Polygon rings, in longitude/latitude order:
 - Morowali:
   `[[122.130,-2.758],[122.202,-2.908],[122.238,-2.891],[122.166,-2.741],[122.130,-2.758]]`
 - Cilegon:
-  `[[105.978,-5.910],[105.950,-6.095],[105.986,-6.100],[106.014,-5.915],[105.978,-5.910]]`
+  `[[105.940,-5.910],[105.925,-6.095],[105.958,-6.100],[105.980,-5.915],[105.940,-5.910]]`
 - Teluk Awur:
-  `[[110.625,-6.535],[110.596,-6.700],[110.633,-6.706],[110.662,-6.541],[110.625,-6.535]]`
+  `[[110.585,-6.535],[110.570,-6.700],[110.605,-6.705],[110.625,-6.540],[110.585,-6.535]]`
 - Nusa Lembongan:
   `[[115.410,-8.640],[115.505,-8.640],[115.505,-8.720],[115.410,-8.720],[115.410,-8.640]]`
 
@@ -302,8 +302,8 @@ clarity 10, environmental context 10, and manageability/cost 10.
 
 | Site | Proposed role | Sentinel | Validation | Relevance | Boundary | Context | Manageability | Total |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| Cilegon | Operational pilot | 13 | 18 | 19 | 7 | 8 | 8 | **73** |
-| Teluk Awur | Technical benchmark | 16 | 24 | 7 | 7 | 8 | 9 | **71** |
+| Cilegon | Conditional operational pilot | 13 | 16 | 19 | 8 | 8 | 8 | **72** |
+| Teluk Awur | Technical benchmark | 16 | 24 | 7 | 8 | 8 | 9 | **72** |
 | Morowali | Operational candidate | 10 | 12 | 20 | 6 | 7 | 6 | **61** |
 | Nusa Lembongan | Additional benchmark | 17 | 14 | 2 | 6 | 8 | 8 | **55** |
 
@@ -339,9 +339,34 @@ earn a high score.
 7. Can a Morowali agency or academic partner supply an official boundary and
    matched field observations for a later expansion?
 
+## Phase 0.5 blocker closure
+
+The Cilegon full article and both supplementary files were inspected. Five
+stations and their measurements are documented, but the supplementary map has
+no graticule, coordinates, named station table, or geospatial metadata.
+Therefore no station GeoJSON was created. Heavy metals and the authors'
+pollution-index calculation remain Category C event/context evidence, while
+water brightness is only a Category B indirect optical proxy.
+
+The refined Cilegon and Teluk Awur polygons now represent monitoring water
+rather than mixed land-water strips. The CDSE Statistical API method was also
+revised to report, per acquisition, water-support, valid, clear-water,
+cloud/shadow, and no-data pixels with 50/70/80 threshold flags. OAuth
+credentials were still absent, so the 858-row acquisition inventory in
+`sentinel2_observation_quality.csv` is deliberately blank for all quality
+measurements and marked `BLOCKED_NO_CDSE_OAUTH`. Whole-scene cloud cover was
+not substituted.
+
+The frozen gate outcome is documented in `site_lock_decision.md`. Cilegon's
+geometry/manageability gate passes provisionally, but its 70% clear-water
+cadence/gap gates remain unknown and its georeferenced validation path is not
+secured. The final Phase 0.5 verdict is therefore
+**`CONDITIONAL_GO_CILEGON`**, with Teluk Awur retained as the technical
+benchmark.
+
 ## Recommendation and stopping decision
 
-**Conditional GO for planning only:** use Cilegon as the proposed operational
+**CONDITIONAL_GO_CILEGON for planning only:** use Cilegon as the proposed operational
 pilot and Teluk Awur as the separate technical benchmark.
 
 **NO-GO for Phase 1 implementation yet.** Before image download or model work:

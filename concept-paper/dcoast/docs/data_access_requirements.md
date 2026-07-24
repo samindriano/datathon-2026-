@@ -49,6 +49,32 @@ CDSE_CLIENT_SECRET
 
 Never put these values in Git, a notebook, a screenshot, a report, or a shell
 history that will be shared. Set them only in the local process environment.
+The repository ignores `.env`, `.env.*`, PEM/key files, and therefore
+`.env.local`, but the Phase 0.5 scripts do not require or parse an env file.
+
+Safe interactive PowerShell setup:
+
+```powershell
+$env:CDSE_CLIENT_ID = Read-Host "CDSE client ID"
+$secret = Read-Host "CDSE client secret" -AsSecureString
+$env:CDSE_CLIENT_SECRET = [Net.NetworkCredential]::new("", $secret).Password
+
+python concept-paper/dcoast/scripts/site_feasibility/query_clear_water_stats.py `
+  --aoi-dir concept-paper/dcoast/data/aoi_candidates `
+  --metadata concept-paper/dcoast/data/sentinel2_metadata_observations.csv `
+  --site cilegon-industrial-coast `
+  --site teluk-awur-jepara `
+  --output concept-paper/dcoast/reports/sentinel2_observation_quality.csv `
+  --start-year 2021 `
+  --end 2026-07-24
+
+Remove-Item Env:CDSE_CLIENT_ID
+Remove-Item Env:CDSE_CLIENT_SECRET
+Remove-Variable secret
+```
+
+This avoids placing the secret value in command history. Confirm the output
+schema and API processing-unit estimate before a larger or repeated request.
 
 Later optional sources may use:
 
@@ -73,6 +99,11 @@ fields empty with status `BLOCKED_NO_CDSE_OAUTH`.
 Whole-tile scene cloud metadata is retained only as a diagnostic proxy. It is
 not silently substituted for the requested AOI pixel statistic.
 
+The checked-in `reports/sentinel2_observation_quality.csv` contains one row per
+catalogue acquisition for Cilegon and Teluk Awur (858 rows). Its quality fields
+are empty and its status is `BLOCKED_NO_CDSE_OAUTH`. This is an explicit work
+queue, not a synthetic measurement table.
+
 ## Manual steps before Phase 1
 
 1. Create a free CDSE account and OAuth client.
@@ -85,4 +116,3 @@ not silently substituted for the requested AOI pixel statistic.
    boundary and any public monitoring or sampling record.
 6. Acquire published station coordinates or data-use permission for the chosen
    benchmark before claiming validation.
-

@@ -47,6 +47,7 @@ def main() -> None:
     clear_rows = read_csv(args.clear_water) if args.clear_water and args.clear_water.exists() else []
     metadata_by_month: dict[tuple[str, int, int], list[dict[str, str]]] = defaultdict(list)
     clear_by_month: dict[tuple[str, int, int], list[float]] = defaultdict(list)
+    clear_by_site: dict[str, list[tuple[date, float]]] = defaultdict(list)
     dates_by_site: dict[str, list[date]] = defaultdict(list)
     site_names: dict[str, str] = {}
     for row in metadata:
@@ -58,10 +59,12 @@ def main() -> None:
     for row in clear_rows:
         if row.get("clear_water_fraction", "") == "":
             continue
-        stamp = parse_datetime(row["interval_from"])
-        clear_by_month[(row["site"], stamp.year, stamp.month)].append(
-            float(row["clear_water_fraction"])
+        stamp = parse_datetime(
+            row.get("acquisition_datetime") or row.get("interval_from", "")
         )
+        clear_fraction = float(row["clear_water_fraction"])
+        clear_by_month[(row["site"], stamp.year, stamp.month)].append(clear_fraction)
+        clear_by_site[row["site"]].append((stamp.date(), clear_fraction))
     start = date(2021, 1, 1)
     end = max((stamp for values in dates_by_site.values() for stamp in values), default=date.today())
     longest_gap = {}
@@ -71,6 +74,19 @@ def main() -> None:
             ((second - first).days for first, second in zip(ordered, ordered[1:])),
             default="",
         )
+    longest_usable_gap: dict[tuple[str, float], int | str] = {}
+    for site in SITES:
+        for threshold in (0.5, 0.7, 0.8):
+            usable_dates = sorted(
+                {stamp for stamp, value in clear_by_site[site] if value >= threshold}
+            )
+            longest_usable_gap[(site, threshold)] = max(
+                (
+                    (second - first).days
+                    for first, second in zip(usable_dates, usable_dates[1:])
+                ),
+                default="",
+            )
     output_rows: list[dict[str, Any]] = []
     for site in SITES:
         for year, month in months(start, end):
@@ -84,6 +100,14 @@ def main() -> None:
             clear_available = bool(clear_values)
             usable = {
                 threshold: sum(value >= threshold for value in clear_values)
+                for threshold in (0.5, 0.7, 0.8)
+            }
+            rejected = {
+                threshold: (
+                    f"{100.0 * (1.0 - usable[threshold] / len(clear_values)):.3f}"
+                    if clear_values
+                    else ""
+                )
                 for threshold in (0.5, 0.7, 0.8)
             }
             output_rows.append(
@@ -103,10 +127,22 @@ def main() -> None:
                     "clear_water_50_observations": usable[0.5] if clear_available else "",
                     "clear_water_70_observations": usable[0.7] if clear_available else "",
                     "clear_water_80_observations": usable[0.8] if clear_available else "",
+                    "clear_water_50_rejection_pct": rejected[0.5],
+                    "clear_water_70_rejection_pct": rejected[0.7],
+                    "clear_water_80_rejection_pct": rejected[0.8],
                     "median_clear_water_fraction": (
                         f"{statistics.median(clear_values):.6f}" if clear_available else ""
                     ),
                     "site_longest_observation_gap_days": longest_gap.get(site, ""),
+                    "site_longest_clear_water_50_gap_days": (
+                        longest_usable_gap[(site, 0.5)] if clear_available else ""
+                    ),
+                    "site_longest_clear_water_70_gap_days": (
+                        longest_usable_gap[(site, 0.7)] if clear_available else ""
+                    ),
+                    "site_longest_clear_water_80_gap_days": (
+                        longest_usable_gap[(site, 0.8)] if clear_available else ""
+                    ),
                     "clear_water_status": (
                         "AVAILABLE_CDSE_STATISTICAL_API"
                         if clear_available

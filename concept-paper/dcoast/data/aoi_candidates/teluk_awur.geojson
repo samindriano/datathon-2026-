@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "name": "teluk-awur-monitoring-water-provisional",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "teluk-awur-jepara",
+        "site_name": "Teluk Awur, Jepara",
+        "candidate_role": "technical_benchmark",
+        "geometry_role": "monitoring_water",
+        "boundary_status": "provisional_derived",
+        "boundary_reason": "Water-side feasibility polygon around Teluk Awur and adjacent nearshore waters. It is intended for optical-method benchmarking and does not claim the exact boundary or stations of the published TSS study.",
+        "coastline_reference": [
+          [110.625, -6.540],
+          [110.605, -6.705]
+        ],
+        "offshore_width_km_target": "2-5",
+        "included_segments": [
+          {
+            "segment": "north",
+            "role": "nearshore and river-influence screening",
+            "status": "candidate context; river mouths must be confirmed against official hydrography"
+          },
+          {
+            "segment": "central",
+            "role": "Teluk Awur optical benchmark water",
+            "status": "general study setting only; exact published stations unavailable"
+          },
+          {
+            "segment": "south",
+            "role": "adjacent coastal-water comparison",
+            "status": "provisional"
+          },
+          {
+            "segment": "offshore edge",
+            "role": "candidate reference/control water",
+            "status": "provisional; must be tested for sediment and circulation comparability"
+          }
+        ],
+        "land_geometry": "excluded from the monitoring polygon",
+        "station_geometry": "not created because no reusable georeferenced sample table was obtained",
+        "warning": "Phase 0.5 benchmark AOI only. Confirm against BIG coastline and published station coordinates before quantitative validation."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.585, -6.535],
+            [110.570, -6.700],
+            [110.605, -6.705],
+            [110.625, -6.540],
+            [110.585, -6.535]
+          ]
+        ]
+      }
+    }
+  ]
+}

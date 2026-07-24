@@ -29,9 +29,32 @@ MONTHLY_FIELDS = [
     "clear_water_50_observations",
     "clear_water_70_observations",
     "clear_water_80_observations",
+    "clear_water_50_rejection_pct",
+    "clear_water_70_rejection_pct",
+    "clear_water_80_rejection_pct",
     "median_clear_water_fraction",
     "site_longest_observation_gap_days",
+    "site_longest_clear_water_50_gap_days",
+    "site_longest_clear_water_70_gap_days",
+    "site_longest_clear_water_80_gap_days",
     "clear_water_status",
+]
+QUALITY_FIELDS = [
+    "site",
+    "acquisition_datetime",
+    "water_support_pixel_count",
+    "valid_water_pixel_count",
+    "clear_water_pixel_count",
+    "cloud_shadow_pixel_count",
+    "no_data_pixel_count",
+    "clear_water_fraction",
+    "cloud_shadow_fraction",
+    "no_data_fraction",
+    "quality_50",
+    "quality_70",
+    "quality_80",
+    "status",
+    "method",
 ]
 
 
@@ -72,6 +95,27 @@ def main() -> None:
     if {row["site"] for row in metadata} != SITES:
         raise ValueError("Metadata sites do not match AOIs")
 
+    quality_fields, quality = read_csv(
+        args.root / "reports" / "sentinel2_observation_quality.csv"
+    )
+    if quality_fields != QUALITY_FIELDS or len(quality) != 858:
+        raise ValueError("Observation-quality schema or row count changed")
+    quality_keys = Counter(
+        (row["site"], row["acquisition_datetime"]) for row in quality
+    )
+    if any(count != 1 for count in quality_keys.values()):
+        raise ValueError("Duplicate observation-quality rows found")
+    if {row["site"] for row in quality} != {
+        "cilegon-industrial-coast",
+        "teluk-awur-jepara",
+    }:
+        raise ValueError("Observation-quality inventory must cover the two locked sites")
+    for row in quality:
+        if row["status"] == "BLOCKED_NO_CDSE_OAUTH":
+            numeric_fields = QUALITY_FIELDS[2:13]
+            if any(row[field] != "" for field in numeric_fields):
+                raise ValueError("Blocked observation-quality values must remain empty")
+
     monthly_fields, monthly = read_csv(
         args.root / "reports" / "sentinel2_monthly_availability.csv"
     )
@@ -87,7 +131,13 @@ def main() -> None:
                 "clear_water_50_observations",
                 "clear_water_70_observations",
                 "clear_water_80_observations",
+                "clear_water_50_rejection_pct",
+                "clear_water_70_rejection_pct",
+                "clear_water_80_rejection_pct",
                 "median_clear_water_fraction",
+                "site_longest_clear_water_50_gap_days",
+                "site_longest_clear_water_70_gap_days",
+                "site_longest_clear_water_80_gap_days",
             )
             if any(row[field] != "" for field in blocked_fields):
                 raise ValueError("Blocked clear-water values must remain empty")
@@ -129,8 +179,8 @@ def main() -> None:
     if total_size >= 500 * 1024 * 1024:
         raise ValueError(f"Phase 0 tree exceeds 500 MB: {total_size}")
     print(
-        f"READY_PHASE0: 4 AOIs, {len(metadata)} acquisitions, "
-        f"{len(monthly)} site-month rows, {total_size} bytes"
+        f"READY_PHASE05: 4 AOIs, {len(metadata)} acquisitions, "
+        f"{len(quality)} quality rows, {len(monthly)} site-month rows, {total_size} bytes"
     )
 
 

@@ -44,9 +44,18 @@ def polygon_area_km2(ring: list[list[float]]) -> float:
 
 def load_aoi(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    if payload.get("type") != "FeatureCollection" or len(payload.get("features", [])) != 1:
-        raise ValueError(f"{path} must contain exactly one GeoJSON feature")
-    feature = payload["features"][0]
+    if payload.get("type") != "FeatureCollection" or not payload.get("features"):
+        raise ValueError(f"{path} must contain a non-empty FeatureCollection")
+    polygon_features = [
+        feature
+        for feature in payload["features"]
+        if feature.get("geometry", {}).get("type") == "Polygon"
+        and feature.get("properties", {}).get("geometry_role", "monitoring_water")
+        == "monitoring_water"
+    ]
+    if len(polygon_features) != 1:
+        raise ValueError(f"{path} must contain exactly one monitoring-water Polygon")
+    feature = polygon_features[0]
     geometry = feature.get("geometry", {})
     if geometry.get("type") != "Polygon":
         raise ValueError(f"{path} must contain a Polygon")
@@ -56,8 +65,21 @@ def load_aoi(path: Path) -> dict[str, Any]:
     return payload
 
 
+def monitoring_water_feature(payload: dict[str, Any]) -> dict[str, Any]:
+    features = [
+        feature
+        for feature in payload["features"]
+        if feature.get("geometry", {}).get("type") == "Polygon"
+        and feature.get("properties", {}).get("geometry_role", "monitoring_water")
+        == "monitoring_water"
+    ]
+    if len(features) != 1:
+        raise ValueError("AOI must contain exactly one monitoring-water Polygon")
+    return features[0]
+
+
 def aoi_metrics(payload: dict[str, Any]) -> dict[str, float]:
-    feature = payload["features"][0]
+    feature = monitoring_water_feature(payload)
     ring = feature["geometry"]["coordinates"][0]
     coastline = feature["properties"]["coastline_reference"]
     return {
