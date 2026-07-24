@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "name": "nusa-lembongan-provisional-coastal-benchmark",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "nusa-lembongan",
+        "site_name": "Nusa Lembongan",
+        "candidate_role": "additional_technical_benchmark",
+        "boundary_status": "provisional_derived",
+        "boundary_reason": "A compact optical-water benchmark around the western and northern nearshore zone. It is not proposed as the industrial operational pilot.",
+        "coastline_reference": [
+          [115.430, -8.655],
+          [115.485, -8.690]
+        ],
+        "offshore_width_km_target": "2-5",
+        "warning": "Provisional optical benchmark AOI. It includes mixed land and water and requires an explicit water mask."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [115.410, -8.640],
+            [115.505, -8.640],
+            [115.505, -8.720],
+            [115.410, -8.720],
+            [115.410, -8.640]
+          ]
+        ]
+      }
+    }
+  ]
+}

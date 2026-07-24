@@ -770,3 +770,62 @@ Current Blockers:
 Next Highest-Value Action:
 - Wait for the active Kaggle task to open.
 ```
+
+---
+
+# 16. D'Coast Concept Implementation
+
+The D'Coast work is isolated under:
+
+```text
+concept-paper/dcoast/
+├── FOUNDATION.md
+├── data/
+│   └── aoi_candidates/
+├── docs/
+├── reports/
+└── scripts/
+    └── site_feasibility/
+```
+
+D'Coast is a coastal-water anomaly screening and inspection-prioritization
+concept. It is not an automated pollution verdict or source-attribution
+system.
+
+During Phase 0:
+
+* compare candidate pilot and benchmark sites before selecting one;
+* use metadata-first access and keep total downloads below 500 MB;
+* label unofficial AOIs, estate boundaries, and coordinates as provisional;
+* leave unavailable clear-water or validation values explicitly blocked;
+* do not train a model or bulk-download imagery;
+* do not infer outfalls, responsible companies, or pollution from optical
+  anomalies;
+* do not begin Phase 1 until the human approves the pilot location.
+
+Reproduce the public Sentinel-2 metadata inventory from the repository root:
+
+```powershell
+python concept-paper/dcoast/scripts/site_feasibility/query_sentinel2_metadata.py `
+  --aoi-dir concept-paper/dcoast/data/aoi_candidates `
+  --output concept-paper/dcoast/data/sentinel2_metadata_observations.csv `
+  --start 2021-01-01 `
+  --end 2026-07-24
+
+python concept-paper/dcoast/scripts/site_feasibility/build_availability_table.py `
+  --metadata concept-paper/dcoast/data/sentinel2_metadata_observations.csv `
+  --output concept-paper/dcoast/reports/sentinel2_monthly_availability.csv
+```
+
+The optional AOI clear-water query requires local CDSE OAuth variables
+`CDSE_CLIENT_ID` and `CDSE_CLIENT_SECRET`. Never commit those values.
+
+Directory rules:
+
+* `data/aoi_candidates/`: small reviewed GeoJSON definitions;
+* `data/`: small reproducible metadata caches only;
+* `reports/`: derived CSV and feasibility decisions;
+* `scripts/`: reproducible queries and calculations;
+* large satellite/environmental files belong outside Git and must be ignored;
+* credentials, API tokens, raw imagery, caches, and generated secrets must
+  never be committed.

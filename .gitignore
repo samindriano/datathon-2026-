@@ -29,6 +29,14 @@ task1/data/
 task2/data/
 data/
 
+# D'Coast Phase 0 keeps only small reviewed AOIs and metadata inventories
+!concept-paper/dcoast/data/
+!concept-paper/dcoast/data/aoi_candidates/
+!concept-paper/dcoast/data/aoi_candidates/*.geojson
+!concept-paper/dcoast/data/sentinel2_metadata_observations.csv
+concept-paper/dcoast/data/raw/
+concept-paper/dcoast/data/downloads/
+
 # Generated predictions and submission CSVs stay local; metrics/config stay tracked
 task*/experiments/*/submission.csv
 task*/experiments/*/oof.csv

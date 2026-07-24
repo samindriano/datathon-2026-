@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "name": "morowali-imip-provisional-coastal-strip",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "morowali-imip",
+        "site_name": "Morowali industrial coast near IMIP",
+        "candidate_role": "operational_pilot",
+        "boundary_status": "provisional_derived",
+        "boundary_reason": "A compact screening strip around the Bahodopi industrial waterfront. It is deliberately not an industrial-estate or discharge boundary.",
+        "coastline_reference": [
+          [122.145, -2.765],
+          [122.218, -2.895]
+        ],
+        "offshore_width_km_target": "2-5",
+        "official_reference_point": "IMIP Airport, Fatufia: 02 48 05 S, 122 08 28 E (Ministry of Transportation)",
+        "warning": "Provisional feasibility AOI only. It must be reviewed against an official coastline and any public estate boundary before implementation."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [122.130, -2.758],
+            [122.202, -2.908],
+            [122.238, -2.891],
+            [122.166, -2.741],
+            [122.130, -2.758]
+          ]
+        ]
+      }
+    }
+  ]
+}

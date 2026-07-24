@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "name": "cilegon-industrial-coast-provisional-strip",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "cilegon-industrial-coast",
+        "site_name": "Cilegon industrial coast",
+        "candidate_role": "operational_pilot",
+        "boundary_status": "provisional_derived",
+        "boundary_reason": "A manageable north-south coastal strip facing the Sunda Strait near the Cilegon industrial corridor. It is not an estate, port, or discharge boundary.",
+        "coastline_reference": [
+          [105.980, -5.920],
+          [105.963, -6.085]
+        ],
+        "offshore_width_km_target": "2-5",
+        "reference_point": "Krakatau industrial corridor near 105.99 E, 6.00 S",
+        "warning": "Provisional feasibility AOI only. Confirm the land-water mask and official industrial jurisdiction before implementation."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [105.978, -5.910],
+            [105.950, -6.095],
+            [105.986, -6.100],
+            [106.014, -5.915],
+            [105.978, -5.910]
+          ]
+        ]
+      }
+    }
+  ]
+}

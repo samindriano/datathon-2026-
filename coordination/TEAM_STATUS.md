@@ -325,6 +325,7 @@ Public score is never the sole final-selection reason.
 
 | Blocker ID | Reported By | Time | Description | Blocking Task | Owner | Status | Resolution |
 |---|---|---|---|---|---|---|---|
+| DCOAST-BLK-001 | MAIN | 2026-07-24 22:00 WIB | CDSE public catalogue is accessible, but AOI-level Statistical API clear-water fractions require OAuth credentials that are absent from the environment | Final 50/70/80 clear-water sensitivity and Phase 1 approval | Human / MAIN | OPEN | Create a free CDSE OAuth client, set credentials locally, run `query_clear_water_stats.py`, and never commit the values |
 
 ## 10. Handoff Queue
 
@@ -393,6 +394,9 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-19 17:35:42 +07:00 | 0043 | MAIN | D2-MAIN-014 | Reconfigured the E014 local notebook for a responsive checkpoint-resume run | Balanced CPU mode uses 2 workers with 1 thread each; notebook cleanliness tests and a one-page OCR smoke run pass | Start VS Code `Run All`; leave the long local run unattended and do not treat its output as an official submission without audit |
 | 2026-07-19 18:43:17 +07:00 | 0044 | MAIN | D2-MAIN-014 | Closed and documented the post-competition E014 research run | Full local validation reached 0.369556 versus E002 0.285333 with 5/5 fold wins; Kaggle late diagnostic displayed 0.375 versus official E002 0.321 | Preserve E002 as official; publish reproducible E014 code and documentation without raw data, checkpoints, or generated CSV |
 | 2026-07-19 18:47:38 +07:00 | 0045 | MAIN | ARCHIVE | Archived remaining independent Task 1 audit reports and local-tooling exclusions | E006, E007, and public-leaderboard-gap reports are now tracked; local worktrees and temporary files remain excluded without deletion | Keep experiment history on remote branch `exp/d2-e014-prelink` for future research |
+| 2026-07-24 17:45:24 +07:00 | 0046 | MAIN | CONCEPT-001 | Reviewed the supplied D'Coast concept papers and prepared a minimal product foundation | Added `concept-paper/dcoast/FOUNDATION.md`; no data acquisition, modeling, web implementation, or performance claim was started | Select one candidate pilot area and run a narrow data-feasibility check before implementation |
+| 2026-07-24 21:15:31 +07:00 | 0047 | MAIN | DCOAST-PHASE0-001 | Started the D'Coast pilot-site feasibility study | Froze four candidates: Morowali and Cilegon as operational candidates, Teluk Awur as the primary technical benchmark, and Nusa Lembongan as an additional optical benchmark; no model training or bulk imagery download authorized | Query metadata, document AOI-level clear-water access blockers, score evidence, and recommend one operational pilot plus benchmark |
+| 2026-07-24 22:00:19 +07:00 | 0048 | MAIN | DCOAST-PHASE0-001 | Completed the D'Coast pilot-site feasibility study and stopped at the Phase 0 gate | Conditional recommendation: Cilegon operational pilot and Teluk Awur technical benchmark; 4 valid provisional AOIs, 1,704 unique acquisitions, 268 monthly rows, source inventory, scores, and fail-closed scripts validated at 424,071 bytes; AOI clear-water sensitivity remains blocked by absent CDSE OAuth | Human reviews the recommendation and supplies OAuth plus validation/boundary access before approving any Phase 1 download, preprocessing, or model work |
 
 Append only. Correct errors with a new entry; do not erase history.
 
