@@ -1,53 +1,49 @@
 # D'Coast Phase 0.8 AOI Redesign
 
-Verdict: **CANDIDATES_CREATED; AOI LOCK REMAINS BLOCKED**
+Verdict: **CANDIDATES_REBUILT; AOI LOCK REMAINS BLOCKED**
 
 ## Method
 
-Four water-side candidates were created from BIG coastline anchor points already
-identified in Phase 0.7. The candidate polygons extend westward from those
-anchors by approximately two kilometres (compact) or four kilometres
-(extended). Existing Phase 0.7 AOIs were preserved unchanged.
+The landward boundary is no longer a straight chord. For each site, the runner
+builds an undirected graph from the bounded BIG extract and selects the
+deterministic shortest connected trace between the reviewed north and south
+anchors. Coincident segments use this frozen rule: For coincident undirected BIG segments, prefer coastline type highest-tide, mean-sea-level, lowest-tide, indicative, then other; break remaining ties by the lowest OBJECTID.
 
-The endpoint alignment gate remains frozen at <= 1,000 metres. The score is
-descriptive and cannot override a failed mandatory gate.
+Every complete landward trace is sampled at a fixed
+100 m interval. The frozen <=
+1000 m gate applies to the maximum sampled distance, while
+minimum, mean, p95, maximum, sample count, and interval are all persisted.
+Because the boundary is constructed from the selected BIG segments, these
+statistics are a full-boundary conformance check, not independent evidence of
+shoreline accuracy or water coverage.
+
+The offshore closure remains provisional: a western meridian is placed beyond
+the westernmost point of the trace, with fixed north/south caps. This is not a
+water mask, official monitoring boundary, industrial-estate boundary, port,
+outfall, or jurisdiction boundary.
 
 ## Candidate comparison
 
-| Site | Variant | Area km2 | Max endpoint distance m | Score / 100 | Land-overlap status |
-|---|---:|---:|---:|---:|---|
-| cilegon-industrial-coast | compact | 29.071 | 0.00 | 87 | UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK |
-| cilegon-industrial-coast | extended | 58.142 | 0.00 | 84 | UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK |
-| teluk-awur-jepara | compact | 14.480 | 0.00 | 87 | UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK |
-| teluk-awur-jepara | extended | 28.960 | 0.00 | 84 | UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK |
+| Site | Variant | Area km2 | BIG trace km | Samples | Min m | Mean m | P95 m | Max m | BIG feature IDs | Valid | Score |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---:|---:|
+| cilegon-industrial-coast | compact | 115.920 | 31.831 | 320 | 0.00 | 0.00 | 0.00 | 0.00 | 2424 | 1 | 87 |
+| cilegon-industrial-coast | extended | 145.214 | 31.831 | 320 | 0.00 | 0.00 | 0.00 | 0.00 | 2424 | 1 | 84 |
+| teluk-awur-jepara | compact | 21.860 | 10.947 | 111 | 0.00 | 0.00 | 0.00 | 0.00 | 40267;40268;40269;40270;40271;40272;40280;40281;40433;40434;40435;40436;40437;40438;40439;40440;40441;40442;40443;40444;40445;40446 | 1 | 87 |
+| teluk-awur-jepara | extended | 36.654 | 10.947 | 111 | 0.00 | 0.00 | 0.00 | 0.00 | 40267;40268;40269;40270;40271;40272;40280;40281;40433;40434;40435;40436;40437;40438;40439;40440;40441;40442;40443;40444;40445;40446 | 1 | 84 |
 
 ## Selection
 
-- Cilegon compact is the preferred Cilegon geometry candidate because it has the
-  smaller processing footprint. It is **not locked**.
-- Teluk Awur compact is the preferred benchmark geometry candidate because it
-  covers the published study corridor with a smaller processing footprint. It
-  is **not locked** and does not infer station coordinates.
-
-## Boundary provenance
-
-The landward endpoints are exact BIG coastline coordinates from the bounded
-Phase 0.7 extracts. The offshore edge is a derived fixed westward translation.
-No candidate is labelled as an official industrial-estate, port, jurisdiction,
-outfall, or published-sampling boundary.
-
-For Teluk Awur, the 2024 paper's labelled map envelope is used only as supporting
-context. It is not treated as a water-only AOI and no station coordinate is
-inferred from the figure.
+- The compact candidate remains the preferred geometry within each site because
+  it has the smaller provisional processing footprint.
+- Cilegon remains no-go for the current optical pipeline under Phase 0.6; this
+  geometry work does not reverse that decision.
+- Teluk Awur remains a technical benchmark candidate and does not infer any
+  published sampling-station coordinate.
 
 ## Why no AOI is locked
 
-The official BIG source used here is a coastline line layer, not a land polygon
-or validated water mask. Endpoint alignment therefore cannot establish that the
-entire straight landward chord and polygon are free of land, port structures,
-islands, or unsuitable shallow-bottom areas. Domain review is also absent.
-
-Creating `data/aoi_locked/` would overstate the available evidence. The next
-bounded step is a land-overlap and water-mask verification of the preferred
-compact candidates, followed by human/domain review. This remains Phase 0;
-model training and bulk imagery download remain prohibited.
+`polygon_validity_score` covers only closure, non-zero area, and absence of
+self-intersection. It does not prove water coverage or land exclusion. The
+official BIG source is a coastline line layer, not an accepted land polygon or
+water mask, and domain review remains absent. Mandatory gates set
+`lock_eligible=0` regardless of the descriptive total score.

@@ -1,1 +1,8 @@
 *.pdf binary
+.gitattributes text eol=lf
+concept-paper/dcoast/data/aoi_candidates_v2/*.geojson text eol=lf
+concept-paper/dcoast/docs/aoi_provenance.md text eol=lf
+concept-paper/dcoast/reports/phase08_*.csv text eol=lf
+concept-paper/dcoast/reports/phase08_*.md text eol=lf
+concept-paper/dcoast/scripts/site_feasibility/run_phase08.py text eol=lf
+concept-paper/dcoast/tests/test_phase08.py text eol=lf

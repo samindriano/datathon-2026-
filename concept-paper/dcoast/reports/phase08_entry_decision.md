@@ -3,25 +3,24 @@
 - **CILEGON_AOI_BLOCKED**
 - **TELUK_AWUR_AOI_BLOCKED**
 
-Both preferred compact candidates pass the endpoint-alignment calculation in
-this redesign (0.00 m at both landward anchors), but neither passes the
-mandatory land-overlap and domain-review gate.
+The complete BIG-derived landward traces pass the frozen alignment gate:
 
-## Interpretation
+- `cilegon-industrial-coast`: 320 samples at 100 m; minimum 0.00 m, mean 0.00 m, p95 0.00 m, maximum 0.00 m; BIG features `2424`.
+- `teluk-awur-jepara`: 111 samples at 100 m; minimum 0.00 m, mean 0.00 m, p95 0.00 m, maximum 0.00 m; BIG features `40267;40268;40269;40270;40271;40272;40280;40281;40433;40434;40435;40436;40437;40438;40439;40440;40441;40442;40443;40444;40445;40446`.
 
-The Phase 0.7 failure was caused by provisional coastline references that did
-not follow the reviewed BIG corridor. Phase 0.8 fixes that narrow geometry
-problem by anchoring the candidates to exact BIG coordinates. It does not prove
-that the full polygon is water-only, because BIG's source is a coastline line
-layer rather than a land polygon or accepted water mask.
+These zero-distance results confirm conformance of the persisted full boundary
+to the selected contributing BIG segments. They are not independent evidence
+of shoreline accuracy, water coverage, or land exclusion.
 
-## Phase 1 decision
+Both compact polygons pass polygon validity, but neither passes land-overlap or
+domain-review gates. Their descriptive scores cannot override those mandatory
+fail-closed gates.
 
-Phase 1 remains blocked. The next allowed task is a bounded Phase 0.9 check that
-uses an accepted land polygon or reproducible Sentinel-2 water/land mask to
-quantify land overlap for the preferred compact candidates. It must not train a
-model or bulk-download imagery.
+## Next-phase verdict
 
-The Teluk Awur validation-data request remains unsent and is not required to run
-this geometry-only next step. Quantitative calibration and evaluation remain
-blocked until georeferenced validation data pass the frozen contract.
+**GO_FOR_PHASE09_GEOMETRY_CHECK_ONLY**
+
+This verdict allows only a separately approved, bounded land-overlap/water-mask
+verification. Phase 0.9 has not been started here. Phase 1, model training, bulk
+imagery download, source attribution, and operational claims remain blocked.
+The Teluk Awur data-request draft remains unsent.
