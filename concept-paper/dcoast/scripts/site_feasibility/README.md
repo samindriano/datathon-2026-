@@ -63,3 +63,15 @@ python -m unittest discover `
   -s concept-paper/dcoast/tests `
   -p "test_*.py"
 ```
+
+Phase 0.7 uses only small, bounded vector queries from BIG's public 1:25,000
+coastline service. It does not download satellite imagery, contact study
+authors, alter the provisional monitoring AOIs, or start Phase 1:
+
+```powershell
+python concept-paper/dcoast/scripts/site_feasibility/run_phase07.py
+```
+
+The resulting endpoint-distance screen is intentionally conservative. A pass
+would establish only broad coastline alignment; a fail requires AOI redesign
+and review rather than silently snapping the existing polygon.

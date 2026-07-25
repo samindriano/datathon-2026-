@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "name": "teluk-awur-published-study-extent-approximate",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "teluk-awur-jepara",
+        "geometry_role": "published_study_extent",
+        "boundary_status": "approximate_published_map_extent",
+        "source": "Sabila et al. 2024, Figure 1",
+        "source_doi": "https://doi.org/10.14710/ik.ijms.29.4.495-502",
+        "sampling_date": "2023-07-22",
+        "reported_station_count": 110,
+        "derivation": "Envelope transcribed from the labelled map graticule: 110°35'-110°42' E and 6°35'-6°39' S.",
+        "permitted_use": "AOI review and validation-data acquisition planning only",
+        "prohibited_use": "Do not interpret this envelope as station coordinates, a water-only monitoring AOI, or an operational boundary."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.5833333333, -6.5833333333],
+            [110.7000000000, -6.5833333333],
+            [110.7000000000, -6.6500000000],
+            [110.5833333333, -6.6500000000],
+            [110.5833333333, -6.5833333333]
+          ]
+        ]
+      }
+    }
+  ]
+}

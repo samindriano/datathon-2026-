@@ -1,12 +1,12 @@
 # Datathon 2026 Team Status
 
-Revision: 0057
+Revision: 0059
 Active Day: CONCEPT
-Active Task: D'COAST PHASE 0.6
-Last Global Update: 2026-07-25 02:32:00 +07:00
+Active Task: NONE
+Last Global Update: 2026-07-25 10:42:00 +07:00
 Competition Clock: CLOSED
 Repository Branch: codex/dcoast-phase0
-Current Stable Commit: ef8b7ee141577d34866decc55ee8385c13194bc7
+Current Stable Commit: b3b78204bdc8fb2bc38685c299d16bccbde4fbd8
 
 ## 1. Active Competition Brief
 
@@ -47,6 +47,7 @@ Only MAIN may update this section.
 | D2-DEC-010 | 2026-07-19 15:46 WIB | Reject E014 at its precompute gate and refreeze E002 as the final Task 2 candidate; no further model or slot use. | Four-worker benchmark projects 5,383 seconds for the 4,312 relevant pages versus the frozen 3,600-second maximum; full validation, artifact, notebook, and slot were correctly not run. | MAIN | None before the competition close; only a reproducibility failure in E002 would justify emergency action. |
 | D2-DEC-011 | 2026-07-19 15:51 WIB | Treat precomputed screenshot-link features as ineligible for the final notebook and retain only end-to-end E002. | Panitia clarification supplied by the human: every preprocessing step before modeling must run end-to-end in the submitted notebook and may not load externally preprocessed data. | MAIN | Only a written official clarification explicitly permitting the exact artifact architecture could reverse this, and runtime would still fail. |
 | DCOAST-DEC-001 | 2026-07-25 02:32 WIB | Close Cilegon as `NO_GO_CILEGON_FOR_PHASE1` for the current optical pipeline; retain Teluk Awur only as a conditional technical benchmark and do not start Phase 1. | Credential-enabled Phase 0.6 output: Cilegon has 0 quality-70 dates and fails 3/3 frozen cadence gates; Teluk Awur has 167 quality-70 dates but a 120-day maximum full-period gap and still lacks secured georeferenced validation. | MAIN | A newly preregistered coastal/turbid-water quality method, reviewed AOI/boundary evidence, and secured validation data may justify a fresh gate; do not reverse by lowering the frozen 70% threshold on this evidence. |
+| DCOAST-DEC-002 | 2026-07-25 10:42 WIB | Reject both provisional monitoring AOIs at the official-coastline alignment gate; retain the Teluk Awur published extent as reference evidence only and keep Phase 1 blocked. | At the frozen <=1,000 m endpoint gate, Cilegon is 1,569.45/6,665.67 m from the nearest BIG coastline and Teluk Awur is 2,788.00/1,004.50 m away. The open study map is not a station-coordinate table. | MAIN | A separately approved and preregistered AOI redesign passes the same official-coastline screen and domain review, and secured row-level validation data pass the frozen contract. |
 
 Only MAIN manages this table; reviewers propose decisions in their role sections.
 
@@ -80,6 +81,7 @@ Only MAIN manages this table; reviewers propose decisions in their role sections
 | D2-MAIN-013 | DAY 2 | MAIN | DONE | MEDIUM | Human requests a post-competition local E014 rerun | Clean VS Code notebook with resumable official-ZIP extraction, frozen-fold evaluation, CSV creation, and validation | `task2/notebooks/d2-e014-prelink-local.ipynb` plus focused pipeline support | 2026-07-19 16:20 WIB | 2026-07-19 16:33 WIB | Local experiment tooling only; E014 remains unaudited/rejected and E002 remains the official final candidate. |
 | DCOAST-PHASE05-001 | CONCEPT | MAIN | DONE | HIGH | Completed Phase 0 feasibility and unresolved OAuth/validation/AOI blockers | Refined water AOIs, per-acquisition quality contract, supplementary evidence, validation classification, and frozen site gates | Phase 0.5 site-lock verdict and reproducible blocker-closure artifacts | 2026-07-24 23:49 WIB | 2026-07-25 00:12 WIB | `CONDITIONAL_GO_CILEGON`; Teluk Awur remains the benchmark; CDSE clear-water and secured georeferenced validation gates remain open; no Phase 1 work authorized. |
 | DCOAST-PHASE06-001 | CONCEPT | MAIN | DONE | HIGH | Valid Sentinel Hub OAuth client credentials | Deduplicated site-date clear-water query with retry, provenance, sensitivity, and fail-closed validation | Audited Cilegon/Teluk Awur optical-quality evidence and Phase 0.6 gate verdict | 2026-07-25 01:49 WIB | 2026-07-25 02:32 WIB | `NO_GO_CILEGON_FOR_PHASE1`; Cilegon fails all frozen quality-70 cadence gates, Teluk Awur remains a conditional technical benchmark, and Phase 1 was not started. |
+| DCOAST-PHASE07-001 | CONCEPT | MAIN | DONE | HIGH | Phase 0.6 no-go verdict and public BIG coastline service | Query bounded official coastline evidence, audit provisional AOI alignment, and freeze the minimum validation-data contract | AOI review packet and actionable Teluk Awur validation-acquisition package without Phase 1 training/download | 2026-07-25 02:40 WIB | 2026-07-25 10:42 WIB | Both provisional AOIs fail the frozen coastline gate; bounded BIG extracts, study envelope, data contract, and an explicitly unsent request draft are reproducible. Phase 1 remains blocked. |
 
 Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`, `IN_PROGRESS`, `BLOCKED`, `NEEDS_REVIEW`, `DONE`, `CANCELLED`. IDs: `D1-MAIN-001`, `D1-VAL-001`, `D1-SUB-001`, `D2-MAIN-001`, `D2-VAL-001`, `D2-SUB-001`. MAIN creates/prioritizes/cancels; each role changes only its rows.
 
@@ -87,13 +89,13 @@ Owner: `MAIN`, `VALIDATION`, `SUBMISSION`. Status: `BACKLOG`, `READY`, `CLAIMED`
 
 <!-- MAIN:START -->
 Role: MAIN
-Current Task: DCOAST-PHASE06-001
+Current Task: NONE
 Status: DONE
-Last Read Revision: 0056
-Last Update: 2026-07-25 02:32:00 +07:00
+Last Read Revision: 0058
+Last Update: 2026-07-25 10:42:00 +07:00
 
 ### Current Objective
-Close Phase 0.6 with a reproducible clear-water gate verdict and stop before Phase 1.
+Close the official-coastline and validation-acquisition blockers enough to make the next D'Coast site decision without starting Phase 1.
 ### Work Completed
 - Created canonical coordination documentation.
 - Verified required competition rules, role ownership, synchronization/reporting protocols, Day 1/Day 2 workflows, write-lock instructions, and single canonical status file.
@@ -121,8 +123,11 @@ Close Phase 0.6 with a reproducible clear-water gate verdict and stop before Pha
 - Issued `CONDITIONAL_GO_CILEGON`; retained Teluk Awur as the technical benchmark and did not start Phase 1.
 - Completed the credential-enabled Statistical API workflow: 848 unique site-date rows representing 858 source acquisitions, with provenance, rejection reasons, and bounded retry.
 - Aggregated the preregistered 50/70/80 sensitivity and cadence gates; closed Cilegon as no-go for the current optical pipeline and retained Teluk Awur only as a conditional technical benchmark.
+- Queried and clipped bounded official BIG coastline extracts with preserved source/type provenance: 5 features for Cilegon and 62 for Teluk Awur.
+- Applied the frozen <=1,000 m endpoint screen; both provisional AOIs fail, so neither was silently snapped, redesigned, or promoted.
+- Recorded only the approximate published Teluk Awur study envelope, froze the minimum reusable TSS data contract, and prepared an explicitly unsent author-request draft.
 ### Work in Progress
-- NONE; Phase 1 remains blocked pending a new human approval gate.
+- NONE
 ### Latest Metrics
 - `d2-e001-baseline`: mean 0.261333; folds 0.267778, 0.255556, 0.265556, 0.255000, 0.262778; worst 0.255000; std 0.005195.
 - Mean current-seen coverage 0.8003; observed-candidate coverage 0.3053; test current-seen rate 0.874167.
@@ -153,8 +158,10 @@ Close Phase 0.6 with a reproducible clear-water gate verdict and stop before Pha
 - Panitia clarification closes the artifact shortcut: preprocessing must execute end-to-end in the final notebook, so a locally precomputed outgoing-link graph cannot make E014 submission-eligible.
 - D'Coast Phase 0.6: Cilegon quality-70 usable dates 0/423, full-year average 0, median 0/month, and no usable-date gap metric; all 3/3 frozen gates fail.
 - D'Coast Phase 0.6: Teluk Awur quality-70 usable dates 167/425, full-year average 29, median 2/month, and maximum full-period gap 120 days; cadence passes 2/3 gates.
+- D'Coast Phase 0.7: Cilegon endpoint distances 1,569.45 m and 6,665.67 m; Teluk Awur 2,788.00 m and 1,004.50 m; both fail the frozen <=1,000 m official-coastline gate.
+- D'Coast Phase 0.7: bounded BIG extracts contain 5 Cilegon and 62 Teluk Awur features; the validation-acquisition package remains `READY_TO_REQUEST_DATA`, not Phase 1 authorization.
 ### Files Changed
-- `task2/src/`; `task2/tests/`; `task2/experiments/d2-e001-baseline/`; `task2/notebooks/`; `task2/reports/`; `task2/README.md`; `coordination/TEAM_STATUS.md`
+- `concept-paper/dcoast/data/big_coastline/`; `concept-paper/dcoast/data/reference_extents/`; `concept-paper/dcoast/docs/`; `concept-paper/dcoast/reports/`; `concept-paper/dcoast/scripts/site_feasibility/`; `concept-paper/dcoast/tests/test_phase07.py`; `coordination/TEAM_STATUS.md`
 ### Commands Running
 - NONE
 ### Artifacts Produced
@@ -191,6 +198,13 @@ Close Phase 0.6 with a reproducible clear-water gate verdict and stop before Pha
 - `concept-paper/dcoast/reports/phase06_site_quality_summary.csv`
 - `concept-paper/dcoast/reports/phase06_monthly_seasonality.csv`
 - `concept-paper/dcoast/reports/phase06_clear_water_assessment.md`
+- `concept-paper/dcoast/data/big_coastline/{cilegon-industrial-coast,teluk-awur-jepara}.geojson`
+- `concept-paper/dcoast/data/reference_extents/teluk_awur_published_study_extent.geojson`
+- `concept-paper/dcoast/reports/phase07_aoi_alignment.csv`
+- `concept-paper/dcoast/reports/phase07_aoi_review.md`
+- `concept-paper/dcoast/reports/phase07_validation_acquisition.md`
+- `concept-paper/dcoast/docs/teluk_awur_validation_data_contract.md`
+- `concept-paper/dcoast/docs/teluk_awur_data_request_draft.md` (draft only; not sent)
 ### Decisions Needed
 - Human approval is required before any D'Coast Phase 1 work.
 ### Tasks Dispatched to Other Agents
@@ -202,9 +216,10 @@ Close Phase 0.6 with a reproducible clear-water gate verdict and stop before Pha
 - SUBMISSION completed the immutable writeup audit at `877b7b1` with verdict `READY`; report integrated as `2343f1e`.
 - No role task is dispatched during E014 precompute; MAIN works alone to avoid duplicate/fast-mode cost. VALIDATION/SUBMISSION receive a handoff only after a complete immutable candidate passes local gates.
 ### Blockers
-- Secured georeferenced optical validation data and expert/AOI review remain absent; Cilegon also fails the frozen optical cadence gate.
+- Both provisional monitoring AOIs fail the frozen official-coastline alignment gate.
+- Secured row-level georeferenced optical validation data and expert/domain review remain absent; Cilegon also fails the frozen optical cadence gate.
 ### Next Action
-- Stop. Review BIG coastline/AOI evidence and secure dated, georeferenced Teluk Awur TSS observations before proposing a new Phase 1 gate.
+- Human reviews and explicitly authorizes the Teluk Awur data request. Any new AOI design must be a separate preregistered task using official coastline evidence and domain review; do not start Phase 1 yet.
 <!-- MAIN:END -->
 
 Only MAIN may update this section.
@@ -342,6 +357,7 @@ Public score is never the sole final-selection reason.
 | Blocker ID | Reported By | Time | Description | Blocking Task | Owner | Status | Resolution |
 |---|---|---|---|---|---|---|---|
 | DCOAST-BLK-001 | MAIN | 2026-07-24 22:00 WIB | CDSE public catalogue was accessible, but AOI-level Statistical API clear-water fractions required OAuth credentials that were initially absent | Final 50/70/80 clear-water sensitivity and Phase 1 approval | Human / MAIN | CLOSED | Human supplied credentials privately; 848 site-date rows were generated and validated without storing credentials. The result closes Cilegon as no-go rather than authorizing Phase 1. |
+| DCOAST-BLK-002 | MAIN | 2026-07-25 10:42 WIB | Both provisional AOIs fail the official BIG coastline endpoint gate, and the Teluk Awur studies do not publish a reusable row-level georeferenced table | Monitoring-AOI lock, technical benchmark reproduction, and Phase 1 approval | Human / MAIN | OPEN | Review the unsent data request; authorize contact if appropriate; redesign any AOI only in a separate preregistered task with domain review. |
 
 ## 10. Handoff Queue
 
@@ -422,6 +438,8 @@ Status: `WAITING`, `ACKNOWLEDGED`, `COMPLETED`, `REJECTED`.
 | 2026-07-25 02:27:00 +07:00 | 0055 | MAIN | DCOAST-PHASE06-001 | Removed remaining Statistical API resolution ambiguity | The API repeated the same effective one-pixel rejection despite decimal WGS84 resolution; runner now calculates and sends explicit width/height from AOI extent at the frozen approximate 60 m target, with a 2500-pixel fail-closed guard | Rerun the corrected workflow in the same credential-bearing PowerShell |
 | 2026-07-25 02:31:00 +07:00 | 0056 | MAIN | DCOAST-PHASE06-001 | Detected and validated the completed Statistical API artifact despite stale pasted traceback | `sentinel2_observation_quality.csv` now has 848 unique site-date rows representing 858 acquisitions; validator passes; Cilegon quality-70 count is 0 versus Teluk Awur 167 | Freeze the proven request configuration, aggregate frozen gates, explain the Cilegon SCL-screening failure without relabeling it as pollution, and issue the Phase 0.6 verdict |
 | 2026-07-25 02:32:00 +07:00 | 0057 | MAIN | DCOAST-PHASE06-001 | Completed Phase 0.6 and stopped before Phase 1 | Cilegon has 0 quality-70 dates and fails 3/3 frozen cadence gates; Teluk Awur has 167 quality-70 dates and passes volume but fails the 120-day gap gate; all 848 rows, summaries, seasonality, report, and fail-closed checks are reproducible | Keep `NO_GO_CILEGON_FOR_PHASE1`; require new AOI/expert evidence and secured georeferenced validation before any new human-approved phase |
+| 2026-07-25 02:40:00 +07:00 | 0058 | MAIN | DCOAST-PHASE07-001 | Started the bounded AOI and validation-acquisition closure | Official BIG exposes a queryable 1:25,000 coastline feature service, and the Teluk Awur study states that supporting data are available from the corresponding author upon reasonable request | Extract only small site-bounded coastline vectors, quantify provisional AOI alignment, and prepare a minimum reusable TSS data contract without contacting anyone or starting Phase 1 |
+| 2026-07-25 10:42:00 +07:00 | 0059 | MAIN | DCOAST-PHASE07-001 | Completed the bounded official-coastline and validation-acquisition review | Cilegon and Teluk Awur both fail the frozen <=1,000 m endpoint gate; 5/62 BIG features, approximate study extent, data contract, and unsent author-request draft are reproducible | Human reviews the request and separately authorizes any contact or AOI redesign; Phase 1 remains blocked |
 
 Append only. Correct errors with a new entry; do not erase history.
 

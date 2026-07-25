@@ -1,0 +1,5 @@
+site,reference_point,aoi_longitude,aoi_latitude,nearest_big_longitude,nearest_big_latitude,distance_m,alignment_gate_m,alignment_pass,big_objectid,big_name,big_remark,big_coastline_type_code,big_coastline_type,big_source_code,big_source,big_source_year,big_publication_year
+cilegon-industrial-coast,north,105.98000000,-5.91500000,105.99174000,-5.92292800,1569.45,1000,0,2424,Garis Pantai,,2,highest-tide,4,lidar,2020,2022
+cilegon-industrial-coast,south,105.95800000,-6.10000000,105.91990100,-6.05354200,6665.67,1000,0,2424,Garis Pantai,,2,highest-tide,4,lidar,2020,2022
+teluk-awur-jepara,north,110.62500000,-6.54000000,110.64541200,-6.55474500,2788.00,1000,0,40418,Garis Pantai,Penyesuaian Citra Bing Maps 2020,4,indicative,6,ortho-photo-imagery,2020,2022
+teluk-awur-jepara,south,110.60500000,-6.70500000,110.60931400,-6.71295300,1004.50,1000,0,40263,Garis Pantai,Penyesuaian Citra Bing Maps 2020,4,indicative,6,ortho-photo-imagery,2020,2022
