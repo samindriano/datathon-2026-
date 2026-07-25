@@ -75,3 +75,20 @@ python concept-paper/dcoast/scripts/site_feasibility/run_phase07.py
 The resulting endpoint-distance screen is intentionally conservative. A pass
 would establish only broad coastline alignment; a fail requires AOI redesign
 and review rather than silently snapping the existing polygon.
+
+Phase 0.8 creates separate compact and extended AOI-v2 candidates from reviewed
+BIG coastline anchors. It is fail-closed: no candidate is copied to
+`data/aoi_locked/` until land overlap is verified with an accepted land polygon
+or reproducible water mask and a domain review is recorded.
+
+```powershell
+python concept-paper/dcoast/scripts/site_feasibility/run_phase08.py
+
+python -m unittest discover `
+  -s concept-paper/dcoast/tests `
+  -p "test_phase08.py" `
+  -v
+```
+
+Phase 0.8 does not contact the Teluk Awur authors, train a model, download a
+multi-year image archive, or authorize Phase 1.
