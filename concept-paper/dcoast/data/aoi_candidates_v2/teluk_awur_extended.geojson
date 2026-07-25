@@ -1,0 +1,36 @@
+{
+  "type": "FeatureCollection",
+  "name": "teluk-awur-jepara-extended-phase08-candidate",
+  "dcoast_provenance": {
+    "phase": "0.8",
+    "crs": "EPSG:4326",
+    "official_reference": "BIG Peta Garis Pantai Skala 1:25.000, publication 2022",
+    "derivation": "BIG coastline anchor points plus a fixed westward offshore translation",
+    "lock_status": "NOT_LOCKED",
+    "lock_blocker": "UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "teluk-awur-jepara",
+        "site_name": "Teluk Awur, Jepara",
+        "candidate_role": "technical_benchmark_candidate",
+        "candidate_variant": "extended",
+        "geometry_role": "monitoring_water_candidate",
+        "boundary_status": "provisional_derived_from_big_anchors",
+        "coastline_reference": [[110.645513, -6.583577], [110.647297, -6.648355]],
+        "source_big_feature_ids": [40273, 40267],
+        "seaward_direction": "west",
+        "offshore_shift_longitude_degrees": 0.0364,
+        "rationale": "Four-kilometre-class westward benchmark strip that remains within the published study envelope in longitude while adding offshore comparison water. It remains a provisional product-design geometry.",
+        "land_overlap_status": "UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK",
+        "warning": "Do not use for imagery download, quantitative modelling, or operational monitoring until the land-overlap/water-mask gate and domain review pass."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[110.645513, -6.583577], [110.647297, -6.648355], [110.610897, -6.648355], [110.609113, -6.583577], [110.645513, -6.583577]]]
+      }
+    }
+  ]
+}
