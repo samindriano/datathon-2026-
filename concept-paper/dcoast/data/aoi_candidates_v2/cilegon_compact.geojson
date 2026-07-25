@@ -1,0 +1,36 @@
+{
+  "type": "FeatureCollection",
+  "name": "cilegon-industrial-coast-compact-phase08-candidate",
+  "dcoast_provenance": {
+    "phase": "0.8",
+    "crs": "EPSG:4326",
+    "official_reference": "BIG Peta Garis Pantai Skala 1:25.000, publication 2022",
+    "derivation": "BIG coastline anchor points plus a fixed westward offshore translation",
+    "lock_status": "NOT_LOCKED",
+    "lock_blocker": "UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "cilegon-industrial-coast",
+        "site_name": "Cilegon industrial coast",
+        "candidate_role": "operational_pilot_candidate",
+        "candidate_variant": "compact",
+        "geometry_role": "monitoring_water_candidate",
+        "boundary_status": "provisional_derived_from_big_anchors",
+        "coastline_reference": [[105.99174, -5.922928], [105.919901, -6.053542]],
+        "source_big_feature_ids": [2424],
+        "seaward_direction": "west",
+        "offshore_shift_longitude_degrees": 0.0181,
+        "rationale": "Two-kilometre-class westward screening strip anchored to the nearest BIG coastline positions identified in Phase 0.7. It is a geometry candidate only and does not claim an industrial-estate, port, outfall, or jurisdiction boundary.",
+        "land_overlap_status": "UNVERIFIED_NO_ACCEPTED_LAND_POLYGON_OR_WATER_MASK",
+        "warning": "Do not use for imagery download, quantitative modelling, or operational monitoring until the land-overlap/water-mask gate and domain review pass."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[105.99174, -5.922928], [105.919901, -6.053542], [105.901801, -6.053542], [105.97364, -5.922928], [105.99174, -5.922928]]]
+      }
+    }
+  ]
+}
